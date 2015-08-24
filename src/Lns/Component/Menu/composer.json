@@ -1,0 +1,13 @@
+{
+    "name": "lns/menu",
+    "authors": [
+        {
+            "name": "Paul-Émile MINY",
+            "email": "paulemile.miny@gmail.com"
+        }
+    ],
+    "require": {
+        "knplabs/knp-menu": "~2.0",
+        "doctrine/cache": "~1.3"
+    }
+}

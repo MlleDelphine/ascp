@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html {{ sonata_seo_html_attributes() }}>
+    <head {{ sonata_seo_head_attributes() }}>
+        {{ sonata_seo_title() }}
+        {{ sonata_seo_metadatas() }}
+        {{ sonata_seo_link_canonical() }}
+        {{ sonata_seo_lang_alternates() }}
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,700,400italic' rel='stylesheet' type='text/css'>
+        <script src="{{ asset('assets/js/vendor/modernizr.js') }}"></script>
+        {% include 'ServiceCiviqueWebBundle:Block:_google_analytics.html.twig' %}
+    </head>
+    <body id="{{ app.request.attributes.get('_route') }}" class="{{ service_civique_context_name() }} {{ (body_classes is defined) ? body_classes : '' }}" >
+        {% block tags %}{% endblock %}
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+        {% include 'ServiceCiviqueWebBundle:Block:_facebook_sdk.html.twig' %}
+        {% include 'SonataSeoBundle:Block:_twitter_sdk.html.twig' %}
+        {% include 'ServiceCiviqueWebBundle:Block:_google_plus_sdk.html.twig' %}
+    </body>
+</html>

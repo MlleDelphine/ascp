@@ -1,0 +1,86 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Advantage:macros.html.twig' import table %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% set page_type_class = 'faq' %}
+
+{% block breadcrumb_content %}
+{% set parent_route = 'service_civique_homepage' %}
+{% set parent_name  = 'service_civique.breadcrumb.discover.index' %}
+
+{% if type == 'organisme' %}
+    {% set parent_route = 'service_civique_organization_homepage' %}
+    {% set parent_name  = 'service_civique.breadcrumb.organization.index' %}
+{% endif %}
+
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'route': parent_route, 'name' : parent_name},
+    {'name' : 'service_civique.breadcrumb.faq.' ~ type },
+]) }}
+{% endblock %}
+
+{% block main_content_header %}
+    {% if type == 'organisme' %}
+        La foire aux questions des organismes
+    {% else %}
+        La foire aux questions des volontaires
+    {% endif %}
+{% endblock %}
+
+{% block main_content_body %}
+    {% if faq.themes is defined %}
+        {% for theme in faq.themes %}
+            {% set themeVar = loop.index %}
+            <h2><span>{{ theme.titre | raw }}</span></h2>
+            <div class="panel-group" id="question-{{ themeVar }}">
+                {% for rubrique in theme.rubriques %}
+                <div class="panel">
+                    <h3 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#question-{{ themeVar }}" href="#question-{{ themeVar }}-{{ loop.index }}">
+                            <i class="icon-play2"></i><i class="icon-play"></i>{{ rubrique.titre | raw }}
+                        </a>
+                    </h3>
+                    <div id="question-{{ themeVar }}-{{ loop.index }}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="panel-group" id="question-group-{{ themeVar }}-{{ loop.index }}">
+                                {% for question in rubrique.questions %}
+                                <div class="panel">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#question-group-{{ themeVar }}-{{ loop.parent.loop.index }}" href="#collapse-{{ themeVar }}-{{ loop.parent.loop.index }}-{{ loop.index }}">
+                                            <i class="icon-play2"></i><i class="icon-play"></i> {{ question.titre | raw }}
+                                        </a>
+                                    </h4>
+                                    <div id="collapse-{{ themeVar }}-{{ loop.parent.loop.index }}-{{ loop.index }}" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            {{ question.reponse | raw }}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <div class="faqContactBox">
+            <p class="intro">{{ 'service_civique.faq.contact.message' | trans }}</p>
+            <p><a class="link-action" href="{{ path('service_civique_contact') }}">{{ 'service_civique.faq.contact.link.label' | trans }}</a></p>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'ServiceCiviqueWebBundle:Frontend/Default:_sidebar.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/faq.js') }}"></script>
+{% endblock %}

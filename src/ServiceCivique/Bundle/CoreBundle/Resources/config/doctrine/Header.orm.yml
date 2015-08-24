@@ -1,0 +1,38 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Header:
+    type: entity
+    table: header
+    repositoryClass: ServiceCivique\Bundle\CoreBundle\Repository\HeaderRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: '200'
+        pinImage:
+            column: pin_image
+            type: string
+            length: '200'
+            nullable: true
+        pinUrl:
+            column: pin_url
+            type: string
+            length: 255
+            nullable: true
+        image:
+            type: string
+            length: 255
+        startDate:
+            column: start_date
+            type: date
+            gedmo:
+                timestampable:
+                    on: create
+        endDate:
+            column: end_date
+            type: date
+            nullable: true
+    lifecycleCallbacks: {  }

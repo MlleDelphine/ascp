@@ -1,0 +1,27 @@
+{% macro table(menus) %}
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+
+{% if menus | length != 0 %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>{{ sylius_resource_sort('title', 'Titre') }}</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for menu in menus %}
+        <tr data-id="{{ menu.id }}">
+            <td>{{ menu.title }}</td>
+            <td>
+                {{ buttons.edit(path('lns_backend_menu_update', {'id': menu.id})) }}
+                {{ buttons.delete(path('lns_backend_menu_delete', {'id': menu.id})) }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    {{ 'lns.menu.no_results' | trans }}
+{% endif %}
+{% endmacro %}

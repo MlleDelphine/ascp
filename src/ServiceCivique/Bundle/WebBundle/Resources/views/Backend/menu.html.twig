@@ -1,0 +1,69 @@
+{% import _self as menu %}
+
+{% macro child(title, icon, path) %}
+    {% if path is iterable %}
+        {% set path = path(path[0], path[1]) %}
+    {% else %}
+        {% set path = path(path) %}
+    {% endif %}
+    <li>
+        <a href="{{ path }}">
+            <i class="glyphicon glyphicon-{{ icon }}"></i> <span>{{ title }}</span>
+        </a>
+    </li>
+{% endmacro %}
+
+<ul class="nav">
+    <li>
+        <span class="nav-header"><span>Mission</span></span>
+        <ul class="nav menu_level_1">
+            {{ menu.child('Mission', 'list-alt mission', 'service_civique_backend_mission_index') }}
+            {{ menu.child('Tag', 'tag', 'service_civique_backend_tag_index') }}
+            {{ menu.child('Réponse mail', 'envelope', 'service_civique_backend_answer_mail_index') }}
+            {{ menu.child('Signalement', 'alert', 'service_civique_backend_mission_report_index') }}
+        </ul>
+    </li>
+    <li>
+        <span class="nav-header"><span>Utilisateur</span></span>
+        <ul class="nav menu_level_1">
+            {{ menu.child('Compte jeune', 'user',
+                ['service_civique_backend_user_index', {'type': 'volontaire'}]
+             ) }}
+            {{ menu.child('Compte organisme', 'user', 'service_civique_backend_user_index') }}
+            {{ menu.child('Conflit agrément', 'user', 'service_civique_backend_approval_conflict_index') }}
+        </ul>
+    </li>
+    <li>
+        <span class="nav-header"><span>Contenu</span></span>
+        <ul class="nav menu_level_1">
+            {{ menu.child('Page statique', 'file', 'service_civique_backend_static_content_index') }}
+            {{ menu.child('Actualité', 'list', 'service_civique_backend_actu_index') }}
+            {{ menu.child('Presse', 'pencil', 'service_civique_backend_presse_index') }}
+            {{ menu.child('Avantage', 'gift', 'service_civique_backend_advantage_index') }}
+            {{ menu.child('Partenaire', 'briefcase', 'service_civique_backend_partner_index') }}
+            {{ menu.child('Média', 'film', 'service_civique_backend_media_index') }}
+            {{ menu.child('Vidéo', 'play', 'service_civique_backend_video_index') }}
+            {{ menu.child('FAQ jeune', 'question-sign', 'service_civique_backend_faq_volontaire') }}
+            {{ menu.child('FAQ organisme', 'question-sign', 'service_civique_backend_faq_organisme') }}
+        </ul>
+    </li>
+    <li>
+        <span class="nav-header"><span>Configuration</span></span>
+        <ul class="nav menu_level_1">
+            {{ menu.child('Texte statique', 'info-sign', 'lexik_translation_grid') }}
+            {{ menu.child('Menu', 'th-list', 'lns_backend_menu_index') }}
+            {{ menu.child('Header', 'picture', 'service_civique_backend_header_index') }}
+            {{ menu.child('Agrément', 'paperclip', 'service_civique_backend_import_approvals') }}
+            {{ menu.child('Bannière widget', 'upload', 'service_civique_backend_banner_upload') }}
+        </ul>
+    </li>
+    <li>
+        <span class="nav-header"><span>STATISTIQUE</span></span>
+        <ul class="nav menu_level_1">
+            {{ menu.child('Mission', 'stats', 'service_civique_kibana_mission') }}
+            {{ menu.child('Candidature', 'stats', 'service_civique_kibana_candidature') }}
+            {{ menu.child('Jeune', 'stats', 'service_civique_kibana_jeune') }}
+            {{ menu.child('Organisme', 'stats', 'service_civique_kibana_organisme') }}
+        </ul>
+    </li>
+</ul>

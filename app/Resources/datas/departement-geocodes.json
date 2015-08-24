@@ -1,0 +1,402 @@
+{
+    "Ain": {
+        "lat": "46.16667",
+        "lng": "5.33333"
+    },
+    "Aisne": {
+        "lat": "49.5",
+        "lng": "3.5"
+    },
+    "Allier": {
+        "lat": "46.5",
+        "lng": "3"
+    },
+    "Alpes-Maritimes": {
+        "lat": "44",
+        "lng": "7.16667"
+    },
+    "Alpes-de-Haute-Provence": {
+        "lat": "44.16667",
+        "lng": "6"
+    },
+    "Ardennes": {
+        "lat": "49.66667",
+        "lng": "4.66667"
+    },
+    "Ard\u00e8che": {
+        "lat": "44.66667",
+        "lng": "4.33333"
+    },
+    "Ari\u00e8ge": {
+        "lat": "43",
+        "lng": "1.5"
+    },
+    "Aube": {
+        "lat": "48.25",
+        "lng": "4.08333"
+    },
+    "Aude": {
+        "lat": "43.08333",
+        "lng": "2.5"
+    },
+    "Aveyron": {
+        "lat": "44.25",
+        "lng": "2.5"
+    },
+    "Bas-Rhin": {
+        "lat": "48.58333",
+        "lng": "7.66667"
+    },
+    "Bouches-du-Rh\u00f4ne": {
+        "lat": "43.5",
+        "lng": "5"
+    },
+    "Calvados": {
+        "lat": "49.16667",
+        "lng": "-0.5"
+    },
+    "Cantal": {
+        "lat": "45.08333",
+        "lng": "2.66667"
+    },
+    "Charente": {
+        "lat": "45.66667",
+        "lng": "0.08333"
+    },
+    "Charente-Maritime": {
+        "lat": "45.5",
+        "lng": "-0.75"
+    },
+    "Cher": {
+        "lat": "47",
+        "lng": "2.5"
+    },
+    "Corr\u00e8ze": {
+        "lat": "45.25",
+        "lng": "1.83333"
+    },
+    "Cote d'Or": {
+        "lat": "47.5",
+        "lng": "4.83333"
+    },
+    "Creuse": {
+        "lat": "46.08333",
+        "lng": "2"
+    },
+    "C\u00f4tes-d'Armor": {
+        "lat": "48.41667",
+        "lng": "-2.66667"
+    },
+    "Deux-S\u00e8vres": {
+        "lat": "46.5",
+        "lng": "-0.25"
+    },
+    "Dordogne": {
+        "lat": "45.16667",
+        "lng": "0.83333"
+    },
+    "Doubs": {
+        "lat": "47.16667",
+        "lng": "6.41667"
+    },
+    "Dr\u00f4me": {
+        "lat": "44.58333",
+        "lng": "5.16667"
+    },
+    "Essonne": {
+        "lat": "48.5",
+        "lng": "2.25"
+    },
+    "Eure": {
+        "lat": "49.16667",
+        "lng": "1"
+    },
+    "Eure-et-Loir": {
+        "lat": "48.5",
+        "lng": "1.5"
+    },
+    "Finist\u00e8re": {
+        "lat": "48.33333",
+        "lng": "-4"
+    },
+    "Gard": {
+        "lat": "44",
+        "lng": "4"
+    },
+    "Gers": {
+        "lat": "43.66667",
+        "lng": "0.5"
+    },
+    "Gironde": {
+        "lat": "44.91667",
+        "lng": "-0.5"
+    },
+    "Guadeloupe": {
+        "lat": "16.24988",
+        "lng": "-61.58365"
+    },
+    "Guyane": {
+        "lat": "3.99886",
+        "lng": "-52.99994"
+    },
+    "Haut-Rhin": {
+        "lat": "48",
+        "lng": "7.33333"
+    },
+    "Haute-Loire": {
+        "lat": "45.08333",
+        "lng": "4"
+    },
+    "Haute-Marne": {
+        "lat": "48.08333",
+        "lng": "5.16667"
+    },
+    "Haute-Savoie": {
+        "lat": "46",
+        "lng": "6.33333"
+    },
+    "Haute-Sa\u00f4ne": {
+        "lat": "47.66667",
+        "lng": "6.16667"
+    },
+    "Haute-Vienne": {
+        "lat": "45.83333",
+        "lng": "1.16667"
+    },
+    "Hautes-Alpes": {
+        "lat": "44.66667",
+        "lng": "6.5"
+    },
+    "Hautes-Pyr\u00e9n\u00e9es": {
+        "lat": "43",
+        "lng": "0.16667"
+    },
+    "Hauts-de-Seine": {
+        "lat": "48.85",
+        "lng": "2.2"
+    },
+    "H\u00e9rault": {
+        "lat": "43.66667",
+        "lng": "3.5"
+    },
+    "Ille-et-Vilaine": {
+        "lat": "48.16667",
+        "lng": "-1.5"
+    },
+    "Indre": {
+        "lat": "46.83333",
+        "lng": "1.66667"
+    },
+    "Indre and Loire": {
+        "lat": "47.25",
+        "lng": "0.75"
+    },
+    "Is\u00e8re": {
+        "lat": "45.16667",
+        "lng": "5.83333"
+    },
+    "Jura": {
+        "lat": "46.83333",
+        "lng": "5.83333"
+    },
+    "Landes": {
+        "lat": "44",
+        "lng": "-0.83333"
+    },
+    "Loir-et-Cher": {
+        "lat": "47.5",
+        "lng": "1.5"
+    },
+    "Loire": {
+        "lat": "45.47169",
+        "lng": "4.43298"
+    },
+    "Loire-Atlantique": {
+        "lat": "47.25",
+        "lng": "-1.83333"
+    },
+    "Loiret": {
+        "lat": "47.91667",
+        "lng": "2.33333"
+    },
+    "Lot": {
+        "lat": "44.5",
+        "lng": "1.5"
+    },
+    "Lot-et-Garonne": {
+        "lat": "44.33333",
+        "lng": "0.5"
+    },
+    "Loz\u00e8re": {
+        "lat": "44.5",
+        "lng": "3.5"
+    },
+    "Maine-et-Loire": {
+        "lat": "47.5",
+        "lng": "-0.33333"
+    },
+    "Manche": {
+        "lat": "49",
+        "lng": "-1.16667"
+    },
+    "Marne": {
+        "lat": "48.91667",
+        "lng": "4.16667"
+    },
+    "Martinique": {
+        "lat": "14.66639",
+        "lng": "-60.99985"
+    },
+    "Mayenne": {
+        "lat": "48.08333",
+        "lng": "-0.66667"
+    },
+    "Meurthe et Moselle": {
+        "lat": "48.58333",
+        "lng": "6.16667"
+    },
+    "Meuse": {
+        "lat": "49",
+        "lng": "5.5"
+    },
+    "Morbihan": {
+        "lat": "47.91667",
+        "lng": "-2.83333"
+    },
+    "Moselle": {
+        "lat": "49",
+        "lng": "6.5"
+    },
+    "Ni\u00e8vre": {
+        "lat": "47.08333",
+        "lng": "3.5"
+    },
+    "North": {
+        "lat": "50.33333",
+        "lng": "3.66667"
+    },
+    "Oise": {
+        "lat": "49.5",
+        "lng": "2.5"
+    },
+    "Orne": {
+        "lat": "48.66667",
+        "lng": "0.08333"
+    },
+    "Paris": {
+        "lat": "48.8534",
+        "lng": "2.3486"
+    },
+    "Pas-de-Calais": {
+        "lat": "50.5",
+        "lng": "2.33333"
+    },
+    "Puy-de-D\u00f4me": {
+        "lat": "45.66667",
+        "lng": "3"
+    },
+    "Pyr\u00e9n\u00e9es-Atlantiques": {
+        "lat": "43.25",
+        "lng": "-0.83333"
+    },
+    "Pyr\u00e9n\u00e9es-Orientales": {
+        "lat": "42.5",
+        "lng": "2.33333"
+    },
+    "Rh\u00f4ne": {
+        "lat": "46",
+        "lng": "4.5"
+    },
+    "R\u00e9union": {
+        "lat": "-21.10084",
+        "lng": "55.60344"
+    },
+    "Sarthe": {
+        "lat": "48",
+        "lng": "0.08333"
+    },
+    "Savoy": {
+        "lat": "45.5",
+        "lng": "6.41667"
+    },
+    "Sa\u00f4ne-et-Loire": {
+        "lat": "46.66667",
+        "lng": "4.5"
+    },
+    "Seine-Maritime": {
+        "lat": "49.75",
+        "lng": "1"
+    },
+    "Seine-Saint-Denis": {
+        "lat": "48.91667",
+        "lng": "2.5"
+    },
+    "Seine-et-Marne": {
+        "lat": "48.5",
+        "lng": "3"
+    },
+    "Somme": {
+        "lat": "49.91667",
+        "lng": "2.5"
+    },
+    "South Corsica": {
+        "lat": "41.91667",
+        "lng": "9.16667"
+    },
+    "Tarn": {
+        "lat": "43.83333",
+        "lng": "2"
+    },
+    "Tarn-et-Garonne": {
+        "lat": "44",
+        "lng": "1.16667"
+    },
+    "Territoire de Belfort": {
+        "lat": "47.63578",
+        "lng": "6.88843"
+    },
+    "Upper Corsica": {
+        "lat": "42.41667",
+        "lng": "9.16667"
+    },
+    "Upper Garonne": {
+        "lat": "43.41667",
+        "lng": "1.5"
+    },
+    "Val d'Oise": {
+        "lat": "49.06667",
+        "lng": "2.06667"
+    },
+    "Val-de-Marne": {
+        "lat": "48.78333",
+        "lng": "2.45"
+    },
+    "Var": {
+        "lat": "43.5",
+        "lng": "6.33333"
+    },
+    "Vaucluse": {
+        "lat": "44",
+        "lng": "5.16667"
+    },
+    "Vend\u00e9e": {
+        "lat": "46.66667",
+        "lng": "-1.33333"
+    },
+    "Vienne": {
+        "lat": "46.5",
+        "lng": "0.5"
+    },
+    "Vosges": {
+        "lat": "48.16667",
+        "lng": "6.33333"
+    },
+    "Yonne": {
+        "lat": "47.91667",
+        "lng": "3.75"
+    },
+    "Yvelines": {
+        "lat": "48.78333",
+        "lng": "1.86667"
+    }
+}

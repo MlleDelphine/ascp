@@ -1,0 +1,147 @@
+# Use the front controller as index file. It serves as a fallback solution when
+# every other rewrite/redirect fails (e.g. in an aliased environment without
+# mod_rewrite). Additionally, this reduces the matching process for the
+# start page (path "/") because otherwise Apache will apply the rewriting rules
+# to each configured DirectoryIndex file (e.g. index.php, index.html, index.pl).
+
+#redirect
+Redirect permanent "/content/comment-le-service-civique-contribue-à-la-lutte-contre-le-décrochage-scolaire" http://www.service-civique.cirrus-cloud.net.fr/page/decrochage-scolaire
+Redirect permanent "/partenariats" http://www.service-civique.cirrus-cloud.net.fr/page/nos-partenaires
+Redirect permanent "/content/actions-contre-le-décrochage-scolaire" http://www.service-civique.cirrus-cloud.net.fr/page/decrochage-scolaire
+#Redirect permanent "/avantages" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/enquetedesatisfaction" https://solen.sante.gouv.fr/cgi/HE.exe/SF?P=1787z5z4z-1z-1zFC0D41791F
+Redirect permanent "/content/agence-nationale-pour-les-chèques-vacances-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/région-alsace" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/région-paca" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/chartedesvolontaires" http://www.service-civique.cirrus-cloud.net.fr/page/la-charte-des-valeurs
+Redirect permanent "/content/microsoft" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/les-grands-programmes-du-service-civique" http://www.service-civique.cirrus-cloud.net.fr/page/les-programmes-service-civique
+Redirect permanent "/content/région-bretagne" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/foire-aux-questions-des-organismes" http://www.service-civique.cirrus-cloud.net.fr/organismes/faq-organisme
+Redirect permanent "/content/vous-avez-arrêté-les-cours-engagez-vous-en-mission-de-service-civique" http://www.service-civique.cirrus-cloud.net.fr/page/decrochage-scolaire
+Redirect permanent "/agrements-publies" http://www.service-civique.cirrus-cloud.net.fr/a-propos-de-nous/agence-service-civique/agrements-publies
+Redirect permanent "/content/macif-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/informations-légales" http://www.service-civique.cirrus-cloud.net.fr/page/mentions-legales
+Redirect permanent "/videos" http://www.service-civique.cirrus-cloud.net.fr/page/le-service-civique-par-ceux-qui-le-font
+Redirect permanent "/sites/default/files/ASC_modele_contrat_engagement_juin_2010_0.pdf" http://www.service-civique.cirrus-cloud.net.fr
+Redirect permanent "/sites/default/files/CIVIQC-0801-08-10-reader.pdf" http://www.service-civique.cirrus-cloud.net.fr
+Redirect permanent "/sites/default/files/Guide SC - 3 volets 120x297 Salon des maires Final BD.pdf" http://www.service-civique.cirrus-cloud.net.fr
+Redirect permanent "/content/contactez-nous" http://www.service-civique.cirrus-cloud.net.fr/page/contactez-nous
+Redirect permanent "/content/orange-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/région-poitou-charentes-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/campagne/2013" http://www.service-civique.cirrus-cloud.net.fr/page/campagnes-de-communication
+Redirect permanent "/user/password" http://www.service-civique.cirrus-cloud.net.fr/resetting/request
+Redirect permanent "/content/remise-du-rapport-«-liberte-egalite-citoyennete-un-service-civique-pour-tous-»-par-francois-" http://www.service-civique.cirrus-cloud.net.fr/page/remise-du-rapport-liberte-egalite-citoyennete-un-service-civique-pour-tous-par-francois-chereque-a-najat-vallaud-belkacem
+Redirect permanent "/sites/default/files/Charte_Valeurs_SC_4_pages_A5.pdf" http://www.service-civique.cirrus-cloud.net.fr/page/la-charte-des-valeurs
+Redirect permanent "/content/quest-ce-que-le-service-civique" http://www.service-civique.cirrus-cloud.net.fr/page/qu-est-ce-que-le-service-civique
+Redirect permanent "/node/413870" http://www.service-civique.cirrus-cloud.net.fr/page/qu-est-ce-que-le-service-civique
+Redirect permanent "/content/comment-mengager" http://www.service-civique.cirrus-cloud.net.fr/page/comment-devenir-volontaire
+Redirect permanent "/node/26295" http://www.service-civique.cirrus-cloud.net.fr/page/comment-devenir-volontaire
+Redirect permanent "/content/pourquoi-minvestir" http://www.service-civique.cirrus-cloud.net.fr/page/pourquoi-m-engager
+Redirect permanent "/organisation-et-fonctionnement" http://www.service-civique.cirrus-cloud.net.fr/page/organisation-et-fonctionnement
+Redirect permanent "/creer-son-compte" http://www.service-civique.cirrus-cloud.net.fr/register/
+Redirect permanent "/content/trouver-un-volontaire" http://www.service-civique.cirrus-cloud.net.fr/page/trouver-un-volontaire
+Redirect permanent "/les_actualites" http://www.service-civique.cirrus-cloud.net.fr/page/les-actualites
+Redirect permanent "/les-demarches-elisa" http://www.service-civique.cirrus-cloud.net.fr/page/les-demarches-elisa
+Redirect permanent "/content/foire-aux-questions-des-volontaires" http://www.service-civique.cirrus-cloud.net.fr/faq-volontaire
+Redirect permanent "/content/obtenir-un-agrement" http://www.service-civique.cirrus-cloud.net.fr/page/comment-obtenir-un-agrement
+Redirect permanent "/content/comment-le-service-civique-contribue-à-la-lutte-contre-le-décrochage-scolaire" http://www.service-civique.cirrus-cloud.net.fr/page/decrochage-scolaire
+Redirect permanent "/partenariats" http://www.service-civique.cirrus-cloud.net.fr/page/nos-partenaires
+Redirect permanent "/content/actions-contre-le-décrochage-scolaire" http://www.service-civique.cirrus-cloud.net.fr/page/decrochage-scolaire
+#Redirect permanent "/avantages" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/agence-nationale-pour-les-chèques-vacances-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/région-alsace" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/région-paca" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/chartedesvolontaires" http://www.service-civique.cirrus-cloud.net.fr/page/la-charte-des-valeurs
+Redirect permanent "/content/microsoft" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/les-grands-programmes-du-service-civique" http://www.service-civique.cirrus-cloud.net.fr/page/les-programmes-service-civique
+Redirect permanent "/content/région-bretagne" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/foire-aux-questions-des-organismes" http://www.service-civique.cirrus-cloud.net.fr/organismes/faq-organisme
+Redirect permanent "/content/vous-avez-arrêté-les-cours-engagez-vous-en-mission-de-service-civique" http://www.service-civique.cirrus-cloud.net.fr/page/decrochage-scolaire
+Redirect permanent "/agrements-publies" http://www.service-civique.cirrus-cloud.net.fr/a-propos-de-nous/agence-service-civique/agrements-publies
+Redirect permanent "/content/macif-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/informations-légales" http://www.service-civique.cirrus-cloud.net.fr/page/mentions-legales
+Redirect permanent "/videos" http://www.service-civique.cirrus-cloud.net.fr/page/le-service-civique-par-ceux-qui-le-font
+Redirect permanent "/content/contactez-nous" http://www.service-civique.cirrus-cloud.net.fr/page/contactez-nous
+Redirect permanent "/content/orange-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/région-poitou-charentes-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/campagne/2013" http://www.service-civique.cirrus-cloud.net.fr/page/campagnes-de-communication
+Redirect permanent "/user/password" http://www.service-civique.cirrus-cloud.net.fr/resetting/request
+Redirect permanent "/content/remise-du-rapport-«-liberte-egalite-citoyennete-un-service-civique-pour-tous-»-par-francois-" http://www.service-civique.cirrus-cloud.net.fr/page/remise-du-rapport-liberte-egalite-citoyennete-un-service-civique-pour-tous-par-francois-chereque-a-najat-vallaud-belkacem
+Redirect permanent "/sites/default/files/Charte_Valeurs_SC_4_pages_A5.pdf" http://www.service-civique.cirrus-cloud.net.fr/page/la-charte-des-valeurs
+
+
+DirectoryIndex app.php
+<IfModule mod_php5.c>
+    php_value post_max_size 15M
+    php_value upload_max_filesize 15M
+    php_value max_execution_time 180
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    #Redirection de l'ancien sous-domaine
+    RewriteCond %{HTTP_HOST}   ^m.service-civique.gouv\.fr [NC]
+    RewriteRule ^/?(.*)         http://www.service-civique.cirrus-cloud.net.fr/$1 [L,R=301]
+
+    #Redirection vers www
+    RewriteCond %{HTTP_HOST} !^www\.
+    RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+</IfModule>
+
+<IfModule mod_php5.c>
+#    php_value memory_limit 1024M
+#    php_value max_execution_time 300
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Determine the RewriteBase automatically and set it as environment variable.
+    # If you are using Apache aliases to do mass virtual hosting or installed the
+    # project in a subdirectory, the base path will be prepended to allow proper
+    # resolution of the app.php file and to redirect to the correct URI. It will
+    # work in environments without path prefix as well, providing a safe, one-size
+    # fits all solution. But as you do not need it in this case, you can comment
+    # the following 2 lines to eliminate the overhead.
+    RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+    RewriteRule ^(.*) - [E=BASE:%1]
+
+    # Redirect to URI without front controller to prevent duplicate content
+    # (with and without `/app.php`). Only do this redirect on the initial
+    # rewrite by Apache and not on subsequent cycles. Otherwise we would get an
+    # endless redirect loop (request -> rewrite to front controller ->
+    # redirect -> request -> ...).
+    # So in case you get a "too many redirects" error or you always get redirected
+    # to the start page because your Apache does not expose the REDIRECT_STATUS
+    # environment variable, you have 2 choices:
+    # - disable this feature by commenting the following 2 lines or
+    # - use Apache >= 2.3.9 and replace all L flags by END flags and remove the
+    #   following RewriteCond (best solution)
+    RewriteCond %{ENV:REDIRECT_STATUS} ^$
+    RewriteRule ^app\.php(/(.*)|$) %{ENV:BASE}/$2 [R=301,L]
+
+    # If the requested filename exists, simply serve it.
+    # We only want to let Apache serve files and not directories.
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule .? - [L]
+
+    # Rewrite all other queries to the front controller.
+    RewriteRule .? %{ENV:BASE}/app.php [L]
+</IfModule>
+
+<IfModule mod_php5.c>
+  php_value opcache.revalidate_freq off
+  php_value opcache.validate_timestamps off
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    <IfModule mod_alias.c>
+        # When mod_rewrite is not available, we instruct a temporary redirect of
+        # the start page to the front controller explicitly so that the website
+        # and the generated links can still be used.
+        RedirectMatch 302 ^/$ /app.php/
+        # RedirectTemp cannot be used instead
+    </IfModule>
+</IfModule>

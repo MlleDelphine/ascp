@@ -1,0 +1,11 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout.html.twig' %}
+
+{% block topbar %}
+<ol class="breadcrumb">
+    <li>Kibana</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+<iframe src="{{ kibana_url }}#/dashboard/Organismes?embed&_g=(refreshInterval:(display:Off,section:0,value:0),time:(from:now-5y,mode:quick,to:now))&_a=(filters:!(),panels:!((col:1,id:'R%C3%A9paration-par-type-d!'organismes',row:3,size_x:5,size_y:3,type:visualization),(col:6,id:Localisation,row:1,size_x:7,size_y:5,type:visualization),(col:1,id:Nombre-d%E2%80%99organismes,row:1,size_x:5,size_y:2,type:visualization),(col:1,id:'Taux-moyen-de-candidatures-accept%C3%A9es-(org)',row:6,size_x:4,size_y:2,type:visualization),(col:5,id:'Taux-moyen-de-candidatures-en-attente-(org)',row:6,size_x:4,size_y:2,type:visualization),(col:9,id:'Taux-moyen-de-candidatures-rejet%C3%A9es-(org)',row:6,size_x:4,size_y:2,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:Organismes)" height="1500" width="100%" frameBorder="0"></iframe>
+{% endblock %}

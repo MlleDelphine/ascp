@@ -1,0 +1,65 @@
+{% extends "ServiceCiviqueWebBundle::layout.html.twig" %}
+
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+{'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+{'route': 'service_civique_organization_homepage', 'name' : 'Organismes'},
+{'name' : 'Êtes-vous “Service Civique” ?' }
+]) }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 hidden-print">
+            <aside class="mission-show-left hidden-print">
+            <div class="left-content">
+                <div class="btn-box">
+                    <a title="Rechercher une mission" class="btn btn-success btn-lg btn-block btn-sc-red" href="{{ path('service_civique_mission_list') }}">Rechercher une mission</a>
+                </div>
+                <div class="visible-md visible-lg" >
+                    {{ sonata_block_render({ 'type' : 'service_civique.block.recommended_missions' }) }}
+                </div>
+
+            </div>
+            </aside>
+        </div>
+        <div class="col-md-8" >
+            <div class="organizationSCBox">
+                <h2 class="h3">{{ 'service_civique.quiz.block.title' | trans() | raw }}</h2>
+
+                {% if score is defined %}
+                {% if score == 5 %}
+                <div class="bg-success result-msg">
+                    Bravo, vous avez bien compris l'esprit du Service Civique! Pour proposer votre mission, rendez-vous sur la page <a class="link-action" href="/page/comment-obtenir-un-agrement">Mes démarches pas à pas</a>.
+                </div>
+                {% elseif score == 0 %}
+                <div class="bg-danger result-msg">
+                    Désolé, vous n'avez pas tout à fait compris les principes du Service Civique. Pour mieux les appréhender, rendez-vous sur la page <a class="link-action" href="/page/qu-est-ce-qu-une-mission-de-service-civique">Qu'est-ce qu'une mission de Service Civique ?</a>
+                </div>
+                {% elseif (score < 5 and score > 0) %}
+                <div class="bg-warning result-msg">
+                    Vous devez encore approfondir quelques questions sur le Service Civique. Avant de proposer votre mission, rendez-vous sur la page <a class="link-action" href="/page/qu-est-ce-qu-une-mission-de-service-civique">Qu'est-ce qu'une mission de Service Civique ?</a>.
+                </div>
+                {% endif %}
+                {% endif %}
+
+                <div class="quizz">
+                    <form method="POST" action="">
+                        <h3 class="organizationSCFormNotice">
+                            {{ 'service_civique.quiz.block.intro' | trans() | raw }}
+                        </h3>
+                        {{ form_widget(form) }}
+                        <div class="btn-box">
+                            <input type="submit" class="btn btn-second btn-sc-red" value="Valider"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

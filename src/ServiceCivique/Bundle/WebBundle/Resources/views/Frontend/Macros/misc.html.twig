@@ -1,0 +1,30 @@
+{% macro pagination(paginator) %}
+{% if paginator.haveToPaginate() %}
+<div class="paginationBox">
+{{ pagerfanta(paginator, 'twitter_bootstrap3_translated', {
+  'prev_message': '<i class="icon-fle-left"></i> <span class="sr-only">page précédente</span>',
+  'next_message': '<i class="icon-fle-right"></i> <span class="sr-only">page suivante</span>'
+}) }}
+</div>
+{% endif %}
+{% endmacro %}
+
+{% macro breadcrumb(items) %}
+    {% if items|length > 0 %}
+        <ol class="breadcrumb hidden-print">
+            {% for item in items %}
+                {% if loop.last is defined and loop.index == loop.last %}
+                    <li class="active">{{ item.name|trans }}</li>
+                {% else %}
+                    <li>
+                    {% if item.route is iterable %}
+                        <a href="{{ path(item.route[0], item.route[1]) }}">{{ item.name|trans }}</a>
+                    {% else %}
+                        <a href="{{ path(item.route) }}">{{ item.name|trans }}</a>
+                    {% endif %}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+    {% endif %}
+{% endmacro %}

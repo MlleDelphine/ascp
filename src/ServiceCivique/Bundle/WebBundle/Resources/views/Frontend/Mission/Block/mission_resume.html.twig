@@ -1,0 +1,24 @@
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+{# Delete this tpl #}
+<div class="left-menu visible-md visible-lg aside-box">
+    <div class="others-missions-box">
+        <h2>Rappel de la mission</h2>
+        <div class="informations">
+            <dl>
+                <dt>Où ?</dt>
+                <dd>{{ macros.location(mission) }}</dd>
+                <dt>Quoi ?</dt>
+                <dd>{{ mission.description }}</dd>
+                <dt>Quand ?</dt>
+                <dd>{{ mission.startDate | date('d/m/Y') }}</dd>
+                <dt>Quel organisme ?</dt>
+                <dd>{{ mission.organizationName }}</dd>
+                <dd>
+                    <div class="btn-box center">
+                        <a href="{{ path('service_civique_mission_show', {'slug': mission.slug}) }}" class="link-action">Voir le détail de cette mission</a>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>

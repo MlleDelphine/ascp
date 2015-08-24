@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="lns.form.type.menu_item.class">Lns\Bundle\MenuBundle\Form\Type\MenuItemType</parameter>
+        <parameter key="lns.form.type.menu.class">Lns\Bundle\MenuBundle\Form\Type\MenuType</parameter>
+        <parameter key="lns.menu.menu_builder.class">Lns\Bundle\MenuBundle\Menu\MenuBuilder</parameter>
+        <parameter key="lns.menu.provider.class">Lns\Bundle\MenuBundle\Provider\MenuProvider</parameter>
+        <parameter key="lns.menu.cache.abstract.doctrine_cache_adapter.class">Lns\Component\Menu\Cache\DoctrineCache</parameter>
+        <parameter key="lns.menu.cache.php_file.directory">%kernel.cache_dir%/lns_menu/</parameter>
+        <parameter key="lns.menu.cache_invalider.class">Lns\Bundle\MenuBundle\EventListener\CacheInvalider</parameter>
+        <parameter key="lns.menu.menu_updater.class">Lns\Bundle\MenuBundle\EventListener\MenuUpdater</parameter>
+        <parameter key="lns.menu.factory.base_url.extension.class">Lns\Component\Menu\Factory\BaseUrlExtension</parameter>
+        <parameter key="lns_menu.voter.request.class">Lns\Component\Menu\Matcher\Voter\RequestVoter</parameter>
+        <parameter key="lns.menu.provider.proxy_cache.class">Lns\Component\Menu\Provider\ProxyCacheProvider</parameter>
+        <parameter key="lns.menu.loader.class">Knp\Menu\Loader\ArrayLoader</parameter>
+    </parameters>
+
+    <services>
+        <service id="lns.form.type.menu_item" class="%lns.form.type.menu_item.class%">
+            <argument>%lns.model.menu_item.class%</argument>
+            <argument>%lns.validation_group.menu_item%</argument>
+            <tag name="form.type" alias="lns_menu_item" />
+        </service>
+
+        <service id="lns.form.type.menu" class="%lns.form.type.menu.class%">
+            <argument>%lns.model.menu.class%</argument>
+            <argument>%lns.validation_group.menu%</argument>
+            <tag name="form.type" alias="lns_menu" />
+        </service>
+
+        <service id="lns.menu.cache_invalider" class="%lns.menu.cache_invalider.class%">
+            <argument id="lns.menu.cache" type="service"></argument>
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="lns.menu.menu_updater" class="%lns.menu.menu_updater.class%">
+            <argument id="doctrine.orm.entity_manager" type="service"></argument>
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="lns.menu.factory.base_url.extension" class="%lns.menu.factory.base_url.extension.class%">
+            <argument id="request_stack" type="service"></argument>
+            <tag name="knp_menu.factory_extension" />
+        </service>
+
+        <service id="lns.menu.loader" class="%lns.menu.loader.class%">
+            <argument id="knp_menu.factory" type="service"></argument>
+        </service>
+
+        <service id="lns.menu.cache.abstract.doctrine_cache_adapter" class="%lns.menu.cache.abstract.doctrine_cache_adapter.class%" abstract="true">
+            <argument id="lns.menu.loader" type="service"></argument>
+            <argument></argument>
+        </service>
+
+        <service id="lns.menu.file_cache" class="Doctrine\Common\Cache\PhpFileCache" public="false">
+            <argument>%lns.menu.cache.php_file.directory%</argument>
+        </service>
+
+        <service id="lns.menu.provider" class="%lns.menu.provider.class%">
+            <argument id="knp_menu.factory" type="service"></argument>
+            <argument id="lns.repository.menu" type="service"></argument>
+            <argument id="lns.repository.menu_item" type="service"></argument>
+            <tag name="knp_menu.provider" />
+        </service>
+
+
+        <service id="lns.menu.provider.proxy_cache" class="%lns.menu.provider.proxy_cache.class%" decorates="lns.menu.provider" public="false">
+            <argument type="service" id="lns.menu.provider.proxy_cache.inner" />
+            <argument id="lns.menu.cache" type="service"></argument>
+            <argument id="lns.repository.menu" type="service"></argument>
+        </service>
+
+        <service id="lns.menu.voter.request" class="%lns_menu.voter.request.class%">
+            <argument id="request_stack" type="service"></argument>
+            <tag name="knp_menu.voter" request="true" />
+        </service>
+
+    </services>
+</container>

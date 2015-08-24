@@ -1,0 +1,17 @@
+ServiceCivique\Bundle\UserBundle\Entity\User:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        created:
+            expose: true
+        updated:
+            expose: true
+        applications:
+            expose: false
+        is_newsletter_subscribed:
+            expose: true
+        type:
+            expose: true
+        profile:
+            expose: true

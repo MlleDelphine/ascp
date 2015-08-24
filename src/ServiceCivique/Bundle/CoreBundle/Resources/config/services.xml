@@ -1,0 +1,275 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services
+    http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+     <parameters>
+        <parameter key="service_civique.commands.missionsearch_mail.class">ServiceCivique\Bundle\CoreBundle\Command\SendMissionSearchMailCommand</parameter>
+        <parameter key="service_civique.form.type.mission.class">ServiceCivique\Bundle\CoreBundle\Form\Type\MissionType</parameter>
+        <parameter key="service_civique.form.type.mission_admin.class">ServiceCivique\Bundle\CoreBundle\Form\Type\MissionAdminType</parameter>
+        <parameter key="service_civique.form.type.select_or_create_new_organization.class">ServiceCivique\Bundle\CoreBundle\Form\Type\SelectOrCreateNewOrganizationType</parameter>
+        <parameter key="service_civique.form.type.header.class">ServiceCivique\Bundle\CoreBundle\Form\Type\HeaderType</parameter>
+        <parameter key="service_civique.form.type.banner.class">ServiceCivique\Bundle\CoreBundle\Form\Type\BannerType</parameter>
+        <parameter key="service_civique.form.type.faq.class">ServiceCivique\Bundle\CoreBundle\Form\Type\FaqType</parameter>
+        <parameter key="service_civique.form.type.widget_search_mission.class">ServiceCivique\Bundle\CoreBundle\Form\Type\WidgetSearchMissionType</parameter>
+        <parameter key="service_civique.form.type.organization.class">ServiceCivique\Bundle\CoreBundle\Form\Type\OrganizationType</parameter>
+        <parameter key="service_civique.form.type.menu_item.class">ServiceCivique\Bundle\CoreBundle\Form\Type\MenuItemType</parameter>
+        <parameter key="service_civique.form.type.tag.class">ServiceCivique\Bundle\CoreBundle\Form\Type\TagType</parameter>
+        <parameter key="service_civique.form.type.actu.class">ServiceCivique\Bundle\CoreBundle\Form\Type\ActuType</parameter>
+        <parameter key="service_civique.form.type.user.class">ServiceCivique\Bundle\UserBundle\Form\Type\ProfileFormType</parameter>
+        <parameter key="service_civique.form.type.presse.class">ServiceCivique\Bundle\CoreBundle\Form\Type\PresseType</parameter>
+        <parameter key="service_civique.form.type.partner.class">ServiceCivique\Bundle\CoreBundle\Form\Type\PartnerType</parameter>
+        <parameter key="service_civique.form.type.advantage.class">ServiceCivique\Bundle\CoreBundle\Form\Type\AdvantageType</parameter>
+        <parameter key="service_civique.form.type.media.class">ServiceCivique\Bundle\CoreBundle\Form\Type\MediaType</parameter>
+        <parameter key="service_civique.form.type.approval_conflict.class">ServiceCivique\Bundle\CoreBundle\Form\Type\ApprovalConflictType</parameter>
+        <parameter key="service_civique.form.type.video.class">ServiceCivique\Bundle\CoreBundle\Form\Type\VideoType</parameter>
+        <parameter key="service_civique.form.type.answer_mail.class">ServiceCivique\Bundle\CoreBundle\Form\Type\AnswerMailType</parameter>
+        <parameter key="service_civique.form.type.application.class">ServiceCivique\Bundle\CoreBundle\Form\Type\ApplicationType</parameter>
+        <parameter key="service_civique.form.type.profile.class">ServiceCivique\Bundle\CoreBundle\Form\Type\ProfileType</parameter>
+        <parameter key="service_civique.form.type.mission_search.class">ServiceCivique\Bundle\CoreBundle\Form\Type\MissionSearchType</parameter>
+        <parameter key="service_civique.form.type.approval_search.class">ServiceCivique\Bundle\CoreBundle\Form\Type\ApprovalSearchType</parameter>
+        <parameter key="service_civique.service.region_locator.class">ServiceCivique\Bundle\CoreBundle\Service\RegionLocator</parameter>
+        <parameter key="service_civique.service.mission_status_service.class">ServiceCivique\Bundle\CoreBundle\Service\MissionStatusService</parameter>
+        <parameter key="service_civique.service.mission_log_service.class">ServiceCivique\Bundle\CoreBundle\Service\MissionLogService</parameter>
+        <parameter key="service_civique.service.approval_number_finder.class">ServiceCivique\Bundle\CoreBundle\Service\ApprovalNumberFinder</parameter>
+        <parameter key="service_civique.service.newsletter_service.class">ServiceCivique\Bundle\CoreBundle\Service\NewsletterService</parameter>
+        <parameter key="service_civique.form.type.mission_search_options.class">ServiceCivique\Bundle\CoreBundle\Form\Type\MissionSearchOptionsType</parameter>
+        <parameter key="service_civique.form.type.approval_number.class">ServiceCivique\Bundle\CoreBundle\Form\Type\ApprovalNumberType</parameter>
+        <parameter key="service_civique.form.type.form_actions.class">ServiceCivique\Bundle\CoreBundle\Form\Type\FormActionsType</parameter>
+    </parameters>
+
+    <services>
+        <service id="service_civique.listener.departement_region" class="ServiceCivique\Bundle\CoreBundle\EventListener\DepartementRegionListener">
+            <tag name="kernel.event_listener" event="prePersist" method="prePersist" />
+        </service>
+
+        <service id="service_civique.form.type.mission" class="%service_civique.form.type.mission.class%">
+            <argument type="service" id="sylius.repository.taxonomy" />
+            <argument type="service" id="service_civique.manager.organization" />
+            <argument type="service" id="polem_departements.provider" />
+            <argument type="service" id="router" />
+            <argument type="service" id="security.context" />
+            <tag name="form.type" alias="service_civique_mission" />
+        </service>
+
+        <service id="service_civique.form.type.mission_admin" class="%service_civique.form.type.mission_admin.class%">
+            <argument type="service" id="sylius.repository.taxonomy" />
+            <argument type="service" id="service_civique.manager.organization" />
+            <argument type="service" id="polem_departements.provider" />
+            <argument type="service" id="router" />
+            <argument type="service" id="security.context" />
+            <tag name="form.type" alias="service_civique_mission_admin" />
+        </service>
+
+        <service id="service_civique.form.type.select_or_create_new_organization" class="%service_civique.form.type.select_or_create_new_organization.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="service_civique.repository.organization" />
+            <argument type="service" id="service_civique.repository.organization_invitation" />
+            <argument type="service" id="security.context" />
+            <tag name="form.type" alias="select_or_create_new_organization" />
+        </service>
+
+        <service id="service_civique.search_repository.mission_repository"
+            class="Doctrine\ORM\EntityRepository"
+            factory-service="fos_elastica.manager.orm"
+            factory-method="getRepository"
+            >
+            <argument type="string">ServiceCivique\Bundle\CoreBundle\Entity\Mission</argument>
+        </service>
+
+        <service id="service_civique.form.type.header" class="%service_civique.form.type.header.class%">
+            <argument type="service" id="router" />
+            <tag name="form.type" alias="service_civique_header" />
+        </service>
+
+        <service id="service_civique.form.type.banner" class="%service_civique.form.type.banner.class%">
+            <argument type="service" id="router" />
+            <tag name="form.type" alias="service_civique_banner" />
+        </service>
+
+        <service id="service_civique.form.type.faq" class="%service_civique.form.type.faq.class%">
+            <argument type="service" id="router" />
+            <tag name="form.type" alias="service_civique_faq" />
+        </service>
+
+        <service id="service_civique.form.type.widget_search_mission" class="%service_civique.form.type.widget_search_mission.class%">
+            <argument type="service" id="security.context" />
+            <tag name="form.type" alias="service_civique_widget_search_mission" />
+        </service>
+
+        <service id="service_civique.form.type.organization" class="%service_civique.form.type.organization.class%">
+            <tag name="form.type" alias="service_civique_organization" />
+        </service>
+
+        <service id="service_civique.form.type.application" class="%service_civique.form.type.application.class%">
+            <argument type="service" id="security.context" />
+            <argument type="service" id="security.encoder_factory" />
+            <argument type="service" id="router" />
+            <argument type="service" id="service_civique.mailer" />
+            <tag name="form.type" alias="service_civique_application" />
+        </service>
+
+        <service id="service_civique.form.type.menu_item" class="%service_civique.form.type.menu_item.class%">
+            <tag name="form.type" alias="service_civique_menu_item" />
+        </service>
+
+        <service id="service_civique.form.type.tag" class="%service_civique.form.type.tag.class%">
+            <tag name="form.type" alias="service_civique_tag" />
+        </service>
+
+        <service id="service_civique.form.type.actu" class="%service_civique.form.type.actu.class%">
+            <tag name="form.type" alias="service_civique_actu" />
+        </service>
+
+        <service id="service_civique.form.type.user" class="%service_civique.form.type.user.class%">
+            <tag name="form.type" alias="service_civique_user" />
+        </service>
+
+        <service id="service_civique.form.type.presse" class="%service_civique.form.type.presse.class%">
+            <tag name="form.type" alias="service_civique_presse" />
+        </service>
+
+        <service id="service_civique.form.type.partner" class="%service_civique.form.type.partner.class%">
+            <tag name="form.type" alias="service_civique_partner" />
+        </service>
+
+        <service id="service_civique.form.type.advantage" class="%service_civique.form.type.advantage.class%">
+            <tag name="form.type" alias="service_civique_advantage" />
+        </service>
+
+        <service id="service_civique.form.type.video" class="%service_civique.form.type.video.class%">
+            <tag name="form.type" alias="service_civique_video" />
+        </service>
+
+        <service id="service_civique.form.type.media" class="%service_civique.form.type.media.class%">
+            <tag name="form.type" alias="service_civique_media" />
+        </service>
+
+        <service id="service_civique.form.type.approval_conflict" class="%service_civique.form.type.approval_conflict.class%">
+            <argument type="service" id="security.context" />
+            <tag name="form.type" alias="service_civique_approval_conflict" />
+        </service>
+
+        <service id="service_civique.form.type.answer_mail" class="%service_civique.form.type.answer_mail.class%">
+            <tag name="form.type" alias="service_civique_answer_mail" />
+        </service>
+
+        <service id="service_civique.form.type.profile" class="%service_civique.form.type.profile.class%">
+            <argument type="service" id="polem_departements.provider" />
+            <tag name="form.type" alias="service_civique_profile" />
+        </service>
+
+        <service id="service_civique.form.type.form_actions" class="%service_civique.form.type.form_actions.class%">
+            <tag name="form.type" alias="form_actions" />
+        </service>
+
+        <service id="service_civique.form.type.mission_search" class="%service_civique.form.type.mission_search.class%">
+            <argument type="service" id="sylius.repository.taxonomy" />
+            <argument type="service" id="polem_departements.provider" />
+            <argument type="service" id="router" />
+            <tag name="form.type" alias="service_civique_mission_search" />
+        </service>
+
+        <service id="service_civique.form.type.approval_search" class="%service_civique.form.type.approval_search.class%">
+            <argument type="service" id="router" />
+            <tag name="form.type" alias="service_civique_approval_search" />
+        </service>
+
+        <service id="service_civique.form.type.resource_identifier" class="ServiceCivique\Bundle\CoreBundle\Form\Type\ResourceIdentifierType">
+            <argument type="service" id="doctrine" />
+            <argument>resource_identifier</argument>
+            <tag name="form.type" alias="resource_identifier" />
+        </service>
+
+        <service id="service_civique.form.type.mission_search_options" class="%service_civique.form.type.mission_search_options.class%">
+            <tag name="form.type" alias="service_civique_mission_search_options" />
+        </service>
+
+        <service id="service_civique.service.region_locator" class="%service_civique.service.region_locator.class%" scope="request">
+            <argument type="service" id="request" />
+            <argument type="service" id="geocoder" />
+            <argument type="service" id="polem_departements.provider" />
+            <tag name="services" alias="service_civique_region_locator" />
+        </service>
+
+        <service id="service_civique.service.mission_status_service" class="%service_civique.service.mission_status_service.class%">
+            <argument type="service" id="doctrine" />
+        </service>
+
+        <service id="service_civique.service.mission_log_service" class="%service_civique.service.mission_log_service.class%">
+            <argument type="service" id="doctrine" />
+        </service>
+
+        <service id="service_civique.service.approval_number_finder" class="%service_civique.service.approval_number_finder.class%">
+            <argument type="service" id="doctrine" />
+        </service>
+
+        <service id="service_civique.service.newsletter_service" class="%service_civique.service.newsletter_service.class%">
+            <argument type="service" id="service_civique_mailer.mailchimp_client" />
+            <argument>%mailchimp_newsletter_list_id%</argument>
+        </service>
+
+        <service id="service_civique.form.type.approval_number" class="%service_civique.form.type.approval_number.class%">
+            <tag name="form.type" alias="service_civique_approval_number" />
+        </service>
+
+        <!-- security -->
+        <service id="service_civique.security.access.owner" class="ServiceCivique\Bundle\CoreBundle\Security\Authorization\Voter\OwnerVoter">
+            <tag name="security.voter" />
+        </service>
+
+
+        <!-- custom geocoder provider -->
+        <service id="service_civique.geocoder.provider.custom_maxmind_binary" class="ServiceCivique\Bundle\CoreBundle\Geocoder\Provider\CustomMaxMindBinaryProvider" public="false">
+            <argument>%kernel.root_dir%/Resources/datas/GeoLiteCity.dat</argument>
+            <argument></argument>
+            <argument>%kernel.root_dir%/Resources/datas/region_codes.csv</argument>
+            <tag name="bazinga_geocoder.provider" alias="custom_maxmind_binary" />
+        </service>
+
+        <service id="service_civique.geocoder.provider.departement" class="ServiceCivique\Bundle\CoreBundle\Geocoder\Provider\DepartementGeocoder" public="false">
+            <argument>%kernel.root_dir%/Resources/datas/departement-geocodes.json</argument>
+            <tag name="bazinga_geocoder.provider" alias="departement_provider" />
+        </service>
+
+        <service id="service_civique.geocoder.provider.country" class="ServiceCivique\Bundle\CoreBundle\Geocoder\Provider\CountryGeocoder" public="false">
+            <argument>%kernel.root_dir%/Resources/datas/country-geocodes.json</argument>
+            <tag name="bazinga_geocoder.provider" alias="country_provider" />
+        </service>
+
+        <!-- custom validation constraint -->
+        <service id="service_civique.unique_organization_name_constrait_validator" class="ServiceCivique\Bundle\CoreBundle\Validator\UniqueOrganizationNameValidator">
+            <argument type="service" id="service_civique.repository.organization" />
+            <tag name="validator.constraint_validator" alias="unique_organization_name_validator" />
+        </service>
+
+        <service id="service_civique.notifier" class="ServiceCivique\Bundle\CoreBundle\EventListener\Notifier">
+            <argument type="service" id="service_civique.mailer" />
+            <argument type="service" id="router" />
+            <argument type="service" id="service_civique.repository.user" />
+            <argument type="service" id="polem_departements.provider" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="service_civique.commands.missionsearch_mail" class="%service_civique.commands.missionsearch_mail.class%">
+            <argument type="service" id="old_sound_rabbit_mq.service_civique_missionsearch_mailing_producer" />
+            <argument type="service" id="service_civique.repository.mission_search" />
+            <tag name="console.command" />
+        </service>
+
+        <service id="service_civique.missionsearch_mailer" class="ServiceCivique\Component\AMPQ\ServiceCiviqueMissionSearchMailerConsumer">
+            <argument type="service" id="templating" />
+            <argument type="service" id="service_civique.mailer" />
+            <argument type="service" id="service_civique.search_repository.mission_repository" />
+            <argument type="service" id="service_civique.service.search_filter_service" />
+            <argument type="service" id="router" />
+        </service>
+        <service id="service_civique.listener.login" class="ServiceCivique\Bundle\CoreBundle\EventListener\SecurityListener" scope="request">
+            <tag name="kernel.event_listener" event="security.interactive_login" method="onSecurityInteractiveLogin"/>
+            <argument type="service" id="router"/>
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="event_dispatcher"/>
+        </service>
+    </services>
+
+</container>

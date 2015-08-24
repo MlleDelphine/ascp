@@ -1,0 +1,48 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_right.html.twig" %}
+
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block tags %}
+    <script type="text/javascript">
+        var axel = Math.random() + "";
+        var a = axel * 10000000000000;
+        document.write('<iframe src="http://fls.doubleclick.net/activityi;src=3452220;type=servi660;cat=2012-593;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+    </script>
+    <noscript>
+        <iframe src="http://fls.doubleclick.net/activityi;src=3452220;type=servi660;cat=2012-593;ord=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+    </noscript>
+{% endblock %}
+
+{% block breadcrumb_content %}
+{# {{ breadcrumb([
+{'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+{'route': 'service_civique_organization_homepage', 'name' : 'service_civique.breadcrumb.organization.index'},
+{'route': 'service_civique_organization_application_index', 'name' : 'service_civique.breadcrumb.application.index'},
+{'name' : 'service_civique.breadcrumb.application.create'}
+]) }} #}
+{% endblock %}
+
+{% block main_content_header %}{{ 'service_civique.application.create_header' | trans | raw }}{% endblock %}
+
+{% block main_content_intro %}
+    <div class="txt-intro">
+        {{ 'service_civique.statictexts.applications.form.intro'|trans({'%url%': path('service_civique_mission_show', {slug: form.vars.value.mission.slug }), '%mission%': form.vars.value.mission.title}, 'statictexts') | raw }}
+        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+            <div class="well">
+                Vous possédez déjà un compte ? <a class="link-action" href="{{ path('fos_user_security_login') }}">Connectez-vous</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block main_content_body %}
+    {{ form_errors(form) }}
+    <form action="{{ path('service_civique_application_create', {mission_slug: form.vars.value.mission.slug }) }}" method="post" class="form-create-application" {{ form_enctype(form) }}>
+        {% include 'ServiceCiviqueWebBundle:Frontend/Application:_form.html.twig' %}
+    </form>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/application.js') }}"></script>
+{% endblock %}

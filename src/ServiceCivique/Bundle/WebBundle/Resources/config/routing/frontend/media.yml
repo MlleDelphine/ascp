@@ -1,0 +1,27 @@
+service_civique_media_list:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.media:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Frontend/Media:list.html.twig
+            paginate: 10
+            sortable: true
+            sorting:
+                published: desc
+
+service_civique_media_list_filtered:
+    pattern: /{type}
+    methods: [GET]
+    requirements:
+        type:  presse|radio|television
+    defaults:
+        _controller: service_civique.controller.media:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Frontend/Media:list.html.twig
+            paginate: 10
+            sortable: true
+            sorting:
+                published: desc
+            method: findFiltered
+            arguments: [$type]

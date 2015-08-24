@@ -1,0 +1,67 @@
+ServiceCivique\Bundle\CoreBundle\Entity\MissionSearch:
+    type: entity
+    table: mission_search
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    oneToOne:
+        user:
+            targetEntity: ServiceCivique\Bundle\UserBundle\Entity\User
+            joinColumn:
+                onDelete: 'CASCADE'
+
+    manyToMany:
+        taxons:
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Taxon
+
+    fields:
+        department:
+            type: string
+            length: 3
+            nullable: true
+        area:
+            type: string
+            length: 3
+            nullable: true
+        country:
+            type: string
+            length: 3
+            nullable: true
+        query:
+            type: text
+            nullable: true
+        startDate:
+            column: start_date
+            type: datetime
+            nullable: true
+        duration:
+            type: integer
+            nullable: true
+        weeklyWorkingHours:
+            column: weekly_working_hours
+            type: integer
+            nullable: true
+        city:
+            type: string
+            length: 255
+            nullable: true
+        isOverseas:
+            column: is_overseas
+            type: boolean
+            nullable: true
+        vacancies:
+            nullable: true
+            type: integer
+        statuses:
+            nullable: true
+            type: array
+        organization:
+            type: string
+            length: 255
+            nullable: true
+
+    lifecycleCallbacks: {  }

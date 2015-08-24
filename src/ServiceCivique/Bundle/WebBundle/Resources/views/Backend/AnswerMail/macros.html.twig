@@ -1,0 +1,31 @@
+{% macro table(answerMails) %}
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if answerMails | length != 0 %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>{{ sylius_resource_sort('title', 'Title') }}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="sortable">
+        {% for answerMail in answerMails %}
+        <tr>
+            <td>{{ answerMail.title }}</td>
+            <td>
+                <div class="pull-right">
+                    {{ buttons.edit(path('service_civique_backend_answer_mail_update', {'id': answerMail.id})) }}
+                    {{ buttons.delete(path('service_civique_backend_answer_mail_delete', {'id': answerMail.id})) }}
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    {{ alerts.info('service_civique.answer_mail.no_results' | trans) }}
+{% endif %}
+{% endmacro %}

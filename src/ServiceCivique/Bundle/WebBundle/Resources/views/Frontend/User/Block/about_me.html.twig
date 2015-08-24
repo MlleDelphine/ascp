@@ -1,0 +1,16 @@
+<div class="aside-box">
+    <div class="profil-info white-container">
+        <h2>Informations personnelles</h2>
+        <div class="informations">
+            <p>{{ ('service_civique.gender.' ~ user.profile.gender) | trans  }} {{ user.firstname }} {{ user.lastname }}</p>
+            <p>{{ user.email | mailto }}</p>
+            <p>Né(e) le {{ user.profile.birthDate | date('d/m/Y') }}</p>
+            {% if application is defined %}
+                <p>{{ application.phoneNumber }}</p>
+                <p>{{ application.address }}</p>
+                <p>{{ application.zipCode }} {{ application.city }}</p>
+                <p>{{ application.country }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>

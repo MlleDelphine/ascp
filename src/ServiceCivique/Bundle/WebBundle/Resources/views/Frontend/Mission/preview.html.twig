@@ -1,0 +1,18 @@
+{% extends "ServiceCiviqueWebBundle:Frontend/Mission:show.html.twig" %}
+{% block block_signaler %}{% endblock %}
+{% block share %}{% endblock %}
+
+{% block actions %}
+    <section class="mission-application-actions hidden-print">
+        <div class="btn-box">
+            <a class="btn btn-cancel btn-lg hidden-print" href="{{ path(route, {'key': key, 'id': id }) }}">Annuler</a>
+            <a class="btn btn-success btn-lg btn-sc-red hidden-print" href="{{ path(route, {'key': key, 'id': id, 'confirmed' : true }) }}">
+                {% if app.request.get('create') %}
+                    Envoyer pour validation
+                {% else %}
+                    Valider
+                {% endif %}
+            </a>
+        </div>
+    </section>
+{% endblock %}

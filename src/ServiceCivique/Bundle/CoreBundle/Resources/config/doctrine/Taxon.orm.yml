@@ -1,0 +1,4 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Taxon:
+    type: entity
+    table: taxon
+    lifecycleCallbacks: {  }

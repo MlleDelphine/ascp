@@ -1,0 +1,24 @@
+service_civique_organization_register:
+    pattern: /organismes/register
+    methods: [GET, POST]
+    defaults:
+        _controller: 'FOSUserBundle:Registration:register'
+
+service_civique_organization_profile_edit:
+    pattern: /organismes/profile/edit
+    defaults:
+        _controller: 'ServiceCiviqueUserBundle:Profile:edit'
+
+service_civique_organization_change_password:
+    pattern: /organismes/profile/change-password
+    methods: [GET, POST]
+    defaults:
+        _controller: 'ServiceCiviqueUserBundle:ChangePassword:changePassword'
+
+service_civique_delete_account:
+    pattern: /delete-account
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.user:deleteFrontAction
+        _sylius:
+            template: ServiceCiviqueUserBundle:Profile:delete_account.html.twig

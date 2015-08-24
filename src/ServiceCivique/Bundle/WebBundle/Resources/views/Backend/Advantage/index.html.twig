@@ -1,0 +1,11 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% from 'ServiceCiviqueWebBundle:Backend/Advantage:macros.html.twig' import table %}
+
+{% set resources     = advantages %}
+{% set resource_type = 'advantage' %}
+{% set page_type     = 'list' %}
+
+{% block main_content_body %}
+    {{ table(resources) }}
+{% endblock %}

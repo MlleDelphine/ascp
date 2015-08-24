@@ -1,0 +1,4 @@
+
+lns_backend:
+    resource: @LnsMenuBundle/Resources/config/routing/backend/main.yml
+    prefix: /administration

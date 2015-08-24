@@ -1,0 +1,604 @@
+{
+    "01": {
+        "depts": {
+            "971": {
+                "name": "Guadeloupe",
+                "cities": []
+            }
+        },
+        "name": "Guadeloupe"
+    },
+    "02": {
+        "depts": {
+            "972": {
+                "name": "Martinique",
+                "cities": []
+            }
+        },
+        "name": "Martinique"
+    },
+    "03": {
+        "depts": {
+            "973": {
+                "name": "Guyane",
+                "cities": []
+            }
+        },
+        "name": "Guyane"
+    },
+    "04": {
+        "depts": {
+            "974": {
+                "name": "La R\u00e9union",
+                "cities": []
+            }
+        },
+        "name": "La R\u00e9union"
+    },
+    "06": {
+        "depts": {
+            "976": {
+                "name": "Mayotte",
+                "cities": []
+            }
+        },
+        "name": "Mayotte"
+    },
+    "11": {
+        "depts": {
+            "75": {
+                "name": "Paris",
+                "cities": []
+            },
+            "77": {
+                "name": "Seine-et-Marne",
+                "cities": []
+            },
+            "78": {
+                "name": "Yvelines",
+                "cities": []
+            },
+            "91": {
+                "name": "Essonne",
+                "cities": []
+            },
+            "92": {
+                "name": "Hauts-de-Seine",
+                "cities": []
+            },
+            "93": {
+                "name": "Seine-Saint-Denis",
+                "cities": []
+            },
+            "94": {
+                "name": "Val-de-Marne",
+                "cities": []
+            },
+            "95": {
+                "name": "Val-d'Oise",
+                "cities": []
+            }
+        },
+        "name": "\u00cele-de-France"
+    },
+    "21": {
+        "depts": {
+            "08": {
+                "name": "Ardennes",
+                "cities": []
+            },
+            "10": {
+                "name": "Aube",
+                "cities": []
+            },
+            "51": {
+                "name": "Marne",
+                "cities": []
+            },
+            "52": {
+                "name": "Haute-Marne",
+                "cities": []
+            }
+        },
+        "name": "Champagne-Ardenne"
+    },
+    "22": {
+        "depts": {
+            "02": {
+                "name": "Aisne",
+                "cities": []
+            },
+            "60": {
+                "name": "Oise",
+                "cities": []
+            },
+            "80": {
+                "name": "Somme",
+                "cities": []
+            }
+        },
+        "name": "Picardie"
+    },
+    "23": {
+        "depts": {
+            "27": {
+                "name": "Eure",
+                "cities": []
+            },
+            "76": {
+                "name": "Seine-Maritime",
+                "cities": []
+            }
+        },
+        "name": "Haute-Normandie"
+    },
+    "24": {
+        "depts": {
+            "18": {
+                "name": "Cher",
+                "cities": []
+            },
+            "28": {
+                "name": "Eure-et-Loir",
+                "cities": []
+            },
+            "36": {
+                "name": "Indre",
+                "cities": []
+            },
+            "37": {
+                "name": "Indre-et-Loire",
+                "cities": []
+            },
+            "41": {
+                "name": "Loir-et-Cher",
+                "cities": []
+            },
+            "45": {
+                "name": "Loiret",
+                "cities": []
+            }
+        },
+        "name": "Centre"
+    },
+    "25": {
+        "depts": {
+            "14": {
+                "name": "Calvados",
+                "cities": []
+            },
+            "50": {
+                "name": "Manche",
+                "cities": []
+            },
+            "61": {
+                "name": "Orne",
+                "cities": []
+            }
+        },
+        "name": "Basse-Normandie"
+    },
+    "26": {
+        "depts": {
+            "21": {
+                "name": "C\u00f4te-d'Or",
+                "cities": []
+            },
+            "58": {
+                "name": "Ni\u00e8vre",
+                "cities": []
+            },
+            "71": {
+                "name": "Sa\u00f4ne-et-Loire",
+                "cities": []
+            },
+            "89": {
+                "name": "Yonne",
+                "cities": []
+            }
+        },
+        "name": "Bourgogne"
+    },
+    "31": {
+        "depts": {
+            "59": {
+                "name": "Nord",
+                "cities": []
+            },
+            "62": {
+                "name": "Pas-de-Calais",
+                "cities": []
+            }
+        },
+        "name": "Nord-Pas-de-Calais"
+    },
+    "41": {
+        "depts": {
+            "54": {
+                "name": "Meurthe-et-Moselle",
+                "cities": []
+            },
+            "55": {
+                "name": "Meuse",
+                "cities": []
+            },
+            "57": {
+                "name": "Moselle",
+                "cities": []
+            },
+            "88": {
+                "name": "Vosges",
+                "cities": []
+            }
+        },
+        "name": "Lorraine"
+    },
+    "42": {
+        "depts": {
+            "67": {
+                "name": "Bas-Rhin",
+                "cities": []
+            },
+            "68": {
+                "name": "Haut-Rhin",
+                "cities": []
+            }
+        },
+        "name": "Alsace"
+    },
+    "43": {
+        "depts": {
+            "25": {
+                "name": "Doubs",
+                "cities": []
+            },
+            "39": {
+                "name": "Jura",
+                "cities": []
+            },
+            "70": {
+                "name": "Haute-Sa\u00f4ne",
+                "cities": []
+            },
+            "90": {
+                "name": "Territoire de Belfort",
+                "cities": []
+            }
+        },
+        "name": "Franche-Comt\u00e9"
+    },
+    "52": {
+        "depts": {
+            "44": {
+                "name": "Loire-Atlantique",
+                "cities": []
+            },
+            "49": {
+                "name": "Maine-et-Loire",
+                "cities": []
+            },
+            "53": {
+                "name": "Mayenne",
+                "cities": []
+            },
+            "72": {
+                "name": "Sarthe",
+                "cities": []
+            },
+            "85": {
+                "name": "Vend\u00e9e",
+                "cities": []
+            }
+        },
+        "name": "Pays de la Loire"
+    },
+    "53": {
+        "depts": {
+            "22": {
+                "name": "C\u00f4tes-d'Armor",
+                "cities": []
+            },
+            "29": {
+                "name": "Finist\u00e8re",
+                "cities": []
+            },
+            "35": {
+                "name": "Ille-et-Vilaine",
+                "cities": []
+            },
+            "56": {
+                "name": "Morbihan",
+                "cities": []
+            }
+        },
+        "name": "Bretagne"
+    },
+    "54": {
+        "depts": {
+            "16": {
+                "name": "Charente",
+                "cities": []
+            },
+            "17": {
+                "name": "Charente-Maritime",
+                "cities": []
+            },
+            "79": {
+                "name": "Deux-S\u00e8vres",
+                "cities": []
+            },
+            "86": {
+                "name": "Vienne",
+                "cities": []
+            }
+        },
+        "name": "Poitou-Charentes"
+    },
+    "72": {
+        "depts": {
+            "24": {
+                "name": "Dordogne",
+                "cities": []
+            },
+            "33": {
+                "name": "Gironde",
+                "cities": []
+            },
+            "40": {
+                "name": "Landes",
+                "cities": []
+            },
+            "47": {
+                "name": "Lot-et-Garonne",
+                "cities": []
+            },
+            "64": {
+                "name": "Pyr\u00e9n\u00e9es-Atlantiques",
+                "cities": []
+            }
+        },
+        "name": "Aquitaine"
+    },
+    "73": {
+        "depts": {
+            "09": {
+                "name": "Ari\u00e8ge",
+                "cities": []
+            },
+            "12": {
+                "name": "Aveyron",
+                "cities": []
+            },
+            "31": {
+                "name": "Haute-Garonne",
+                "cities": []
+            },
+            "32": {
+                "name": "Gers",
+                "cities": []
+            },
+            "46": {
+                "name": "Lot",
+                "cities": []
+            },
+            "65": {
+                "name": "Hautes-Pyr\u00e9n\u00e9es",
+                "cities": []
+            },
+            "81": {
+                "name": "Tarn",
+                "cities": []
+            },
+            "82": {
+                "name": "Tarn-et-Garonne",
+                "cities": []
+            }
+        },
+        "name": "Midi-Pyr\u00e9n\u00e9es"
+    },
+    "74": {
+        "depts": {
+            "19": {
+                "name": "Corr\u00e8ze",
+                "cities": []
+            },
+            "23": {
+                "name": "Creuse",
+                "cities": []
+            },
+            "87": {
+                "name": "Haute-Vienne",
+                "cities": []
+            }
+        },
+        "name": "Limousin"
+    },
+    "82": {
+        "depts": {
+            "01": {
+                "name": "Ain",
+                "cities": []
+            },
+            "07": {
+                "name": "Ard\u00e8che",
+                "cities": []
+            },
+            "26": {
+                "name": "Dr\u00f4me",
+                "cities": []
+            },
+            "38": {
+                "name": "Is\u00e8re",
+                "cities": []
+            },
+            "42": {
+                "name": "Loire",
+                "cities": []
+            },
+            "69": {
+                "name": "Rh\u00f4ne",
+                "cities": []
+            },
+            "73": {
+                "name": "Savoie",
+                "cities": []
+            },
+            "74": {
+                "name": "Haute-Savoie",
+                "cities": []
+            }
+        },
+        "name": "Rh\u00f4ne-Alpes"
+    },
+    "83": {
+        "depts": {
+            "03": {
+                "name": "Allier",
+                "cities": []
+            },
+            "15": {
+                "name": "Cantal",
+                "cities": []
+            },
+            "43": {
+                "name": "Haute-Loire",
+                "cities": []
+            },
+            "63": {
+                "name": "Puy-de-D\u00f4me",
+                "cities": []
+            }
+        },
+        "name": "Auvergne"
+    },
+    "91": {
+        "depts": {
+            "11": {
+                "name": "Aude",
+                "cities": []
+            },
+            "30": {
+                "name": "Gard",
+                "cities": []
+            },
+            "34": {
+                "name": "H\u00e9rault",
+                "cities": []
+            },
+            "48": {
+                "name": "Loz\u00e8re",
+                "cities": []
+            },
+            "66": {
+                "name": "Pyr\u00e9n\u00e9es-Orientales",
+                "cities": []
+            }
+        },
+        "name": "Languedoc-Roussillon"
+    },
+    "93": {
+        "depts": {
+            "04": {
+                "name": "Alpes-de-Haute-Provence",
+                "cities": []
+            },
+            "05": {
+                "name": "Hautes-Alpes",
+                "cities": []
+            },
+            "06": {
+                "name": "Alpes-Maritimes",
+                "cities": []
+            },
+            "13": {
+                "name": "Bouches-du-Rh\u00f4ne",
+                "cities": []
+            },
+            "83": {
+                "name": "Var",
+                "cities": []
+            },
+            "84": {
+                "name": "Vaucluse",
+                "cities": []
+            }
+        },
+        "name": "Provence-Alpes-C\u00f4te d'Azur"
+    },
+    "94": {
+        "depts": {
+            "2A": {
+                "name": "Corse-du-Sud",
+                "cities": []
+            },
+            "2B": {
+                "name": "Haute-Corse",
+                "cities": []
+            }
+        },
+        "name": "Corse"
+    },
+    "975": {
+        "depts": {
+            "975": {
+                "name": "Saint-Pierre-et-Miquelon",
+                "cities": []
+            }
+        },
+        "name": "Saint-Pierre-et-Miquelon"
+    },
+    "977": {
+        "depts": {
+            "977": {
+                "name": "Saint-Barth\u00e9lemy",
+                "cities": []
+            }
+        },
+        "name": "Saint-Barth\u00e9lemy"
+    },
+    "978": {
+        "depts": {
+            "978": {
+                "name": "Saint-Martin",
+                "cities": []
+            }
+        },
+        "name": "Saint-Martin"
+    },
+    "984": {
+        "depts": {
+            "984": {
+                "name": "Terres australes et antarctiques fran\u00e7aises",
+                "cities": []
+            }
+        },
+        "name": "Terres australes et antarctiques fran\u00e7aises "
+    },
+    "986": {
+        "depts": {
+            "986": {
+                "name": "Wallis et Futuna",
+                "cities": []
+            }
+        },
+        "name": "Wallis et Futuna"
+    },
+    "987": {
+        "depts": {
+            "987": {
+                "name": "Polyn\u00e9sie fran\u00e7aise",
+                "cities": []
+            }
+        },
+        "name": "Polyn\u00e9sie fran\u00e7aise"
+    },
+    "988": {
+        "depts": {
+            "988": {
+                "name": "Nouvelle-Cal\u00e9donie",
+                "cities": []
+            }
+        },
+        "name": "Nouvelle-Cal\u00e9donie"
+    }
+}

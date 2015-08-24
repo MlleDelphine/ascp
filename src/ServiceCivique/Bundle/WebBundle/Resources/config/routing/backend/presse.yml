@@ -1,0 +1,37 @@
+service_civique_backend_presse_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.presse:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Presse:index.html.twig
+            sortable: true
+            paginate: 20
+            sorting:
+                id: desc
+
+service_civique_backend_presse_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.presse:createAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Presse:create.html.twig
+            redirect: service_civique_backend_presse_index
+
+service_civique_backend_presse_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.presse:updateAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Presse:update.html.twig
+            redirect: service_civique_backend_presse_index
+
+service_civique_backend_presse_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.presse:deleteAction
+        _sylius:
+            redirect: service_civique_backend_presse_index

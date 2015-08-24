@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="service_civique.menu.voter.custom.class">ServiceCivique\Bundle\MenuBundle\Matcher\Voter\CustomVoter</parameter>
+        <parameter key="service_civique.menu.route_map_matcher.class">ServiceCivique\Bundle\MenuBundle\RouteMapMatcher</parameter>
+        <parameter key="service_civique.menu.route_mapping" type="collection"></parameter>
+    </parameters>
+
+    <services>
+        <service id="service_civique.menu.voter.custom" class="%service_civique.menu.voter.custom.class%">
+            <argument id="request_stack" type="service"></argument>
+            <argument id="router" type="service"></argument>
+            <argument id="service_civique.menu.route_map_matcher" type="service"></argument>
+            <tag name="knp_menu.voter" request="true" />
+        </service>
+
+        <service id="service_civique.menu.route_map_matcher" class="%service_civique.menu.route_map_matcher.class%">
+            <argument>%service_civique.menu.route_mapping%</argument>
+        </service>
+
+        <service id="service_civique.menu.context_resolver" class="%service_civique.menu.context_resolver.class%">
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="lns.repository.menu" />
+            <argument type="service" id="service_civique.menu.route_map_matcher" />
+            <argument id="router" type="service"></argument>
+            <tag name="service" alias="context_resolver" />
+        </service>
+
+    </services>
+</container>

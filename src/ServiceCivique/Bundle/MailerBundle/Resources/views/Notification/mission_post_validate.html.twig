@@ -1,0 +1,20 @@
+{% block subject %}
+{% autoescape false %}
+{{ 'service_civique.mission.post_validate.subject'|trans({'%mission_title%' : mission_title}, 'notifications') }}
+{% endautoescape %}
+{% endblock %}
+{% block body_text %}
+{% autoescape false %}
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}
+{% autoescape false %}
+
+{{ 'service_civique.mission.post_validate.message_html' |trans({
+        '%firstname%':       (firstname ? ' ' ~ firstname : ''),
+        '%application_url%': application_url,
+        '%website%':         website,
+        '%mission_title%':   mission_title
+}, 'notifications') }}
+{% endautoescape %}
+{% endblock %}

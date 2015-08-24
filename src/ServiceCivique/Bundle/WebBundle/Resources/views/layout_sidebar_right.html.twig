@@ -1,0 +1,24 @@
+{% extends "ServiceCiviqueWebBundle::layout.html.twig" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">
+        <span>{% block main_content_header %}{% endblock %}</span>
+    </h1>
+    {% block main_content %}
+        <div class="row">
+            <div class="col col-md-8">
+                <div class="white-container">
+                    {% block main_content_intro %}{% endblock %}
+                    {% block main_content_body %}{% endblock %}
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <aside>
+                    {% block sidebar %}{% endblock %}
+                </aside>
+            </div>
+        </div>
+    {% endblock %}
+</div>
+{% endblock %}

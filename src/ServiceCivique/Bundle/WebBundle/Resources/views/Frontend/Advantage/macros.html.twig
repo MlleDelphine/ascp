@@ -1,0 +1,56 @@
+{% macro table(advantages) %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if advantages|length != 0 %}
+    <div class="advantages-box">
+        <h2>Les avantages pour tous</h2>
+        <ul class="advantage-list">
+            {% for advantage in advantages %}
+                {% if advantage.type == 1 %}
+                   <li>
+                        <div class="item-top{% if advantage.path == '' %} not-img{% endif %}">
+                            {% if advantage.path != '' %}
+                                <div class="img-box">
+                                    <img src="{{ ('/uploads/avantage/' ~ advantage.path) | apply_filter('partner_thumbnail') }}" alt="{{ advantage.title }}" />
+                                </div>
+                            {% endif %}
+                            <h3>
+                                <a href="{{ path('service_civique_advantage_show', {'slug': advantage.slug}) }}">{{ advantage.title | trans }}</a>
+                            </h3>
+                        </div>
+                        <div class="item-content">
+                            {{ advantage.subtitle | raw | truncate(135) }}
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="advantages-box">
+        <h2>Les avantages régionaux</h2>
+        <ul class="advantage-list">
+        {% for advantage in advantages %}
+            {% if advantage.type == 2 %}
+                <li>
+                    <div class="item-top">
+                        <div class="img-box">
+                            <img src="{{ ('/uploads/avantage/' ~ advantage.path) | apply_filter('partner_thumbnail') }}" alt="advantage.title" />
+                        </div>
+                        <h3>
+                            <a href="{{ path('service_civique_advantage_show', {'slug': advantage.slug}) }}">{{ advantage.title | trans }}</a>
+                        </h3>
+                    </div>
+                    <div class="item-content">
+                        {{ advantage.subtitle | raw | truncate(135) }}
+                    </div>
+                </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+
+    </div>
+{% else %}
+    {{ alerts.info('service_civique.advantages.no_results' | trans) }}
+{% endif %}
+{% endmacro %}

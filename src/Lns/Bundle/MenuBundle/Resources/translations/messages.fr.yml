@@ -1,0 +1,46 @@
+lns:
+    form:
+        mandatory_fields: Les champs obligatoires sont indiqués par *
+    menu_item:
+        breadcrumb: Élément de menu
+        create:
+            breadcrumb: Création
+            title: Élément de menu
+            subtitle: Création
+        update:
+            breadcrumb: Édition
+            title: Élément de menu
+            subtitle: 'Edition: %name%'
+        form:
+            name:
+                label: Nom
+            url:
+                label: Url
+            options:
+                label: Options
+        table:
+            menu_item: Element de menu
+            actions: Actions
+            weight: Poids
+        button:
+            save: Enregistrer
+    menu:
+        form:
+            title:
+                label: Titre
+            slug:
+                label: Identifiant de menu
+        edit:
+            title: Menu
+            subtitle: 'Edition: %title%'
+        list:
+            title: Menus
+            subtitle: Liste de tous les menus
+        create:
+            title: Créer un nouveau menu
+        button:
+            add_new_item: Créer un nouvel élément de menu
+            new: Créer un nouveau menu
+            save: Enregistrer
+        nb_results:
+            title: '{0} Aucun menu |{1} 1 menu|]1,Inf] %count% menus'

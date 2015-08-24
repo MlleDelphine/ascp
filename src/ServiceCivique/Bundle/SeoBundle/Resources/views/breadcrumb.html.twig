@@ -1,0 +1,13 @@
+{% if items|length > 0 %}
+<ol class="breadcrumb hidden-print">
+    {% for item in items %}
+    {% if loop.last is defined and loop.index == loop.last %}
+    <li class="active">{{ item.name|trans }}</li>
+    {% else %}
+    <li>
+        <a href="{{ path(item.route[0], item.route[1]|default([])) }}">{{ item.name|trans }}</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+</ol>
+{% endif %}

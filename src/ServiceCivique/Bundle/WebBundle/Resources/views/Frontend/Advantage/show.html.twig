@@ -1,0 +1,24 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% set page_type_class = 'page-show' %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'name' : advantage.title},
+]) }}
+{% endblock %}
+
+{% block main_content_header %}{{ advantage.title }}{% endblock %}
+
+{% block main_content_body %}
+    <div class="item-top">
+        <div class="img-box"><img src="{{ ('/uploads/avantage/' ~ advantage.path) | apply_filter('partner_thumbnail') }}" alt="advantage.title" /></div>
+        <h3>{{ advantage.subtitle | raw }}</h3>
+    </div>
+    <div class="item-content">
+        {{ advantage.text | raw }}
+    </div>
+{% endblock %}

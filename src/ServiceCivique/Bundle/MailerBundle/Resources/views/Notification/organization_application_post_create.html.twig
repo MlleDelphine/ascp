@@ -1,0 +1,36 @@
+{% block subject %}
+{% autoescape false %}
+{{ 'service_civique.application.post_create.organization_subject'|trans({'%mission_title%' : mission_title}, 'notifications') }}
+{% endautoescape %}
+{% endblock %}
+{% block body_text %}
+{% autoescape false %}
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}
+{% autoescape false %}
+
+{{ 'service_civique.application.post_create.organization_message_html' | trans({
+        '%fullname%':       (fullname ? ' ' ~ fullname : ''),
+        '%application_url%': application_url,
+        '%mission_title%':   mission_title,
+        '%mission_url%':   mission_url,
+        '%mission_area%':   mission_area,
+        '%mission_department%':   mission_department,
+        '%website%':         website,
+        '%candidate_firstname%': candidate_firstname,
+        '%candidate_lastname%': candidate_lastname,
+        '%candidate_motivation%': candidate_motivation|nl2br,
+        '%answer_negative%': answer_negative,
+        '%answer_positive%': answer_positive,
+        '%candidate_cv%': candidate_cv,
+        '%candidate_phone%': candidate_phone,
+        '%candidate_city%': candidate_city,
+        '%candidate_zipcode%': candidate_zipcode,
+        '%candidate_address%': candidate_address,
+        '%candidate_country%': candidate_country,
+        '%candidate_birthdate%': candidate_birthdate,
+        '%candidate_age%': candidate_age,
+}, 'notifications') }}
+{% endautoescape %}
+{% endblock %}

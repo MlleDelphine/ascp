@@ -1,0 +1,19 @@
+service_civique_actu_list:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.actu:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Frontend/Actu:list.html.twig
+            paginate: 10
+            sortable: true
+            sorting:
+                id: desc
+
+service_civique_actu_show:
+    pattern: /{slug}
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.actu:showAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Frontend/Actu:show.html.twig

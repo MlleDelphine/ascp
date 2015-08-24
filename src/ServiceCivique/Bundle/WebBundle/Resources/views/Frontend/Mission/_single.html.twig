@@ -1,0 +1,21 @@
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+
+<article class="mission" data-id="{{ mission.id }}" itemscope itemtype="http://schema.org/Event">
+    <header>
+        <h3 class="h4">
+            <a itemprop="url" href="{{ path('service_civique_mission_show', {'slug': mission.slug}) }}">
+                <span itemprop="name">{{ mission.title }}</span>
+            </a>
+        </h3>
+    </header>
+
+    <section class="informations">
+      <dl>
+        <dt>{{ 'service_civique.mission.where' | trans}}</dt>
+        <dd>{{ macros.location(mission) }}</dd>
+        <dt>{{ 'service_civique.mission.when' | trans}}</dt>
+        <dd><span class="event-date" itemprop="startDate" content="{{ mission.startDate | date('c') }}">{{ mission.startDate | localizeddate("long", "none") }}</span> (<span itemprop="duration" content="P{{ mission.duration }}M">{{ mission.duration }} mois<span>)</dd>
+      </dl>
+    <section>
+
+</article>

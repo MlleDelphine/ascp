@@ -1,0 +1,30 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services
+    http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <!--
+    <parameters>
+    </parameters>
+
+    -->
+
+    <services>
+        <!-- exporters -->
+        <service id="service_civique.mission.exporter" class="ServiceCivique\Bundle\ExporterBundle\Exporter\MissionExporter">
+            <argument type="service" id="service_civique.repository.mission" />
+            <argument type="service" id="translator" />
+            <argument>%kernel.cache_dir%</argument>
+            <argument type="service" id="polem_departements.provider" />
+        </service>
+
+        <service id="service_civique.application.exporter" class="ServiceCivique\Bundle\ExporterBundle\Exporter\ApplicationExporter">
+            <argument type="service" id="service_civique.repository.application" />
+            <argument type="service" id="translator" />
+            <argument>%kernel.cache_dir%</argument>
+            <argument type="service" id="router" />
+        </service>
+
+    </services>
+
+</container>

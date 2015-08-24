@@ -1,0 +1,25 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_right.html.twig" %}
+
+{% block main_content_header %}Conflit d'agrément{% endblock %}
+
+{% block main_content_body %}
+    {{ form_start(form) }}
+    {{ form_row(form.approval_number) }}
+    {{ form_row(form.problem_type) }}
+    {{ form_row(form.organization_name) }}
+    <div class="row">
+        <div class="form-group form-group-firstname col-md-6 col-sm-6">
+            {{ form_label(form.firstname) }}
+            {{ form_errors(form.firstname) }}
+            {{ form_widget(form.firstname) }}
+        </div>
+        <div class="form-group form-group-lastname col-md-6 col-sm-6">
+            {{ form_label(form.lastname) }}
+            {{ form_errors(form.lastname) }}
+            {{ form_widget(form.lastname) }}
+        </div>
+    </div>
+    {{ form_row(form.contact_email) }}
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+{% endblock %}

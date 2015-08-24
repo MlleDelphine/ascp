@@ -1,0 +1,77 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Organization:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: name
+            errorPath: name
+            groups: [ "ServiceCiviqueRegistration"]
+            message: Ce nom d'organisme est déjà utilisé.
+        - Callback:
+            callback: [ServiceCivique\Bundle\CoreBundle\Validator\OrganizationValidator, validateApprovedOrganization]
+            groups: [ "ServiceCiviqueRegistration"]
+
+    properties:
+        approvalNumber:
+            - Regex:
+                pattern: "/^[A-Z]{2}-[0-9]{3}-[0-9]{2}-[0-9]{5}(?:-[0-9]{2}|$)$/"
+                groups: [ "ServiceCiviqueRegistration", "Default"]
+        name:
+            - Length:
+                min: 3
+                groups: [ "ServiceCiviqueRegistration", "Default"]
+
+ServiceCivique\Bundle\CoreBundle\Entity\Mission:
+    constraints:
+        - Expression:
+            expression: "this.getIsOverseas() or (this.getCountry() != 'FR' or (this.getDepartment() != null and this.getArea() != null))"
+            message: "Merci de spécifier une région et un département"
+        - Expression:
+            expression: "not (this.getCountry() == 'FR' and this.getIsOverseas())"
+            message: "Merci de séléctionner un pays à l'étranger"
+        - Expression:
+            expression: "this.getCountry() != null"
+            message: "Merci de séléctionner un pays"
+        - Callback:
+            callback: [ServiceCivique\Bundle\CoreBundle\Validator\MissionValidator, validateNewMissionStartDate]
+    properties:
+        approvalNumber:
+            - Regex:
+                pattern: "/^[A-Z]{2}-[0-9]{3}-[0-9]{2}-[0-9]{5}(?:-[0-9]{2}|$)$/"
+        website:
+            - Url:
+        description:
+            - Length:
+                min: 365
+                minMessage: "Veuillez compléter ce champs avec au moins 5 lignes"
+
+ServiceCivique\Bundle\CoreBundle\Entity\Header:
+    properties:
+        pinUrl:
+            - Url:
+        image:
+            - Image:
+                minWidth: 1190
+                minHeight: 270
+
+
+ServiceCivique\Bundle\CoreBundle\Entity\Application:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields:
+                - mission
+                - user
+            message: Vous avez déjà candidaté à cette mission.
+
+ServiceCivique\Bundle\CoreBundle\Entity\Advantage:
+    properties:
+        file:
+            - File:
+                mimeTypes: [image/jpeg, image/png]
+                mimeTypesMessage: Veuillez uploader un .jpg ou .png
+
+ServiceCivique\Bundle\CoreBundle\Entity\Partner:
+    properties:
+        file:
+            - File:
+                maxSize: 1024k
+                mimeTypes: [image/jpeg, image/png]
+                mimeTypesMessage: Veuillez uploader un .jpg ou .png

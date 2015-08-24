@@ -1,0 +1,12 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% set resource_type = 'user' %}
+{% set page_type     = 'update' %}
+
+{# /!\ Keep this empty block ! #}
+{# We don't have user_create page #}
+{% block header_content_actions %}{% endblock %}
+
+{% block main_content %}
+    {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+{% endblock %}

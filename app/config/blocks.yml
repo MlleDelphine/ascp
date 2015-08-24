@@ -1,0 +1,41 @@
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+        #sonata.admin_doctrine_orm.block.audit:
+        #    contexts:   [admin]
+
+        sonata.block.service.text:
+        sonata.block.service.rss:
+
+        sonata.seo.block.email.share_button:
+        sonata.seo.block.facebook.like_box:
+        sonata.seo.block.facebook.like_button:
+        sonata.seo.block.facebook.share_button:
+        sonata.seo.block.twitter.share_button:
+        sonata.seo.block.twitter.embed:
+
+        # Some specific block from the SonataMediaBundle
+        #sonata.media.block.media:
+        #sonata.media.block.gallery:
+        #sonata.media.block.feature_media:
+
+        service_civique.block.recommended_missions:
+            cache: sonata.cache.memcached
+        service_civique.block.same_location_missions:
+            cache: sonata.cache.memcached
+
+        service_civique.block.user_pannel:
+
+        service_civique.block.google_plus_share_button:
+        service_civique.block.user_login:
+        service_civique.block.twitter_timeline:
+        service_civique.block.mission_search:
+        service_civique.block.header:
+        service_civique.block.last_actu:
+        service_civique.block.last_media:
+        service_civique.block.last_video:
+        service_civique.block.video_grid:
+        service_civique.block.last_presse:

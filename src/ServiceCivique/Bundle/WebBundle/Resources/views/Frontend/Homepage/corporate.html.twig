@@ -1,0 +1,66 @@
+{% extends "ServiceCiviqueWebBundle::layout.html.twig" %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block header_message %}
+<p>{{ 'service_civique.statictexts.corporate.header_message' | trans({}, 'statictexts') | raw }}</p>
+{% endblock %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'name' : 'service_civique.breadcrumb.corporate.index'},
+]) }}
+{% endblock %}
+
+{% block content %}
+<h1 class="sr-only">A propos de nous</h1>
+
+<div class="media-container colored-container">
+    <div class="container">
+        <div class="mediaBox">
+            <div class="row">
+                <div class="col col-md-4 col-sm-4 col-xs-12">
+                    {{ sonata_block_render({ 'type': 'service_civique.block.last_actu' }) }}
+                </div>
+                <div class="col col-md-4 col-sm-4 col-xs-12">
+                    {{ sonata_block_render({ 'type': 'service_civique.block.last_media' }) }}
+                </div>
+                <div class="col col-md-4 col-sm-4 col-xs-12">
+                    {{ sonata_block_render({ 'type': 'service_civique.block.last_video' }) }}
+                </div>
+            </div>
+        </div>
+     </div>
+</div>
+
+<div class="rs-container white-container">
+    <div class="container">
+        <div class="rsBox">
+            <div class="row">
+                <div class="col col-md-5 col-sm-12 col-xs-12">
+                    {{ sonata_block_render({ 'type': 'service_civique.block.last_presse' }) }}
+                </div>
+                <div class="col col-md-4 col-sm-6 col-xs-12 middle">
+                    <div class="facebookBlock">
+                        <h2>Suivez-nous<br />sur Facebook</h2>
+                        <div class="fb-page" data-href="https://www.facebook.com/servicecivique" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/servicecivique"><a href="https://www.facebook.com/servicecivique">Service Civique</a></blockquote></div></div>
+                        {# {{ sonata_block_render({ 'type' : 'sonata.seo.block.facebook.like_box' }, {
+                            'url' : 'https://www.facebook.com/ServiceCivique',
+                            'show_header' : false,
+                            'show_border' : false,
+                        }) }} #}
+                    </div>
+                </div>
+                <div class="col col-md-3 col-sm-6 col-xs-12">
+                    <div class="twitterBlock">
+                        <h2>Suivez-nous<br />sur Twitter</h2>
+                        {{ sonata_block_render({ 'type' : 'service_civique.block.twitter_timeline' }) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

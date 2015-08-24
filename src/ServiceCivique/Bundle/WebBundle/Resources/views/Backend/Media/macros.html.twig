@@ -1,0 +1,33 @@
+{% macro table(medias) %}
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if medias | length != 0 %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>{{ sylius_resource_sort('title', 'Titre') }}</th>
+            <th>{{ sylius_resource_sort('mediaName', 'Média') }}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for media in medias %}
+        <tr data-id="{{ media.id }}">
+            <td>{{ media.title }}</td>
+            <td>{{ media.mediaName }}</td>
+            <td>
+                <div class="pull-right">
+                    {{ buttons.edit(path('service_civique_backend_media_update', {'id': media.id})) }}
+                    {{ buttons.delete(path('service_civique_backend_media_delete', {'id': media.id})) }}
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    {{ alerts.info('service_civique.media.no_results' | trans) }}
+{% endif %}
+{% endmacro %}

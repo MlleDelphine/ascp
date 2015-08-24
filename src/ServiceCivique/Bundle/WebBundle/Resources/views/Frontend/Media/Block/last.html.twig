@@ -1,0 +1,24 @@
+<div class="mediaBlock newsBox">
+    <h2>Dans les médias</h2>
+    <ul class="mediaList">
+        {% for media in medias %}
+            <li>
+                <article class="media">
+                    <div class="newsImg icon-box-media type-{{ media.type }}">
+                        <i class="{{ media.type | mediatype }}"></i>
+                    </div>
+                    <div class="content">
+                        <h1><a href="{{ media.url | mediaurl(app.request.getSchemeAndHttpHost()) }}" target="_blank" title="{{ media.title }}">{{ media.title }}</a></h1>
+                        <p>{{ media.mediaName }}</p>
+                        <div class="published">
+                            <time datetime="{{ media.published | date('d-m-Y') }}">Publié le {{ media.published | date('d/m/Y') }}</time>
+                        </div>
+                    </div>
+                </article>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="block-footer">
+        <a class="link-action" href="{{ path('service_civique_media_list') }}" title="Voir tous les reportages">Voir tous les reportages</a>
+    </div>
+</div>

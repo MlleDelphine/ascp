@@ -1,0 +1,18 @@
+{% block subject %}
+{% autoescape false %}
+Un nouveau conflit d'agrément est en attente de résolution sur Service Civique
+{% endautoescape %}
+{% endblock %}
+{% block body_text %}
+{% autoescape false %}
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}
+{% autoescape false %}
+Bonjour,<br/><br/>
+
+Vous venez de recevoir une nouvelle demande de gestion de conflit de numéro d’agrément sur le site <a href="{{ url }}">{{ url }}</a>.<br/><br/>
+
+Le Service Civique
+{% endautoescape %}
+{% endblock %}

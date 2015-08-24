@@ -1,0 +1,33 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Media:macros.html.twig' import table %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'name' : 'service_civique.breadcrumb.media.list'},
+]) }}
+{% endblock %}
+
+{% block main_content_header %}Dans les médias{% endblock %}
+
+{% set currentPage = app.request.get('type') %}
+
+{% block main_content_body %}
+    <div class="filter-media">
+        <a{% if currentPage == null %} class="active"{% endif %} href="{{ path('service_civique_media_list') }}">Tous</a>
+        <a{% if currentPage == 'presse' %} class="active"{% endif %} href="{{ path('service_civique_media_list_filtered', {type: 'presse'}) }}">Presse</a>
+        <a{% if currentPage == 'radio' %} class="active"{% endif %} href="{{ path('service_civique_media_list_filtered', {type: 'radio'}) }}">Radio</a>
+        <a{% if currentPage == 'television' %} class="active"{% endif %} href="{{ path('service_civique_media_list_filtered', {type: 'television'}) }}">Télévision</a>
+    </div><br/>
+     <ul class="approval-list">
+        {{ table(media) }}
+        {{ pagination(media) }}
+    </ul>
+    <div>
+        Retrouvez les archives presse <a href="{{base_url}}/page/la-presse-en-parle">ici</a>
+    </div>
+{% endblock %}

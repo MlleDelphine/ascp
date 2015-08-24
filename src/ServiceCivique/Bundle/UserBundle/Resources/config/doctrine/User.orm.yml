@@ -1,0 +1,71 @@
+ServiceCivique\Bundle\UserBundle\Entity\User:
+    type: entity
+    table: user
+    repositoryClass: ServiceCivique\Bundle\CoreBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    oneToOne:
+        profile:
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Profile
+            mappedBy: user
+            cascade: ["persist", "remove"]
+            fetch: EAGER
+            joinColumn:
+                onDelete: 'SET NULL'
+        organization:
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Organization
+            mappedBy: user
+            cascade: ["persist", "remove"]
+            fetch: EAGER
+            joinColumn:
+                onDelete: 'SET NULL'
+    oneToMany:
+        applications:
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Application
+            mappedBy: user
+            fetch: EXTRA_LAZY
+    fields:
+        type:
+            type: integer
+            length: '1'
+            nullable: true
+            default: null
+        lastname:
+            type: string
+            length: 255
+            nullable: true
+            default: null
+        firstname:
+            type: string
+            length: 255
+            nullable: true
+            default: null
+        isNewsletterSubscribed:
+            column: is_newsletter_subscribed
+            type: boolean
+            options:
+                default: 0
+        created:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        subscriptionReferer:
+            column: subscription_referer
+            type: integer
+            nullable: true
+            default: null
+    indexes:
+        type_index:
+            columns: ['type']
+
+    lifecycleCallbacks: {  }

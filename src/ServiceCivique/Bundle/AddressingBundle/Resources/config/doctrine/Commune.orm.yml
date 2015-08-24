@@ -1,0 +1,30 @@
+ServiceCivique\Bundle\AddressingBundle\Entity\Commune:
+    type: entity
+    table: commune
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+        department:
+            type: string
+            length: 3
+        area:
+            type: string
+            length: 3
+        zipCode:
+            column: zip_code
+            type: string
+            length: 5
+    indexes:
+        zipCodeIndex:
+            columns: [ zip_code ]
+        departmentIndex:
+            columns: [ department ]
+        areaIndex:
+            columns: [ area ]
+    lifecycleCallbacks: {  }

@@ -1,0 +1,23 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_right.html.twig" %}
+
+{% block main_content_header %}Abonnement à l'alerte mail{% endblock %}
+
+{% block main_content_intro %}
+    <div class="txt-intro">{{ 'service_civique.mission.search.intro' | trans }}</div>
+{% endblock %}
+
+{% block main_content_body %}
+    {{ form_errors(form) }}
+    <form action="{{ path('service_civique_profile_mission_search_edit', {criteria:criteria}) }}" method="post" class="form-create-mission" {{ form_enctype(form) }}>
+        {% include 'ServiceCiviqueWebBundle:Frontend/MissionSearch:_form.html.twig' %}
+    </form>
+{% endblock %}
+
+{% block sidebar %}
+    {# {% include 'ServiceCiviqueWebBundle:Frontend/Default:_sidebar.html.twig' %} #}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/mission_search.js') }}"></script>
+{% endblock %}

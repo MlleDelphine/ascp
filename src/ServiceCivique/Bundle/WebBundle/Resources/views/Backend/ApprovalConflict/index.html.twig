@@ -1,0 +1,11 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% from 'ServiceCiviqueWebBundle:Backend/ApprovalConflict:macros.html.twig' import table %}
+
+{% set resources     = approval_conflicts %}
+{% set resource_type = 'approval_conflict' %}
+{% set page_type     = 'single' %}
+
+{% block main_content_body %}
+    {{ table(resources) }}
+{% endblock %}

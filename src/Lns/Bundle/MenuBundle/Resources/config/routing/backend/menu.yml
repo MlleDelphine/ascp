@@ -1,0 +1,50 @@
+lns_backend_menu_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: lns.controller.menu:indexAction
+        _sylius:
+            template: LnsMenuBundle:Backend/Menu:index.html.twig
+            sortable: true
+
+lns_backend_menu_tree_update:
+    pattern: /{id}/tree
+    methods: [POST]
+    defaults:
+        _controller: lns.controller.menu:updateTreeAction
+
+lns_backend_menu_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: lns.controller.menu:createAction
+        _sylius:
+            template: LnsMenuBundle:Backend/Menu:create.html.twig
+            redirect: lns_backend_menu_index
+
+lns_backend_menu_show:
+    pattern: /{id}
+    methods: [GET, POST]
+    defaults:
+        _controller: lns.controller.menu:showAction
+        _sylius:
+            template: LnsMenuBundle:Backend/Menu:show.html.twig
+
+lns_backend_menu_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: lns.controller.menu:updateAction
+        _sylius:
+            template: LnsMenuBundle:Backend/Menu:update.html.twig
+            redirect:
+                route: lns_backend_menu_update
+                parameters: { id: $id }
+
+lns_backend_menu_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: lns.controller.menu:deleteAction
+        _sylius:
+            redirect: lns_backend_menu_index

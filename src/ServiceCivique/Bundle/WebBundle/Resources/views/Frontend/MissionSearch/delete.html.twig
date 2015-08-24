@@ -1,0 +1,35 @@
+{% extends "ServiceCiviqueWebBundle::layout.html.twig" %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 hidden-print">
+            <aside class="mission-show-left hidden-print">
+                <div class="left-content">
+                    <div class="btn-box">
+                        <a title="Rechercher une mission" class="btn btn-success btn-lg btn-block btn-sc-red" href="{{ path('service_civique_mission_list') }}">Rechercher une mission</a>
+                    </div>
+
+                    <div class="visible-md visible-lg" >
+                    {{ sonata_block_render({ 'type' : 'service_civique.block.recommended_missions' }) }}
+                    </div>
+                </div>
+            </aside>
+        </div>
+        <div class="col-md-8 col">
+            <div class="form-box">
+                <h1>Désabonnement de l'alerte mail</h1>
+                <p>Vous souhaitez vraiment vous désabonner de votre recherche de missions ?</p>
+                <div class="btn-box">
+                  <a class="btn btn-sc-red" href="{{ path('service_civique_profile_mission_search_delete', {confirmed:1 } ) }}">Oui<a>
+                  <a class="btn btn-sc-red-2" href="{{ path('service_civique_profile_mission_search_edit') }}">Non<a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

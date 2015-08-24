@@ -1,0 +1,22 @@
+ServiceCivique\Bundle\CoreBundle\Entity\MenuItem:
+    type: entity
+    table: menu_item
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        parent:
+            type: string
+            length: 255
+        route:
+            type: string
+            length: 255
+        title:
+            type: string
+            length: 255
+        position:
+            type: integer
+    lifecycleCallbacks: {  }

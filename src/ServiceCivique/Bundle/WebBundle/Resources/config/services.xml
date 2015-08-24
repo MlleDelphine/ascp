@@ -1,0 +1,268 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="service_civique.context.twig.extension.class">ServiceCivique\Bundle\WebBundle\Twig\Extension\ContextExtension</parameter>
+        <parameter key="service_civique.oembed.twig.extension.class">ServiceCivique\Bundle\WebBundle\Twig\Extension\OEmbedExtension</parameter>
+        <parameter key="service_civique.menu.context_resolver.class">ServiceCivique\Bundle\MenuBundle\ContextResolver</parameter>
+        <parameter key="service_civique.menu.menu_builder.class">ServiceCivique\Bundle\WebBundle\Menu\FrontendMenuBuilder</parameter>
+        <parameter key="service_civique.service.search_filter_service.class">ServiceCivique\Bundle\WebBundle\Service\SearchFilterService</parameter>
+        <parameter key="service_civique.form.type.quiz.class">ServiceCivique\Bundle\WebBundle\Form\Type\QuizType</parameter>
+        <parameter key="service_civique.form.type.date.class">ServiceCivique\Bundle\WebBundle\Form\Type\DateType</parameter>
+        <parameter key="service_civique.controller.backend.form.class">ServiceCivique\Bundle\WebBundle\Controller\Backend\FormController</parameter>
+        <parameter key="service_civique.form.type.user_filter.class">ServiceCivique\Bundle\WebBundle\Form\Type\UserFilterType</parameter>
+        <parameter key="service_civique.sitemap_array_source_collection" type="collection">
+            <parameter type="collection">
+                <parameter key="route_name">service_civique_mission_list</parameter>
+                <parameter key="lastmod">2014-01-01</parameter>
+                <parameter key="changefreq">weekly</parameter>
+                <parameter key="priority">0.5</parameter>
+            </parameter>
+        </parameter>
+    </parameters>
+
+    <services>
+
+        <service id="service_civique.controller.backend.form" class="%service_civique.controller.backend.form.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <service id="service_civique.context.twig.extension" class="%service_civique.context.twig.extension.class%" public="false">
+            <argument type="service" id="service_civique.menu.context_resolver" />
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="service_civique.oembed.twig.extension" class="%service_civique.oembed.twig.extension.class%" public="false">
+            <argument>%kernel.root_dir%/../web/</argument>
+            <argument>media/cache/videos_thumbnails</argument>
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="service_civique.service.search_filter_service" class="%service_civique.service.search_filter_service.class%">
+            <argument type="service" id="polem_departements.provider" />
+        </service>
+
+        <service id="service_civique.menu_builder" class="%service_civique.menu.menu_builder.class%">
+            <argument type="service" id="knp_menu.factory" />
+            <argument type="service" id="security.context" />
+            <argument type="service" id="translator" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="lns.menu.provider" />
+            <argument type="service" id="lns.repository.menu" />
+            <argument type="service" id="lns.repository.menu_item" />
+            <argument type="service" id="knp_menu.matcher" />
+            <call method="setRequest">
+                <argument type="service" id="request" on-invalid="null" strict="false" />
+            </call>
+        </service>
+
+        <service id="service_civique.main_menu"
+            class="Knp\Menu\MenuItem"
+            factory-service="service_civique.menu_builder"
+            factory-method="createMainMenu"
+            scope="request"
+            >
+            <argument type="service" id="request" />
+            <tag name="knp_menu.menu" alias="main" />
+        </service>
+
+        <service id="service_civique.secondary_menu"
+            class="Knp\Menu\MenuItem"
+            factory-service="service_civique.menu_builder"
+            factory-method="createSecondaryMenu"
+            scope="request"
+            >
+            <argument type="service" id="request" />
+            <argument type="service" id="service_civique.menu.context_resolver" />
+            <tag name="knp_menu.menu" alias="secondary" />
+        </service>
+
+
+        <service id="service_civique.top_menu"
+            class="Knp\Menu\MenuItem"
+            factory-service="service_civique.menu_builder"
+            factory-method="createTopMenu"
+            scope="request"
+            >
+            <argument type="service" id="request" />
+            <argument type="service" id="service_civique.menu.context_resolver" />
+            <argument type="service" id="security.context" />
+            <tag name="knp_menu.menu" alias="top" />
+        </service>
+
+        <service id="service_civique.sidebar_menu"
+            class="Knp\Menu\MenuItem"
+            factory-service="service_civique.menu_builder"
+            factory-method="createSidebarMenu"
+            scope="request"
+            >
+            <argument type="service" id="request" />
+            <argument type="service" id="service_civique.menu.context_resolver" />
+            <tag name="knp_menu.menu" alias="sidebar_menu" />
+        </service>
+
+        <service id="service_civique.footer_menu_col_1"
+            class="Knp\Menu\MenuItem"
+            factory-service="service_civique.menu_builder"
+            factory-method="createFooterMenuCol1"
+            scope="request"
+            >
+            <argument type="service" id="request" />
+            <tag name="knp_menu.menu" alias="footer_col_1" />
+        </service>
+
+        <service id="service_civique.footer_menu_col_2"
+            class="Knp\Menu\MenuItem"
+            factory-service="service_civique.menu_builder"
+            factory-method="createFooterMenuCol2"
+            scope="request"
+            >
+            <argument type="service" id="request" />
+            <argument type="service" id="router" />
+            <tag name="knp_menu.menu" alias="footer_col_2" />
+        </service>
+
+        <service id="service_civique.footer_rs_menu"
+            class="Knp\Menu\MenuItem"
+            factory-service="service_civique.menu_builder"
+            factory-method="createFooterRsMenu"
+            scope="request"
+            >
+            <argument type="service" id="request" />
+            <tag name="knp_menu.menu" alias="footer-rs" />
+        </service>
+
+        <service id="service_civique.sitemap_array_source"
+            class="Exporter\Source\ArraySourceIterator"
+            >
+            <argument>%service_civique.sitemap_array_source_collection%</argument>
+        </service>
+
+        <service id="service_civique.sitemap_source"
+            class="ServiceCivique\Bundle\WebBundle\Source\SymfonySitemapSourceIterator"
+            >
+            <argument type="service" id="service_civique.sitemap_array_source" />
+            <argument type="service" id="router" />
+        </service>
+
+        <service id="service_civique.footer_bottom_menu"
+            class="Knp\Menu\MenuItem"
+            factory-service="service_civique.menu_builder"
+            factory-method="createFooterBottomMenu"
+            scope="request"
+            >
+            <argument type="service" id="request" />
+            <tag name="knp_menu.menu" alias="footer-bottom" />
+        </service>
+
+        <!-- blocks -->
+        <service id="service_civique.block.recommended_missions" class="ServiceCivique\Bundle\WebBundle\Block\RecommendedMissionsBlockService" scope="request">
+            <argument>service_civique.block.recommended_missions</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="service_civique.repository.mission" />
+            <argument type="service" id="service_civique.service.region_locator" />
+            <tag name="sonata.block" alias="recommended-missions" />
+        </service>
+
+        <service id="service_civique.block.header" class="ServiceCivique\Bundle\WebBundle\Block\HeaderBlockService" scope="request">
+            <argument>service_civique.block.header</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="service_civique.repository.header" />
+            <argument type="service" id="service_civique.menu.context_resolver" />
+            <argument type="service" id="service_civique.key_value_store" />
+            <!-- <argument type="service" id="doctrine_cache.providers.sc_apc_cache" /> -->
+            <tag name="sonata.block" alias="header" />
+        </service>
+
+        <service id="service_civique.block.last_actu" class="ServiceCivique\Bundle\WebBundle\Block\LastActuBlockService" scope="request">
+            <argument>service_civique.block.last_actu</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="service_civique.repository.actu" />
+            <argument type="service" id="request" />
+            <tag name="sonata.block" alias="last_actu" />
+        </service>
+
+        <service id="service_civique.block.last_media" class="ServiceCivique\Bundle\WebBundle\Block\LastMediaBlockService" scope="request">
+            <argument>service_civique.block.last_media</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="service_civique.repository.media" />
+            <argument type="service" id="request" />
+            <tag name="sonata.block" alias="last_media" />
+        </service>
+
+        <service id="service_civique.block.last_presse" class="ServiceCivique\Bundle\WebBundle\Block\LastPresseBlockService" scope="request">
+            <argument>service_civique.block.last_presse</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="service_civique.repository.presse" />
+            <argument type="service" id="request" />
+            <tag name="sonata.block" alias="last_presse" />
+        </service>
+
+        <service id="service_civique.block.last_video" class="ServiceCivique\Bundle\WebBundle\Block\LastVideoBlockService" scope="request">
+            <argument>service_civique.block.last_video</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="service_civique.repository.video" />
+            <tag name="sonata.block" alias="last_video" />
+        </service>
+
+        <service id="service_civique.block.video_grid" class="ServiceCivique\Bundle\WebBundle\Block\VideoGridBlockService" scope="request">
+            <argument>service_civique.block.video_grid</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="service_civique.repository.video" />
+            <tag name="sonata.block" alias="video_grid" />
+        </service>
+
+        <service id="service_civique.block.user_login" class="ServiceCivique\Bundle\WebBundle\Block\UserLoginBlockService">
+            <argument>service_civique.block.user_login</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="form.csrf_provider" />
+            <tag name="sonata.block" alias="user-login" />
+        </service>
+
+        <service id="service_civique.block.same_location_missions" class="ServiceCivique\Bundle\WebBundle\Block\SameLocationMissionsBlockService" scope="request">
+            <argument>service_civique.block.same_location_missions</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="service_civique.repository.mission" />
+            <argument type="service" id="request" />
+            <tag name="sonata.block" alias="same-location-missions" />
+        </service>
+
+        <service id="service_civique.block.google_plus_share_button" class="ServiceCivique\Bundle\WebBundle\Block\GooglePlusShareButtonBlockService" scope="request">
+            <argument>service_civique.block.google_plus_share_button</argument>
+            <argument type="service" id="templating" />
+            <tag name="sonata.block" />
+        </service>
+
+        <service id="service_civique.block.twitter_timeline" class="ServiceCivique\Bundle\WebBundle\Block\TwitterTimelineBlockService" scope="request">
+            <argument>service_civique.block.twitter_timeline</argument>
+            <argument type="service" id="templating" />
+            <tag name="sonata.block" />
+        </service>
+
+        <service id="service_civique.block.mission_search" class="ServiceCivique\Bundle\WebBundle\Block\MissionSearchBlockService" scope="request">
+            <argument>service_civique.block.mission_search</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="form.factory" />
+            <argument type="service" id="service_civique.service.search_filter_service" />
+            <argument type="service" id="request" />
+            <argument type="service" id="service_civique.repository.mission_search" />
+            <tag name="sonata.block" />
+        </service>
+
+        <service id="service_civique.form.type.quiz" class="%service_civique.form.type.quiz.class%">
+            <tag name="form.type" alias="service_civique_quiz" />
+        </service>
+
+        <service id="service_civique.form.type.user_filter" class="%service_civique.form.type.user_filter.class%">
+            <argument type="service" id="request_stack" />
+            <tag name="form.type" alias="service_civique_user_filter" />
+        </service>
+
+        <service id="service_civique.form.type.date" class="%service_civique.form.type.date.class%">
+            <tag name="form.type" alias="service_civique_date" />
+        </service>
+    </services>
+</container>

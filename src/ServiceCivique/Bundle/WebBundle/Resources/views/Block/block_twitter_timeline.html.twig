@@ -1,0 +1,8 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+<a class="twitter-timeline" width="{{ settings.height }}" href="https://twitter.com/{{ settings.username }}" data-widget-id="{{ settings.widget_id }}" data-chrome="nofooter noborders" data-tweet-limit="{{ settings.tweet_limit }}"lang="FR">Tweets de @{{ settings.username }}</a>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+{% endblock %}

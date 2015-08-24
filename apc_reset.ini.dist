@@ -1,0 +1,7 @@
+[auth]
+username=apc
+password=Yzg1NTcxZW
+
+[config]
+clearApc=true
+clearOpcache=false

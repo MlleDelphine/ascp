@@ -1,0 +1,11 @@
+<div class="presseBlock">
+    <h2>Communiqués de presse</h2>
+    <article class="presse">
+        <h1><a href="{{ path('service_civique_presse_show', {'slug': presse.slug}) }}" title="{{ presse.title }}">{{ presse.title }}</a></h1>
+        <p class="published">Publié le {{ presse.published | date('d/m/Y') }}</p>
+        <p>{{ presse.text | striptags | truncate(300) | raw }}</p>
+    </article>
+    <div class="block-footer">
+        <a href="{{ path('service_civique_presse_list') }}" class="btn btn-sc-red btn-second" title="Voir tous les communiqués">Voir tous les communiqués</a>
+    </div>
+</div>

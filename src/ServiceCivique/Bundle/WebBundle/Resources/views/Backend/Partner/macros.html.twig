@@ -1,0 +1,33 @@
+{% macro table(partners) %}
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if partners | length != 0 %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>{{ sylius_resource_sort('title', 'Titre') }}</th>
+            <th>{{ sylius_resource_sort('subtitle', 'Sous-titre') }}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for partner in partners %}
+        <tr data-id="{{ partner.id }}">
+            <td><a href="{{ path('service_civique_partner_show', {'slug': partner.slug}) }}">{{ partner.title }}</a></td>
+            <td>{{ partner.subtitle }}</td>
+            <td>
+                <div class="pull-right">
+                    {{ buttons.edit(path('service_civique_backend_partner_update', {'id': partner.id})) }}
+                    {{ buttons.delete(path('service_civique_backend_partner_delete', {'id': partner.id})) }}
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    {{ alerts.info('service_civique.partner.no_results' | trans) }}
+{% endif %}
+{% endmacro %}

@@ -1,0 +1,8 @@
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'LnsMenuBundle:Backend/MenuItem:macros.html.twig' import table %}
+
+<form action="{{ path('lns_backend_menu_tree_update',  {'id': menu.id}) }}" method="post">
+    <input type="hidden" name="_method" value="POST">
+    {{ table(menu, menu_items) }}
+    <input class="btn btn-primary" type="submit" value="{{ 'lns.menu_item.button.save' | trans }}"/>
+</form>

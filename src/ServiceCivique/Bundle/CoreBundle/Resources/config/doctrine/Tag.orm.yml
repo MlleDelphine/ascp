@@ -1,0 +1,27 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Tag:
+    type: entity
+    table: tag
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    oneToMany:
+        missions:
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Mission
+            mappedBy: tag
+            fetch: EXTRA_LAZY
+
+    fields:
+        title:
+            type: string
+            length: 255
+        slug:
+            type: string
+            length: 255
+            gedmo:
+                slug:
+                    fields: ['title']
+    lifecycleCallbacks: {  }

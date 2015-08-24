@@ -1,0 +1,5 @@
+hip_mandrill:
+    api_key: %mandrill_api_key%
+    default:
+        sender: %mandrill_default_sender%
+        sender_name: %mandrill_default_sender_name%

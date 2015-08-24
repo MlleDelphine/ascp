@@ -1,0 +1,21 @@
+{% form_theme form 'ServiceCiviqueWebBundle::forms.html.twig' %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+
+{{ form_errors(form) }}
+<small><p>{{ 'service_civique.form.mandatory_fields' | trans }}</p></small>
+
+{{ form_start(form) }}
+{% include 'ServiceCiviqueWebBundle:Backend/Mission:_form_content.html.twig' %}
+{% if back is defined and back %}
+    <div>
+        <button type="submit" class="btn btn-sc-red"><i class="icon-save"></i> {{ 'sylius.save_changes'|trans }}</button>
+        <button class="btn btn-info" data-toggle="modal" data-target="#mailModal">Envoyer un mail</button>
+    </div>
+{% endif %}
+{{ form_end(form) }}
+{% if back is defined and back %}
+    <div class="pull-right">
+        {{ buttons.delete(path('service_civique_backend_mission_delete', {'id': form.vars.value.id}), '', false, true, false) }}
+    </div>
+{% endif %}

@@ -1,0 +1,11 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% from 'ServiceCiviqueWebBundle:Backend/MissionReport:macros.html.twig' import table %}
+
+{% set resources     = mission_reports %}
+{% set resource_type = 'mission_report' %}
+{% set page_type     = 'single' %}
+
+{% block main_content_body %}
+    {{ table(resources) }}
+{% endblock %}

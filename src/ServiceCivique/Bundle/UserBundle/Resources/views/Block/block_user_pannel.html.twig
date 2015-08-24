@@ -1,0 +1,64 @@
+{% if user_type %}
+    <ul class="nav nav-{{ user_type }}">
+    {# "Hack" because admin is a "user" #}
+    {% if is_granted('ROLE_WEBMASTER') %}
+        {% set user_type = 'admin' %}
+    {% endif %}
+    <li class="first">
+        <a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a>
+    </li>
+    {% if user_type == "organization" %}
+        <li>
+            <a href="{{ path('service_civique_organization_mission_index') }}">{{ 'service_civique.statictexts.organization.management_pannel.missions_overview_link' | trans({}, 'statictexts') | raw }}</a>
+        </li>
+        <li>
+            <a href="{{ path('service_civique_organization_profile_edit') }}">{{ 'service_civique.statictexts.organization.user_pannel.account_edition_link' | trans({}, 'statictexts') | raw }}</a>
+        </li>
+        <li>
+            <a href="{{ path('service_civique_organization_change_password') }}">Changer mon mot de passe</a>
+        </li>
+    {% elseif user_type == "user" %}
+        <li>
+            <a href="{{ path('service_civique_application_list') }}">{{ 'service_civique.statictexts.jeunes.management_pannel.applications_overview_link' | trans({}, 'statictexts') | raw }}</a>
+        </li>
+         <li>
+            <a href="{{ path('fos_user_profile_edit') }}">{{ 'service_civique.statictexts.jeunes.user_pannel.account_edition_link' | trans({}, 'statictexts') | raw }}</a>
+        </li>
+        <li>
+            <a href="{{ path('fos_user_change_password') }}">Changer mon mot de passe</a>
+        </li>
+    {% elseif user_type == "admin" %}
+         <li>
+            <a href="{{ path('service_civique_backend_static_content_index') }}">{{ 'service_civique.statictexts.admin.user_pannel.static_content_list_link' | trans({}, 'statictexts') | raw }}</a>
+        </li>
+        <li>
+            <a href="{{ path('service_civique_backend_mission_index') }}">{{ 'service_civique.statictexts.admin.management_pannel.missions_list_link' | trans({}, 'statictexts') | raw }}</a>
+        </li>
+    </ul>
+    {% endif %}
+{% else %}
+    <ul class="nav nav-notlogin">
+        <li class="first">
+            <a class="hidden-xs" role="button" aria-expanded="false" aria-controls="login-pannel" id="connexion" href="#login-panel">S’identifier</a>
+            <a class="visible-xs" id="connexion" href="{{ path('fos_user_security_login') }}">S’identifier</a>
+        </li>
+        <li class="item-user">
+            <a href="{{ path('fos_user_registration_register' ) }}">{{ 'service_civique.statictexts.anonymous.user_pannel.jeunes_creation_link' | trans({}, 'statictexts') | raw }}</a>
+        </li>
+        <li class="item-orga">
+            <a href="{{ path('service_civique_organization_register') }}">{{ 'service_civique.statictexts.anonymous.user_pannel.organization_creation_link' | trans({}, 'statictexts') | raw }}</a>
+        </li>
+    </ul>
+    <div id="login-pannel" class="user-pannel sr-only">
+            <div class="login-pannel-box">
+
+                <div class="row">
+                    <div class="col col-md-12">
+                        {{ sonata_block_render({ 'type': 'service_civique.block.user_login' }) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endif %}
+
+

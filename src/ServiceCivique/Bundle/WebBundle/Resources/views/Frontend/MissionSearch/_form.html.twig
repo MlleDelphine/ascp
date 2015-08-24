@@ -1,0 +1,26 @@
+<fieldset id="lieu" class="form-wrapper">
+    <legend><span class="fieldset-legend ie-font" >Où ?</span></legend>
+    {{ form_widget(form.is_overseas) }}
+</fieldset>
+
+{{ form_row(form.location.country) }}
+{{ form_row(form.location.area, { 'label': 'service_civique.form.mission_search.area.label'}) }}
+{{ form_row(form.location.department) }}
+{{ form_row(form.start_date) }}
+
+<fieldset id="taxons" class="form-wrapper">
+    <legend><span class="fieldset-legend ie-font" >Thématique(s)</span></legend>
+    {{ form_widget(form.taxons) }}
+</fieldset>
+
+{{ form_row(form.query) }}
+{{ form_row(form.organization) }}
+
+<p>{{ 'service_civique.mission.search.legal' | trans | raw }}</p>
+
+{{ form_row(form._token) }}
+
+<div class="btn-box">
+    <a class="btn btn-cancel btn-lg" href="{{ path('service_civique_mission_list', app.request.query.all ) }}">{{ 'service_civique.form.mission_search.cancel.label' | trans() }}</a>
+    {{ form_widget(form.save) }}
+</div>

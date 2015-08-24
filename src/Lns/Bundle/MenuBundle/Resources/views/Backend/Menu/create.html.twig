@@ -1,0 +1,23 @@
+{% extends 'LnsMenuBundle:Backend:layout.html.twig' %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+
+{% block breadcrumb %}
+<li><a href="{{ path('lns_backend_menu_index') }}">Menus</a></li>
+<li>Création</li>
+{% endblock %}
+
+{% block header_content_actions %}
+    {{ buttons.create(path('lns_backend_menu_create'), 'lns.menu.create_header' | trans | raw) }}
+{% endblock %}
+{% block header_content_title %}
+    <i class="glyphicon glyphicon-th-list"></i> Menu <small>Création</small>
+{% endblock %}
+
+{% block main_content %}
+    {{ form_errors(form) }}
+    <form action="{{ path('lns_backend_menu_create', {id: form.vars.value.id }) }}" method="post" class="form-create-menu" {{ form_enctype(form) }}>
+        {% include 'LnsMenuBundle:Backend/Menu:_form.html.twig' %}
+        <input type="submit" class="btn btn-primary"/>
+    </form>
+{% endblock %}

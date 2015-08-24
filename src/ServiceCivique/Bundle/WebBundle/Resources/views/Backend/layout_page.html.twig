@@ -1,0 +1,71 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout.html.twig' %}
+
+{# /!\ Always define resource_type and page_type for sub-templates #}
+{# /!\ Always define resources if page_type = 'list' #}
+{# /!\ Always define form if page_type in ['create', 'update'] #}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
+
+{% block topbar %}
+<ol class="breadcrumb">
+    <li><a href="{{ path('service_civique_backend_homepage') }}">Backoffice</a></li>
+    {% block breadcrumb %}
+        {% if page_type == 'single' %}
+            <li>{{ ('service_civique.backend.' ~ resource_type ~ '.title') | trans }}</li>
+        {% else %}
+            <li><a href="{{ path('service_civique_backend_' ~ resource_type ~ '_index') }}">{{ ('service_civique.backend.' ~ resource_type ~ '.title') | trans }}</a></li>
+            <li>{{ ('service_civique.backend.page_type.' ~ page_type) | trans }}</li>
+        {% endif %}
+    {% endblock %}
+</ol>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    {% block header_content %}
+        <div class="actions-menu">
+            {% block header_content_actions %}
+                {% if page_type != 'single' %}
+                    {{ buttons.create(path('service_civique_backend_' ~ resource_type ~ '_create'), 'service_civique.backend.create_button' | trans) }}
+                {% endif %}
+            {% endblock %}
+        </div>
+        <h1>
+            {% block header_content_title %}
+                <i class="glyphicon glyphicon-th-list"></i> {{ ('service_civique.backend.' ~ resource_type ~ '.title') | trans }}
+                {% if page_type != 'single' %}
+                    <small>{{ ('service_civique.backend.page_type.' ~ page_type) | trans }}</small>
+                {% endif %}
+            {% endblock %}
+        </h1>
+    {% endblock %}
+</div>
+
+<div class="white-container">
+    {% block main_content %}
+        {% block main_content_header %}{% endblock %}
+
+        {% if page_type == 'list' %}
+            <div class="nb-applications"><strong>{{ 'service_civique.backend.nb_results' | transchoice(resources.nbResults) }}</strong></div>
+            {{ pagination(resources) }}
+        {% endif %}
+
+        {% block main_content_body %}
+            {% if page_type in ['create', 'update', 'single'] %}
+                <div class="row">
+                    <div class="col col-md-6">
+                        {% block form_content %}
+                            {% include 'ServiceCiviqueWebBundle:Backend/Form:_default_form.html.twig' %}
+                        {% endblock %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {% if page_type == 'list' %}
+            {{ pagination(resources) }}
+        {% endif %}
+    {% endblock %}
+</div>
+{% endblock %}

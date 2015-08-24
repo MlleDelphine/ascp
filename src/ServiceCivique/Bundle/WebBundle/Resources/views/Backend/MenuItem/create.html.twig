@@ -1,0 +1,22 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+
+{% block breadcrumb %}
+    <li><a href="{{ path('service_civique_backend_menu_item_index') }}">Menus</a></li>
+    <li>Création</li>
+{% endblock %}
+
+{% block header_content_actions %}
+    {{ buttons.create(path('service_civique_backend_menu_item_create'), 'service_civique.menu_item.create_header' | trans | raw) }}
+{% endblock %}
+{% block header_content_title %}
+    <i class="glyphicon glyphicon-th-list"></i> Menu <small>Création</small>
+{% endblock %}
+
+{% block main_content %}
+    {{ form_errors(form) }}
+    <form action="{{ path('service_civique_backend_menu_item_create', {id: form.vars.value.id }) }}" method="post" class="form-create-menu_item" {{ form_enctype(form) }}>
+        {% include 'ServiceCiviqueWebBundle:Backend/MenuItem:_form.html.twig' %}
+    </form>
+{% endblock %}

@@ -1,0 +1,36 @@
+service_civique_backend_video_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.video:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Video:index.html.twig
+            sortable: true
+            sorting:
+                id: desc
+
+service_civique_backend_video_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.video:createAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Video:create.html.twig
+            redirect: service_civique_backend_video_index
+
+service_civique_backend_video_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.video:updateAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Video:update.html.twig
+            redirect: service_civique_backend_video_index
+
+service_civique_backend_video_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.video:deleteAction
+        _sylius:
+            redirect: service_civique_backend_video_index

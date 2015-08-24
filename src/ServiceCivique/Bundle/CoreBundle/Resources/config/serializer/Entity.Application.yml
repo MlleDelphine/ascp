@@ -1,0 +1,25 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Application:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        status:
+            expose: true
+        messageSubject:
+            expose: true
+        messageText:
+            expose: true
+        messageDate:
+            expose: true
+            type: DateTime<'Y-m-d'>
+        mission:
+            expose: false
+        user:
+            expose: false
+        organizationName:
+            expose: true
+            access_type: public_method
+        created:
+            type: DateTime<'Y-m-d'>
+        updated:
+            type: DateTime<'Y-m-d'>

@@ -1,0 +1,65 @@
+service_civique_mission_list:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.mission:searchAction
+        _sylius:
+            method: findFromFrontend
+            filterable: true
+            sortable: true
+
+service_civique_mission_search_submit:
+    pattern: /search/submit
+    methods: [POST]
+    defaults:
+        _controller: service_civique.controller.mission:searchSubmitAction
+
+service_civique_mission_preview:
+    pattern: /preview
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.mission:previewAction
+
+service_civique_area_list:
+    pattern: /area-list
+    methods: [GET, POST]
+    options:
+        expose: true
+    defaults:
+        _controller: service_civique.controller.mission_search:listAreaAction
+
+service_civique_mission_show:
+    pattern: /{slug}
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.mission:showAction
+        _sylius:
+            method: findOneWithOrganizationAndCategoryBy
+            criteria:
+                slug: $slug
+
+service_civique_mission_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.mission:deleteAction
+        _sylius:
+            redirect:
+                route: service_civique_organization_mission_index
+                parameters: { id: $id }
+
+service_civique_mission_status:
+    pattern: /{id}/status/{status}
+    methods: [POST]
+    options:
+        expose: true
+    defaults:
+        _controller: service_civique.controller.mission:updateStatusAction
+
+service_civique_mission_cancel_updates:
+    pattern: /{id}/cancel-updates
+    methods: [POST]
+    options:
+        expose: true
+    defaults:
+        _controller: service_civique.controller.mission:cancelModificationsAction

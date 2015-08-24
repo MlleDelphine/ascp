@@ -1,0 +1,17 @@
+{% macro sc_options_render(filters) %}
+
+{% for item in filters %}
+    {% set closable = not (item.default_value is defined and item.default_value == item.value) %}
+    <span class="{{ not closable ? 'option-fixed ' }}option-{{ loop.index }}">
+        {{ item.label | trans }}
+        {% if closable  %}
+        <a href="{{ path('service_civique_mission_list', {
+            'criteria': item.params|default(null),
+            'sorting' : app.request.query.get('sorting'),
+            'paginate' : app.request.query.get('paginate')
+        }) }}#search-options"><i class="glyphicon glyphicon-remove"></i></a>
+        {% endif %}
+    </span>
+{% endfor %}
+
+{% endmacro %}

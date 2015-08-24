@@ -1,0 +1,62 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Approval:
+    type: entity
+    table: approval
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        approvalNumber:
+            type: string
+            length: 255
+            column: approval_number
+        organizationName:
+            type: string
+            length: 255
+            column: organization_name
+        decisionDate:
+            type: datetime
+            column: decision_date
+            nullable: true
+        termDate:
+            type: datetime
+            column: term_date
+            nullable: true
+        jobNumber:
+            type: text
+            column: job_number
+        missionLabels:
+            type: text
+        taxonomy:
+            type: string
+            length: 255
+        referentAddress:
+            type: text
+            column: referent_address
+        pdfUrl:
+            type: string
+            length: 255
+            column: pdf_url
+        review:
+            type: string
+            length: 255
+        oscarUrl:
+            type: string
+            length: 255
+            column: oscar_url
+        siret:
+            type: string
+            length: 255
+        address:
+            type: string
+            length: 255
+        zipCode:
+            type: string
+            length: 255
+            column: zip_code
+        city:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

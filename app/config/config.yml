@@ -1,0 +1,498 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: seo.yml }
+    - { resource: blocks.yml }
+    - { resource: elasticsearch.yml }
+    - { resource: mandrill.yml }
+    - { resource: rabbitmq.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: "%locale%" }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        assets_base_urls:
+            http:
+                - "%router.request_context.scheme%://%router.request_context.host%"
+            ssl:
+                - "%router.request_context.scheme%://%router.request_context.host%"
+
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: [127.0.0.1, 10.0.0.0/8]
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/sessions"
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    globals:
+        ga_tracking:  "%ga_tracking%"
+        kibana_url:   "%kibana_url%"
+        base_url:     "%base_url%"
+    form:
+        resources:
+            - 'ServiceCiviqueWebBundle::forms.html.twig'
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        # path:     "%database_path%"
+        types:
+            phone_number: Misd\PhoneNumberBundle\Doctrine\DBAL\Types\PhoneNumberType
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                    gedmo_translatable:
+                        type: annotation
+                        prefix: Gedmo\Translatable\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                        alias: GedmoTranslatable # this one is optional and will default to the name set for the mapping
+                        is_bundle: false
+                    gedmo_translator:
+                        type: annotation
+                        prefix: Gedmo\Translator\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
+                        alias: GedmoTranslator # this one is optional and will default to the name set for the mapping
+                        is_bundle: false
+                    gedmo_loggable:
+                        type: annotation
+                        prefix: Gedmo\Loggable\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+                        alias: GedmoLoggable # this one is optional and will default to the name set for the mapping
+                        is_bundle: false
+                    gedmo_tree:
+                        type: annotation
+                        prefix: Gedmo\Tree\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+                        alias: GedmoTree # this one is optional and will default to the name set for the mapping
+                        is_bundle: false
+
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+sylius_resource:
+    resources:
+        service_civique.header:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Backend\Header
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\Header
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\HeaderRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\HeaderController
+        service_civique.mission:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Frontend\Mission
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\Mission
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\MissionRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\MissionController
+        service_civique.static_content:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Backend/Application
+            classes:
+                model: ServiceCivique\Bundle\ContentBundle\Entity\StaticContent
+                controller: ServiceCivique\Bundle\ContentBundle\Controller\StaticContentController
+        service_civique.menu_item:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Backend/MenuItem
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\MenuItem
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\MenuItemRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\MenuItemController
+        service_civique.tag:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Backend/Tag
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\Tag
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\TagController
+        service_civique.answer_mail:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Backend/AnswerMail
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\AnswerMail
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\AnswerMailController
+        service_civique.mission_search:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Frontend\MissionSearch
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\MissionSearch
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\MissionSearchRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\MissionSearchController
+        service_civique.user:
+            driver: doctrine/orm
+            classes:
+                model: ServiceCivique\Bundle\UserBundle\Entity\User
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\UserRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\UserController
+        service_civique.organization:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Frontend\Organization
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\Organization
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\OrganizationController
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\OrganizationRepository
+        service_civique.organization_invitation:
+            driver: doctrine/orm
+            classes:
+                model: ServiceCivique\Bundle\UserBundle\Entity\OrganizationInvitation
+                repository: ServiceCivique\Bundle\UserBundle\Repository\OrganizationInvitationRepository
+        service_civique.key_value:
+            driver: doctrine/orm
+            classes:
+                model: ServiceCivique\Bundle\KeyValueStoreBundle\Entity\KeyValue
+        service_civique.commune:
+            driver: doctrine/orm
+            templates: ServiceCiviqueAddressingBundle:Commune
+            classes:
+                model: ServiceCivique\Bundle\AddressingBundle\Entity\Commune
+                controller: ServiceCivique\Bundle\AddressingBundle\Controller\CommuneController
+        service_civique.approval:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Frontend\Approval
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\Approval
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\ApprovalRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\ApprovalController
+        service_civique.application:
+            driver: doctrine/orm
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\Application
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\ApplicationRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\ApplicationController
+        service_civique.actu:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Backend/Actu
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\Actu
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\ActuRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\ActuController
+        service_civique.presse:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Backend/Presse
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\Presse
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\PresseRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\PresseController
+        service_civique.advantage:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Backend/Advantage
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\Advantage
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\AdvantageRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\AdvantageController
+        service_civique.partner:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Backend/Partner
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\Partner
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\PartnerRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\PartnerController
+        service_civique.video:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Frontend/Video
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\Video
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\VideoRepository
+
+        service_civique.media:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Backend/Media
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\Media
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\MediaRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\MediaController
+        service_civique.approval_conflict:
+            driver: doctrine/orm
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\ApprovalConflict
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\ApprovalConflictRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\ApprovalConflictController
+        service_civique.mission_report:
+            driver: doctrine/orm
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\MissionReport
+                # repository: ServiceCivique\Bundle\CoreBundle\Repository\MissionReportRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\MissionReportController
+
+sylius_taxonomy:
+    driver: doctrine/orm
+    classes:
+        taxonomy:
+            model: ServiceCivique\Bundle\CoreBundle\Entity\Taxonomy
+            form: ServiceCivique\Bundle\CoreBundle\Form\Type\TaxonomyType
+        taxon:
+            model: ServiceCivique\Bundle\CoreBundle\Entity\Taxon
+            form: ServiceCivique\Bundle\CoreBundle\Form\Type\TaxonType
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
+            tree: true
+            sluggable: true
+            loggable: true
+
+genemu_form:
+    date: ~
+
+jms_serializer:
+    metadata:
+        directories:
+            SyliusTaxonomyComponent:
+                namespace_prefix: "Sylius\\Component\\Taxonomy"
+                path: "%kernel.root_dir%/Resources/SyliusTaxonomyComponent/serializer"
+            FOSUserBundle:
+                namespace_prefix: "FOS\\UserBundle"
+                path: "%kernel.root_dir%/../src/ServiceCivique/Bundle/UserBundle/Resources/config/serializer/base"
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: ServiceCivique\Bundle\UserBundle\Entity\User
+    service:
+        mailer: service_civique_user.mandrill_mailer
+    registration:
+        confirmation:
+            enabled:    true
+        form:
+            handler: service_civique_user.form.handler.registration
+            type:    service_civique_user_registration
+            validation_groups: [ServiceCiviqueRegistration]
+    profile:
+        form:
+            handler: service_civique_user.form.handler.profile
+            type:    service_civique_user
+            validation_groups: [ServiceCiviqueProfile]
+
+services:
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+
+parameters:
+    polem_departements.provider.data_file: %kernel.root_dir%/Resources/datas/datas.json
+    sylius.form.type.taxon_choice.class: ServiceCivique\Bundle\CoreBundle\Form\Type\TaxonChoiceType
+    security.authentication.success_handler.class: ServiceCivique\Bundle\UserBundle\Authentication\AuthenticationSuccessHandler
+
+ornicar_apc:
+    host: %base_url%
+    web_dir: %kernel.root_dir%/../web
+
+lexik_translation:
+    fallback_locale: fr
+    managed_locales: [fr]
+    base_layout: "ServiceCiviqueWebBundle::Backend/Translations/index.html.twig" # layout used with the translation edition template
+    use_yml_tree: false                                     # if "true" we will print a nice tree in the yml source files. It is a little slower.
+    grid_input_type: textarea                               # define field type used in the grid (text|textarea)
+    storage:
+        type: orm                                           # where to store translations: "orm" or "mongodb"
+        object_manager: default                             # The name of the entity / document manager which uses different connection (see: http://symfony.com/doc/current/cookbook/doctrine/multiple_entity_managers.html)
+    resources_registration:
+        type: all                                           # resources type to register: "all", "files" or "database"
+        managed_locales_only: true
+
+avalanche_imagine:
+    filters:
+        video_thumbnail:
+            type:    thumbnail
+            options:
+                size: [182, 98]
+                mode: outbound
+                quality: 90
+                format: jpg
+                cache_type: public
+        header_bg_mini:
+            type:    thumbnail
+            options:
+                size: [120, 25]
+                mode: outbound
+                quality: 90
+                format: jpg
+                cache_type: public
+        header_bg_wide:
+            type:    relative_resize
+            options:
+                widen: 1190
+                mode: outbound
+                quality: 90
+                format: jpg
+                cache_type: public
+        header_pin_mini:
+            type:    thumbnail
+            options:
+                size: [50, 50]
+                mode: outbound
+                quality: 90
+                format: png
+                cache_type: public
+        header_pin_medium:
+            type:    thumbnail
+            options:
+                size: [220, 220]
+                mode: outbound
+                quality: 90
+                format: png
+                cache_type: public
+        partner_thumbnail:
+            type:    thumbnail
+            options:
+                size: [100, 100]
+                mode: outbound
+                quality: 90
+                cache_type: public
+nelmio_cors:
+    paths:
+      '^/':
+          allow_origin: ['*']
+          allow_headers: ['x-requested-with']
+          allow_methods: ['POST', 'PUT', 'GET', 'DELETE','OPTIONS']
+          max_age: 3600
+
+
+liip_monitor:
+    enable_controller:    true
+
+    checks:
+        php_extensions:       [apc]
+        process_running:      ~ # Example: [apache, foo]
+        #readable_directory:   []
+        writable_directory:   [ "%kernel.root_dir%/../web/uploads","%kernel.root_dir%/../web/media"]
+        #class_exists:         [] # Example: ["Lua", "My\Fancy\Class"]
+        # Benchmark CPU performance and return failure if it is below the given ratio.
+        cpu_performance:      ~ # Example: 1.0 # This is the power of an EC2 micro instance
+        disk_usage:
+            warning:              70
+            critical:             90
+            path:                 '%kernel.cache_dir%'
+        # symfony_requirements:
+        #     file:                 '%kernel.root_dir%/SymfonyRequirements.php'
+       #sadly we have somes issues with apc checks, maybe due to uapc?
+       #apc_memory:
+       #     warning:              70
+       #     critical:             90
+
+
+        # Connection name or an array of connection names.
+        doctrine_dbal:        default # Example: [default, crm]
+
+        http_service:
+             #Prototype
+            homepage:
+                host:                 %base_hostname%
+                port:                 80
+                path:                 /
+                status_code:          200
+                content:              null
+            elasticsearch:
+                host:                 %es_host%
+                port:                 %es_port%
+                path:                 /
+                status_code:          200
+                content:              null
+        rabbit_mq:
+            # Prototype
+            main:
+                host:                 %amqp_host%
+                port:                 %amqp_port%
+                user:                 %amqp_user%
+                password:             %amqp_pwd%
+                vhost:                /
+        security_advisory:
+            lock_file:            "%kernel.root_dir%/../composer.lock"
+
+
+# doctrine_cache:
+#     providers:
+#         sc_apc_cache:
+#             type: apc
+#             namespace: sc_apc_cache
+#
+service_civique_menu:
+    route_mapping:
+        service_civique_actu_show:      service_civique_actu_list
+        service_civique_presse_show:    service_civique_presse_list
+        service_civique_partner_show:   service_civique_partner_list
+        service_civique_advantage_show: service_civique_advantage_list
+        service_civique_media_show:     service_civique_media_list
+        service_civique_mission_show:   service_civique_mission_list
+        service_civique_video_show:     service_civique_video_list
+
+eko_feed:
+    # hydrator: your_hydrator.custom.service # Optional, if you use entity hydrating with a custom hydrator
+    # translation_domain: test # Optional, if you want to use a custom translation domain
+    feeds:
+        media:
+            title:       'Médias'
+            description: 'Les Médias du Service Civique'
+            link:        'http://service-civique.gouv.fr'
+            encoding:    'utf-8'
+            author:      'Service Civique' # Only required for Atom feeds
+        actualite:
+            title:       'Actualités'
+            description: 'Les actualités du Service Civique'
+            link:        'http://service-civique.gouv.fr'
+            encoding:    'utf-8'
+            author:      'Service Civique' # Only required for Atom feeds
+        video:
+            title:       'Vidéos'
+            description: 'Les vidéos du Service Civique'
+            link:        'http://service-civique.gouv.fr'
+            encoding:    'utf-8'
+            author:      'Service Civique' # Only required for Atom feeds
+        presse:
+            title:       'Communiqués de presse'
+            description: 'Les communiqués de presse du Service Civique'
+            link:        'http://service-civique.gouv.fr'
+            encoding:    'utf-8'
+            author:      'Service Civique' # Only required for Atom feeds
+        avantage:
+            title:       'Avantages'
+            description: 'Les avantages du Service Civique'
+            link:        'http://service-civique.gouv.fr'
+            encoding:    'utf-8'
+            author:      'Service Civique' # Only required for Atom feeds
+        partenaire:
+            title:       'Partenaires'
+            description: 'Les partenaires du Service Civique'
+            link:        'http://service-civique.gouv.fr'
+            encoding:    'utf-8'
+            author:      'Service Civique' # Only required for Atom feeds

@@ -1,0 +1,11 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% from 'ServiceCiviqueWebBundle:Backend/AnswerMail:macros.html.twig' import table %}
+
+{% set resources     = answer_mails %}
+{% set resource_type = 'answer_mail' %}
+{% set page_type     = 'list' %}
+
+{% block main_content_body %}
+    {{ table(resources) }}
+{% endblock %}

@@ -1,0 +1,35 @@
+language: php
+php:
+- 5.5
+services:
+- elasticsearch
+- rabbitmq
+before_install:
+- sudo apt-get update > /dev/null
+- sudo rm -rf /dev/shm && sudo ln -s /run/shm /dev/shm
+install:
+- sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-intl > /dev/null
+- mysql -e 'create database symfony_test;'
+- sudo sed -i -e "s,/var/www,$(pwd)/web,g" /etc/apache2/sites-available/default
+- sudo /etc/init.d/apache2 restart
+before_script:
+- ulimit -n 10000
+- sh -e generate_travis_token.sh
+- composer self-update
+- SYMFONY_ENV=test composer install -n
+- app/console doctrine:schema:create --env=test > /dev/null
+- app/console cache:warmup --env=test > /dev/null
+- sleep 10
+cache:
+- apt: true
+- directories:
+  - vendor
+  - bin
+script:
+- bin/phpspec run -f dot
+- bin/behat
+notifications:
+  slack: lns:bjIk8LyfwYUNsivH09tlpPKZ
+env:
+  global:
+    secure: CCoKmKIrlJqtaYngH7MNUuujoEz6dKYqvNQ0ou3+49itUJMeNurxmKkf+VWKaVrQAnCSxk+YiLDDm7qWwx0zT+eQrMsESajnQhpL6Sj2z/CtB2i+F51Sq1WDH+s+zcUccrBsATg0lnDuxNdlINYGUO0wS8ywOB0F32uYzFOFVbM=

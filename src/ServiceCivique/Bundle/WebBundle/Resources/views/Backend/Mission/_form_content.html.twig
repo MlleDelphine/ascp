@@ -1,0 +1,62 @@
+{% if missionLog.title is defined %}
+    <p class="text-warning">Titre précédent: {{ missionLog.title }}</p>
+{% endif %}
+{{ form_row(form.title) }}
+{{ form_row(form.approvalNumber) }}
+{% if form.organization is defined %}
+    {# {{ form_row(form.organization) }} #}
+    <div class="form-group form-group-organization">
+        <div id="service_civique_mission_organization">
+            {{ form_row(form.approved_choice) }}
+            <div class="form-group form-group-is_new_organization">
+                {{ form_label(form.organization.is_new_organization) }}
+                <p>Liez votre compte à une structure d'accueil afin qu'elle puisse traiter les missions que vous avez créées pour elle.</p>
+                {{ form_errors(form.organization.is_new_organization) }}
+                {{ form_widget(form.organization.is_new_organization) }}
+            </div>
+            <div class="form-group form-group-organization form-group-organization-select">
+                {{ form_label(form.organization.organization) }}
+                {{ form_errors(form.organization.organization) }}
+                {{ form_widget(form.organization.organization) }}
+            </div>
+            <div class="form-group form-group-new_organization_name">
+                {{ form_label(form.organization.new_organization_name) }}
+                {{ form_errors(form.organization.new_organization_name) }}
+                {{ form_widget(form.organization.new_organization_name) }}
+            </div>
+            <div class="form-group form-group-new_organization_user_email">
+                {{ form_label(form.organization.new_organization_user_email) }}
+                {{ form_errors(form.organization.new_organization_user_email) }}
+                {{ form_widget(form.organization.new_organization_user_email) }}
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if missionLog.start_date is defined %}
+    <p class="text-warning">Date de début précédente: {{ missionLog.start_date | date('d/m/Y') }}</p>
+{% endif %}
+{{ form_row(form.start_date) }}
+{{ form_row(form.duration) }}
+{{ form_row(form.weeklyWorkingHours) }}
+{{ form_row(form.is_overseas) }}
+{{ form_row(form.location.country) }}
+{{ form_row(form.location.area) }}
+{{ form_row(form.location.department) }}
+{% if missionLog.description is defined %}
+    <p class="text-warning">Présentation de la mission précédente: {{ missionLog.description }}</p>
+{% endif %}
+{{ form_row(form.description) }}
+{{ form_row(form.taxon) }}
+{{ form_row(form.vacancies) }}
+{{ form_row(form.contact) }}
+{{ form_row(form.location.address) }}
+{{ form_row(form.location.zipCode) }}
+{{ form_row(form.location.city) }}
+{{ form_row(form.phoneNumber) }}
+{{ form_row(form.website, {'help' : 'Veuillez saisir une URL valide ("http://exemple.com")'}) }}
+{{ form_row(form.organizationDescription) }}
+{% if form.status is defined %}
+    {{ form_row(form.status) }}
+{% endif %}
+
+{{ form_rest(form) }}

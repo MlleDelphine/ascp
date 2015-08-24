@@ -1,0 +1,20 @@
+<div class="videosBlock newsBox">
+    <h2>Le Service Civique par ceux qui le font</h2>
+
+    {% if video %}
+    {% set metadatas = oembed(video.url) %}
+    <h3><a href="{{ path('service_civique_video_show', {slug : video.slug }) }}" title="{{ video.title }}">{{ video.title }}</a></h3>
+    <div class="content">
+        {% if metadatas %}
+        <a class="link-img" href="{{ path('service_civique_video_show', {slug : video.slug }) }}" title="Voir la vidéo">
+            <img src="{{ metadatas.thumbnailUrl }}" />
+        </a>
+        {% endif %}
+    </div>
+    <footer class="block-footer">
+    <a class="link-action" href="{{ path('service_civique_video_show', {slug : video.slug }) }}" title="Voir toutes les vidéos">Voir toutes les vidéos</a>
+    </footer>
+    {% else %}
+    {{ 'service_civique.video.no_results'|trans }}
+    {% endif %}
+</div>

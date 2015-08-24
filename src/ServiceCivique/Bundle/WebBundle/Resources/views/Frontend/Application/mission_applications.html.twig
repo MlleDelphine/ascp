@@ -1,0 +1,47 @@
+{% extends "ServiceCiviqueWebBundle:Frontend:layout_dashboard.html.twig" %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Application:macros.html.twig' import missionApplications %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'route': 'service_civique_organization_homepage', 'name' : 'service_civique.breadcrumb.organization.index'},
+    {'route': 'service_civique_organization_mission_index', 'name' : 'service_civique.breadcrumb.mission.index'},
+    {'name' : 'Candidatures de la mission : ' ~ mission.title }
+]) }}
+{% endblock %}
+
+{% block main_content_header %}{{ 'service_civique.statictexts.applications.dashboard.title'|trans({}, 'statictexts') }}{% endblock %}
+
+{% block main_content_header_content %}
+   <p>{{ 'service_civique.statictexts.applications.dashboard.intro'|trans({}, 'statictexts') |raw }}</p>
+{% endblock %}
+
+{% block main_content_body %}
+    <div class="nb-applications">
+        {{ 'service_civique.statictexts.applications.dashboard.nb_results' | transchoice(applications.nbResults, {}, 'statictexts' ) }} pour la mission <a href="{{ path('service_civique_mission_show', {'slug': mission.slug}) }}">{{ mission.title }}</a>
+    </div>
+    <p>{{ 'service_civique.statictexts.applications.dashboard.statusNotice'|trans({}, 'statictexts') }}</p>
+    <div class="back">
+        <a class="btn btn-sc-red-2" href="{{ path('service_civique_organization_mission_index', {'criteria': app.request.query.get('criteria')}) }}">
+            {{ 'service_civique.statictexts.applications.dashboard.backToMissionsList'|trans({}, 'statictexts') }}
+        </a>
+        <a class="btn btn-sc-red" href="{{ path('service_civique_mission_show', {'slug': mission.slug}) }}">Voir la mission</a>
+        <a class="btn btn-sc-red" href="{{ path('service_civique_organization_missions_update', {'id': mission.id}) }}">
+            {{ 'service_civique.statictexts.mission.edit_one'|trans({}, 'statictexts') }}</a>
+    </div>
+    {{ pagination(applications) }}
+    {{ missionApplications(applications) }}
+    {{ pagination(applications) }}
+    <div class="link-box">
+        <a class="link-action" href="{{ path('service_civique_application_missions_applications_export', {'id' : mission.id}) }}">Exporter le tableau en xls</a>
+    </div>
+    <div>
+        <p>Séléctionnez les candidatures pour y répondre :</p>
+        <a class="btn btn-sc-red data-mails-targets disabled" data-href="{{ path('service_civique_application_answer_create', {'mission_slug': mission.slug, status: 'negatif'}) }}" href="{{ path('service_civique_application_answer_create', {'mission_slug': mission.slug, status: 'negatif'}) }}">Envoyer une réponse négative</a>
+        <a class="btn btn-success data-mails-targets disabled" data-href="{{ path('service_civique_application_answer_create', {'mission_slug': mission.slug, status: 'positif'}) }}" href="{{ path('service_civique_application_answer_create', {'mission_slug': mission.slug, status: 'positif'}) }}">Envoyer une réponse positive</a>
+    </div>
+{% endblock %}

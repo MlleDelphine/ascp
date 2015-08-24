@@ -1,0 +1,9 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block main_content_header %}Création de compte{% endblock %}
+
+{% block main_content_body %}
+    <div class="alert alert-success">
+        {{ 'registration.check_email'|trans({'%email%': user.email}, 'FOSUserBundle') }}
+    </div>
+{% endblock main_content_body %}

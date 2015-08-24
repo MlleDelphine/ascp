@@ -1,0 +1,20 @@
+{% macro table(medias) %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if medias|length != 0 %}
+    {% for media in medias %}
+        <li class="item-media">
+            <div class="icon-box-media type-{{ media.type }}">
+                <i class="{{ media.type | mediatype }}"></i>
+            </div>
+            <h2><a target="_blank" href="{{ media.url | mediaurl(app.request.getSchemeAndHttpHost()) }}" title="Lien source (s'ouvre dans une nouvelle fenêtre)">{{ media.title | trans }}</a></h2>
+            <p>{{ media.mediaName }} - {{ media.type | medianame }}</p>
+            <p class="published">Publié le {{ media.published | date('d/m/Y') }}</p>
+
+            {# <p>{{ media.text | striptags | truncate(300) | raw }}</p> #}
+        </li>
+    {% endfor %}
+{% else %}
+    {{ alerts.info('service_civique.media.no_results' | trans) }}
+{% endif %}
+{% endmacro %}

@@ -1,0 +1,11 @@
+<div class="newsBlock newsBox">
+    <h2>L'ACTU DU JOUR</h2>
+    <article>
+        <h1><a href="{{ path('service_civique_advantage_show', {'slug': advantage.slug}) }}">{{ advantage.title | trans }}</a></h1>
+        <p class="published">Publié le {{ advantage.published | date('d/m/Y') }}</p>
+        <p>{{ advantage.text | striptags | truncate(200) | raw }}</p>
+    </article>
+    <div class="block-footer">
+        <a title="Voir toutes les advantages" class="link-action" href="{{ path('service_civique_advantage_list') }}">Voir toutes les advantages</a>
+    </div>
+</div>

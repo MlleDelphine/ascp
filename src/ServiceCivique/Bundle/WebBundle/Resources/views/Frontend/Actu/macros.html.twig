@@ -1,0 +1,15 @@
+{% macro table(actus) %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if actus|length != 0 %}
+    {% for actu in actus %}
+        <li>
+            <h2><a href="{{ path('service_civique_actu_show', {'slug': actu.slug}) }}">{{ actu.title | trans }}</a></h2>
+            <p class="published">Publié le {{ actu.published | date('d/m/Y') }}</p>
+            <p>{{ actu.text | striptags | truncate(300) | raw }}</p>
+        </li>
+    {% endfor %}
+{% else %}
+    {{ alerts.info('service_civique.actus.no_results' | trans) }}
+{% endif %}
+{% endmacro %}

@@ -1,0 +1,40 @@
+ <div class="container flashes">
+    {% for type in ['success', 'error', 'notice', 'warning', 'danger'] %}
+        {% for message in app.session.flashbag.get(type) %}
+        <div class="alert alert-{{ type }}">
+            {{ message | trans }}
+            <a class="close" data-dismiss="alert" href="#">&times;</a>
+        </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% for message in app.session.flashbag.get('trackPageview')%}
+        {% spaceless %}
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', '{{ ga_tracking }}']);
+          _gaq.push(['_trackPageview', '{{ message }}']);
+        </script>
+        {% endspaceless %}
+    {% endfor %}
+
+    {% for message in app.session.flashbag.get('tags') %}
+    {% set taxonName = message | split("'") %}
+    <script type="text/javascript">
+        var axel = Math.random() + "";
+        var a = axel * 10000000000000;
+        document.write('<iframe src="http://fls.doubleclick.net/activityi;src=3452220;type=servi660;cat=2012-779;u1={{ taxonName.0 }};ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+    </script>
+    <noscript>
+        <iframe src="http://fls.doubleclick.net/activityi;src=3452220;type=servi660;cat=2012-779;u1={{ taxonName.0 }};ord=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+    </noscript>
+    {% endfor %}
+    {% if is_granted('ROLE_JEUNE') %}
+        {% if app.user.profile.hasProfileVisited == 0 and app.user.profile.hasProfileVisited is not null %}
+            <div class="alert alert-info-sc">
+                {{ 'service_civique.user.profile_not_visited'|trans({'%url%': path('fos_user_profile_edit') })|raw }}
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>

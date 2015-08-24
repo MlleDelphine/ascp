@@ -1,0 +1,13 @@
+service_civique_resume_delete:
+    path:     /delete-resume
+    methods: [POST]
+    options:
+        expose: true
+    defaults:
+        _controller: ServiceCiviqueCoreBundle:Resume:deleteUserResume
+
+service_civique_resume_show:
+    path:     /{slug}
+    methods: [GET]
+    defaults:
+        _controller: ServiceCiviqueCoreBundle:Resume:show

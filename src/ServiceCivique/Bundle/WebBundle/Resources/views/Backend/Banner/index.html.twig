@@ -1,0 +1,8 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% set resource_type = 'banner' %}
+{% set page_type     = 'single' %}
+
+{% block form_content %}
+    {% include 'ServiceCiviqueWebBundle:Backend/Banner:_form.html.twig' %}
+{% endblock %}

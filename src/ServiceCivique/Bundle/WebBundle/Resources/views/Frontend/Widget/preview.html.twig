@@ -1,0 +1,52 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'name' : 'Diffusez vos missions sur votre site'}
+]) }}
+{% endblock %}
+
+{% block main_content_header %}Diffusez vos missions sur votre site{% endblock %}
+
+{% block main_content_header_info %}
+    <div class="txt-intro">
+        <p>Vous pouvez embarquez un module de présentation des missions qui vous intéressent sur votre site, afin de les promouvoir et d'optimiser votre recrutement.</p>
+
+        <p>Pour cela, choisissez les paramètres que vous préférez, copiez le code et placez le où vous souhaitez faire apparaitre le module sur votre site.</p>
+
+        {{ form_start(form) }}
+            {{ form_row(form.organization, {'attr': {'data-url' : path('service_civique_organization_by_name_ajax_search')}}) }}
+            {# {{ form_row(form.organization, {'attr': {'data-url' : 'http://service-civique.local/assets/test.json'}}) }} #}
+            {{ form_row(form.width) }}
+            <button class="btn btn-sc-red" type="button">Mettre à jour l'aperçu</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block main_content_body %}
+    <div id="iframe-wrapper">{% spaceless %}
+        {% if organization %}
+            <iframe width=280 height=500 src="{{ url('service_civique_widget_show', {id: organization.id}) }}"></iframe>
+        {% else %}
+            <iframe width=280 height=500 src="{{ url('service_civique_widget_show', {id: 1}) }}"></iframe>
+        {% endif %}
+    {% endspaceless %}</div>
+    <p>Placez le code de votre module où vous souhaitez faire apparaitre le module sur votre site.</p>
+    <textarea id="widget-code"></textarea>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        var organizationId = null;
+        var organizationName = null;
+        {% if organization %}
+            organizationId = {{ organization.id }};
+            organizationName = '{{ organization.name }}';
+        {% endif %}
+    </script>
+    <script src="{{ asset('assets/js/organization_widget.js') }}"></script>
+{% endblock %}

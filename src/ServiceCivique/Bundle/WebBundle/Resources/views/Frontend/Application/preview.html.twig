@@ -1,0 +1,56 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+{# Duplicate of Frontend/Application:show.html.twig to not have a big unreadable tpl #}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'route': 'service_civique_application_list', 'name' : 'service_civique.breadcrumb.application.list'},
+    {'name' : application.mission.title},
+]) }}
+{% endblock %}
+
+{% block main_content_header %}Prévisualisation de ma candidature{% endblock %}
+
+{% block main_content_header_info %}
+    <div class="txt-intro">
+        <div class="row">
+            <div class="col col-md-8">
+                <p>Votre candidature du {{ application.created | date('d/m/Y') }} à la mission <a href="{{ path('service_civique_mission_show', {'slug': application.mission.slug} )}}" title="Voir la mission {{ application.mission.title }}">{{ application.mission.title }}</a></p>
+            </div>
+            <div class="col col-md-4">
+                <a class="print" href="javascript:window.print()"><span class="icon-print"><span><span class="sr-only">Imprimer</span></a>
+            </div>
+        </div>
+        <div class="application-status">Statut : Brouillon</div>
+    </div>
+{% endblock %}
+
+{% block main_content_body %}
+    <div>
+        <h2>Pourquoi voulez­-vous faire cette mission ?</h2>
+        <p>{{ application.motivation | nl2br }}</p>
+        {% if application.path %}
+            <h2>Expériences</h2>
+            <p><a class="link-action" href="{{ path('service_civique_resume_show', {'slug': application.path}) }}" title="Télécharger le document">Télécharger le document</a></p>
+        {% endif %}
+    </div>
+    <section class="relance-rep-box jeune hidden-print">
+        <div class="btn-box">
+            <a class="btn btn-cancel btn-lg hidden-print" href="{{ path('service_civique_application_create', {'mission_slug': application.mission.slug, 'cancel': true}) }}">Annuler</a>
+            <a class="btn btn-success btn-lg btn-sc-red hidden-print" href="{{ path('service_civique_application_validation', {'mission_slug': application.mission.slug}) }}">Envoyer ma candidature</a>
+        </div>
+    </section>
+{% endblock %}
+
+{% block sidebar %}
+    {# {% include 'ServiceCiviqueWebBundle:Frontend/Mission/Block:mission_resume.html.twig' with {'mission': application.mission} only %} #}
+    {% include 'ServiceCiviqueWebBundle:Frontend/User/Block:about_me.html.twig' with {
+        'user': application.user,
+        'application': application,
+    } only %}
+    {% include 'ServiceCiviqueWebBundle:Frontend/Mission:_singleBox.html.twig' with {
+        'mission': application.mission,
+        'candidate_button': false,
+    } only %}
+{% endblock %}

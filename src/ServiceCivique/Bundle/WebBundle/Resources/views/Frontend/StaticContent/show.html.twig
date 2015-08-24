@@ -1,0 +1,18 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% set page_type_class = 'page-static' %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'name' : static_content.title}
+]) }}
+{% endblock %}
+
+{% block main_content_header %}{{ static_content.title }}{% endblock %}
+
+{% block main_content_body %}
+    {{ static_content.content | raw }}
+{% endblock %}

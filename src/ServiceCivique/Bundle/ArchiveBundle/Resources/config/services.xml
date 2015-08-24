@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <parameters>
+        <parameter key="service_civique_archive.commands.mission.class">ServiceCivique\Bundle\ArchiveBundle\Command\ArchiveMissionsCommand</parameter>
+        <parameter key="service_civique_archive.eventlistener.archivable_mapper.class">ServiceCivique\Bundle\ArchiveBundle\EventListener\ArchivableMapper</parameter>
+    </parameters>
+
+    <services>
+        <service id="archivable_mapper_subscriber" class="%service_civique_archive.eventlistener.archivable_mapper.class%">
+            <tag name="doctrine.event_subscriber" />
+        </service>
+        <service id="service_civique_archive.commands.mission" class="%service_civique_archive.commands.mission.class%">
+            <argument type="service" id="service_civique.repository.mission" />
+            <tag name="console.command" />
+        </service>
+    </services>
+
+</container>

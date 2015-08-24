@@ -1,0 +1,32 @@
+{% macro table(approvals) %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if approvals.nbResults != 0 %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>{{ sylius_resource_sort('organization_name', 'Nom de l\'organisme') }}</th>
+            <th>{{ sylius_resource_sort('decision_date', 'Date de décision') }}</th>
+            <th>{{ sylius_resource_sort('approval_number', 'Numéro d\'agrément') }}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for approval in approvals %}
+        <tr>
+            <td>{{ approval.organizationName }}</td>
+            <td>{{ approval.decisionDate | date("d/m/Y") }}</td>
+            <td>{{ approval.approvalNumber }}</td>
+            <td>
+                {% if approval.pdfUrl != '' %}
+                    <a title="Télécharger le fichier" href="{{ approval.pdfUrl }}"><i class="icon-download"></i></a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    {{ alerts.info('service_civique.approval.no_results' | trans) }}
+{% endif %}
+{% endmacro %}

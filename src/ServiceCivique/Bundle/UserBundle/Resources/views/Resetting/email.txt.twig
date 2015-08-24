@@ -1,0 +1,15 @@
+{% block subject %}
+{% autoescape false %}
+{{ 'resetting.email.subject'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}, 'FOSUserBundle') }}
+{% endautoescape %}
+{% endblock %}
+{% block body_text %}
+{% autoescape false %}
+{{ 'resetting.email.message'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}, 'FOSUserBundle') }}
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}
+{% autoescape false %}
+{{ 'resetting.email.message_html'|trans({'%firstname%': user.firstname, '%confirmationUrl%': confirmationUrl, '%website%': website}, 'FOSUserBundle') }}
+{% endautoescape %}
+{% endblock %}

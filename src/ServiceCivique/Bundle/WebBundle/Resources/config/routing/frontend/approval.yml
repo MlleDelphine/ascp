@@ -1,0 +1,13 @@
+service_civique_approval_show:
+    pattern: /{approval_number}
+    methods: [GET]
+    options:
+        expose: true
+    defaults:
+        _format: json
+        _controller: service_civique.controller.approval:showAction
+        _sylius:
+            # criteria:
+            #     approval_number: $approval_number
+            method: findOneByApprovalNumber
+            arguments: [approval_number: $approval_number]

@@ -1,0 +1,31 @@
+service_civique_backend_mission_report_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.mission_report:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/MissionReport:index.html.twig
+            sortable: true
+            paginate: 20
+            # repository:
+            #     method: findNotResolved
+            # method: findNotResolved
+            # sorting:
+            #     id: desc
+
+service_civique_backend_mission_report_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.mission_report:updateAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/MissionReport:update.html.twig
+            redirect: service_civique_backend_mission_report_index
+
+service_civique_backend_mission_report_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.mission_report:deleteAction
+        _sylius:
+            redirect: service_civique_backend_mission_report_index

@@ -1,0 +1,39 @@
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+
+<article class="mission mission-box border-effect3 category-{{ mission.taxon.slug }}" data-id="{{ mission.id }}" itemscope itemtype="http://schema.org/Event">
+    <header>
+        <div class="picto-box">
+            <i class="icon-{{ mission.taxon.slug }}"></i>
+        </div>
+        <h1 class="h3 text-center">
+            <a itemprop="url" href="{{ path('service_civique_mission_show', {'slug': mission.slug}) }}">
+                <span itemprop="name">{{ mission.title }}</span>
+            </a>
+        </h1>
+    </header>
+
+    <section class="informations">
+        <dl>
+            <dt>{{ 'service_civique.mission.where' | trans}}</dt>
+            <dd>{{ macros.location(mission) }}</dd>
+            <dt>{{ 'service_civique.mission.what' | trans}}</dt>
+            <dd itemprop="description">{{ mission.description | truncate(380, true, '...') | nl2br }}</dd>
+            <dt>{{ 'service_civique.mission.when' | trans}}</dt>
+            <dd>À partir du <span class="event-date" itemprop="startDate" content="{{ mission.startDate | date('c') }}">{{ mission.startDate | localizeddate("long", "none") }}</span> (<span itemprop="duration" content="P{{ mission.duration }}M">{{ mission.duration }} mois<span>)</dd>
+            <dt>{{ 'service_civique.mission.which_organization' | trans}}</dt>
+            <dd>{{ mission.organizationName|capitalize}}</dd>
+            <dt>{{ 'service_civique.mission.which_category' | trans}}</dt>
+            <dd>{{ mission.taxon.name }}</dd>
+        </dl>
+    <section>
+
+    <section class="actions clearfix">
+        <a class="more_link link-action" href="{{ path('service_civique_mission_show', {'slug': mission.slug}) }}" title="Voir la mission">{{ 'service_civique.mission.show'|trans }}</a>
+        {% if is_granted('ROLE_ORGANIZATION') == false and mission.available %}
+            {% if candidate_button is not defined or candidate_button == true %}
+                <a class="btn btn-success btn-lg pull-right btn-sc-red" href="{{ path('service_civique_application_create', {'mission_slug': mission.slug}) }}" title="Candidater à la mission">{{ 'service_civique.mission.apply'|trans }}</a>
+            {% endif %}
+        {% endif %}
+    </section>
+
+</article>

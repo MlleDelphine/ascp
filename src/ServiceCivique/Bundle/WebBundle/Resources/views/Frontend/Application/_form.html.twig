@@ -1,0 +1,75 @@
+{% form_theme form 'ServiceCiviqueWebBundle::forms.html.twig' %}
+
+<small><p>{{ 'service_civique.form.mandatory_fields' | trans }}</p></small>
+{{ form_start(form) }}
+
+<div class="form-group-user">
+    <div>
+        {% if form.user is defined %}
+            {{ form_row(form.user.user_registration.profile.gender) }}
+            <div class="row">
+                <div class="form-group form-group-firstname col-md-6 col-sm-6">
+                    {{ form_label(form.user.user_registration.firstname) }}
+                    {{ form_errors(form.user.user_registration.firstname) }}
+                    {{ form_widget(form.user.user_registration.firstname) }}
+                </div>
+                <div class="form-group form-group-lastname col-md-6 col-sm-6">
+                    {{ form_label(form.user.user_registration.lastname) }}
+                    {{ form_errors(form.user.user_registration.lastname) }}
+                    {{ form_widget(form.user.user_registration.lastname) }}
+                </div>
+            </div>
+            {{ form_row(form.user.user_registration.email) }}
+        {% endif %}
+        <div class="form-group form-group-motivation">
+            {{ form_label(form.motivation) }}
+            <p class="help-block">Pourquoi voulez-vous faire cette mission ? Expliquez les motivations qui vous poussent à faire une mission de Service Civique.</p>
+            {{ form_errors(form.motivation) }}
+            {{ form_widget(form.motivation) }}
+        </div>
+        <div class="form-group form-group-file">
+            {{ form_label(form.file) }}
+            <p class="help-block">Vous pouvez joindre un document (pdf, rtf, doc ou docx et 10M maximum) résumant votre parcours.</p>
+            {{ form_errors(form.file) }}
+            {{ form_widget(form.file) }}
+            {% if application.path %}
+                <div class="form-group default-cv-box">
+            {{ form_row(form.removeResume) }}
+                    Document par défaut : <a href="{{ path('service_civique_resume_show', {'slug': application.path}) }}" title="Télécharger le document">{{ application.path }}</a> <button type="button" class="close remove-resume-application"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+            {% endif %}
+        </div>
+        {% if form.user is defined %}
+            {{ form_row(form.user.user_registration.profile.birthDate) }}
+        {% endif %}
+        {{ form_row(form.location.country) }}
+        <div class="row">
+            <div class="form-group form-group-zipCode col-md-4 col-sm-4">
+                {{ form_label(form.location.zipCode) }}
+                {{ form_errors(form.location.zipCode) }}
+                {{ form_widget(form.location.zipCode) }}
+            </div>
+            <div class="form-group form-group-city col-md-8 col-sm-8">
+                {{ form_label(form.location.city) }}
+                {{ form_errors(form.location.city) }}
+                {{ form_widget(form.location.city) }}
+            </div>
+        </div>
+        {{ form_row(form.location.address) }}
+        {{ form_row(form.phoneNumber) }}
+
+        {% if form.user is defined %}
+            <div class="form-group">
+                {{ form_widget(form.user.user_registration.isNewsletterSubscribed) }}
+            </div>
+        {% endif %}
+        {{ form_row(form._token) }}
+        <div class="btn-box">
+            <a class="btn btn-sc-red-2" href="{{ path('service_civique_mission_show', { slug: form.vars.value.mission.slug }) }}" title="Retour à la mission">Retour à la mission</a>
+
+            {{ form_widget(form.save) }}
+        </div>
+    </div>
+</div>
+</form>
+{# {{ form_end(form) }} #}

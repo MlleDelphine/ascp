@@ -1,0 +1,61 @@
+{% extends 'ServiceCiviqueMailerBundle:Mandrill:layout.html.twig' %}
+
+{% block header %}
+{{ parent() }}
+{% endblock %}
+
+{% block subject %}
+{% autoescape false %}
+Ces missions n'attendent que vous !
+{% endautoescape %}
+{% endblock %}
+
+{% block content %}
+<table cellpadding="0" cellspacing="0" border="0" align="center">
+    <tr>
+        <td width="45" valign="top"></td>
+        <td width="510" valign="top" style="padding: 20px 0;">
+            <div style="font-size: 14px; font-weight: bold; color: #006E71!important;" >Vos critères de recherches :</div>
+            <br />
+            *|CRITERIA_LIST|*
+            <br />
+            <a href="*|EDIT_MISSION_SEARCH_URL|*" style="color: #006E71; text-decoration: underline;" >
+                <span style="color: #006E71; text-decoration: underline;">
+                    Modifier vos critères</span></a>
+
+        </td>
+        <td width="45" valign="top"></td>
+    </tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" align="center" mc:edit="mission-list">
+    <tr style="height: 1px; background-color: #333;">
+        <td colspan="3" width="600" height="1" valign="top"></td>
+    <tr/>
+    *|MISSIONS_LIST|*
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" align="center">
+    <tr>
+        <td width="45" valign="top"></td>
+        <td width="510" valign="top" style="padding: 15px 0; font-size: 12px; line-height: 18px;">
+            Retrouvez d'autres missions sur le site<br /><br />
+            <div>
+            <a href="*|MORE_MISSION_URL|*" style="text-decoration: none; padding: 10px; border-radius: 5px; background-color: #FB443C; color:#fff;">
+                <span style="text-decoration:none; color:#fff;">Voir toutes les missions</span></a>
+            </div><br /><br />
+
+            Vous pouvez à tout moment vous désabonner de cette alerte en cliquant sur le lien <a href="*|MORE_DESINSCRIPTION_URL|*" style="text-decoration: underline; color:#333;">
+                <span style="text-decoration: underline; color:#333;">*|MORE_DESINSCRIPTION_URL|*</span></a>.<br/>
+            Pour modifier votre alerte, connectez-vous sur le site et rendez-vous a la page <a href="*|EDIT_MISSION_SEARCH_URL|*" style="text-decoration: underline; color:#333;">
+                <span style="text-decoration: underline; color:#333;">*|EDIT_MISSION_SEARCH_URL|*</span></a>.<br/><br/>
+
+            L’équipe du Service Civique <a href="*|MORE_WEBSITE_URL|*" style="text-decoration: underline; color:#333;">
+                <span style="text-decoration: underline; color:#333;">*|MORE_WEBSITE_URL|*</span></a><br/>
+
+        </td>
+        <td width="45" valign="top"></td>
+    </tr>
+</table>
+
+{% endblock %}

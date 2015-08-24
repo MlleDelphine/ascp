@@ -1,0 +1,126 @@
+{% macro list(missions) %}
+
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% for mission in missions %}
+{% include 'ServiceCiviqueWebBundle:Frontend/Mission:_single.html.twig' %}
+{% if not loop.last %}<hr>{% endif %}
+{% else %}
+{{ alerts.info('service_civique.mission.no_results'|trans) }}
+{% endfor %}
+
+{% endmacro %}
+
+{% macro table(missions) %}
+{% import _self as macros %}
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if missions.nbResults != 0 %}
+<table class="table table-striped" id="scroll-content">
+    <thead>
+        <tr>
+            <th>Modifier / Supprimer</th>
+            <th>{{ sylius_resource_sort('title', 'Mission') }}</th>
+            <th>{{ sylius_resource_sort('organization_name', 'Organisme d’accueil') }}</th>
+            <th>{{ sylius_resource_sort('department', 'Lieu') }}</th>
+            <th>{{ sylius_resource_sort('published', 'Date de publication') }}</th>
+            <th>{{ sylius_resource_sort('startDate', 'Début de la mission') }}</th>
+            {# <th>{{ sylius_resource_sort('application_count', 'Nb. Candidats') }}</th> #}
+            <th>Nb. Candidats</th>
+            <th>{{ sylius_resource_sort('status', 'Statut') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for mission in missions %}
+        <tr id="mission-{{ mission.id }}" data-mission="{{ mission.id }}">
+            <td>
+                {# if draft or under_review, we can't edit #}
+                <ul>
+                    <li>
+                        {% if mission.status not in [2, 4] %}
+                            {{ buttons.edit(path('service_civique_organization_missions_update', {'id': mission.id})) }}
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if mission.status in [1, 2] %}
+                            <a data-toggle="tooltip" data-placement="top" title="{{ 'service_civique.mission.duplicate.tooltip' | trans }}" href="{{ path('service_civique_organization_missions_new', {'mission': mission.id}) }}" class="btn btn-primary"><i class="icon-uniE621"></i></a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {{ buttons.delete(path('service_civique_mission_delete', {'id': mission.id})) }}
+                    </li>
+                </ul>
+            </td>
+            <td><a href="{{ path('service_civique_mission_show', {'slug': mission.slug}) }}">{{ mission.title }}</a></td>
+            <td>{{ mission.organizationName }}</td>
+            <td>{{ macros.location(mission) }}</td>
+            <td>{{ mission.published | localizeddate("medium", "none") }}</td>
+            <td>{{ mission.startDate | warningdate(mission.status, path('service_civique_organization_missions_update', {'id': mission.id})) }} {{ mission.startDate | localizeddate("medium", "none") }}</td>
+            <td>
+                {% if (mission.applications | length) > 1 %}
+                    <i class="glyphicon glyphicon-list-alt"></i> <a href="{{ path('service_civique_application_missions_applications', {'id': mission.id, 'criteria': app.request.query.get('criteria')}) }}">Voir les {{ mission.applications | length }} candidatures</a>
+                {% elseif (mission.applications | length) > 0 %}
+                    <i class="glyphicon glyphicon-list-alt"></i> <a href="{{ path('service_civique_application_missions_applications', {'id': mission.id, 'criteria': app.request.query.get('criteria')}) }}">Voir la candidature</a>
+                {% else %}
+                    aucune candidature
+                {% endif %}
+            </td>
+            <td class="status-box">
+                {% if mission.status == 4 %}
+                    <a href="#" class="btn btn-primary cancelupdates">
+                        ×
+                    </a>
+                {% endif %}
+                {% if mission.status in  [1, 2] %}
+                    <select name="mission_status" class="status_select">
+                        <option value="1"{% if mission.status == 1 %} selected="selected"{% endif %}>A pourvoir</option>
+                        <option value="2"{% if mission.status == 2 %} selected="selected"{% endif %}>Pourvue</option>
+                    </select>
+                {% else %}
+                    {{ ('service_civique.mission.status.' ~ mission.status)|trans }}
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+{{ alerts.info('service_civique.mission.no_results'|trans) }}
+{% endif %}
+{% endmacro %}
+
+{% macro location(mission) %}
+    {% if not mission.isOverseas %}
+    <span itemprop="location" itemscope itemtype="http://schema.org/PostalAddress">
+        <span itemprop="addressRegion">{{ mission.department | departement }}</span> ({{ mission.area | region }})
+        <span itemprop="addressCountry" content="FR"></span>
+   </span>
+   {% else %}
+       {% if mission.country %}
+       <span itemprop="location" itemscope itemtype="http://schema.org/PostalAddress">
+           <span itemprop="addressCountry" content="{{ mission.country }}">{{ mission.country | country }}</span>
+       </span>
+       {% else %}
+           À l'étranger
+       {% endif %}
+   {% endif %}
+{% endmacro %}
+
+{% macro grid(missions, size = 3) %}
+
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if missions.nbResults %}
+<div class="row">
+    <div class="mission-grid grid clearfix" data-columns>
+        {% for mission in missions %}
+            {% include 'ServiceCiviqueWebBundle:Frontend/Mission:_singleBox.html.twig' %}
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+{{ alerts.info('service_civique.mission.no_results'|trans) }}
+{% endif %}
+
+{% endmacro %}

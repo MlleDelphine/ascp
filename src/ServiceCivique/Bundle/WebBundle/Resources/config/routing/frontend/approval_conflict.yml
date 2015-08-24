@@ -1,0 +1,8 @@
+service_civique_approval_conflict_create:
+  pattern: /
+  methods: [GET, POST]
+  defaults:
+    _controller: service_civique.controller.approval_conflict:createAction
+    _sylius:
+      template: ServiceCiviqueWebBundle:Frontend/ApprovalConflict:create.html.twig
+      redirect: service_civique_homepage

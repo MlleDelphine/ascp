@@ -1,0 +1,131 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Organization:
+    type: entity
+    table: organization
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    oneToMany:
+        missions:
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Mission
+            mappedBy: organization
+            fetch: EXTRA_LAZY
+        organizations:
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Organization
+            mappedBy: approvedOrganization
+            fetch: EXTRA_LAZY
+
+    oneToOne:
+        user:
+            targetEntity: ServiceCivique\Bundle\UserBundle\Entity\User
+            inversedBy: organization
+            joinColumn:
+                onDelete: 'SET NULL'
+        invitation:
+            targetEntity: ServiceCivique\Bundle\UserBundle\Entity\OrganizationInvitation
+            mappedBy: organization
+            fetch: EXTRA_LAZY
+            cascade: ['persist']
+            joinColumn:
+                onDelete: 'SET NULL'
+
+    manyToOne:
+        approvedOrganization:
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Organization
+            inversedBy: organizations
+            fetch: EXTRA_LAZY
+            joinColumn:
+                name: approved_organization_id
+                onDelete: 'SET NULL'
+
+    fields:
+        name:
+            type: string
+            length: 255
+        description:
+            type: text
+            nullable: true
+        approvalNumber:
+            column: approval_number
+            type: string
+            length: 18
+            nullable: true
+        originalApprovalNumber:
+            column: original_approval_number
+            type: string
+            length: 18
+            nullable: true
+        previousApprovalNumber:
+            column: previous_approval_number
+            type: string
+            length: 18
+            nullable: true
+        lastDecisionDate:
+            type: datetime
+            column: last_decision_date
+            nullable: true
+        isApproved:
+            column: is_approved
+            type: boolean
+            default: false
+            nullable: true
+        phoneNumber:
+            column: phone_number
+            type: phone_number
+            length: 14
+            nullable: true
+        website:
+            type: string
+            length: 255
+            nullable: true
+        contactEmail:
+            column: contact_email
+            type: string
+            length: 255
+            nullable: true
+        address:
+            type: string
+            length: 255
+            nullable: true
+        zipCode:
+            column: zip_code
+            type: string
+            length: 10
+            nullable: true
+        department:
+            type: string
+            length: 3
+            nullable: true
+        area:
+            type: string
+            length: 3
+            nullable: true
+        country:
+            type: string
+            length: 2
+            nullable: true
+        type:
+            column: type
+            type: integer
+            length: 2
+        city:
+            type: string
+            length: 255
+            nullable: true
+        todo:
+            type: boolean
+            default: false
+            nullable: true
+        created:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+    lifecycleCallbacks: {  }

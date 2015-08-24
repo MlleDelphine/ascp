@@ -1,0 +1,126 @@
+// Picto Color
+// --------------------------------------------------
+
+
+
+
+// Translate rem
+// --------------------------------------------------
+
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+  line-height: 1.3em;
+}
+
+@mixin vertical-align ($val:50%) {
+  position: relative;
+  top: $val;
+  -webkit-transform: translateY(-1 * $val);
+  -ms-transform: translateY(-1 * $val);
+  transform: translateY(-1 * $val);
+}
+
+
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@mixin rem-fallback($property, $values...) {
+  $max: length($values);
+  $pxValues: '';
+  $remValues: '';
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $pxValues: #{$pxValues + $value*16}px;
+
+    @if $i < $max {
+      $pxValues: #{$pxValues + " "};
+    }
+  } 
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $remValues: #{$remValues + $value}rem;
+
+    @if $i < $max {
+      $remValues: #{$remValues + " "};
+    }
+  } 
+  
+  #{$property}: $pxValues; 
+  #{$property}: $remValues; 
+}
+
+
+
+// BORDER RADIUS
+// --------------------------------------------------
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
+}
+
+
+// animKeyFrame
+// --------------------------------------------------
+@mixin animationKeyframe($animation) {
+  -webkit-animation:$animation;
+  -moz-animation:$animation;
+  -o-animation:$animation;
+  animation:$animation;
+}
+
+
+
+@mixin afterBckg () {
+  content:"";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  @include transition( all 0.3s linear 0s);
+}
+
+
+
+/*------------------------------------*\
+    Responsive
+\*------------------------------------*/
+
+@mixin breakpoint($class) {
+  @if $class == phablette {
+    @media (max-width: 767px) { @content; }
+  }
+
+  @else if $class == tab-phab {
+    @media (max-width: 991px) { @content; }
+  }
+
+  @else if $class == tablet {
+    @media (min-width: 768px) and (max-width: 991px) { @content; }
+  }
+
+  @else if $class == desktop {
+    @media (min-width: 992px) { @content; }
+  }
+
+  @else if $class == desktopOnly {
+    @media (min-width: 992px) and (max-width: 1199px) { @content; }
+  }
+
+  @else if $class == large {
+    @media (min-width: 1200px) { @content; }
+  }
+
+  @else {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg";
+  }
+}
+

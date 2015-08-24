@@ -1,0 +1,109 @@
+{
+  "scripts" : {
+    "js/vendor/salvattore.js" : [
+      "assets/vendor/salvattore/dist/salvattore.js"
+    ],
+    "js/vendor/modernizr.js" : [
+      "assets/vendor/yepnope/yepnope.js",
+      "assets/vendor/modernizr/modernizr.js"
+    ],
+    "js/plugins.js" : [
+      "assets/vendor/jquery/dist/jquery.js",
+      "assets/vendor/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js",
+      "assets/vendor/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js",
+      "assets/vendor/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js",
+      "assets/vendor/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js",
+      "assets/vendor/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js",
+      "assets/vendor/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js",
+      "assets/vendor/bootstrap-sass-official/assets/javascripts/bootstrap/button.js",
+      "assets/vendor/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js",
+      "assets/vendor/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js",
+      "assets/vendor/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js",
+      "assets/vendor/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js",
+      "assets/vendor/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js",
+      "assets/vendor/holderjs/holder.js",
+      "assets/vendor/jquery-icheck/icheck.min.js",
+      "assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js",
+      "assets/vendor/bootstrap-datepicker/js/locales/bootstrap-datepicker.fr.js",
+      "assets/vendor/selectize/dist/js/standalone/selectize.min.js",
+      "assets/vendor/retina.js/src/retina.js"
+    ],
+    "js/respond.js" : [
+      "assets/vendor/respond/dest/respond.min.js"
+    ],
+    "js/main.js" : [
+      "assets/libs/jquery.mask.min.js",
+      "assets/scripts/confirm-modal.js",
+      "assets/scripts/main.js",
+      "assets/scripts/location.js"
+    ],
+    "js/mission.js" : [
+      "assets/scripts/mission.js"
+    ],
+    "js/application.js" : [
+      "assets/scripts/application.js"
+    ],
+    "js/faq.js" : [
+      "assets/scripts/faq.js"
+    ],
+    "js/application-answer.js" : [
+      "assets/scripts/application-answer.js"
+    ],
+    "js/contact-faq.js" : [
+      "assets/scripts/contact-faq.js"
+    ],
+    "js/mission_search.js" : [
+      "assets/scripts/mission_search.js"
+    ],
+    "js/organization_register.js" : [
+      "assets/scripts/organization_register.js"
+    ],
+    "js/organization_widget.js" : [
+      "assets/scripts/organization_widget.js"
+    ],
+    "js/vendor/webshim.js" : [
+      "assets/vendor/webshim/js-webshim/minified/polyfiller.js"
+    ],
+    "js/backend/main.js" : [
+      "web/bundles/lnsmenu/scripts/tabledrag.js",
+      "assets/scripts/confirm-modal.js",
+      "assets/libs/fontcolor.js",
+      "assets/vendor/redactor/redactor/redactor.js",
+      "assets/languages/redactor-fr.js",
+      "assets/vendor/typeahead.js/dist/typeahead.bundle.js",
+      "assets/vendor/handlebars/handlebars.js",
+      "assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js",
+      "assets/vendor/bootstrap-datepicker/js/locales/bootstrap-datepicker.fr.js",
+      "assets/scripts/mission.js",
+      "assets/vendor/jquery-icheck/icheck.min.js",
+      "assets/scripts/location.js",
+      "assets/scripts/main-bo.js"
+    ]
+  },
+  "styles" : {
+    "css/main.css" : [
+      "tmp/assets/styles/bootstrap.css",
+      "tmp/assets/styles/main.css"
+    ],
+    "css/backend.css" : [
+      "web/bundles/lnsmenu/styles/tabledrag.css",
+      "tmp/assets/styles/backend.css",
+      "assets/vendor/bootstrap-datepicker/css/datepicker3.css",
+      "assets/vendor/redactor/redactor/redactor.css"
+    ],
+    "css/plugins.css" : [
+      "assets/vendor/bootstrap-datepicker/css/datepicker3.css",
+      "assets/vendor/selectize/dist/css/selectize.bootstrap3.css"
+    ],
+    "css/ie8.css" : [
+      "assets/styles/ie8.css"
+    ],
+    "css/print.css" : [
+      "assets/styles/print.css"
+    ],
+    "css/widget.css" : [
+      "assets/styles/widget.css"
+    ]
+
+  }
+}

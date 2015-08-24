@@ -1,0 +1,30 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Actu:
+    type: entity
+    table: actu
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        text:
+            type: text
+        description:
+            type: string
+            length: 255
+        slug:
+            type: string
+            length: 255
+            gedmo:
+                slug:
+                    fields: ['title']
+        published:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+    lifecycleCallbacks: {  }

@@ -1,0 +1,45 @@
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+
+{% if missions | length > 0 %}
+    {% for mission in missions %}
+        <tr>
+            <td width="45" valign="top"></td>
+            <td width="510" valign="top" style="padding: 20px 0; line-height: 22px; font-size: 14px;">
+
+                <div style="font-weight:bold; font-size: 16px; line-height: 25px; vertical-align: middle;">
+                    <img alt="" style="display: inline-block; margin-bottom: -5px;" height="23" width="23" src="{{ asset('images/mail/icon-' ~ mission.taxon.slug ~ '.jpg') }}" />&nbsp;&nbsp;&nbsp;<a style="color: inherit; text-decoration: none;" href="{{ url('service_civique_mission_show', {'slug': mission.slug}) }}">{{ mission.title }}</a></div>
+                <br />
+                <span style="text-transform: uppercase; color: #35B5B3;">Où ?</span>{{ macros.location(mission) }}<br />
+
+                <span style="text-transform: uppercase; color: #35B5B3;">Quoi ?</span>  {{ mission.description | truncate(380, true, '...') | nl2br }}<br />
+                <span style="text-transform: uppercase; color: #35B5B3;">Quand ?</span>  À partir du {{ mission.startDate | localizeddate("long", "none") }}</span> (<span itemprop="duration" content="P{{ mission.duration }}M">{{ mission.duration }} mois<span>)<br />
+
+                <span style="text-transform: uppercase; color: #35B5B3;">Quel domaine ?</span>  {{ mission.taxon.name }}<br />
+
+                <span style="text-transform: uppercase; color: #35B5B3;">Combien de postes ?</span>  {{ mission.applicationCount }}<br />
+
+                <span style="text-transform: uppercase; color: #35B5B3;">Quel organisme ?</span>  {{ mission.organizationName|capitalize}}
+                <br />
+                <br />
+                <div>
+                    <a href="{{ url('service_civique_application_create', {'mission_slug': mission.slug}) }}" style="text-decoration: none; padding: 10px; border-radius: 5px; background-color: #FB443C; color:#fff;">
+                    <span style="text-decoration:none; color:#fff;">Candidater</span></a>
+                </div>
+                <br />
+            </td>
+            <td width="45" valign="top"></td>
+        </tr>
+        <tr style="height: 1px; background-color: #333;">
+            <td colspan="3" width="600" height="1" valign="top"></td>
+        <tr/>
+    {% endfor %}
+{% else %}
+    <tr>
+        <td width="45" valign="top"></td>
+        <td width="510" valign="top" style="padding: 15px 0; font-size: 12px; line-height: 18px;">Malheureusement, aucune mission ne correspond à vos critères d'alerte cette semaine.</td>
+        <td width="45" valign="top"></td>
+    </tr>
+    <tr style="height: 1px; background-color: #333;">
+        <td colspan="3" width="600" height="1" valign="top"></td>
+    <tr/>
+{% endif %}

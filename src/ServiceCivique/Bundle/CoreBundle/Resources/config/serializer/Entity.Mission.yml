@@ -1,0 +1,38 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Mission:
+    exclusion_policy: NONE
+    properties:
+        id:
+            expose: true
+        slug:
+            expose: true
+        approvalNumber:
+            exclude: true
+        website:
+            exclude: true
+        contact:
+            exclude: true
+        originalId:
+            exclude: true
+        approvalNumber:
+            exclude: true
+        title:
+            expose: true
+        description:
+            expose: true
+        taxon:
+            expose: false
+        organization:
+            expose: false
+        organizationName:
+            expose: true
+            access_type: public_method
+        phoneNumber:
+            exclude: true
+        applications:
+            exclude: true
+        applicationCount:
+            exclude: true
+        startDate:
+            type: DateTime<'Y-m-d'>
+        published:
+            type: DateTime<'Y-m-d'>

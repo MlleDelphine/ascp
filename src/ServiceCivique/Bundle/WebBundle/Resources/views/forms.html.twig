@@ -1,0 +1,179 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block choice_widget_collapsed %}
+{% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
+{{ parent() }}
+{% endblock choice_widget_collapsed %}
+
+{% block choice_widget_expanded %}
+{% set attr = attr|merge({'class': attr.class|default('') ~ ' fieldset-wrapper'}) %}
+    <div {{ block('widget_container_attributes') }}>
+    {% for child in form %}
+        {{ form_widget(child) }}
+    {% endfor %}
+    </div>
+{% endblock choice_widget_expanded %}
+
+{% block checkbox_widget %}
+    {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' control-label'}) %}
+    <div class="checkbox">
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+            {{ parent() }} {{ label|trans({}, translation_domain) }}
+        </label>
+    </div>
+{% endblock checkbox_widget %}
+
+{% block radio_widget %}
+    <div class="radio-inline">
+      {{ parent() }}
+      {{ form_label(form) }}
+    </div>
+{% endblock radio_widget %}
+
+{% block textarea_widget %}
+{% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
+{{ parent() }}
+{% endblock textarea_widget %}
+
+{% block form_widget_simple %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
+    {% set type = type|default('text') %}
+    {% if help is defined %}
+        <p class="help">{{ help }}</p>
+    {% endif %}
+    {% if 'file' == type %}
+        <span class="sr-only file-overlay"><i class="icon-folder-open"></i> {{ 'sylius.form.choose_file'|trans }}</span>
+    {% endif %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock form_widget_simple %}
+
+{% block form_label %}
+{% spaceless %}
+
+    {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' control-label'}) %}
+
+
+    {% autoescape false %}
+        {{ parent() }}
+    {% endautoescape %}
+    {%- if label is not sameas(false) -%}
+       {%- if required and not ('radio' in block_prefixes) -%}&nbsp;<span class="required" title="This field is required">*</span>
+       {%- endif -%}
+    {%- endif -%}
+
+{% endspaceless %}
+{% endblock form_label %}
+
+{% block money_widget %}
+{% spaceless %}
+    <div class="input-group">
+        <span class="input-group-addon">{{ money_pattern|replace({'{{ widget }}': ''}) }}</span>
+        {{ block('form_widget_simple') }}
+    </div>
+{% endspaceless %}
+{% endblock money_widget %}
+
+{% block percent_widget %}
+{% spaceless %}
+    <div class="input-group">
+        <span class="input-group-addon">%</span>
+        {{ block('form_widget_simple') }}
+    </div>
+{% endspaceless %}
+{% endblock percent_widget %}
+
+{% block datetime_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('form_widget_simple') }}
+    {% else %}
+        <div class="form-group">
+        {{ form_widget(form.date) }}
+        {{ form_widget(form.time) }}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock datetime_widget %}
+
+{% block date_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        <div class="input-group date">
+            {{ block('form_widget_simple') }}
+            <span class="input-group-addon"><i class="icon-calendar"></i></span>
+        </div>
+    {% else %}
+        <div>
+            {{ '{{ day }} / {{ month }} / {{ year }}'|replace({
+            '{{ year }}':  form_widget(form.year, {'attr': {'style': 'display: inline; width: 120px;'}}),
+            '{{ month }}': form_widget(form.month, {'attr': {'style': 'display: inline; width: 120px;'}}),
+            '{{ day }}':   form_widget(form.day, {'attr': {'style': 'display: inline; width: 120px;'}}),
+            })|raw }}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock date_widget %}
+
+{% block time_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('form_widget_simple') }}
+    {% else %}
+        {% set vars = widget == 'text' ? { 'attr': { 'size': 1, 'style': 'width: 60px; display: inline;' }} : {} %}
+        &nbsp;{{ form_widget(form.hour, vars) }}{% if with_minutes %}:{{ form_widget(form.minute, vars) }}{% endif %}{% if with_seconds %} {{ form_widget(form.second, vars) }}{% endif %}
+    {% endif %}
+{% endspaceless %}
+{% endblock time_widget %}
+
+{% block form_actions_widget %}
+    {% for button in form.children %}
+        {{ form_widget(button) }}&nbsp; {# this needs to be here due to https://github.com/twbs/bootstrap/issues/3245 #}
+    {% endfor  %}
+{% endblock %}
+
+
+{% block location_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+
+{% block form_actions_row %}
+    {{ block('button_row')  }}
+{% endblock %}
+
+{% block form_row %}
+{% spaceless %}
+<div class="form-group{% if errors|length > 0 %} has-error{% endif %} {{ 'form-group-' ~ name }}">
+        {{ form_label(form) }}
+        {{ form_widget(form) }}
+        {% for error in errors %}
+            <span class="help-block form-error">
+                {{
+                    error.messagePluralization is null
+                    ? error.messageTemplate|trans(error.messageParameters, 'validators')
+                    : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+                }}
+            </span>
+        {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block service_civique_date_widget %}
+    {% set attr = attr|merge({'data-formatted': formatted}) %}
+    {% spaceless %}
+        {{ block('date_widget') }}
+    {% endspaceless %}
+{% endblock %}
+
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+        {% for error in errors %}
+            <div class="alert alert-danger">{{ error.message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}

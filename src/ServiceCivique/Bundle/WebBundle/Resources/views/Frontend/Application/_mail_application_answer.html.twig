@@ -1,0 +1,15 @@
+{% block subject %}
+{% autoescape false %}
+Réponse votre candidature à la mission de Service Civique {{ missionTitle }}
+{% endautoescape %}
+{% endblock %}
+{% block body_text %}
+{% autoescape false %}
+    {{ text }}
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}
+{% autoescape false %}
+    {{ text }}
+{% endautoescape %}
+{% endblock %}

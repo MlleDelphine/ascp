@@ -1,0 +1,37 @@
+service_civique_backend_user_index:
+    pattern: /{type}
+    methods: [GET]
+    requirements:
+        type:  organisme|volontaire
+    defaults:
+        _controller: service_civique.controller.user:indexAction
+        type: organisme
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/User:index.html.twig
+            sortable: true
+            sorting:
+                id: desc
+            criteria:
+                type: $type
+            filterable: true
+            paginate: 20
+            method: findByType
+
+service_civique_backend_user_update:
+    pattern: /{id}/edit/{type}
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.user:updateAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/User:update.html.twig
+            redirect:
+                route: service_civique_backend_user_index
+                parameters: { type: $type }
+
+service_civique_backend_user_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.user:deleteAction
+        _sylius:
+            redirect: service_civique_backend_user_index

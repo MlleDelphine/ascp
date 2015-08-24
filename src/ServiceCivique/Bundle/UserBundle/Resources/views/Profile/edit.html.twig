@@ -1,0 +1,16 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% set user = form.vars.value %}
+
+{% block main_content_header %}Mon profil{% endblock %}
+
+{% block main_content_body %}
+    {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+{% endblock main_content_body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if user.type == constant('ORGANIZATION_TYPE', user) %}
+        <script src="{{ asset('assets/js/organization_widget.js') }}"></script>
+    {% endif %}
+{% endblock %}

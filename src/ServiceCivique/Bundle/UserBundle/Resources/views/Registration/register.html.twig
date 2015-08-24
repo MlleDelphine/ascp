@@ -1,0 +1,39 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% set user = form.vars.value %}
+
+{% block main_content_header %}
+    {% if user.type == constant('ORGANIZATION_TYPE', user) %}
+        {{ 'service_civique.organization.registration.title' | trans }}
+    {% else %}
+        {{ 'service_civique.user.registration.title' | trans }}
+    {% endif %}
+{% endblock %}
+
+{% block main_content_intro %}
+    <div class="txt-intro">
+        {% if user.type == constant('ORGANIZATION_TYPE', user) %}
+            {{ 'service_civique.organization.registration.intro' | trans | raw }}
+        {% else %}
+            {{ 'service_civique.user.registration.intro' | trans({'%organization_register_url%': path('service_civique_organization_register')}) | raw }}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block main_content_body %}
+    <div class="register-container">
+        <small><p>{{ 'service_civique.form.mandatory_fields' | trans }}</p></small>
+        {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    {{ sonata_block_render({ 'type': 'service_civique.block.user_login' }) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if user.type == constant('ORGANIZATION_TYPE', user) %}
+        <script src="{{ asset('assets/js/organization_register.js') }}"></script>
+    {% endif %}
+{% endblock %}

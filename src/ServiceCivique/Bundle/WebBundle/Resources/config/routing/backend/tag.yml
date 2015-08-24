@@ -1,0 +1,34 @@
+service_civique_backend_tag_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.tag:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Tag:index.html.twig
+            sortable: true
+
+service_civique_backend_tag_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.tag:createAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Tag:create.html.twig
+            redirect: service_civique_backend_tag_index
+
+service_civique_backend_tag_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.tag:updateAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Tag:update.html.twig
+            redirect: service_civique_backend_tag_index
+
+service_civique_backend_tag_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.tag:deleteAction
+        _sylius:
+            redirect: service_civique_backend_tag_index

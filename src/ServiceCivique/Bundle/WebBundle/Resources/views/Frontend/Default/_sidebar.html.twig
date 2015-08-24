@@ -1,0 +1,12 @@
+<div class="left-menu visible-md visible-lg aside-box">
+    <nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
+    {{ knp_menu_render('sidebar_menu', {'template': 'ServiceCiviqueWebBundle:Frontend:menu.html.twig', 'depth': 2, 'ancestorClass': 'active', 'currentClass' : 'active'}) }}
+    </nav>
+</div>
+
+<div class="btn-box aside-box">
+    <a title="Rechercher une mission" class="btn btn-success btn-lg btn-block btn-sc-red" href="{{ path('service_civique_mission_list') }}">Rechercher une mission</a>
+</div>
+<div class="visible-md visible-lg aside-box" >
+    {{ sonata_block_render({ 'type' : 'service_civique.block.recommended_missions' }) }}
+</div>

@@ -1,0 +1,24 @@
+ServiceCivique\Bundle\CoreBundle\Entity\MissionLog:
+  type: entity
+  table: mission_log
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+
+  oneToOne:
+    mission:
+      targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Mission
+      inversedBy: missionLog
+      # cascade: ['persist']
+      joinColumn:
+        name: mission_id
+        referencedColumnName: id
+
+  fields:
+    dataValue:
+      type: text
+      column: data_value
+  lifecycleCallbacks: {  }

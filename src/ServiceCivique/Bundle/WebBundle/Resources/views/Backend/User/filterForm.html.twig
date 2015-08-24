@@ -1,0 +1,8 @@
+{% form_theme form 'ServiceCiviqueWebBundle:Backend:filterForms.html.twig' %}
+
+<form method="get" action="{{ path('service_civique_backend_user_index', {'type' : app.request.get('user_type')} ) }}" class="form-inline form-filter">
+    {{ form_row(form.type) }}
+    {{ form_row(form.query) }}
+    <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Rechercher</button>
+    <a href="{{ path('service_civique_backend_user_index', {'type' : app.request.get('user_type')} ) }}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Annuler</a>
+</form>

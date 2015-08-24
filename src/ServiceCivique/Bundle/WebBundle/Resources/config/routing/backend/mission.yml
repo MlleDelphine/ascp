@@ -1,0 +1,70 @@
+service_civique_backend_mission_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.mission:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Mission:index.html.twig
+            sortable: true
+            sorting:
+                id: desc
+            # paginate: 20
+            paginate: $paginate
+            filterable: true
+            # criteria: $paginate
+
+# service_civique_backend_mission_create:
+#     pattern: /new
+#     methods: [GET, POST]
+#     defaults:
+#         _controller: service_civique.controller.mission:createAction
+#         _sylius:
+#             template: ServiceCiviqueWebBundle:Backend/Mission:create.html.twig
+#             redirect: service_civique_backend_mission_show
+
+service_civique_backend_mission_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.mission:updateAdminAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Mission:update.html.twig
+            form: service_civique_mission_admin
+            redirect:
+                route: service_civique_backend_mission_index
+                parameters: { criteria: $criteria }
+
+service_civique_backend_mission_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.mission:deleteAdminAction
+        _sylius:
+            redirect:
+                route: service_civique_backend_mission_index
+                parameters: { id: $id }
+
+# service_civique_backend_mission_show:
+#     pattern: /{id}
+#     methods: [GET]
+#     defaults:
+#         _controller: service_civique.controller.mission:showAction
+#         _sylius:
+#             template: ServiceCiviqueWebBundle:Backend/Mission:show.html.twig
+
+service_civique_backend_mission_add_tag:
+    pattern: /{id}/tag/{tagSlug}
+    methods: [GET]
+    options:
+        expose: true
+    defaults:
+        _controller: service_civique.controller.mission:addTagAction
+
+
+service_civique_backend_mission_mass_update:
+    pattern: /mass-update
+    methods: [GET]
+    options:
+        expose: true
+    defaults:
+        _controller: service_civique.controller.mission:updateMissionStatus

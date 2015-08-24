@@ -1,0 +1,76 @@
+service_civique:
+    mission:
+        post_create:
+            subject: Votre mission %mission_title% est en cours de validation
+            message_html: |
+                Bonjour%firstname%,<br/><br>
+
+                Vous venez de soumettre une mission sur le site <a href="%application_url%">%website%</a>.<br/>
+                Cette mission fera l’objet d’une validation avant sa publication sur le site.<br/>
+                Vous devez compter un délai minimum de 10 jours ouvrés.<br/><br>
+
+                Le Service Civique<br/><br>
+                <a href="%website%">%website%</a>
+        post_validate:
+            subject: Votre mission %mission_title% est en ligne
+            message_html: |
+                Bonjour%firstname%,<br/><br>
+
+                Nous vous informons que votre mission %mission_title% a bien été mise en ligne sur le site du Service Civique. Elle est désormais accessible à tous et indexée dans le moteur de recherche.<br/>
+                Vous pouvez suivre les candidatures sur la page <a href="%application_url%">%application_url%</a>.<br/>
+                Nous vous souhaitons de recruter très rapidement dans le cadre de cette mission.<br/><br/>
+
+                Le Service Civique<br/><br>
+                <a href="%website%">%website%</a>
+    application:
+        post_create:
+            candidate_subject: Votre candidature à la mission de Service Civique %mission_title%
+            candidate_message_html: |
+                Bonjour%firstname%,<br/><br>
+
+                Votre candidature à la mission <a href="%mission_url%">"%mission_title%"</a> a bien été reçue par l’organisme concerné. N’hésitez pas à le relancer si vous n’avez pas de retour sous 2 semaines.<br/>
+                Vous trouverez tous les détails de votre candidature et son état d’avancement à la page <a href="%application_url%">%application_url%</a>.<br/><br/>
+
+                Le Service Civique<br/><br>
+                <a href="%website%">%website%</a>
+            organization_subject: Une nouvelle candidature à votre mission de Service Civique %mission_title%
+            organization_message_html: |
+                Bonjour%fullname%,<br/><br>
+
+                Une nouvelle candidature à votre mission de Service Civique <a href="%mission_url%">"%mission_title%"</a>.<br/>
+                Vous trouverez tous les détails de la candidature à l’adresse <a href="%application_url%">%application_url%</a>.<br/><br/>
+
+                Région de la mission : %mission_area%<br/>
+                Département de la mission : %mission_department%<br/><br/>
+
+                Candidat : %candidate_firstname% %candidate_lastname%<br/>
+                Adresse: %candidate_address%, %candidate_zipcode% %candidate_city%<br/>
+                Téléphone: %candidate_phone%<br/>
+                Date de naissance : %candidate_birthdate% (%candidate_age%)<br/>
+                Motivation : %candidate_motivation%<br/>
+                Document : <a href="%candidate_cv%">%candidate_cv%</a><br/><br/>
+
+
+                Pour annoncer au candidat que sa candidature a été retenue, cliquez sur le lien <a href="%answer_positive%">%answer_positive%</a><br/><br/>
+
+                Pour annoncer au candidat que sa candidature n’a pas été retenue, cliquez sur le lien <a href="%answer_negative%">%answer_negative%</a><br/><br/>
+
+
+                Le Service Civique<br/><br/>
+                <a href="%website%">%website%</a>
+    contact:
+        subject: Demande de contact
+        message_html: |
+            %content%
+        global_metadata: |
+            User-Agent: %user_agent%<br/>
+            Email renseigné: %real_email%
+        user_metadata:
+            organization: |
+                Organisation: %name%<br/>
+                Nom: %full_name%<br/>
+                Email: %email%
+            jeune: |
+                Type: %type%<br/>
+                Nom: %full_name%<br/>
+                Email: %email%

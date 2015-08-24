@@ -1,0 +1,54 @@
+{% macro table(partners) %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+{% import _self as macros %}
+
+
+{% if partners|length != 0 %}
+    <div class="partners-box">
+        <h2>{{ 'service_civique.partner.type.1.title' | trans }}</h2>
+        <p>{{ 'service_civique.partner.type.1.content' | trans | raw }}</p>
+        <ul class="partners-list">
+            {{ macros.partnerList(partners, 1) }}
+        </ul>
+    </div>
+
+    <div class="partners-box">
+        <h2>{{ 'service_civique.partner.type.2.title' | trans }}</h2>
+        <p>{{ 'service_civique.partner.type.2.content' | trans | raw }}</p>
+        <ul class="partners-list">
+            {{ macros.partnerList(partners, 2) }}
+        </ul>
+    </div>
+    <div class="partners-box">
+        <h2>{{ 'service_civique.partner.type.3.title' | trans }}</h2>
+        <p>{{ 'service_civique.partner.type.3.content' | trans | raw }}</p>
+        <ul class="partners-list">
+            {{ macros.partnerList(partners, 3) }}
+        </ul>
+    </div>
+    <div class="partners-box">
+        <h2>{{ 'service_civique.partner.type.4.title' | trans }}</h2>
+        <p>{{ 'service_civique.partner.type.4.content' | trans | raw }}</p>
+        <ul class="partners-list">
+            {{ macros.partnerList(partners, 4) }}
+        </ul>
+    </div>
+{% else %}
+    {{ alerts.info('service_civique.partners.no_results' | trans) }}
+{% endif %}
+{% endmacro %}
+
+{% macro partnerList(partners, type) %}
+    {% for partner in partners %}
+        {% if partner.type == type %}
+        <li>
+            <div class="item-top">
+                <div class="img-box"><img src="{{ ('/uploads/partenaire/' ~ partner.path) | apply_filter('partner_thumbnail') }}" alt="partner.title" /></div>
+                <h3><a href="{{ path('service_civique_partner_show', {'slug': partner.slug}) }}">{{ partner.title | trans | truncate(60) }}</a></h3>
+
+            </div>
+            <div class="item-content">{{ partner.subtitle | raw | truncate(135) }}</div>
+        </li>
+        {% endif %}
+    {% endfor %}
+{% endmacro %}

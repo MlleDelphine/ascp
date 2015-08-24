@@ -1,0 +1,22 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Advantage:macros.html.twig' import table %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'name' : 'service_civique.breadcrumb.advantage.list'},
+]) }}
+{% endblock %}
+
+{% block main_content_header %}Les avantages des volontaires{% endblock %}
+
+{% block main_content_body %}
+    <p>{{ 'service_civique.advantage.intro' | trans | raw }}</p>
+    <div class="approval-list">
+        {{ table(advantages) }}
+    </div>
+{% endblock %}

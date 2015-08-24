@@ -1,0 +1,27 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% from 'ServiceCiviqueWebBundle:Backend/User:macros.html.twig' import table %}
+
+{% set resources     = users %}
+{% set resource_type = 'user' %}
+{% set page_type     = 'list' %}
+
+{# /!\ Keep this empty block ! #}
+{# We don't have user_create page #}
+{% block header_content_actions %}{% endblock %}
+
+{% block main_content_header %}
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs grid-tabs">
+            <li{% if app.request.get('type') == 'organisme' %} class="active"{% endif %}><a href="{{ path('service_civique_backend_user_index', {'type': 'organisme'}) }}"><i class="glyphicon glyphicon-user"></i> {{ ('service_civique.backend.user.organization') | trans }}</a></li>
+            <li{% if app.request.get('type') == 'volontaire' %} class="active"{% endif %}><a href="{{ path('service_civique_backend_user_index', {'type': 'volontaire'}) }}"><i class="glyphicon glyphicon-user"></i> {{ ('service_civique.backend.user.volunteer') | trans }}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block main_content_body %}
+    {% render(controller('service_civique.controller.backend.form:filterAction', {'type': 'service_civique_user_filter', 'user_type': app.request.get('type'), 'template': 'ServiceCiviqueWebBundle:Backend/User:filterForm.html.twig'})) %}
+    {{ table(resources) }}
+{% endblock %}

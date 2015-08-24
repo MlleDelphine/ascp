@@ -1,0 +1,52 @@
+service_civique_backend_static_content_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.static_content:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/StaticContent:index.html.twig
+            sortable: true
+            sorting:
+                id: desc
+
+service_civique_backend_static_content_show:
+    pattern: /{id}/show
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.static_content:showAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/StaticContent:show.html.twig
+
+service_civique_backend_static_content_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.static_content:createAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/StaticContent:create.html.twig
+            redirect: service_civique_backend_static_content_index
+
+service_civique_backend_static_content_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.static_content:updateAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/StaticContent:update.html.twig
+            redirect: service_civique_backend_static_content_show
+
+service_civique_backend_static_content_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.static_content:deleteAction
+        _sylius:
+            redirect: service_civique_backend_static_content_index
+
+service_civique_backend_static_content_list_autocomplete:
+    pattern: /list.json
+    methods: [GET]
+    options:
+        expose: true
+    defaults:
+        _controller: service_civique.controller.static_content:staticContentListAction

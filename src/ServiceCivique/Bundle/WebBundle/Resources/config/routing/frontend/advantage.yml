@@ -1,0 +1,19 @@
+service_civique_advantage_list:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.advantage:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Frontend/Advantage:list.html.twig
+            paginate: false
+            limit: 99
+            sorting:
+                title: asc
+
+service_civique_advantage_show:
+    pattern: /{slug}
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.advantage:showAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Frontend/Advantage:show.html.twig

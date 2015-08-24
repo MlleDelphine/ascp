@@ -1,0 +1,13 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+{% spaceless %}
+
+    <div class="fb-share-button"
+        {% if settings.url %}data-href="{{ settings.url }}"{% endif %}
+        {% if settings.width %}data-width="{{ settings.width }}"{% endif %}
+        data-type="{{ settings.layout }}">
+    </div>
+
+{% endspaceless %}
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends "ServiceCiviqueWebBundle::layout.html.twig" %}
+
+{% block tags %}
+    <script type="text/javascript">
+        var axel = Math.random() + "";
+        var a = axel * 10000000000000;
+        document.write('<iframe src="http://fls.doubleclick.net/activityi;src=3452220;type=servi660;cat=2011-143;ord=1;num=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+    </script>
+    <noscript>
+        <iframe src="http://fls.doubleclick.net/activityi;src=3452220;type=servi660;cat=2011-143;ord=1;num=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+    </noscript>
+{% endblock %}
+
+{% block header_message %}
+{% endblock %}
+
+{% block breadcrumb_container %}
+{% endblock %}
+
+{% block content %}
+
+<h1 class="sr-only">Accueil</h1>
+
+{{ sonata_block_render({ 'type': 'service_civique.block.mission_search' }, {
+    'nbResults' : missions is defined ? missions.nbResults,
+    'search_action' : path('service_civique_mission_search_submit', app.request.query.all ),
+    'search_options_action' : path('service_civique_mission_search_submit', app.request.query.all ),
+    'display': { 'form': true, 'options': false, 'filters': false, 'tags': false }
+    }) }}
+
+<div class="howto-container white-container">
+    <div class="container">
+        <div class="howtoBox">
+            <h2 class="highlight-yellow"><span>Comment devenir volontaire ?</span></h2>
+            <ul class="row howtoBlock-list">
+                <li class="col col-md-3 col-sm-6 col-xs-12 step-one">
+                    <a href="/page/comment-devenir-volontaire" class="howto_content">
+                        <span>
+                            {{ 'service_civique.statictexts.jeunes.howto.steps.one' | trans({}, 'statictexts') | raw }}
+                        </span>
+                    </a>
+                </li>
+                <li class="col col-md-3 col-sm-6 col-xs-12 step-two">
+                    <a href="/page/comment-devenir-volontaire" class="howto_content">
+                        <span>
+                            {{ 'service_civique.statictexts.jeunes.howto.steps.two' | trans({}, 'statictexts') | raw }}
+                        </span>
+                    </a>
+                </li>
+                <li class="col col-md-3 col-sm-6 col-xs-12 step-three">
+                    <a href="/page/comment-devenir-volontaire" class="howto_content">
+                        <span>
+                            {{ 'service_civique.statictexts.jeunes.howto.steps.three' | trans({}, 'statictexts') | raw }}
+                        </span>
+                    </a>
+                </li>
+                <li class="col col-md-3 col-sm-6 col-xs-12 step-four">
+                    <a href="/page/comment-devenir-volontaire" class="howto_content">
+                        <span>
+                            {{ 'service_civique.statictexts.jeunes.howto.steps.four' | trans({}, 'statictexts') | raw }}
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="missions-container">
+    <div class="container">
+        <div class="missionsBox">
+            {{ sonata_block_render({ 'type' : 'service_civique.block.recommended_missions' }, {
+                'view_mode': 'grid'
+                }) }}
+        </div>
+    </div>
+</div>
+
+<div class="rs-container white-container">
+    <div class="container">
+        <div class="rsBox">
+            <div class="row">
+                <div class="col col-md-5 col-sm-12 col-xs-12">
+                    <div class="engagementBlock">
+                        <h2><span>Votre engagement récompensé !</span></h2>
+                        <p>{{ 'service_civique.statictexts.jeunes.engagement.text' | trans({}, 'statictexts') | raw }}</p>
+                        <div class="block-footer">
+                            <a title="Voir tous les avantages" href="{{ path('service_civique_advantage_list') }}" class="btn btn-sc-red btn-second">Voir tous les avantages</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-4 col-sm-6 col-xs-12 middle">
+                    <div class="facebookBlock">
+                        <h2>Suivez-nous<br />sur Facebook</h2>
+                        <div class="fb-page" data-href="https://www.facebook.com/servicecivique" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/servicecivique"><a href="https://www.facebook.com/servicecivique">Service Civique</a></blockquote></div></div>
+                        {# {{ sonata_block_render({ 'type' : 'sonata.seo.block.facebook.like_box' }, {
+                            'url' : 'https://www.facebook.com/ServiceCivique',
+                            'show_header' : false,
+                            'show_border' : false,
+                        }) }} #}
+                    </div>
+                </div>
+                <div class="col col-md-3 col-sm-3 col-xs-12">
+                    <div class="twitterBlock">
+                        <h2>Suivez-nous<br />sur Twitter</h2>
+                        {{ sonata_block_render({ 'type' : 'service_civique.block.twitter_timeline' }) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/mission_search.js') }}"></script>
+{% endblock %}

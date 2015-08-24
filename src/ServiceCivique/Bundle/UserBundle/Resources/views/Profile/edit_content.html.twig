@@ -1,0 +1,140 @@
+<div class="profile-edit-box">
+{% if user.type == constant('ORGANIZATION_TYPE', user) %}
+    {{ form_start(form)}}
+        <fieldset class="form-group">
+            <legend><h2>Identité</h2></legend>
+            <hr>
+            <div class="row">
+                <div class="form-group form-group-firstname col-md-6 col-sm-6">
+                    {{ form_label(form.firstname) }}
+                    {{ form_errors(form.firstname) }}
+                    {{ form_widget(form.firstname) }}
+                </div>
+                <div class="form-group form-group-lastname col-md-6 col-sm-6">
+                    {{ form_label(form.lastname) }}
+                    {{ form_errors(form.lastname) }}
+                    {{ form_widget(form.lastname) }}
+                </div>
+            </div>
+            {{ form_row(form.email) }}
+        </fieldset>
+        <fieldset class="form-group">
+            <legend><h2>Organisme</h2></legend>
+            <hr>
+            <div class="row">
+                <div class="form-group form-group-organization_approvalNumber col-md-6 col-sm-6">
+                    {{ form_label(form.organization.approvalNumber) }}
+                    {{ form_errors(form.organization.approvalNumber) }}
+                    {{ form_widget(form.organization.approvalNumber, { 'attr':{'disabled':'disabled'}}) }}
+                </div>
+                <div class="form-group form-group-organization_name col-md-6 col-sm-6">
+                    {{ form_label(form.organization.name) }}
+                    {{ form_errors(form.organization.name) }}
+                    {{ form_widget(form.organization.name) }}
+                </div>
+            </div>
+            <strong>Si vous souhaitez éditer votre numéro d'agrément, rendez vous sur <a href="{{ url('service_civique_organization_update_approval_number', {'organization_id': form.vars.value.organization.id}) }}">cette page</a>.</strong>
+            {{ form_row(form.organization.location.country) }}
+            <div class="row">
+                <div class="form-group form-group-zipCode col-md-4 col-sm-4">
+                    {{ form_label(form.organization.location.zipCode) }}
+                    {{ form_errors(form.organization.location.zipCode) }}
+                    {{ form_widget(form.organization.location.zipCode) }}
+                </div>
+                <div class="form-group form-group-city col-md-8 col-sm-8">
+                    {{ form_label(form.organization.location.city) }}
+                    {{ form_errors(form.organization.location.city) }}
+                    {{ form_widget(form.organization.location.city) }}
+                </div>
+            </div>
+            {{ form_row(form.organization.location.address) }}
+        </fieldset>
+        {{ form_row(form._token) }}
+        <div>
+            {% if app.request.attributes.get('_route') != 'service_civique_backend_user_update' %}
+                <a href="{{ path('service_civique_delete_account') }}" class="btn btn-sc-red-2">Supprimer mon compte</a>
+            {% endif %}
+            <input type="submit" class="btn btn-sc-red" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+        </div>
+    {{ form_end(form)}}
+{% else %}
+    {{ form_start(form)}}
+        <fieldset class="form-group">
+            <legend><h2>Identité</h2></legend>
+            <hr>
+            {{ form_row(form.profile.gender) }}
+            <div class="row">
+                <div class="form-group form-group-firstname col-md-6 col-sm-6">
+                    {{ form_label(form.firstname) }}
+                    {{ form_errors(form.firstname) }}
+                    {{ form_widget(form.firstname) }}
+                </div>
+                <div class="form-group form-group-lastname col-md-6 col-sm-6">
+                    {{ form_label(form.lastname) }}
+                    {{ form_errors(form.lastname) }}
+                    {{ form_widget(form.lastname) }}
+                </div>
+            </div>
+            {{ form_row(form.email) }}
+            {{ form_row(form.profile.birthDate) }}
+            {{ form_row(form.profile.educationLevel) }}
+            {{ form_row(form.type) }}
+            {{ form_row(form.profile.location.country) }}
+            {# <div class="row">
+                <div class="form-group form-group-area col-md-6 col-sm-6">
+                    {{ form_label(form.profile.location.area) }}
+                    {{ form_errors(form.profile.location.area) }}
+                    {{ form_widget(form.profile.location.area) }}
+                </div>
+                <div class="form-group form-group-department col-md-6 col-sm-6">
+                    {{ form_label(form.profile.location.department) }}
+                    {{ form_errors(form.profile.location.department) }}
+                    {{ form_widget(form.profile.location.department) }}
+                </div>
+            </div> #}
+            <div class="row">
+                <div class="form-group form-group-zipCode col-md-4 col-sm-4">
+                    {{ form_label(form.profile.location.zipCode) }}
+                    {{ form_errors(form.profile.location.zipCode) }}
+                    {{ form_widget(form.profile.location.zipCode) }}
+                </div>
+                <div class="form-group form-group-city col-md-8 col-sm-8">
+                    {{ form_label(form.profile.location.city) }}
+                    {{ form_errors(form.profile.location.city) }}
+                    {{ form_widget(form.profile.location.city) }}
+                </div>
+            </div>
+            {{ form_row(form.profile.location.address) }}
+            {{ form_row(form.profile.phone_number) }}
+        </fieldset>
+        <fieldset>
+            <legend><h2>Préparation des candidatures</h2></legend>
+            <hr>
+            <div class="form-group form-group-motivation">
+                {{ form_label(form.profile.motivation) }}
+                <p class="help-block">Pourquoi voulez-vous faire cette mission ? Expliquez les motivations qui vous poussent à faire une mission de Service Civique.</p>
+                {{ form_errors(form.profile.motivation) }}
+                {{ form_widget(form.profile.motivation) }}
+            </div>
+            <div class="form-group form-group-file">
+                {{ form_label(form.profile.file) }}
+                <p class="help-block">Vous pouvez joindre un document (pdf, rtf, doc ou docx et 10M maximum) résumant votre parcours.</p>
+                {{ form_errors(form.profile.file) }}
+                {{ form_widget(form.profile.file) }}
+                {% if user.profile.path %}
+                    <div class="form-group default-cv-box">
+                        Document par défaut : <a href="{{ path('service_civique_resume_show', {'slug': user.profile.path}) }}" title="Télécharger le document">{{ user.profile.path }}</a> <button type="button" class="close remove-resume"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    </div>
+                {% endif %}
+            </div>
+        </fieldset>
+        {{ form_row(form._token) }}
+        <div>
+            {% if app.request.attributes.get('_route') != 'service_civique_backend_user_update' %}
+                <a href="{{ path('service_civique_delete_account') }}" class="btn btn-sc-red-2">Supprimer mon compte</a>
+            {% endif %}
+            <input type="submit" class="btn btn-sc-red" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+        </div>
+    {{ form_end(form)}}
+{% endif %}
+</div>

@@ -1,0 +1,135 @@
+service_civique_backend_mission:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/mission.yml
+    prefix: /missions
+
+service_civique_backend_static_content:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/static_content.yml
+    prefix: /pages
+
+service_civique_backend_tag:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/tag.yml
+    prefix: /tags
+
+service_civique_backend_actu:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/actu.yml
+    prefix: /actus
+
+service_civique_backend_presse:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/presse.yml
+    prefix: /presse
+
+service_civique_backend_partner:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/partner.yml
+    prefix: /partenaires
+
+service_civique_backend_advantage:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/advantage.yml
+    prefix: /avantages
+
+service_civique_backend_media:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/media.yml
+    prefix: /media
+
+service_civique_backend_video:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/video.yml
+    prefix: /videos
+
+service_civique_backend_user:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/user.yml
+    prefix: /utilisateurs
+
+service_civique_backend_answer_mail:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/answer_mail.yml
+    prefix: /reponses-mails
+
+service_civique_backend_header:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/header.yml
+    prefix: /headers
+    methods: [GET, POST, PUT, DELETE]
+
+service_civique_backend_homepage:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: 'ServiceCiviqueWebBundle:Backend/Backend:default'
+
+service_civique_backend_import_approvals:
+    pattern: /import-agrements
+    methods: [GET, POST]
+    defaults:
+        _controller: 'ServiceCiviqueWebBundle:Backend/Backend:importApprovals'
+
+service_civique_backend_faq_volontaire:
+    pattern: /faq-volontaire
+    methods: [GET, POST]
+    defaults:
+        _controller: 'ServiceCiviqueWebBundle:Backend/Backend:faq'
+        type: volontaire
+
+service_civique_backend_faq_organisme:
+    pattern: /faq-organisme
+    methods: [GET, POST]
+    defaults:
+        _controller: 'ServiceCiviqueWebBundle:Backend/Backend:faq'
+        type: organisme
+
+service_civique_backend_upload_image:
+    pattern: /upload-image
+    methods: [POST]
+    defaults:
+        _controller: service_civique.controller.static_content:uploadImageAction
+    options:
+        expose: true
+
+service_civique_backend_get_image:
+    pattern: /get-images
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.static_content:getImageAction
+    options:
+        expose: true
+
+service_civique_backend_upload_file:
+    pattern: /upload-file
+    methods: [POST]
+    defaults:
+        _controller: service_civique.controller.static_content:uploadFileAction
+    options:
+        expose: true
+
+service_civique_backend_banner_upload:
+    pattern: /banniere
+    methods: [GET, POST]
+    defaults:
+       _controller: 'ServiceCiviqueWebBundle:Backend/Backend:banner'
+
+service_civique_backend_approval_conflict:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/approval_conflict.yml
+    prefix: /approval_conflict
+
+service_civique_backend_mission_report:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/mission_report.yml
+    prefix: /mission-report
+
+service_civique_kibana_mission:
+    path: /kibana/missions
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'ServiceCiviqueWebBundle:Backend/Kibana:mission.html.twig'
+service_civique_kibana_candidature:
+    path: /kibana/candidatures
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'ServiceCiviqueWebBundle:Backend/Kibana:candidature.html.twig'
+
+service_civique_kibana_jeune:
+    path: /kibana/jeunes
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'ServiceCiviqueWebBundle:Backend/Kibana:jeune.html.twig'
+
+service_civique_kibana_organisme:
+    path: /kibana/organismes
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'ServiceCiviqueWebBundle:Backend/Kibana:organisme.html.twig'

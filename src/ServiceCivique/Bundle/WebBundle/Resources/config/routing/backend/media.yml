@@ -1,0 +1,37 @@
+service_civique_backend_media_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.media:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Media:index.html.twig
+            sortable: true
+            paginate: 20
+            sorting:
+                published: desc
+
+service_civique_backend_media_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.media:createAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Media:create.html.twig
+            redirect: service_civique_backend_media_index
+
+service_civique_backend_media_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.media:updateAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Media:update.html.twig
+            redirect: service_civique_backend_media_index
+
+service_civique_backend_media_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.media:deleteAction
+        _sylius:
+            redirect: service_civique_backend_media_index

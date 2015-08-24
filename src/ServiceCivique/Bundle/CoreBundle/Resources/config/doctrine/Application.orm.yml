@@ -1,0 +1,129 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Application:
+    type: entity
+    table: application
+    repositoryClass: ServiceCivique\Bundle\CoreBundle\Repository\ApplicationRepository
+    uniqueConstraints:
+        mission_user:
+            columns:
+              - mission_id
+              - user_id
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    manyToOne:
+        mission:
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Mission
+            inversedBy: applications
+            joinColumn:
+                onDelete: 'CASCADE'
+        user:
+            targetEntity: ServiceCivique\Bundle\UserBundle\Entity\User
+            inversedBy: applications
+            cascade: ['persist']
+            joinColumn:
+                onDelete: 'CASCADE'
+    properties:
+        file:
+            - File:
+                maxSize: 10M
+                mimeTypes: [application/pdf, application/x-pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/rtf]
+                mimeTypesMessage: "Choisissez un fichier PDF, rtf, doc ou docx valide"
+    fields:
+        created:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        status:
+            type: smallint
+            length: 1
+            options:
+                unsigned: true
+        missionStatus:
+            column: mission_status
+            type: smallint
+            length: 1
+            nullable: true
+            options:
+                unsigned: true
+        messageSubject:
+            column: message_subject
+            type: string
+            nullable: true
+        messageText:
+            column: message_text
+            type: text
+            nullable: true
+        messageDate:
+            column: message_date
+            type: date
+            nullable: true
+        zipCode:
+            column: zip_code
+            type: string
+            length: 10
+            nullable: true
+        city:
+            type: string
+            length: 255
+            nullable: true
+        address:
+            type: string
+            length: 255
+            nullable: true
+        country:
+            type: string
+            length: 2
+            nullable: true
+        phoneNumber:
+            column: phone_number
+            type: string
+            length: 14
+            nullable: true
+        motivation:
+            type: text
+            nullable: true
+        updated:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        cv:
+            type: string
+            length: 255
+            nullable: true
+        path:
+            type: string
+            length: 255
+            nullable: true
+        isPoked:
+            type: datetime
+            column: is_poked
+            nullable: true
+        isPreview:
+            type: integer
+            column: is_preview
+            nullable: true
+            options:
+                unsigned: true
+        isSelected:
+            type: integer
+            column: is_selected
+            nullable: true
+            options:
+                default: 0
+    indexes:
+        status_idx:
+            columns: status
+    lifecycleCallbacks:
+        prePersist:  [ preUpload, copyApplicationPathToUserProfilePath ]
+        preUpdate:   [ preUpload ]
+        postPersist: [ upload ]
+        postUpdate:  [ upload ]
+        preRemove:   [ storeFilenameForRemove ]
+        postRemove:  [ removeUpload ]
+        postLoad:    [ postLoad ]

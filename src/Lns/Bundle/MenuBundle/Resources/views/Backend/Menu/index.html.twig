@@ -1,0 +1,21 @@
+{% extends 'LnsMenuBundle:Backend:layout.html.twig' %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'LnsMenuBundle:Backend/Menu:macros.html.twig' import table %}
+
+{% block header_content_actions %}
+    {{ buttons.create(path('lns_backend_menu_create'), 'lns.menu.button.new' | trans | raw) }}
+{% endblock %}
+
+{% block breadcrumb %}
+<li>{{ 'lns.menu.list.title' | trans }}</li>
+{% endblock %}
+
+{% block header_content_title %}
+<i class="glyphicon glyphicon-th-list"></i> {{ 'lns.menu.list.title'|trans }} <small>{{ 'lns.menu.list.subtitle'|trans }}</small>
+{% endblock %}
+
+{% block main_content %}
+    <div>{{ 'lns.menu.nb_results.title' | transchoice(menus | length) }}</div>
+    {{ table(menus) }}
+{% endblock %}

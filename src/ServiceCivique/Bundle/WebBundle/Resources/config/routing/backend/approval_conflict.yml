@@ -1,0 +1,40 @@
+service_civique_backend_approval_conflict_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.approval_conflict:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/ApprovalConflict:index.html.twig
+            sortable: true
+            paginate: 20
+            # repository:
+            #     method: findNotResolved
+            method: findNotResolved
+            sorting:
+                id: desc
+
+service_civique_backend_approval_conflict_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.approval_conflict:createAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/ApprovalConflict:create.html.twig
+            redirect: service_civique_backend_approval_conflict_index
+
+service_civique_backend_approval_conflict_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.approval_conflict:updateAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/ApprovalConflict:update.html.twig
+            redirect: service_civique_backend_approval_conflict_index
+
+service_civique_backend_approval_conflict_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.approval_conflict:deleteAction
+        _sylius:
+            redirect: service_civique_backend_approval_conflict_index

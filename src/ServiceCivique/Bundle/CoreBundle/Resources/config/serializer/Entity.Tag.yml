@@ -1,0 +1,9 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Tag:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        title:
+            expose: true
+        slug:
+            expose: true

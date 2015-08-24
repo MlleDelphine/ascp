@@ -1,0 +1,42 @@
+service_civique_backend_answer_mail_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.answer_mail:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/AnswerMail:index.html.twig
+            sortable: true
+
+service_civique_backend_answer_mail_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.answer_mail:createAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/AnswerMail:create.html.twig
+            redirect: service_civique_backend_answer_mail_index
+
+service_civique_backend_answer_mail_get_description:
+    pattern: /info/{id}
+    methods: [GET]
+    options:
+        expose: true
+    defaults:
+        _controller: service_civique.controller.answer_mail:getDescriptionAction
+
+service_civique_backend_answer_mail_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.answer_mail:updateAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/AnswerMail:update.html.twig
+            redirect: service_civique_backend_answer_mail_index
+
+service_civique_backend_answer_mail_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.answer_mail:deleteAction
+        _sylius:
+            redirect: service_civique_backend_answer_mail_index

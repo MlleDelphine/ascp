@@ -1,0 +1,19 @@
+service_civique_presse_list:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.presse:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Frontend/Presse:list.html.twig
+            paginate: 10
+            sortable: true
+            sorting:
+                published: desc
+
+service_civique_presse_show:
+    pattern: /{slug}
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.presse:showAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Frontend/Presse:show.html.twig

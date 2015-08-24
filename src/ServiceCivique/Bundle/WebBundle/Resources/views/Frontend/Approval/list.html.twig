@@ -1,0 +1,41 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Approval:macros.html.twig' import table %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'route': 'service_civique_corporate_homepage', 'name' : 'service_civique.breadcrumb.corporate.index'},
+    {'name' : 'service_civique.breadcrumb.approval.list'},
+]) }}
+{% endblock %}
+
+{% block main_content_header %}Les agréments publiés{% endblock %}
+
+{% block main_content_header_info %}
+    <div class="txt-intro">
+        {{ form_start(form) }}
+
+        {{ form_row(form.organization_name) }}
+        {{ form_row(form.approval_number) }}
+        {{ form_row(form.search) }}
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block main_content_body %}
+
+
+    <h3>
+    {{ 'service_civique.statictexts.approvals.dashboard.intro'|trans({}, 'statictexts') |raw }}
+    </h3>
+
+    <div class="approval-list">
+        {{ table(approvals) }}
+        {{ pagination(approvals) }}
+    </div>
+{% endblock %}

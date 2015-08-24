@@ -1,0 +1,29 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Presse:
+    type: entity
+    table: presse
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        type:
+            type: integer
+        text:
+            type: text
+        slug:
+            type: string
+            length: 255
+            gedmo:
+                slug:
+                    fields: ['title']
+        published:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+    lifecycleCallbacks: {  }

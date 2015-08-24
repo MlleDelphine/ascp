@@ -1,0 +1,144 @@
+{# {% macro list(applications) %}
+
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% for application in applications %}
+{% include 'ServiceCiviqueWebBundle:Frontend/application:_single.html.twig' %}
+{% if not loop.last %}<hr>{% endif %}
+{% else %}
+{{ alerts.info('service_civique.application.no_results'|trans) }}
+{% endfor %}
+
+{% endmacro %} #}
+{% macro table(applications) %}
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if applications.nbResults != 0 %}
+<table class="table table-striped" id="scroll-content">
+    <thead>
+        <tr>
+            <th>{{ sylius_resource_sort('m.title', 'Mission') }}</th>
+            <th>Candidature</th>
+            <th>{{ sylius_resource_sort('m.organizationName', 'Organisme') }}</th> {# @Todo #}
+            <th>{{ sylius_resource_sort('m.department', 'Lieu') }}</th> {# @Todo #}
+            <th>{{ sylius_resource_sort('created', 'Date de candidature') }}</th>
+            {# <th>{{ sylius_resource_sort('status', 'Statut') }}</th> #}
+            <th>Statut</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for application in applications %}
+        <tr{% if application.status == 1 %} class="success"{% elseif application.status == 2 %} class="danger"{% endif %}>
+            <td><a href="{{ path('service_civique_mission_show', {'slug': application.mission.slug}) }}">{{ application.mission.title }}</a></td>
+            <td>
+                <i class="glyphicon glyphicon-search"></i> <a href="{{ path('service_civique_application_show', {'mission_slug': application.mission.slug}) }}">Voir la candidature
+                </a>
+            </td>
+            <td>{{ application.mission.organizationName }}</td>
+            <td>{{ macros.location(application.mission) }}</td>
+            <td>{{ application.created | localizeddate("long", "none") }}</td>
+            <td>{{ getApplicationMissionStatus(application.status, application.mission, application.isPoked) | trans}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    {{ alerts.info('service_civique.application.no_results' | trans) }}
+{% endif %}
+{% endmacro %}
+
+{% macro missionApplications(applications) %}
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if applications.nbResults != 0 %}
+<table class="table table-striped" id="scroll-content">
+    <thead>
+        <tr>
+            <th>
+                <div class="checkbox">
+                    <label class="control-label">
+                        <input type="checkbox" class="select-all-checkbox"><span class="sr-only">Sélectionner tout</span>
+                    </label>
+                </div>
+            </th>
+            <th>{{ sylius_resource_sort('u.firstname', 'Candidat') }}</th>
+            <th>{{ sylius_resource_sort('phoneNumber', 'Téléphone') }}</th>
+            <th>{{ sylius_resource_sort('u.email', 'Email') }}</th>
+            <th>{{ sylius_resource_sort('created', 'Date de candidature') }}</th>
+            <th>{{ sylius_resource_sort('status', 'Statut') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for application in applications %}
+        <tr{% if application.status == 1 %} class="success"{% elseif application.status == 2 %} class="danger"{% endif %}>
+            <td>
+                <div class="checkbox">
+                    <label class="control-label">
+                        <input type="checkbox" class="data-mails" name="mails" value="{{ application.user.email }}"><span class="sr-only">Sélectionner {{ application.user.email }}</span>
+                    </label>
+                </div>
+            </td>
+            <td>
+                <i class="glyphicon glyphicon-search"></i> <a href="{{ path('service_civique_application_missions_application_show', {'id': application.mission.id, 'application_id': application.id, }) }}">Voir la candidature de {{ application.user.fullName }}</a>
+            </td>
+            <td>{{ application.phoneNumber }}</td>
+            <td>{{ application.user.email | mailto }}</td>
+            <td>{{ application.created | localizeddate("long", "none") }}</td>
+            <td>{{ ('service_civique.application.status_jeune.' ~ application.status) | trans}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endmacro %}
+
+
+{% macro missionApplicationsChoixJeune(applications) %}
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if applications.nbResults != 0 %}
+<table class="table table-striped jeunes-select" id="scroll-content">
+    <thead>
+        <tr>
+            <th>
+                <div class="checkbox">
+                    <label class="control-label">
+                        <input type="checkbox" class="select-all-checkbox"><span class="sr-only">Sélectionner tout</span>
+                    </label>
+                </div>
+            </th>
+            <th>{{ sylius_resource_sort('u.firstname', 'Candidat') }}</th>
+            <th>{{ sylius_resource_sort('phoneNumber', 'Téléphone') }}</th>
+            <th>{{ sylius_resource_sort('u.email', 'Email') }}</th>
+            <th>{{ sylius_resource_sort('created', 'Date de candidature') }}</th>
+            <th>{{ sylius_resource_sort('status', 'Statut') }}</th>
+            <th>{{ sylius_resource_sort('isSelected', 'Retenu') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for application in applications %}
+        <tr{% if application.status == 1 %} class="success"{% elseif application.status == 2 %} class="danger"{% endif %}>
+            <td>
+                <div class="checkbox">
+                    <label class="control-label">
+                        <input type="checkbox" class="data-jeune-select" name="jeunes-select" value="{{ application.id }}"><span class="sr-only">Sélectionner {{ application.id }}</span>
+                    </label>
+                </div>
+            </td>
+            <td>
+                <i class="glyphicon glyphicon-search"></i> <a href="{{ path('service_civique_application_missions_application_show', {'id': application.mission.id, 'application_id': application.id, }) }}">Voir la candidature de {{ application.user.fullName }}</a>
+            </td>
+            <td>{{ application.phoneNumber }}</td>
+            <td>{{ application.user.email | mailto }}</td>
+            <td>{{ application.created | localizeddate("long", "none") }}</td>
+            <td>{{ ('service_civique.application.status_jeune.' ~ application.status) | trans}}</td>
+            <td>{{ ('service_civique.application.status_jeune_selected.' ~ application.isSelected) | trans}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endmacro %}

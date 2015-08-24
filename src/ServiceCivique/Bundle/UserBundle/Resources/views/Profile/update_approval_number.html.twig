@@ -1,0 +1,31 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block main_content_header %}Mon profil{% endblock %}
+
+{% block main_content_body %}
+    <p>
+        {% if is_granted('ROLE_ADMIN') %}
+            Entrez-ici le numéro d'agrément de l'organisme. Le numéro d’agrément doit être au format XX-000-00-00000-00. Il est composé de deux lettres, national (NA) ou régional (RG), puis de trois chiffres 000, 2 chiffres indiquant l'année de la demande initiale, 5 chiffres de numéro de saisie et 2 chiffres indiquant les avenants.
+        {% else %}
+            Entrez ici votre numéro d’agrément. Si vous n’en disposez pas, référez-vous à la page <a href="{{ url('service_civique_static_content_show', {slug: 'comment-obtenir-un-agrement'}) }}">Comment obtenir un agrément</a>. Le numéro d’agrément doit être au format XX-000-00-00000-00. Il est composé de deux lettres, national (NA) ou régional (RG), puis de trois chiffres 000, 2 chiffres indiquant l'année de la demande initiale, 5 chiffres de numéro de saisie et 2 chiffres indiquant les avenants. <strong>En cas de problème, veuillez remplir <a href="{{ path('service_civique_approval_conflict_create') }}" data-url="{{ path('service_civique_approval_conflict_create') }}" class="conflict_page">ce formulaire</a></strong>.
+        {% endif %}
+    </p>
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    {{ form_row(form.approval_number) }}
+    {{ form_row(form._token) }}
+    <div>
+        {% if user.type == constant('ORGANIZATION_TYPE', user) %}
+            <a href="{{ path('service_civique_organization_profile_edit') }}" class="btn" />Retour au profil</a>
+        {% endif %}
+        <input type="submit" class="btn btn-sc-red" value="Valider" />
+    </div>
+    {{ form_end(form)}}
+{% endblock main_content_body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if user.type == constant('ORGANIZATION_TYPE', user) %}
+        <script src="{{ asset('assets/js/organization_widget.js') }}"></script>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html >
+<head >
+    <head >
+        <title>Service Civique</title>
+        <meta name="keywords" content="accueillir un b&eacute;n&eacute;vole,benevolat,b&eacute;n&eacute;volat,benevole,b&eacute;n&eacute;vole,citoyen actif,civisme,collectivit&eacute;,devenir volontaire,don de soi,action humanitaire,engagement citoyen,engagement civique,engagements citoyens,environnement,faire bouger la soci&eacute;t&eacute;,g&eacute;n&eacute;ration engag&eacute;e,int&eacute;r&ecirc;t g&eacute;n&eacute;ral,jeunesse en action,le bien commun,lien social" />
+        <meta name="description" content="Le portail d'information et de services sur le Service Civique. Tout ce qu'il faut savoir sur le Service Civique, annonces de mission, postulez en ligne et forums d'&eacute;changes." />
+        <meta name="robots" content="index, nofollow" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Service Civique" />
+        <meta name="twitter:description" content="Le portail d'information et de services sur le Service Civique. Tout ce qu'il faut savoir sur le Service Civique, annonces de mission, postulez en ligne et forums d'&eacute;changes." />
+        <meta name="twitter:site" content="@ServiceCivique" />
+        <meta property="og:site_name" content="Service Civique" />
+        <meta property="og:description" content="Le portail d'information et de services sur le Service Civique. Tout ce qu'il faut savoir sur le Service Civique, annonces de mission, postulez en ligne et forums d'&eacute;changes." />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+
+        <link rel="stylesheet" href="{{base_url}}/assets/css/main.css">
+
+
+        <link rel="icon" type="image/x-icon" href="{{base_url}}/favicon.ico" />
+        <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,700,400italic' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2734778-38']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>    </head>
+<body id="service_civique_static_content_show" class="context-jeunes " >
+
+    <header class="header-container hidden-print">
+        <div class="container-fluid" style="min-height: 170px;">
+
+            <div class="logo-box hidden-print" style="margin: 0 auto; width: 290px;">
+                <a href="http://www.jeunes.gouv.fr/" target="_blank" title="Ministère des droits des femmes, de la ville, de la jeunesse et des sports (S'ouvre dans une nouvelle fenêtre)">
+                    <img src="{{base_url}}/images/logo-ministre.png" data-at2x="{{base_url}}/images/logo-ministre@2x.png" alt="Logo du ministère des droits des femmes, de la ville, de la jeunesse et des sports">
+                </a>
+                <a href="{{base_url}}/" alt="Logo" >
+                    <img src="{{base_url}}/images/logo.jpg" data-at2x="{{base_url}}/images/logo@2x.jpg" alt="Service Civique, des valueurs, un engagement">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div id="main-content" class="main-container" style="background: #ffffff;">
+        <h1 class="sr-only">{% if status_code == '404' %}Page non trouvée{% else %}Erreur {{ status_code }}{% endif %}</h1>
+        <div class="white-container container-404-403">
+            <div class="container">
+                <div class="error404" style="padding: 50px 0;">
+
+                    <div class="errorNumber">{{ status_code }}</span></div>
+                    <h2>Hum...</h2>
+                    {% if status_code == '404' %}
+                    <div class="header-404">
+                        <p>la page que tentez d'afficher n'existe pas ou a été déplacée.<p>
+                    </div>
+                    <div class="body-404">
+                        <p>nous vous invitons à retourner sur la page d'accueil ou à effectuer
+                        une recherche sur le site afin de trouver le contenu que vous souhaitez consulter.</p>
+                    </div>
+                    {% else %}
+                    <div class="header-404">
+                        <p>Une erreur s'est produite<p>
+                    </div>
+                    <div class="body-404">
+                        <p>{{ exception.message }}</p>
+                    </div>
+                    {% endif %}
+                    <div class="btn-box">
+                        <a class="btn btn-sc-red-2" href="{{base_url}}/">Retour à l'accueil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-container hidden-print">
+        <div class="green-line">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col">
+                        <p class="footer-info">Le Service Civique est un engagement volontaire au service de l’intérêt général, ouvert à tous les jeunes de 16 à 25 ans, sans conditions de diplôme. Les missions sont indemnisées 573 euros par mois.</p>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col">
+                                <ul class="nav" id="footer-menu">
+                                    <li class="first">        <a href="{{base_url}}/">                Jeunes    </a>
+                                    </li>
+
+                                    <li>        <a href="{{base_url}}/organismes/">                Organismes    </a>
+                                    </li>
+
+                                    <li class="last">        <a href="{{base_url}}/a-propos-de-nous/">                À propos de nous    </a>
+                                    </li>
+
+
+                                </ul>
+
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 col">
+                               {{ knp_menu_render('footer_col_2', {'template': 'ServiceCiviqueWebBundle:Frontend:menu.html.twig'}) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col last">
+                        <div class="footer-rs">
+                            <h3>Suivez-nous sur</h3>
+                            <ul class="" id="footer-menu-rs">
+                                <li class="first">        <a href="https://twitter.com/servicecivique" id="rs-twitter" target="_blank" title="Twitter (s&#039;ouvre dans un nouvelle fenêtre)">                Twitter    </a>
+                                </li>
+
+                                <li>        <a href="https://www.facebook.com/service-civique" target="_blank" id="rs-fb" title="Facebook (s&#039;ouvre dans un nouvelle fenêtre)">                Facebook    </a>
+                                </li>
+
+                                <li>        <a href="http://servicecivique.tumblr.com" target="_blank" id="rs-tumblr" title="Tumblr (s&#039;ouvre dans un nouvelle fenêtre)">                Tumblr    </a>
+                                </li>
+
+                                <li>        <a href="http://www.dailymotion.com/service-civique" target="_blank" id="rs-dailymotion" title="Dailymotion (s&#039;ouvre dans un nouvelle fenêtre)">                Dailymotion    </a>
+                                </li>
+
+                                <li>        <a href="https://www.youtube.com/user/leservicecivique" target="_blank" id="rs-youtube" title="Youtube (s&#039;ouvre dans un nouvelle fenêtre)">                Youtube    </a>
+                                </li>
+
+                                <li>        <a href="http://vimeo.com/servicecivique" target="_blank" id="rs-vimeo" title="Vimeo (s&#039;ouvre dans un nouvelle fenêtre)">                Vimeo    </a>
+                                </li>
+
+                                <li class="last">        <a href="{{base_url}}/page/les-actualites" id="rs-rss">                RSS    </a>
+                                </li>
+
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+
+</body>
+</html>

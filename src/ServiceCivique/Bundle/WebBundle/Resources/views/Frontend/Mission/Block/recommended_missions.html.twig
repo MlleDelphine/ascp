@@ -1,0 +1,46 @@
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <div class="others-missions-box">
+        <h2 class="highlight-yellow">
+            <span>
+            {% if settings.region %}
+            {{ settings.title | trans({'%region%': settings.region}) }}
+            {% else %}
+            {{ settings.title | trans }}
+            {% endif %}
+            </span>
+        </h2>
+
+        {% if settings.view_mode == 'grid' %}
+            <div class="mission-grid grid clearfix row">
+                {% for mission in missions %}
+                    <div class="col col-md-{{ 12 / missions|length }} col-sm-{{ 12 / missions|length }} col-xs-12">
+                        {% include 'ServiceCiviqueWebBundle:Frontend/Mission:_singleBox.html.twig' %}
+                    </div>
+                {% else %}
+                    {{ alerts.info('service_civique.mission.no_results'|trans) }}
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="block-content">
+                {% for mission in missions %}
+                    {% include 'ServiceCiviqueWebBundle:Frontend/Mission:_single.html.twig' %}
+                {% else %}
+                    {{ alerts.info('service_civique.mission.no_results'|trans) }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <footer>
+            <div class="btn-box center" >
+                {% if settings.region %}
+                <a title="{{ 'service_civique.mission.see_all' | trans }}" href="{{ path('service_civique_mission_list', { 'criteria' : {'area' : settings.region.code } }) }}" class="link-action">{{ 'service_civique.mission.see_all' | trans }}</a>
+                {% else %}
+                <a title="{{ 'service_civique.mission.see_all' | trans }}" href="{{ path('service_civique_mission_list') }}" class="link-action">{{ 'service_civique.mission.see_all' | trans }}</a>
+            {% endif %}
+            </div>
+        </footer>
+    </div>
+{% endblock %}

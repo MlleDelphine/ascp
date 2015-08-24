@@ -1,0 +1,38 @@
+{% macro show(url, message) %}
+<a href="{{ url }}" class="btn btn-default">
+   <i class="glyphicon glyphicon-list-alt"></i><span>{{ message is empty ? 'service_civique.show'|trans : message }}</span>
+</a>
+{% endmacro %}
+
+{% macro create(url, message) %}
+<a href="{{ url }}" class="btn btn-primary">
+    <i class="glyphicon glyphicon-plus-sign"></i><span>{{ message is empty ? 'service_civique.create'|trans : message }}</span>
+</a>
+{% endmacro %}
+
+{% macro edit(url, message) %}
+<a data-toggle="tooltip" data-placement="top" title="{{ message is empty ? 'service_civique.edit'|trans : message }}" href="{{ url }}" class="btn btn-primary">
+    <i class="glyphicon glyphicon-pencil"></i><span>{{ message is empty ? 'service_civique.edit'|trans : message }}</span>
+</a>
+{% endmacro %}
+
+{% macro delete(url, message, disabled=false, modal=true, fat=false) %}
+{% if disabled %}
+<span class="btn btn-danger disabled">
+    <i class="glyphicon glyphicon-trash"></i><span>{{ message is empty ? 'service_civique.delete'|trans : message }}</span>
+</span>
+{% else %}
+<form action="{{ url }}" method="post" class="delete-action-form" novalidate>
+    <input type="hidden" name="_method" value="DELETE">
+    <button data-toggle="tooltip" data-placement="top" title="{{ message is empty ? 'service_civique.delete'|trans : message }}" class="link-action btn btn-danger{% if modal %} btn-confirm{% endif %}{% if fat %} btn-lg{% endif %}" type="submit">
+        <i class="glyphicon glyphicon-trash"></i> <span>{{ message is empty ? 'service_civique.delete'|trans : message }}</span>
+    </button>
+</form>
+{% endif %}
+{% endmacro %}
+
+{% macro manage(url, message) %}
+<a href="{{ url }}" class="btn btn-success">
+    <i class="glyphicon glyphicon-folder-open"></i><span>{{ message is empty ? 'service_civique.manage'|trans : message }}</span>
+</a>
+{% endmacro %}

@@ -1,0 +1,15 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_right.html.twig" %}
+
+{% block main_content_header %}{{ 'service_civique.application.create_header'|trans|raw }}{% endblock %}
+
+{% block main_content_intro %}
+    <div class="txt-intro">
+        {{ ('service_civique.statictexts.applications.answer.' ~ app.request.get('status')) | trans({}, 'statictexts') | raw }}
+    </div>
+{% endblock %}
+
+{% block main_content_body %}
+    <form action="{{ path('service_civique_application_answer_create', {mission_slug: mission.slug, status: app.request.get('status') }) }}" method="post" class="form-create-application" {{ form_enctype(form) }}>
+        {% include 'ServiceCiviqueWebBundle:Frontend/Application:_answer_form.html.twig' %}
+    </form>
+{% endblock %}

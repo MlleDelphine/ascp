@@ -1,0 +1,19 @@
+old_sound_rabbit_mq:
+  connections:
+    default:
+      host:     %amqp_host%
+      port:     %amqp_port%
+      user:     %amqp_user%
+      password: %amqp_pwd%
+      vhost:    '/'
+      lazy:     false
+  producers:
+    service_civique_missionsearch_mailing:
+      connection: default
+      exchange_options: { name: 'service_civique_missionsearch_mailing', type: direct }
+  consumers:
+    service_civique_missionsearch_mailing:
+      connection:       default
+      exchange_options: { name: 'service_civique_missionsearch_mailing', type: direct }
+      queue_options:    { name: 'service_civique_missionsearch_mailing' }
+      callback:         service_civique.missionsearch_mailer

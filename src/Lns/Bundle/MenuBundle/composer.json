@@ -1,0 +1,11 @@
+{
+    "name": "lns/menu-bundle",
+    "authors": [
+        {
+            "name": "Paul-Émile MINY",
+            "email": "paulemile.miny@gmail.com"
+        }
+    ],
+    "require": {
+    }
+}

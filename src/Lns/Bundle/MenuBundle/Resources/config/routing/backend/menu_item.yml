@@ -1,0 +1,41 @@
+lns_backend_menu_item_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: lns.controller.menu_item:createAction
+        _sylius:
+            template: LnsMenuBundle:Backend/MenuItem:create.html.twig
+            redirect:
+                route: lns_backend_menu_update
+                parameters: {'id': $menuId}
+
+lns_backend_menu_item_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: lns.controller.menu_item:updateAction
+        _sylius:
+            template: LnsMenuBundle:Backend/MenuItem:update.html.twig
+            redirect:
+                route: lns_backend_menu_update
+                parameters: {'id': $menuId}
+
+lns_backend_menu_item_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: lns.controller.menu_item:deleteAction
+        _sylius:
+            redirect:
+                route: lns_backend_menu_update
+                parameters: {'id': $menuId}
+
+lns_backend_menu_item_delete_alt:
+    pattern: /{id}/delete
+    methods: [GET]
+    defaults:
+        _controller: lns.controller.menu_item:deleteAction
+        _sylius:
+            redirect:
+                route: lns_backend_menu_update
+                parameters: {'id': $menuId}

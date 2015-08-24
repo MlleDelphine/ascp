@@ -1,0 +1,121 @@
+parameters:
+    service_civique.sitemap_array_source_collection:
+        -
+            route_name: service_civique_mission_list
+            lastmod: 1 May 2014
+            changefreq: weekly
+            priority: 0.5
+#        -
+#            route_name: route_name
+#            lastmod: 2014-01-01
+#            changefreq: weekly
+#            priority: 0.5
+
+sonata_seo:
+    default:          sonata.seo.page.default
+    encoding:         UTF-8
+    sitemap:
+        services:
+            -
+                group: "static"
+                id: "service_civique.sitemap_source"
+        doctrine_orm:
+            -
+                group: "missions"
+                connection: doctrine.dbal.default_connection
+                route: service_civique_mission_show
+                parameters: { slug: null }
+                query: "SELECT id, slug, updated as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM mission WHERE status = 1"
+    page:
+        title: 'Service Civique'
+        metas:
+            name:
+                keywords:             accueillir un bénévole,benevolat,bénévolat,benevole,bénévole,citoyen actif,civisme,collectivité,devenir volontaire,don de soi,action humanitaire,engagement citoyen,engagement civique,engagements citoyens,environnement,faire bouger la société,génération engagée,intérêt général,jeunesse en action,le bien commun,lien social
+                description:          Le portail d'information et de services sur le Service Civique. Tout ce qu'il faut savoir sur le Service Civique, annonces de mission, postulez en ligne et forums d'échanges.
+                robots:               index, follow
+                # Twitter cards
+                # see https://dev.twitter.com/docs/cards/types/summary-card
+                twitter:card:        summary
+                twitter:title:       Service Civique
+                twitter:description: Le portail d'information et de services sur le Service Civique. Tout ce qu'il faut savoir sur le Service Civique, annonces de mission, postulez en ligne et forums d'échanges.
+                twitter:site:        @ServiceCivique
+
+            property:
+                # Facebook application settings
+                #'fb:app_id':          XXXXXX
+                #'fb:admins':          admin1, admin2
+
+                # Open Graph information
+                # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
+                'og:site_name':       Service Civique
+                'og:description':     Le portail d'information et de services sur le Service Civique. Tout ce qu'il faut savoir sur le Service Civique, annonces de mission, postulez en ligne et forums d'échanges.
+                'og:image':           %base_url%/images/logo-facebook.png
+                'og:type':            'website'
+                'og:image:type':      'png'
+                'og:image:width':     '1200'
+                'og:image:height':    '630'
+
+            http-equiv:
+                'Content-Type':         text/html; charset=utf-8
+                #'X-Ua-Compatible':      IE=EmulateIE7
+
+        head:
+
+service_civique_seo:
+    pages:
+        service_civique_static_content_show:
+            title:  "%%title%%"
+            metas:
+                name:
+                    description: "%%description%%"
+                property:
+                    'og:title':        "%%title%%"
+                    'og:description' : "%%description%%"
+                    'og:type':         'article'
+        service_civique_homepage:
+            title: "Accueil"
+        service_civique_organization_homepage:
+            title: "Organismes"
+            parent: service_civique_homepage
+        service_civique_corporate_homepage:
+            title: "À propos de nous"
+            parent: service_civique_homepage
+        service_civique_mission_preview:
+            title:  "%%title%%"
+        fos_user_registration_register:
+            title: "Création de compte et connexion"
+            parent: service_civique_homepage
+        service_civique_organization_register:
+            title: "Création compte Organisme et connexion"
+            parent: service_civique_organization_homepage
+        service_civique_organization_mission_index:
+            title: "Mes missions"
+            parent: service_civique_organization_mission_index
+        service_civique_organization_missions_update:
+            title: "Modification de la mission"
+        service_civique_organization_missions_create:
+            title: "Créer une mission"
+        service_civique_organization_profile_edit:
+            title: "Mon profil"
+            parent: service_civique_organization_homepage
+        fos_user_profile_edit:
+            title: "Mon profil"
+            parent: service_civique_homepage
+        service_civique_application_list:
+            title: "Mes candidatures"
+        service_civique_application_show:
+            title: "Ma candidature à la mission %%title%%"
+        service_civique_mission_show:
+            title: service_civique.seo.mission.show.title
+            parent: service_civique_mission_list
+            metas:
+                name:
+                    description: service_civique.seo.mission.show.metas.description
+                    'twitter:card' : 'summary'
+                    'twitter:title' : service_civique.seo.mission.show.metas.twitter.title
+                    'twitter:description' : service_civique.seo.mission.show.metas.twitter.description
+                property:
+                    'og:type' : 'article'
+                    'og:title' : service_civique.seo.mission.show.metas.og.title
+                    'og:description' : service_civique.seo.mission.show.metas.og.description
+

@@ -1,0 +1,116 @@
+security:
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_WEBMASTER
+        ROLE_ORGANIZATION: ROLE_USER
+        ROLE_JEUNE: ROLE_USER
+        ROLE_WEBMASTER: ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_WEBMASTER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+        legacy_encoder:
+            algorithm: md5
+            iterations: 1
+            encode_as_base64: false
+
+    firewalls:
+        organismes:
+            context:     user
+            pattern:     /organismes/.*
+            form_login:
+                provider: fos_userbundle
+                login_path: /organismes/register
+                check_path: /organismes/login_check
+                failure_path: /organismes/register
+                default_target_path: /
+                use_forward:  false
+                use_referer: true
+            remember_me:
+                key: %secret%
+                name: APP_REMEMBER_ME
+                lifetime: 31536000
+                always_remember_me: true
+                remember_me_parameter: _remember_me
+            logout: true
+            anonymous: true
+        jeunes:
+            context:     user
+            pattern:     /jeunes/.*
+            form_login:
+                provider: fos_userbundle
+                login_path: /jeunes/register
+                check_path: /jeunes/login_check
+                failure_path: /jeunes/register
+                default_target_path: /
+                use_forward:  false
+                use_referer: true
+            remember_me:
+                key: %secret%
+                name: APP_REMEMBER_ME
+                lifetime: 31536000
+                always_remember_me: true
+                remember_me_parameter: _remember_me
+            logout: true
+            anonymous: true
+        main:
+            context:     user
+            pattern:     /.*
+            form_login:
+                provider: fos_userbundle
+                login_path: /login
+                check_path: /login_check
+                failure_path: /login
+                default_target_path: /
+                use_forward:  false
+                use_referer: true
+            remember_me:
+                key: %secret%
+                name: APP_REMEMBER_ME
+                lifetime: 31536000
+                always_remember_me: true
+                remember_me_parameter: _remember_me
+            logout: true
+            anonymous: true
+
+        administration:
+            switch_user: true
+            context:     user
+            pattern:     /administration/.*
+            form_login:
+                provider:     fos_userbundle
+                login_path:   /administration/login
+                check_path:   /administration/login-check
+                failure_path: /administration/login
+                default_target_path: /administration/dashboard
+                use_forward:  false
+                use_referer:  true
+            logout:
+                path:   /administration/logout
+                target: /administration/login
+            anonymous: true
+
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+            #anonymous: ~
+            #http_basic:
+            #    realm: "Secured Demo Area"
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/jeunes/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/organismes/mes-missions, role: ROLE_ORGANIZATION }
+        - { path: ^/organismes/profile, role: ROLE_ORGANIZATION }
+        - { path: ^/organismes/agrement, role: [ROLE_ORGANIZATION, ROLE_WEBMASTER] }
+        - { path: ^/administration, role: ROLE_WEBMASTER }
+        - { path: ^/jeunes, role: ROLE_JEUNE }
+        - { path: ^/delete-account, role: ROLE_USER }
+        - { path: ^/monitor/health, role: ROLE_WEBMASTER}
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

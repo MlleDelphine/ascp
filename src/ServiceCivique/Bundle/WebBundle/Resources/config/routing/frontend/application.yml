@@ -1,0 +1,107 @@
+service_civique_application_list:
+    pattern: /jeunes/mes-candidatures/{all}
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.application:indexAction
+        all: null
+        _sylius:
+            method: findFromNow
+            template: ServiceCiviqueWebBundle:Frontend/Application:list.html.twig
+            filterable: true
+            sortable: true
+            sorting:
+                id: desc
+            paginate: 20
+
+service_civique_application_create:
+  pattern: /missions/{mission_slug}/candidature
+  methods: [GET, POST]
+  defaults:
+    _controller: service_civique.controller.application:createAction
+    _sylius:
+      template: ServiceCiviqueWebBundle:Frontend/Application:create.html.twig
+      redirect:
+        route: service_civique_application_preview
+        parameters: { mission_slug: resource.mission.slug }
+
+service_civique_application_validation:
+  pattern: /missions/{mission_slug}/candidature/validation
+  methods: [GET, POST]
+  defaults:
+    _controller: service_civique.controller.application:validationAction
+    _sylius:
+      template: ServiceCiviqueWebBundle:Frontend/Application:create.html.twig
+      redirect:
+        route: service_civique_application_show
+        parameters: { mission_slug: resource.mission.slug }
+
+service_civique_application_preview:
+    pattern: /missions/{mission_slug}/candidature/preview
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.application:previewAction
+        _sylius:
+          template: ServiceCiviqueWebBundle:Frontend/Application:preview.html.twig
+
+service_civique_application_show:
+    pattern: /jeunes/mes-candidatures/missions/{mission_slug}
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.application:showAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Frontend/Application:show.html.twig
+
+service_civique_application_answer_create:
+  pattern: /organismes/mes-missions/{mission_slug}/candidatures/reponse/{status}
+  methods: [GET, POST]
+  requirements:
+        status:  positif|negatif
+  defaults:
+    _controller: service_civique.controller.application:createAnswerAction
+    _sylius:
+      template: ServiceCiviqueWebBundle:Frontend/Application:create_answer.html.twig
+      redirect:
+        route: service_civique_application_show
+        parameters: { mission_slug: resource.mission.slug, status: resource.status }
+
+service_civique_application_missions_applications:
+  pattern: /organismes/mes-missions/{id}/candidatures
+  methods: [GET]
+  defaults:
+    _controller: service_civique.controller.application:indexMissionAction
+    _sylius:
+        template: ServiceCiviqueWebBundle:Frontend/Application:mission_applications.html.twig
+        filterable: true
+        sortable: true
+        sorting:
+          id: desc
+        paginate: 20
+
+service_civique_application_missions_applications_export:
+  pattern: /organismes/mes-missions/{id}/candidatures/export
+  methods: [GET]
+  defaults:
+      _controller: service_civique.controller.application:exportAction
+
+service_civique_application_missions_application_show:
+  pattern: /organismes/mes-missions/{id}/candidatures/{application_id}
+  methods: [GET, POST]
+  defaults:
+    _controller: service_civique.controller.application:showMissionAction
+    _sylius:
+        template: ServiceCiviqueWebBundle:Frontend/Application:mission_application_show.html.twig
+
+service_civique_application_user_mission_select:
+  pattern: /organismes/mes-missions/{id}/choisir-un-jeune
+  methods: [GET, POST]
+  options:
+    expose: true
+  defaults:
+    _controller: service_civique.controller.application:chooseJeuneMissionAction
+    _sylius:
+        template: ServiceCiviqueWebBundle:Frontend/Application:choose-jeune.html.twig
+        filterable: true
+        sortable: true
+        sorting:
+          id: desc
+        paginate: 20

@@ -1,0 +1,29 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% from 'ServiceCiviqueWebBundle:Backend/Header:macros.html.twig' import table %}
+
+{% set resources     = headers %}
+{% set resource_type = 'header' %}
+{% set page_type     = 'list' %}
+
+{% block main_content_header %}
+<div class="row">
+    <div class="col col-md-6">
+        <div class="list-group">
+            {{ form_start(form) }}
+            {{ form_row(form.header_videobox_title) }}
+            {{ form_row(form.header_videobox_url) }}
+            {{ form_row(form.header_videobox_videolinkurl) }}
+            {{ form_row(form.header_videobox_videourl) }}
+            <div class="help-block">Exemple: https://www.youtube.com/embed/ID-DE_LA_VIDEO?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1&amp;playlist=ID-DE_LA_VIDEO</div>
+            {{ form_rest(form) }}
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block main_content_body %}
+    {{ table(resources) }}
+{% endblock %}

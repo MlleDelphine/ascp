@@ -1,0 +1,22 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Partner:macros.html.twig' import table %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'name' : 'service_civique.breadcrumb.partner.list'},
+]) }}
+{% endblock %}
+
+{% block main_content_header %}Les partenaires{% endblock %}
+
+{% block main_content_body %}
+    <p>{{ 'service_civique.partner.intro' | trans | raw }}</p>
+    <div class="approval-list">
+        {{ table(partners) }}
+    </div>
+{% endblock %}

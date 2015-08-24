@@ -1,0 +1,17 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Profile:
+    exclusion_policy: ALL
+    properties:
+        gender:
+            expose: true
+        birthDate:
+            expose: true
+        area:
+            expose: true
+        department:
+            expose: true
+        zipCode:
+            expose: true
+        city:
+            expose: true
+        country:
+            expose: true

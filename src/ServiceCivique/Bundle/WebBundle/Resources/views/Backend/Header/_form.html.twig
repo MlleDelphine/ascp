@@ -1,0 +1,27 @@
+{{ form_errors(form) }}
+<small><p>{{ 'service_civique.form.mandatory_fields' | trans }}</p></small>
+
+{{ form_start(form) }}
+{{ form_row(form.title) }}
+<div class="imageWrapper">
+    {% if oldImage is defined and oldImage != null %}
+        <img src="{{ oldImage | apply_filter('header_bg_mini') }}" />
+    {% endif %}
+    <p>La largeur minimale attendue est de 1190px.</p>
+    {{ form_row(form.image) }}
+</div>
+<fieldset>
+    <legend>Evenement</legend>
+    <div class="imageWrapper">
+        {% if oldPinImage is defined and oldPinImage != null %}
+            <img src="{{ oldPinImage | apply_filter('header_pin_mini') }}" />
+            <button type="button" class="close" id="delete-pin" data-id="{{form.vars.value.id}}"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        {% endif %}
+        {{ form_row(form.pinImage) }}
+    </div>
+    {{ form_row(form.pinUrl) }}
+    {{ form_row(form.startDate) }}
+    {{ form_row(form.endDate) }}
+</fieldset>
+{{ form_rest(form) }}
+{{ form_end(form) }}

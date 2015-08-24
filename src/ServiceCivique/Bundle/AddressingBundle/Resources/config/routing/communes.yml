@@ -1,0 +1,8 @@
+service_civique_commune_search:
+    pattern: /search
+    methods: [GET]
+    requirements:
+        zipcode: \d+
+    defaults:
+        _controller: service_civique.controller.commune:searchAction
+        _format: json

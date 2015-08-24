@@ -1,0 +1,37 @@
+{% block subject %}
+{% autoescape false %}
+{{ 'service_civique.contact.subject' | trans({}, 'notifications') }}
+{% endautoescape %}
+{% endblock %}
+{% block body_text %}
+{% autoescape false %}
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}
+{% autoescape false %}
+{{ 'service_civique.contact.message_html' | trans({
+        '%content%': content
+}, 'notifications') }}
+
+<br/><br/>-----------------------<br/>
+
+{{ 'service_civique.contact.global_metadata' | trans({
+        '%user_agent%': metadata['global']['user_agent'],
+        '%real_email%': metadata['user']['real_email'],
+}, 'notifications') | raw }}<br/>
+
+{% if metadata['user']['type'] == 'organization' %}
+    {{ 'service_civique.contact.user_metadata.organization' | trans({
+            '%name%':      metadata['user']['organization']['full_name'],
+            '%full_name%': metadata['user']['full_name'],
+            '%email%':     metadata['user']['email'],
+    }, 'notifications') | raw }}
+{% elseif metadata['user']['type'] != 'anonymous' %}
+    {{ 'service_civique.contact.user_metadata.jeune' | trans({
+            '%type%':      'Jeune',
+            '%full_name%': metadata['user']['full_name'],
+            '%email%':     metadata['user']['email'],
+    }, 'notifications') | raw }}
+{% endif %}
+{% endautoescape %}
+{% endblock %}

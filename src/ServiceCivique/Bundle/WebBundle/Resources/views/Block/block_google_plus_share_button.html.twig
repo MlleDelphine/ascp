@@ -1,0 +1,11 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+{% spaceless %}
+<div class="g-plusone"
+    {% if settings.size %}data-size="{{ settings.size }}"{% endif %}
+    {% if settings.annotation %}data-annotation="{{ settings.annotation }}"{% endif %}
+    {% if settings.width %}data-width="{{ settings.width }}">{% endif %}>
+</div>
+{% endspaceless %}
+{% endblock %}

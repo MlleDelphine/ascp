@@ -1,0 +1,67 @@
+Lns\Component\Menu\Model\MenuItem:
+    type: mappedSuperclass
+    table: lns_menu_item
+    orderBy:
+        left: ASC
+    gedmo:
+        tree:
+            type: nested
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        menu:
+            targetEntity: Lns\Component\Menu\Model\MenuInterface
+            inversedBy: items
+            joinColumn:
+                onDelete: 'CASCADE'
+        parent:
+            targetEntity: Lns\Component\Menu\Model\MenuItemInterface
+            inversedBy: children
+            nullable: true
+            joinColumn:
+                onDelete: 'CASCADE'
+            gedmo:
+                - treeParent
+    oneToMany:
+        children:
+            targetEntity: Lns\Component\Menu\Model\MenuItemInterface
+            fetch: EAGER
+            mappedBy: parent
+            orderBy:
+                left: ASC
+    fields:
+        name:
+            type: string
+            length: 255
+        left:
+            type: integer
+            column: tree_left
+            gedmo:
+                - treeLeft
+        right:
+            type: integer
+            column: tree_right
+            gedmo:
+                - treeRight
+        level:
+            type: integer
+            column: tree_level
+            gedmo:
+                - treeLevel
+        weight:
+            type: integer
+        url:
+            type: string
+            nullable: true
+            length: 255
+        options:
+            type: array
+            nullable: true
+    indexes:
+        url_idx:
+            columns: [ url ]
+    lifecycleCallbacks: {  }

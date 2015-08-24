@@ -1,0 +1,37 @@
+service_civique_backend_actu_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.actu:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Actu:index.html.twig
+            sortable: true
+            paginate: 20
+            sorting:
+                id: desc
+
+service_civique_backend_actu_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.actu:createAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Actu:create.html.twig
+            redirect: service_civique_backend_actu_index
+
+service_civique_backend_actu_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.actu:updateAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Actu:update.html.twig
+            redirect: service_civique_backend_actu_index
+
+service_civique_backend_actu_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.actu:deleteAction
+        _sylius:
+            redirect: service_civique_backend_actu_index

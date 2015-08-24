@@ -1,0 +1,3 @@
+service_civique_importer_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ServiceCiviqueImporterBundle:Default:index }

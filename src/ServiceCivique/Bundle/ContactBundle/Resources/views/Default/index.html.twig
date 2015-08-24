@@ -1,0 +1,71 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'Home'},
+    {'name' : 'Contact'},
+]) }}
+{% endblock %}
+
+{% block main_content_header %}Contactez-nous{% endblock %}
+
+{% block main_content_body %}
+    <div class="contact-line">
+        <h3>{{ 'service_civique.statictexts.contact.title'|trans({}, 'statictexts') }}</h3>
+        <div>
+            {{ 'service_civique.statictexts.contact.intro'|trans({}, 'statictexts') | raw }}
+        </div>
+        <div class="orientaton-box">
+            <img src="{{ asset("images/contact-num.jpg") }}" data-at2x="{{ asset("images/contact-num@2x.jpg") }}" alt="Logo orientation pour tous" >
+
+            <span class="orientaton-info">
+                <strong class="sr-only">Allo service Public au 3939</strong>
+                <small>(0,15 €/min en moyenne)</small>
+            </span>
+
+        </div>
+    </div>
+    <div class="contact-line">
+
+        <h3>Consultez la foire aux questions</h3>
+        <div>
+
+            {{ form_start(form) }}
+
+            {{ form_row(form.user_type) }}
+
+            <div class="faq-select-group">
+                {{ form_row(form.faq_level_1) }}
+                {{ form_row(form.faq_level_2) }}
+                {{ form_row(form.faq_level_3) }}
+            </div>
+            <div class="faq-content">
+                {# <h3></h3> #}
+                <div></div>
+            </div>
+            {# <div class="faq-contact-form">
+                <div id="contact-extra-box">
+                    {{ 'service_civique.statictexts.contact.content'|trans({}, 'statictexts') | raw }}
+                </div>
+                {{ form_row(form.user_email) }}
+                {{ form_row(form.content) }}
+                {{ form_rest(form) }}
+            </div> #}
+            {# {{ form_end(form) }} #}
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{# {% block sidebar %}
+    <div class="white-container">
+        <strong>Info persos</strong>
+    </div>
+{% endblock %} #}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/contact-faq.js') }}"></script>
+{% endblock %}

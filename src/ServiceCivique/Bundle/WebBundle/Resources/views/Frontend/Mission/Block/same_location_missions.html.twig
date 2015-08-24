@@ -1,0 +1,18 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+
+    {% if missions | length > 0 %}
+        <div class="same-location-missions-box">
+            <h2>{{ settings.title | trans }}</h2>
+            <div class="mission-grid grid clearfix row">
+                {% for mission in missions %}
+                    <div class="col col-md-6 col-sm-6 col-xs-12">
+                        {% include 'ServiceCiviqueWebBundle:Frontend/Mission:_singleBox.html.twig' %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

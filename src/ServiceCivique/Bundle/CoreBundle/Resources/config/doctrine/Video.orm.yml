@@ -1,0 +1,33 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Video:
+    type: entity
+    table: video
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        url:
+            type: string
+            length: 255
+        description:
+            type: text
+        transcription:
+            type: text
+            nullable: true
+        published:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        slug:
+            type: string
+            length: 255
+            gedmo:
+                slug:
+                    fields: ['title']
+    lifecycleCallbacks: {  }

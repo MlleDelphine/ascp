@@ -1,0 +1,13 @@
+service_civique:
+    seo:
+        mission:
+            show:
+                title: "Mission : %title%"
+                metas:
+                    description: "%description%"
+                    twitter:
+                        title: "Découvrez la mission de Service Civique %title%"
+                        description: "%description%"
+                    og:
+                        title: "Découvrez la mission de Service Civique %title%"
+                        description: "%description%"

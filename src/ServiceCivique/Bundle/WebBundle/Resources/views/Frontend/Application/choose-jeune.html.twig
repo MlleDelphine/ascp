@@ -1,0 +1,37 @@
+{% extends "ServiceCiviqueWebBundle:Frontend:layout_dashboard.html.twig" %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Application:macros.html.twig' import missionApplicationsChoixJeune %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'route': 'service_civique_organization_homepage', 'name' : 'service_civique.breadcrumb.organization.index'},
+    {'route': 'service_civique_organization_mission_index', 'name' : 'service_civique.breadcrumb.mission.index'},
+    {'name' : 'Choix du volontaire de la mission : ' ~ mission.title }
+]) }}
+{% endblock %}
+
+{% block main_content_header %}{{ 'service_civique.statictexts.applications.jeunes.title'|trans({}, 'statictexts') }}{% endblock %}
+
+{% block main_content_header_content %}
+   <p>{{ 'service_civique.statictexts.applications.jeunes.intro'|trans({}, 'statictexts') | raw }}</p>
+{% endblock %}
+
+{% block main_content_body %}
+    <div class="nb-applications">
+        {{ 'service_civique.statictexts.applications.dashboard.nb_results' | transchoice(applications.nbResults, {}, 'statictexts' ) }} pour la mission <a href="{{ path('service_civique_mission_show', {'slug': mission.slug}) }}">{{ mission.title }}</a>
+    </div>
+    {{ pagination(applications) }}
+    {{ missionApplicationsChoixJeune(applications) }}
+    {{ pagination(applications) }}
+    <div>
+        <p>Sélectionnez les candidats que vous avez choisi comme volontaire. Rendez-vous sur la page "<a href='{{base_url}}/page/les-demarches-elisa'>les démarches Elisa</a>" pour contractualiser avec le/la volontaire choisi(e).</p>
+        <a class="btn btn-sc-red disabled" id="selected-jeunes-target" data-href="{{ path('service_civique_application_user_mission_select', {'id': mission.id}) }}" href="{{ path('service_civique_application_user_mission_select', {'id': mission.id}) }}">Indiquer le/la volontaire choisi(e)</a>
+    </div>
+    <div>
+        {{ form(form) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Actu:macros.html.twig' import table %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% set page_type_class = 'page-static' %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'name' : actu.title}
+]) }}
+{% endblock %}
+
+{% block main_content_header %}{{ actu.title }}{% endblock %}
+
+{% block main_content_body %}
+    <p>Publié le {{ actu.published | date('d/m/Y') }}</p>
+    <div>{{ actu.text | raw }}</div>
+{% endblock %}

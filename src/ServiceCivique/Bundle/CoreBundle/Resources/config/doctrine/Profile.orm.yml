@@ -1,0 +1,111 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Profile:
+    type: entity
+    table: profile
+    repositoryClass: ServiceCivique\Bundle\CoreBundle\Repository\ProfileRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    oneToOne:
+        user:
+            targetEntity: ServiceCivique\Bundle\UserBundle\Entity\User
+            inversedBy: profile
+            joinColumn:
+                onDelete: 'CASCADE'
+    properties:
+        file:
+            - File:
+                maxSize: 10M
+                mimeTypes: [application/pdf, application/x-pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/rtf]
+                mimeTypesMessage: "Choisissez un fichier PDF, rtf, doc ou docx valide"
+
+    fields:
+        gender:
+            type: integer
+            length: 1
+            nullable: true
+        educationLevel:
+            column: education_level
+            type: integer
+            length: 1
+            nullable: true
+        birthDate:
+            column: birth_date
+            type: date
+            nullable: true
+        motivation:
+            type: text
+            nullable: true
+        isPublic:
+            column: is_public
+            type: boolean
+        receiveInformations:
+            column: receive_informations
+            type: boolean
+        area:
+            type: string
+            length: 3
+            nullable: true
+        department:
+            type: string
+            length: 3
+            nullable: true
+        AAH:
+            column: aah
+            type: boolean
+            options:
+                default: 0
+        RQTH:
+            column: rqth
+            type: boolean
+            options:
+                default: 0
+        zipCode:
+            column: zip_code
+            type: string
+            length: 10
+            nullable: true
+        city:
+            type: string
+            length: 255
+            nullable: true
+        country:
+            type: string
+            length: 2
+            nullable: true
+        address:
+            type: string
+            length: 255
+            nullable: true
+        phoneNumber:
+            column: phone_number
+            type: string
+            length: 22
+            nullable: true
+        hasProfileVisited:
+            column: has_profile_visited
+            type: boolean
+            nullable: true
+        updated:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        cv:
+            type: string
+            length: 255
+            nullable: true
+        path:
+            type: string
+            length: 255
+            nullable: true
+    lifecycleCallbacks:
+        prePersist:  [ preUpload ]
+        preUpdate:   [ preUpload ]
+        postPersist: [ upload ]
+        postUpdate:  [ upload ]
+        preRemove:   [ storeFilenameForRemove ]
+        postRemove:  [ removeUpload ]
+        postLoad:    [ postLoad ]

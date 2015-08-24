@@ -1,0 +1,65 @@
+
+
+#btn-mobile span, #btn-mobile span:before, #btn-mobile span:after {
+    cursor: pointer;
+    border-radius: 3px;
+    height: 5px;
+    width: 35px;
+    background: $grey88;
+    position: absolute;
+    display: block;
+    content: '';
+}
+#btn-mobile span:before {
+    top: -10px;
+}
+#btn-mobile span:after {
+    top: 10px;
+}
+
+#btn-mobile {
+    padding-left: 20px;
+    padding-right: 50px;
+    margin: 5px 0;
+    float: none;
+    text-align: left;
+    @include font-size(18);
+    font-family: $fira_bold;
+    font-weight: 700;
+    @include breakpoint(phablette) {
+       display: block;
+    }
+    span {
+        left: auto;
+        right: 5px;
+        top: 18px;
+    }
+    &:hover {
+       
+        span, 
+        span:before,
+        span:after {
+            background: $grey88;
+        }
+    }
+}
+
+
+
+#btn-mobile span, #btn-mobile span:before, #btn-mobile span:after {
+    @include transition( all 0.3s linear 0s);
+}
+#btn-mobile.active span {
+    background-color: transparent;
+}
+#btn-mobile.active span:before, #btn-mobile.active span:after {
+    top: 0;
+}
+#btn-mobile.active span:before {
+    @include rotate(45deg);
+    background: $black33;
+}
+#btn-mobile.active span:after {
+    @include rotate(-45deg);
+    background: $black33;
+}

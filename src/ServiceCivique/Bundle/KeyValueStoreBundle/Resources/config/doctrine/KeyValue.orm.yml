@@ -1,0 +1,22 @@
+ServiceCivique\Bundle\KeyValueStoreBundle\Entity\KeyValue:
+    type: entity
+    table: key_value
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dataKey:
+            type: string
+            length: 255
+            column: data_key
+        dataValue:
+            type: blob
+            column: data_value
+        created:
+            type: datetime
+        lifetime:
+            type: integer
+    lifecycleCallbacks: {  }

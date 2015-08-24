@@ -1,0 +1,15 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block main_content %}
+    <div class="white-container border-effect3 right-main-content mission-show mission">
+        <article{% if mission_class is defined %} class="{{ mission_class }}"{% endif %}>
+            <header>
+                {% block main_content_header_pictobox %}{% endblock %}
+                <h1>{% block main_content_header %}{% endblock %}</h1>
+            </header>
+            {% block main_content_body %}{% endblock %}
+        </article>
+    </div>
+{% endblock %}

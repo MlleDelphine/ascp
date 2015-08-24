@@ -1,0 +1,24 @@
+{% extends "ServiceCiviqueWebBundle::layout.html.twig" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col col-md-4">
+            <aside class="left-content">
+                {% block sidebar %}
+                    {% include 'ServiceCiviqueWebBundle:Frontend/Default:_sidebar.html.twig' %}
+                {% endblock %}
+            </aside>
+        </div>
+        <div class="col col-md-8">
+            {% block main_content %}
+                <div class="white-container border-effect3 right-main-content{% if page_type_class is defined %} {{ page_type_class }}{% endif %}">
+                    <h1>{% block main_content_header %}{% endblock %}</h1>
+                    {% block main_content_header_info %}{% endblock %}
+                    {% block main_content_body %}{% endblock %}
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

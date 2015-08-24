@@ -1,0 +1,5 @@
+Sylius\Component\Taxonomy\Model\Taxon:
+    exclusion_policy: ALL
+    properties:
+        name:
+            expose: true

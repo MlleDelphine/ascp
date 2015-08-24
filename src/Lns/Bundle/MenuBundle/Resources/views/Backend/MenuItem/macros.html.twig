@@ -1,0 +1,55 @@
+{% macro table(menu, menu_items) %}
+{% import _self as macros %}
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+
+{% if menu_items | length != 0 %}
+<table class="table table-striped tabledrag">
+    <thead>
+        <tr>
+            <th>{{ 'lns.menu_item.table.menu_item'|trans }}</th>
+            <th class="hidden">{{ 'lns.menu_item.table.weight'|trans }}</th>
+            <th>{{ 'lns.menu_item.table.actions'|trans }}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for menu_item in menu_items %}
+        {{ macros.row(menu, menu_item) }}
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    {{ 'lns.menu_item.no_results' | trans }}
+{% endif %}
+{% endmacro %}
+
+{% macro row(menu, menu_item) %}
+{% import _self as macros %}
+{% set menu_item_id = menu_item.id %}
+{% set parent_menu_item_id = menu_item.parent ? menu_item.parent.id : '' %}
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+<tr class="menu-enabled draggable">
+    <td>{% for i in range(0, menu_item.level) if i > 1 %}<div class="indentation">&nbsp;</div>{% endfor %}<a href="#" title="title">{{ menu_item.name }}</a></td>
+    <td class="hidden">
+        <div class="form-item form-type-select form-no-label">
+            <select class="menu-weight form-select" id="edit-links-menu-plugin-{{ menu_item_id }}-weight" name="links[menu_plugin_id:{{ menu_item_id }}][weight]">
+                {{ macros.options(-256, 256, menu_item.left) }}
+            </select>
+        </div>
+        <input class="menu-parent" type="hidden" name="links[menu_plugin_id:{{ menu_item_id }}][parent]" value="{{ parent_menu_item_id }}">
+        <input class="menu-id" type="hidden" name="links[menu_plugin_id:{{ menu_item_id }}][id]" value="{{ menu_item_id }}">
+    </td>
+    <td>
+        {{ buttons.edit(path('lns_backend_menu_item_update', {'menuId' : menu.id, 'id': menu_item.id})) }}
+        <a href="{{ path('lns_backend_menu_item_delete_alt', {'menuId' : menu.id, 'id': menu_item.id}) }}" class="btn btn-danger btn-confirm">
+            <i class="glyphicon glyphicon-trash"></i> <span>{{ 'sylius.delete'|trans }}</span>
+        </a>
+    </td>
+</tr>
+{% endmacro %}
+
+{% macro options(start, end, selected) %}
+{% for value in range(start, end) %}
+<option value="{{ value }}"{% if value == selected %} selected="selected"{% endif %} >{{ value }}</option>
+{% endfor %}
+{% endmacro %}

@@ -1,0 +1,195 @@
+fos_elastica:
+    clients:
+        default: { host: %es_host%, port: %es_port%, logger: false}
+        legacy:
+            host: %es_legacy_host%
+            port: %es_legacy_port%
+            headers: { Authorization: %es_legacy_auth% }
+            logger: false
+
+    serializer:
+        callback_class: FOS\ElasticaBundle\Serializer\Callback
+        serializer: serializer
+    indexes:
+        service_civique:
+            index_name: %elasticsearch_index_name%
+            client: default
+            settings:
+                analysis:
+                    analyzer:
+                        custom_french_analyzer_with_ngram:
+                            type: custom
+                            tokenizer: standard
+                            filter:
+                                - french_elision
+                                - lowercase
+                                - french_stop
+                                - french_stemmer
+                                - custom_ngram
+                    filter:
+                        custom_ngram:
+                            type: "nGram"
+                            min_gram: 3
+                            max_gram: 5
+                        french_elision:
+                            type:     elision
+                            articles: [l, m, t, qu, n, s, j, d, c, jusqu, quoiqu, lorsqu, puisqu]
+                        french_stop:
+                            type:       stop
+                            stopwords:  _french_
+                        french_stemmer:
+                            type:       stemmer
+                            language:   light_french
+            types:
+                user:
+                    serializer:
+                        groups: [elastica, Default]
+                    mappings:
+                        type_name:
+                            type: string
+                            index: not_analyzed
+                        profile.department_name:
+                            type: string
+                            index: not_analyzed
+                        profile.location:
+                            type: geo_point
+                            lat_lon: true
+                        profile.gender_name:
+                            type: string
+                            index: not_analyzed
+                    persistence:
+                        driver: orm # orm, mongodb, propel are available
+                        model:  ServiceCivique\Bundle\UserBundle\Entity\User
+                        provider:
+                            batch_size: 2000
+                            query_builder_method: createIndexerQueryBuilder
+                        elastica_to_model_transformer:
+                            ignore_missing: true
+                organization:
+                    serializer:
+                        groups: [elastica, Default]
+                    mappings:
+                        approval_number:
+                            type: string
+                            index: not_analyzed
+                        name:
+                            type: string
+                            analyzer: french
+                        type_name:
+                            type: string
+                            index: not_analyzed
+                        location:
+                            type: geo_point
+                            lat_lon: true
+                    persistence:
+                        driver: orm # orm, mongodb, propel are available
+                        model:  ServiceCivique\Bundle\CoreBundle\Entity\Organization
+                        repository: ServiceCivique\Bundle\CoreBundle\Repository\OrganizationRepository
+                        provider:
+                            batch_size: 2000
+                        finder: ~
+                        listener: ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true
+                approval:
+                    serializer:
+                        groups: [elastica, Default]
+                    mappings:
+                        approval_number:
+                            type: string
+                            index: not_analyzed
+                            # analyzer: keyword
+                            # stopwords: '-'
+                        organization_name:
+                            type: string
+                            analyzer: french
+                    persistence:
+                        driver: orm # orm, mongodb, propel are available
+                        model:  ServiceCivique\Bundle\CoreBundle\Entity\Approval
+                        repository: ServiceCivique\Bundle\CoreBundle\SearchRepository\ApprovalRepository
+                        provider:
+                            batch_size: 2000
+                        finder: ~
+                        listener: ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true
+                application:
+                    serializer:
+                        groups: [elastica, Default]
+                    mappings:
+                        status_name:
+                            type: string
+                            index: not_analyzed
+                        mission_status_name:
+                            type: string
+                            index: not_analyzed
+                        location:
+                            type: geo_point
+                            lat_lon: true
+                    persistence:
+                        driver: orm # orm, mongodb, propel are available
+                        model:  ServiceCivique\Bundle\CoreBundle\Entity\Application
+                        repository: ServiceCivique\Bundle\CoreBundle\Repository\ApprovalRepository
+                        provider:
+                            query_builder_method: createIndexerQueryBuilder
+                            batch_size: 2000
+                        finder: ~
+                        listener: ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true
+                mission:
+                    index_analyzer:  french
+                    search_analyzer: french
+                    serializer:
+                        groups: [elastica, Default]
+                    mappings:
+                        title:
+                            type: string
+                            analyzer: french
+                        organization_name:
+                            type: string
+                            analyzer: french
+                        description:
+                            type: string
+                            analyzer: french
+                        city:
+                            type: string
+                            index: not_analyzed
+                        country:
+                            type: string
+                            index: not_analyzed
+                        taxon_name:
+                            type: string
+                            index: not_analyzed
+                        department_name:
+                            type: string
+                            index: not_analyzed
+                        status_name:
+                            type: string
+                            index: not_analyzed
+                        location:
+                            type: geo_point
+                            lat_lon: true
+                        tag:
+                            type: object
+                            properties:
+                                id: ~
+                                slug: { type: string, index: not_analyzed }
+                        taxon:
+                            type: object
+                            properties:
+                                name:
+                                    boost: 5
+                    persistence:
+                        driver: orm # orm, mongodb, propel are available
+                        model:  ServiceCivique\Bundle\CoreBundle\Entity\Mission
+                        repository: ServiceCivique\Bundle\CoreBundle\SearchRepository\MissionRepository
+                        provider:
+                            query_builder_method: createIsAvailableQueryBuilder
+                            batch_size: 2000
+                        finder: ~
+                        listener:
+                            is_indexable_callback: "isNotArchived"
+                        elastica_to_model_transformer:
+                            ignore_missing: true
+

@@ -1,0 +1,13 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% set resource_type = 'static_content' %}
+{% set page_type     = 'show' %}
+
+{% block main_content_body %}
+    <dl>
+        <dt>Titre:</dt>
+        <dd>{{ static_content.title }}</dd>
+        <dt>Contenu:</dt>
+        <dd>{{ static_content.content | raw }}</dd>
+    </dl>
+{% endblock %}

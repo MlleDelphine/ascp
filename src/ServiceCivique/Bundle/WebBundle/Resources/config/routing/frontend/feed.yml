@@ -1,0 +1,30 @@
+service_civique_media_rss:
+    pattern: /medias
+    methods: [GET]
+    defaults:
+        _controller: ServiceCiviqueCoreBundle:Feed:media
+service_civique_actualite_rss:
+    pattern: /actualites
+    methods: [GET]
+    defaults:
+        _controller: ServiceCiviqueCoreBundle:Feed:actualite
+service_civique_video_rss:
+    pattern: /videos
+    methods: [GET]
+    defaults:
+        _controller: ServiceCiviqueCoreBundle:Feed:video
+service_civique_presse_rss:
+    pattern: /presse
+    methods: [GET]
+    defaults:
+        _controller: ServiceCiviqueCoreBundle:Feed:presse
+service_civique_avantage_rss:
+    pattern: /avantages
+    methods: [GET]
+    defaults:
+        _controller: ServiceCiviqueCoreBundle:Feed:avantage
+service_civique_partenaire_rss:
+    pattern: /partenaires
+    methods: [GET]
+    defaults:
+        _controller: ServiceCiviqueCoreBundle:Feed:partenaire

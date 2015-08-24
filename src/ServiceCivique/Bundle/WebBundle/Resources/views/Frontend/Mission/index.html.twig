@@ -1,0 +1,42 @@
+{% extends "ServiceCiviqueWebBundle::layout.html.twig" %}
+
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' import grid %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Form:macros.html.twig' import sc_options_render %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'name' : 'Missions'}
+]) }}
+{% endblock %}
+
+{% block content %}
+
+{{ sonata_block_render({ 'type': 'service_civique.block.mission_search' }, {
+    'vacancies' : vacancies,
+    'nbResults' : missions.nbResults,
+    'search_action' : path('service_civique_mission_search_submit', app.request.query.all ),
+    'search_options_action' : path('service_civique_mission_search_submit', app.request.query.all ),
+    'criteria' : criteria
+}) }}
+
+<div class="container">
+    {{ grid(missions) }}
+    {{ pagination(missions) }}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+var axel = Math.random() + "";
+var a = axel * 10000000000000;
+document.write('<iframe src="http://3452220.fls.doubleclick.net/activityi;src=3452220;type=servi660;cat=2014-0;ord=1;num=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+</script>
+<noscript>
+<iframe src="http://3452220.fls.doubleclick.net/activityi;src=3452220;type=servi660;cat=2014-0;ord=1;num=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+</noscript>
+<script src="{{ asset('assets/js/mission_search.js') }}"></script>
+{% endblock %}

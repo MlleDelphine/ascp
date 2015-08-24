@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {% block title %}
+                {{ 'service_civique.meta.backend_title' | trans }}
+            {% endblock %}
+        </title>
+        <meta charset="UTF-8">
+
+        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.css" type="text/css" />
+            <link rel="stylesheet" href="{{ asset('assets/css/icomoon/style.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/backend.css') }}" type="text/css" />
+        {% endblock %}
+        <script src="{{ asset('assets/js/vendor/modernizr.js') }}"></script>
+        <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+        <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        {% include 'ServiceCiviqueWebBundle:Backend:_navbar.html.twig' %}
+        {% include 'ServiceCiviqueWebBundle::confirm-modal.html.twig' %}
+        <div class="row main-container">
+            <div class="col-md-1 col-lg-2 hidden-sm hidden-xs">
+                {% block sidebar %}
+                    <div id="sidebar">
+                        <div class="sidebar-nav">
+                            {% include 'ServiceCiviqueWebBundle:Backend:menu.html.twig' %}
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+            <div class="col-md-11 col-lg-10">
+                <div id="topbar">
+                    {% block topbar %}{% endblock %}
+                </div>
+                <div id="content">
+                    {% include 'ServiceCiviqueWebBundle:Backend:_flashes.html.twig' %}
+
+                    {% block content %}{% endblock %}
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+        {% block javascripts %}
+            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            {% if app.debug %}
+                <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+            {% else %}
+                <script src="/js/fos_js_routes.js"></script>
+            {% endif %}
+            <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+            <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+            <script src="{{ asset("assets/js/backend/main.js") }}"></script>
+        {% endblock %}
+    </body>
+</html>

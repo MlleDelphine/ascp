@@ -1,0 +1,41 @@
+service_civique_backend_header_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.header:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Header:index.html.twig
+
+service_civique_backend_header_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.header:createAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Header:create.html.twig
+            redirect: service_civique_backend_header_index
+
+service_civique_backend_header_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.header:updateAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Header:update.html.twig
+            redirect: service_civique_backend_header_index
+
+service_civique_backend_header_delete_pin:
+    pattern: /delete-pin/{id}
+    methods: [POST]
+    defaults:
+        _controller: service_civique.controller.header:deletePinAction
+    options:
+        expose: true
+
+service_civique_backend_header_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.header:deleteAction
+        _sylius:
+            redirect: service_civique_backend_header_index

@@ -1,0 +1,48 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Advantage:
+    type: entity
+    table: advantage
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    properties:
+        file:
+            - File:
+                maxSize: 10M
+    fields:
+        title:
+            type: string
+            length: 255
+        type:
+            type: integer
+        text:
+            type: text
+        path:
+            type: string
+            length: 255
+            nullable: true
+        slug:
+            type: string
+            length: 255
+            gedmo:
+                slug:
+                    fields: ['title']
+        subtitle:
+            type: string
+            length: 255
+        description:
+            type: string
+            length: 255
+        published:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+    lifecycleCallbacks:
+        prePersist:  [ preUpload ]
+        preUpdate:   [ preUpload ]
+        postPersist: [ upload ]
+        postUpdate:  [ upload ]
+        postRemove:  [ removeUpload ]

@@ -1,0 +1,51 @@
+    
+
+
+.border-effect3:before {
+    display: none;
+}
+
+.searchFormBox .form-control {
+    line-height: 30px;
+}
+
+.searchFormBox .form-group-area label {
+    margin-bottom: 8px;
+}
+
+.searchFormBox .form-group-start_date label,
+.searchFormBox #lieu span.fieldset-legend {
+    font-size: 25px;
+}
+
+.searchFormBox .form-group-start_date label,
+.ie-font {   
+    /*font-family: Arial!important;*/
+}
+
+.mission-grid .picto-box i,
+.mission-show .picto-box i {
+    font-size: 30px;
+}
+
+.howtoBlock-list li .howto_content {
+    font-size: 18px;
+}
+
+#lieu .radio-inline {
+    margin: 0;
+    width: 100px;
+}
+
+#lieu .radio-inline:first-child {
+	width: 106px;
+}
+
+.logo-box {
+    width: 300px;
+}
+
+input[type="password"] {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+

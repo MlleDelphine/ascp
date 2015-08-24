@@ -1,0 +1,42 @@
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Des missions de Service Civique pour vous</title>
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Titillium+Web:400,300,700,400italic">
+    <link rel="stylesheet" href="{{ asset('assets/css/widget.css') }}">
+    {% include 'ServiceCiviqueWebBundle:Block:_google_analytics.html.twig' %}
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header-container">
+            <a class="logo-box" href="{{ path('service_civique_homepage') }}" title="Logo" target="_blank">
+                <img src="{{ asset("images/logo-widget.jpg") }}" data-at2x="{{ asset("images/logo-widget@2x.jpg") }}" alt="Service Civique, des valueurs, un engagement" width="200" height="67" />
+            </a>
+            <h1>Des missions de Service Civique pour vous</h1>
+        </div>
+        <div class="mission">
+            {% for mission in missions %}
+                <div class="mission__item" >
+                    <h2><a href="{{ url('service_civique_mission_show', {'slug': mission.slug}) }}" title="{{ mission.title }}" target="_blank">{{ mission.title | truncate(65)}}</a></h2>
+                    <ul>
+                        <li><strong>Où ?</strong> {{ macros.location(mission) }}</li>
+                        <li><strong>Quand ?</strong> {{ mission.startDate | date('d/m/Y') }}</li>
+                        <li><strong>Combien de temps ?</strong> {{ mission.duration }} mois</li>
+                    </ul>
+                </div>
+            {% endfor %}
+            <div class="btn-box">
+                <a class="btn-widget" href="{{ url('service_civique_mission_list', {'criteria[organization]': organization.name}) }}" title="Chercher une mission" target="_blank">Plus de missions</a>
+            </div>
+        </div>
+        {% if banner %}
+            <div class="ad-box">
+                <a href="{{ banner.destination }}" title="Service Civique" target="_blank">
+                    <img src="{{ asset('uploads/banniere.gif') }}" alt="Bannière Service Civique">
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

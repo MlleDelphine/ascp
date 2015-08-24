@@ -1,0 +1,11 @@
+<div class="newsBlock newsBox">
+    <h2>L'ACTU DU JOUR</h2>
+    <article>
+        <h1><a href="{{ path('service_civique_partner_show', {'slug': partner.slug}) }}">{{ partner.title | trans }}</a></h1>
+        <p class="published">Publié le {{ partner.published | date('d/m/Y') }}</p>
+        <p>{{ partner.text | striptags | truncate(200) | raw }}</p>
+    </article>
+    <div class="block-footer">
+        <a title="Voir toutes les partners" class="link-action" href="{{ path('service_civique_partner_list') }}">Voir toutes les partners</a>
+    </div>
+</div>

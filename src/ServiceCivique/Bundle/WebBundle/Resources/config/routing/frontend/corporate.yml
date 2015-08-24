@@ -1,0 +1,19 @@
+service_civique_corporate_homepage:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: 'ServiceCiviqueWebBundle:Frontend/Homepage:corporate'
+
+service_civique_corporate_approval_list:
+    pattern: /agence-service-civique/agrements-publies
+    methods: [GET]
+    defaults:
+        _controller: 'service_civique.controller.approval:listAction'
+        _sylius:
+            sortable: true
+
+service_civique_corporate_approval_search:
+    pattern: /agence-service-civique/agrements-publies/search/submit
+    methods: [POST]
+    defaults:
+        _controller: 'service_civique.controller.approval:searchSubmitAction'

@@ -1,0 +1,13 @@
+service_civique_contact:
+    pattern: /contact
+    methods: [GET, POST]
+    defaults:
+        _controller: 'ServiceCiviqueContactBundle:Default:index'
+
+service_civique_faq_json:
+    pattern: /faq.json
+    methods: [GET]
+    options:
+        expose: true
+    defaults:
+        _controller: 'ServiceCiviqueContactBundle:Default:jsonFaq'

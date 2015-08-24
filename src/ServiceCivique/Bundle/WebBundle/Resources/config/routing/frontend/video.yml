@@ -1,0 +1,16 @@
+service_civique_video_show:
+    pattern: /{slug}
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.video:showAction
+        _sylius:
+            criteria:
+                slug: $slug
+
+service_civique_video_list:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.video:showAction
+        _sylius:
+            method: findLast

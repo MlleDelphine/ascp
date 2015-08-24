@@ -1,0 +1,47 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            fr
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    base_hostname:     new.service-civique.gouv.dev.scoua.de
+    base_url:          'http://%base_hostname%'
+
+    elasticsearch_index_name: service_civique
+
+    router.request_context.host: new.service-civique.gouv.dev.scoua.de
+    router.request_context.scheme: http
+
+    mandrill_api_key: xxxxxxxx
+    mandrill_default_sender: information@service-civique.gouv.fr
+    mandrill_default_sender_name: Service Civique
+
+    mailchimp_api_key: xxxxxxxx
+    mailchimp_opts: { CURLOPT_FOLLOWLOCATION: true }
+    mailchimp_newsletter_list_id: xxx
+
+    es_host: localhost
+    es_port: 9200
+
+    es_legacy_host: elasticsearch.dev.scoua.de
+    es_legacy_port: 80
+    es_legacy_auth: "Basic ZWxhc3RpYzpmYW50YXN0aWM="
+
+    amqp_host: 'localhost'
+    amqp_port: 5672
+    amqp_user: 'guest'
+    amqp_pwd:  'guest'
+
+    ga_tracking: 'UA-XXXXXXX-XX'
+
+    kibana_url: 'http://elasticsearch.dev.scoua.de/kibana4/'

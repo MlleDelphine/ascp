@@ -1,0 +1,11 @@
+<div class="newsBlock newsBox">
+    <h2>L'ACTU DU JOUR</h2>
+    <article>
+        <h1><a href="{{ path('service_civique_actu_show', {'slug': actu.slug}) }}" title="{{ actu.title }}">{{ actu.title }}</a></h1>
+        <p class="published">Publié le {{ actu.published | date('d/m/Y') }}</p>
+        <p>{{ actu.text | striptags | truncate(200) | raw }}</p>
+    </article>
+    <div class="block-footer">
+        <a title="Voir toutes les actus" class="link-action" href="{{ path('service_civique_actu_list') }}">Voir toutes les actus</a>
+    </div>
+</div>

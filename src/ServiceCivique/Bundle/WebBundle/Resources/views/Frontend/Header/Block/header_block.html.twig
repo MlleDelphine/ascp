@@ -1,0 +1,62 @@
+<div id="headerTop" class="header-top-container header-top  hidden-print">
+    <div class="container">
+        {{ sonata_block_render({ 'type': 'service_civique.block.user_pannel' }) }}
+    </div>
+</div>
+
+<header class="header-container hidden-print">
+    <div class="container-fluid"
+        {% if (header is defined) and (header is not null) %}
+            {% if guessExtension(header.image | apply_filter('header_bg_wide')) == 'gif' %}
+                style="background-image:url('{{ app.request.getSchemeAndHttpHost() ~ '/' ~ header.image }}')"
+            {% else %}
+                style="background-image:url('{{ header.image | apply_filter('header_bg_wide') }}')"
+            {% endif %}
+        {% endif %}
+        >
+        {{ knp_menu_render('top', {'template': 'ServiceCiviqueWebBundle:Frontend:menu.html.twig', 'depth': 1, 'matchingDepth': 0, 'ancestorClass': 'active', 'currentClass' : 'active'}) }}
+
+        {% if ((service_civique_is_homepage()) and (videobox.videourl is not null)) %}
+            <div class="iframeBox">
+                <iframe width="560" height="315" src="{{ videobox.videourl}}" frameborder="0" allowfullscreen></iframe>
+                <div class="video-info">
+                    <a target="_blank" aria-label="video service civique (ouverture dans une nouvelle fenêtre)" href="{{ videobox.videolinkurl }}">Voir la vidéo</a>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="control-header-box">
+            <a href="#" role="button" aria-controls="top-menu" class="control-header-link visible-xs"><i class="glyphicon glyphicon-th-list"></i> Changer d'espace</a>
+
+            <a href="#" role="button" aria-controls="headerTop" class="profil-header-link visible-xs"><i class="icon icon-body"></i> Profil</a>
+        </div>
+        <div class="logo-box hidden-print pull-left">
+            <a href="http://www.jeunes.gouv.fr/" target="_blank" title="Ministère des droits des femmes, de la ville, de la jeunesse et des sports (S'ouvre dans une nouvelle fenêtre)"><img src="{{ asset("images/logo-ministre.png") }}" data-at2x="{{ asset("images/logo-ministre@2x.png") }}" alt="Logo du ministère des droits des femmes, de la ville, de la jeunesse et des sports"></a>
+            <a href="{{ path('service_civique_homepage') }}" alt="Logo" >
+                <img src="{{ asset("images/logo.jpg") }}" data-at2x="{{ asset("images/logo@2x.jpg") }}" alt="Service Civique, des valueurs, un engagement">
+            </a>
+        </div>
+
+        <div class="msg-head hidden-print pull-left">
+            {% block header_message %}
+                {% if service_civique_context() == 'organization' %}
+                    <p>{{ 'service_civique.statictexts.organization.header_message' | trans({}, 'statictexts') | raw }}</p>
+                {% elseif service_civique_context() == 'jeunes' %}
+                    <p>{{ 'service_civique.statictexts.jeunes.header_message' | trans({}, 'statictexts') | raw }}</p>
+                {% endif %}
+            {% endblock %}
+        </div>
+
+        {% if ((service_civique_is_homepage()) and (videobox is not null)) %}
+            <div class="video-box" >
+                <a href="{{ videobox.url }}" ><i class="icon-play"></i>{{ videobox.title }}</a>
+            </div>
+        {% endif %}
+
+        {% if (header is defined) and (header is not null) and (header.pinImage is not null) %}
+            <div class="header-pin">
+                <a target="_blank" href="{{ header.pinUrl }}"><img src="{{ header.pinImage | apply_filter('header_pin_medium') }}" alt="{{ header.title }}" /></a>
+            </div>
+        {% endif %}
+    </div>
+</header>

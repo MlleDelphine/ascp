@@ -1,0 +1,11 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout.html.twig' %}
+
+{% block topbar %}
+<ol class="breadcrumb">
+    <li>Kibana</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+<iframe src="{{ kibana_url }}#/dashboard/Missions?embed&_g=(refreshInterval:(display:Off,section:0,value:0),time:(from:now-5y,mode:quick,to:now))&_a=(filters:!(),panels:!((col:7,id:Localisation,row:1,size_x:6,size_y:5,type:visualization),(col:4,id:Mission-count,row:3,size_x:3,size_y:2,type:visualization),(col:1,id:Postes-%C3%A0-pourvoir,row:3,size_x:3,size_y:2,type:visualization),(col:1,id:Nombre-moyen-de-candidats-par-mission,row:5,size_x:3,size_y:2,type:visualization),(col:7,id:Statuts-des-missions,row:6,size_x:3,size_y:2,type:visualization),(col:1,id:Nombre-moyen-de-candidature-en-fonction-du-statut-de-la-mission,row:10,size_x:6,size_y:3,type:visualization),(col:10,id:R%C3%A9partition-de-th%C3%A9matiques-des-missions,row:6,size_x:3,size_y:2,type:visualization),(col:7,id:'R%C3%A9partition-des-d%C3%A9partements-des-missions-(TOP-10)',row:10,size_x:6,size_y:3,type:visualization),(col:7,id:'Mission-dont-la-date-de-d%C3%A9but-est-pass%C3%A9e-depuis-plus-d!'un-mois',row:8,size_x:3,size_y:2,type:visualization),(col:4,id:Postes-pourvus,row:5,size_x:3,size_y:2,type:visualization),(col:4,id:Postes-%C3%A0-pourvoir-ou-pourvus,row:1,size_x:3,size_y:2,type:visualization),(col:1,id:Postes-en-fonction-du-statut-des-missions,row:7,size_x:6,size_y:3,type:visualization),(col:1,id:Postes,row:1,size_x:3,size_y:2,type:visualization),(col:10,id:'Postes-dont-la-date-de-d%C3%A9but-est-pass%C3%A9e-depuis-plus-d!'un-mois',row:8,size_x:3,size_y:2,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:Missions)" height="1500" width="100%" frameBorder="0"></iframe>
+{% endblock %}

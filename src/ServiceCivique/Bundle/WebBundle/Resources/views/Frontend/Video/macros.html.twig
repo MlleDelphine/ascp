@@ -1,0 +1,23 @@
+{% macro grid(videos, activeVideo) %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if videos|length != 0 %}
+<div class="row clearfix videos-list">
+    {% for video in videos %}
+        {% set metadatas = oembed(video.url) %}
+        <article class="{{ video == activeVideo ? 'active': '' }} item-video col-md-4 col-sm-6 col-xs-12">
+            {% if metadatas %}
+            <a href="{{ path('service_civique_video_show', {slug: video.slug}) }}">
+                <p>
+                <img src="{{ metadatas.thumbnailUrl | apply_filter('video_thumbnail') }}" />
+                </p>
+                <h2>{{ video.title }}</h2>
+            </a>
+            {% endif %}
+        </article>
+    {% endfor %}
+</div>
+{% else %}
+    {{ alerts.info('service_civique.video.no_results' | trans) }}
+{% endif %}
+{% endmacro %}

@@ -1,0 +1,24 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% set page_type_class = 'page-static' %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'route': 'service_civique_presse_list', 'name' : 'Communiqués de presse'},
+    {'name' : presse.title},
+]) }}
+{% endblock %}
+
+{% block main_content_header %}{{ presse.title }}{% endblock %}
+
+{% block main_content_body %}
+     <p>
+        <span class="type">{{ presse.type | pressetype }}</pan> / Publié le {{ presse.published | date('d/m/Y') }}
+    </p>
+    <p>
+        {{ presse.text | raw }}
+    </p>
+{% endblock %}

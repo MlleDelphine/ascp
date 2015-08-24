@@ -1,0 +1,23 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Presse:macros.html.twig' import table %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'name' : 'Communiqués de presse'},
+]) }}
+{% endblock %}
+
+{% block main_content_header %}Communiqués de presse{% endblock %}
+
+{% block main_content_body %}
+    <p>{{ 'service_civique.presse.intro' | trans | raw }}</p>
+    <ul class="approval-list press-list">
+        {{ table(presses) }}
+        {{ pagination(presses) }}
+    </ul>
+{% endblock %}

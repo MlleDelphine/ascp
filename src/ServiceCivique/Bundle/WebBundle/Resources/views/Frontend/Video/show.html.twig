@@ -1,0 +1,34 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Video:macros.html.twig' import table %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% set page_type_class = 'page-static' %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'name' : video.title}
+]) }}
+{% endblock %}
+
+{% block main_content_header %}{{ video.title }}{% endblock %}
+
+{% block main_content_body %}
+    <div>
+        {{ oembed((video).url).html | raw }}
+        <p>{{ video.description | nl2br }}</p>
+
+        {% if video.transcription %}
+        <a class="link-transcription" href="#transcription" aria-controls="transcription" aria-expanded="false" role="button"><i class="icon-play"></i>  Retranscription textuelle de la vidéo</a>
+        <div id="transcription" class="sr-only">
+            <p>{{ video.transcription | nl2br }}</p>
+        </div>
+
+        <p class="video-intro">Retouvez tous les témoignages en images des volontaires du Service Civique : </p>
+        {% endif %}
+    </div>
+    {{ sonata_block_render({ 'type': 'service_civique.block.video_grid' }, {active_video : video}) }}
+{% endblock %}

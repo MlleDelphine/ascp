@@ -1,0 +1,25 @@
+{% block subject %}
+{% autoescape false %}
+Votre invitation a rejoindre le site du Service Civique été acceptée
+{% endautoescape %}
+{% endblock %}
+{% block body_text %}
+{% autoescape false %}
+Bonjour {{ approvedOrganizationName }},
+
+L’organisme {{ organizationName }} a accepté votre invitation et s'est inscrit sur le site du Service Civique.
+
+Le Service Civique
+{{base_url}}
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}
+{% autoescape false %}
+Bonjour {{ approvedOrganizationName }},<br/><br/>
+
+L’organisme {{ organizationName }} a accepté votre invitation et s'est inscrit sur le site du Service Civique.<br/><br/>
+
+Le Service Civique<br/>
+<a href="{{base_url}}">{{base_url}}</a>
+{% endautoescape %}
+{% endblock %}

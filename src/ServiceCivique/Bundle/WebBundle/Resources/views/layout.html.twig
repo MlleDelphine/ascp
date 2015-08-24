@@ -1,0 +1,155 @@
+{% extends '::base.html.twig' %}
+
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block stylesheets %}
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/icomoon/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/print.css') }}" type="text/css" media="print" />
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="/assets/css/ie8.css">
+        <script src="/assets/js/respond.js"></script>
+    <![endif]-->
+{% endblock %}
+
+{% block title %}Service Civique{% endblock %}
+
+{% block body %}
+    <div class="container" id="skip-nav-container">
+        <ul id="skip-nav" class="nav nav-pills">
+            <li><a href="#main-content">Aller au contenu principal</a></li>
+            <li><a href="#main-menu">Aller à la navigation principale</a></li>
+            <li><a href="#top-menu">Aller au top menu</a></li>
+            <li><a href="#footer-bottom-menu">Liens complémentaires</a></li>
+      </ul>
+    </div>
+
+    {% if app.request.cookies.has('acceptCookies') != 1 %}
+        {% include 'ServiceCiviqueWebBundle:Frontend:cookie_banner.html.twig' %}
+    {% endif %}
+
+    {% block header %}
+        {{ sonata_block_render({ 'type': 'service_civique.block.header' }) }}
+        <div class="navigation-container hidden-print">
+            <div class="container">
+                <div class="navbar-header">
+                    <button data-target=".bs-navbar-collapse" data-toggle="collapse" type="button" class="navbar-toggle">
+                        <span ><i class="glyphicon glyphicon-th-list"></i> Menu</span>
+                    </button>
+                </div>
+                <nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
+                    {{ knp_menu_render('secondary', {'template': 'ServiceCiviqueWebBundle:Frontend:menu.html.twig', 'depth': 3, 'ancestorClass': 'active', 'currentClass' : 'active'}) }}
+                </nav>
+            </div>
+        </div>
+    {% endblock %}
+
+    <div id="main-content" class="main-container">
+        {% block breadcrumb_container %}
+            <div class="breadcrumb-container">
+                <div class="container">
+                    {% block breadcrumb_content %}
+                        {{ service_civique_breadcrumb(app.request.attributes.get('_route')) }}
+                    {% endblock %}
+                </div>
+            </div>
+        {% endblock %}
+        {% include 'ServiceCiviqueWebBundle:Frontend:_flashes.html.twig' %}
+        {% block content %}{% endblock %}
+    </div>
+
+    {% block footer %}
+        <footer class="footer-container hidden-print">
+            <div class="green-line">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12 col">
+                            <p class="footer-info">{{ 'service_civique.statictexts.global.footer.left_message' | trans({}, 'statictexts') | raw }}</p>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col">
+                                    {{ knp_menu_render('footer_col_1', {'template': 'ServiceCiviqueWebBundle:Frontend:menu.html.twig'}) }}
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 col">
+                                    {{ knp_menu_render('footer_col_2', {'template': 'ServiceCiviqueWebBundle:Frontend:menu.html.twig'}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 col last">
+                            <div class="footer-rs">
+                                <h3>Suivez-nous sur</h3>
+                                {{ knp_menu_render('footer-rs', {'template': 'ServiceCiviqueWebBundle:Frontend:menu.html.twig'}) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="partners-line">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-6">
+                            <span>Membres fondateurs du GIP :</span>
+                            <a href="http://www.injep.fr/ " title="INJEP (s'ouvre dans une nouvelle fenêtre)" target="_blank">
+                                <img src="{{ asset("images/logo-injep.png") }}" alt="logo INJEP">
+                            </a>
+                            <a href="http://www.france-volontaires.org/ " title="France volontaire (s'ouvre dans une nouvelle fenêtre)" target="_blank">
+                                <img src="{{ asset("images/logo-france-volontaire.png") }}" alt="logo France volontaire">
+                            </a>
+                            <a href="http://www.lacse.fr/ " title="ACSE (s'ouvre dans une nouvelle fenêtre)" target="_blank">
+                                <img src="{{ asset("images/logo-acse.png") }}" alt="logo ACSE">
+                            </a>
+                        </div>
+                        <div class="col-md-5 col-sm-6">
+                            <span>Initiative Européenne pour la Jeunesse</span>
+                            <a href="http://www.fse.gouv.fr/" title="Initiative Européenne pour la Jeunesse (s'ouvre dans une nouvelle fenêtre)" target="_blank">
+                                <img src="{{ asset("images/footer-logos-europe.png") }}" alt="logo l'europe s'engage en France">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ads-line">
+                <div class="bloc-espace-pub">
+                    <div class="espace-pub">
+                        <script type='text/javascript'>
+                            <!--
+                            var oas_server="http://eregie.premier-ministre.gouv.fr";
+                            var oas_sitepage="www.service-civique.gouv.fr/accueil/";
+                            var oas_position="Top";
+                            var oas_query="?";
+                            if (!(RN)) {
+                            var RN=new String (Math.random());
+                            var RNS=RN.substring (2, 11);
+                            }
+                            var oas_page=oas_sitepage + '/1' + RNS + '@' + oas_position + oas_query;
+                            document.write ('<scr'+'ipt type="text/javascript" src="' + oas_server + '/3/' + oas_page + '">');
+                            document.write ('\<\/scr'+'ipt\>');
+                            // -->
+                        </script>
+                        <noscript><a href="http://eregie.premier-ministre.gouv.fr/1c/www.service-civique.gouv.fr/accueil/[RANDOM]@Top" target="_top"><img src="http://eregie.premier-ministre.gouv.fr/1/www.service-civique.gouv.fr/accueil/[RANDOM]@Top" border="0" alt=""/></a></noscript>
+                    </div>
+                </div>
+            </div>
+
+            <div class="website-line">
+                <div class="container">
+                    {{ knp_menu_render('footer-bottom', {'template': 'ServiceCiviqueWebBundle:Frontend:menu.html.twig'}) }}
+                </div>
+            </div>
+        </footer>
+    {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    {% if app.debug %}
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    {% else %}
+        <script src="/js/fos_js_routes.js"></script>
+    {% endif %}
+    <script src="{{ asset("assets/js/plugins.js") }}"></script>
+    <script src="{{ asset("assets/js/main.js") }}"></script>
+{% endblock %}

@@ -1,0 +1,2 @@
+ServiceCivique\Bundle\AddressingBundle\Entity\Commune:
+    exclusion_policy: NONE

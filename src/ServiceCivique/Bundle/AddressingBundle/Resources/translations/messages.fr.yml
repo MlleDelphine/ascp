@@ -1,0 +1,17 @@
+service_civique:
+    location:
+        address:
+            label: 'Adresse'
+        country:
+            label: 'Pays'
+            empty_value: 'Tous les pays'
+        zip_code:
+            label: 'Code postal'
+        city:
+            label: 'Ville'
+        area:
+            label: 'Région'
+            empty_value: 'Toutes les régions'
+        department:
+            label: 'Département'
+            empty_value: 'Tous les départements'

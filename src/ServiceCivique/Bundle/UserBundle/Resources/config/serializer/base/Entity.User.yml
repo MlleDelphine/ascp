@@ -1,0 +1,8 @@
+FOS\UserBundle\Entity\User:
+    exclusion_policy: ALL
+    properties:
+        enabled:
+            expose: true
+        last_login:
+            expose: true
+            type: DateTime<'Y-m-d'>

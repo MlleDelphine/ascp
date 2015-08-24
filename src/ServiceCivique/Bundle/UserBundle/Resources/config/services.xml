@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="service_civique_user.form.handler.registration" class="ServiceCivique\Bundle\UserBundle\Form\Handler\RegistrationFormHandler" scope="request" public="false">
+            <argument type="service" id="fos_user.registration.form" />
+            <argument type="service" id="request" />
+            <argument type="service" id="fos_user.user_manager" />
+            <argument type="service" id="fos_user.mailer" />
+            <argument type="service" id="fos_user.util.token_generator" />
+            <argument type="service" id="service_civique.repository.organization_invitation" />
+            <argument type="service" id="service_civique.mailer" />
+            <argument type="service" id="doctrine" />
+            <argument type="service" id="service_civique.service.approval_number_finder" />
+        </service>
+
+        <service id="service_civique_user.form.handler.profile" class="ServiceCivique\Bundle\UserBundle\Form\Handler\ProfileFormHandler" scope="request" public="false">
+            <argument type="service" id="fos_user.profile.form" />
+            <argument type="service" id="request" />
+            <argument type="service" id="fos_user.user_manager" />
+        </service>
+
+        <service id="service_civique_user.registration.form.type" class="ServiceCivique\Bundle\UserBundle\Form\Type\RegistrationFormType">
+            <tag name="form.type" alias="service_civique_user_registration" />
+            <argument>%fos_user.model.user.class%</argument>
+        </service>
+
+        <service id="service_civique_user.registration_or_login.form.type" class="ServiceCivique\Bundle\UserBundle\Form\Type\RegistrationOrLoginFormType">
+            <argument type="service" id="fos_user.user_manager" />
+            <argument type="service" id="service_civique.mailer" />
+            <argument type="service" id="fos_user.util.token_generator" />
+            <tag name="form.type" alias="service_civique_registration_or_login" />
+        </service>
+
+        <service id="service_civique_user.profile.form.type" class="ServiceCivique\Bundle\UserBundle\Form\Type\ProfileFormType">
+            <tag name="form.type" alias="service_civique_user" />
+            <argument>%fos_user.model.user.class%</argument>
+        </service>
+
+        <service id="service_civique_user.mandrill_message" class="Hip\MandrillBundle\Message">
+        </service>
+
+        <service id="service_civique_user.util.user_manipulator" class="ServiceCivique\Bundle\UserBundle\Util\UserManipulator">
+            <argument type="service" id="fos_user.user_manager" />
+        </service>
+
+        <service id="service_civique_user.mandrill_mailer" class="ServiceCivique\Bundle\UserBundle\Mailer\MandrillMailer">
+            <argument type="service" id="service_civique.mailer" />
+            <argument type="service" id="router" />
+            <argument type="service" id="twig" />
+            <argument type="collection">
+                <argument key="template" type="collection">
+                    <argument key="confirmation">%fos_user.registration.confirmation.template%</argument>
+                    <argument key="resetting">%fos_user.resetting.email.template%</argument>
+                </argument>
+                <argument key="from_email" type="collection">
+                    <argument key="confirmation">%fos_user.registration.confirmation.from_email%</argument>
+                    <argument key="resetting">%fos_user.resetting.email.from_email%</argument>
+                </argument>
+            </argument>
+        </service>
+
+        <service id="service_civique.block.user_pannel" class="ServiceCivique\Bundle\UserBundle\Block\UserPannelBlockService" scope="request">
+            <argument>service_civique.block.user_pannel</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="security.context" />
+            <argument type="service" id="service_civique.menu.context_resolver"/>
+            <tag name="sonata.block" alias="user_pannel" />
+        </service>
+
+        <!-- event listeners -->
+        <service id="service_civique.listener.invitation_sender" class="ServiceCivique\Bundle\UserBundle\Listener\InvitationSender">
+            <argument type="service" id="service_container"/>
+            <tag name="doctrine.event_listener" connection="default" event="postPersist" />
+        </service>
+    </services>
+
+</container>

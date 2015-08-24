@@ -1,0 +1,45 @@
+{% extends "ServiceCiviqueWebBundle::layout.html.twig" %}
+{# Same as layout_sidebar_right, we need to delete this layout if all ok #}
+
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{# {{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'Home'},
+    {'name' : 'Contact'},
+]) }} #}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="title">
+            <span>{% block main_content_header %}{% endblock %}</span>
+        </h1>
+        {% block main_content %}
+            <div class="row">
+                <div class="col col-md-8">
+                    <div class="white-container">
+                        {# @TODO merge flash with parent #}
+                        {% for type, messages in app.session.flashBag.all %}
+                           {% for message in messages %}
+                                <div class="alert {{ type }}">
+                                   {{ message|trans({}, 'FOSUserBundle') }}
+                                </div>
+                           {% endfor %}
+                        {% endfor %}
+                        {% block main_content_intro %}{% endblock %}
+                        {% block main_content_body %}
+                            {# @TODO clean FOS TPL #}
+                            {% block fos_user_content_wrapper %}
+                                {% block fos_user_content %}{% endblock fos_user_content %}
+                            {% endblock fos_user_content_wrapper %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="col col-md-4">
+                    {% block sidebar %}{% endblock %}
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

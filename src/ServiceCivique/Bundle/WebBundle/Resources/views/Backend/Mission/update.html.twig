@@ -1,0 +1,44 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{# /!\ Keep this empty block ! #}
+{# We don't have mission_create page #}
+{% block header_content_actions %}{% endblock %}
+
+{% set resource_type = 'mission' %}
+{% set page_type     = 'update' %}
+{% set contacts = formatMails(mails) %}
+
+{% block main_content_header %}
+    <p>Contacts: {{ contacts }}</p>
+{% endblock %}
+
+{% block main_content_body %}
+<div class="row">
+    <div class="col col-md-6 col-sm-6">
+        {% include 'ServiceCiviqueWebBundle:Backend/Mission:_form.html.twig' with {'missionLog': missionLog, 'back': true} %}
+
+        <div class="btn-box">
+            <a class="btn btn-primary" href="{{ path('service_civique_backend_mission_index', {'criteria': app.request.get('criteria') }) }}">Retour aux missions</a>
+        </div>
+
+        <div class="modal fade" id="mailModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Envoyer un mail de réponse</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="mailto-vars" data-missiontTitle="{{ mission.title }}" data-missiontUrl="{{ url('service_civique_organization_missions_update', {'id': mission.id}) }}" data-mailtoContacts="{{ contacts }}"></div>
+                        {{ form(answer_form) }}
+                        <a class="mailto-link btn btn-primary" href="#" target="_blank">Envoyer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col col-md-6 col-sm-6">
+        {% include 'ServiceCiviqueWebBundle:Frontend/Organization/Mission:agreementBox.html.twig' %}
+    </div>
+</div>
+{% endblock %}

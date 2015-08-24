@@ -1,0 +1,50 @@
+<script type="text/javascript">
+{% if not form.vars.valid %}
+    var organizationFormError = true;
+{% else %}
+    var organizationFormError = false;
+{% endif %}
+</script>
+{{ form_row(form.organization.approvalNumber) }}
+<div class="approval_number-helper">Si vous ne parvenez pas à créer votre compte, vous pouvez faire une demande sur <a href="{{ path('service_civique_approval_conflict_create') }}" data-url="{{ path('service_civique_approval_conflict_create') }}" class="conflict_page">cette page</a>.</div>
+{% if form.organization.type is defined %}
+    <fieldset id="organization_type" class="form-group">
+        <legend>{{ 'service_civique.organization.form.type.label' | trans }}</legend>
+        {{ form_widget(form.organization.type) }}
+    </fieldset>
+{% endif %}
+{{ form_row(form.organization.name) }}
+{% if form.organization.approvedOrganization is defined %}
+    {{ form_row(form.organization.approvedOrganization, {'attr': {'data-url' : path('service_civique_organization_ajax_search')}}) }}
+{% endif %}
+<div class="row">
+    <div class="form-group form-group-firstname col-md-6 col-sm-6">
+        {{ form_label(form.firstname) }}
+        {{ form_errors(form.firstname) }}
+        {{ form_widget(form.firstname) }}
+    </div>
+    <div class="form-group form-group-lastname col-md-6 col-sm-6">
+        {{ form_label(form.lastname) }}
+        {{ form_errors(form.lastname) }}
+        {{ form_widget(form.lastname) }}
+    </div>
+</div>
+{{ form_row(form.email) }}
+{{ form_row(form.plainPassword) }}
+{{ form_row(form.organization.location.country) }}
+<div class="row">
+    <div class="form-group form-group-zipCode col-md-4 col-sm-4">
+        {{ form_label(form.organization.location.zipCode) }}
+        {{ form_errors(form.organization.location.zipCode) }}
+        {{ form_widget(form.organization.location.zipCode) }}
+    </div>
+    <div class="form-group form-group-city col-md-8 col-sm-8">
+        {{ form_label(form.organization.location.city) }}
+        {{ form_errors(form.organization.location.city) }}
+        {{ form_widget(form.organization.location.city) }}
+    </div>
+</div>
+{{ form_row(form.organization.location.address) }}
+{{ form_row(form.subscriptionReferer) }}
+{{ form_widget(form.isNewsletterSubscribed) }}
+{{ form_rest(form) }}

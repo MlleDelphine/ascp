@@ -1,0 +1,179 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Mission:
+    type: entity
+    table: mission
+    repositoryClass: ServiceCivique\Bundle\CoreBundle\Repository\MissionRepository
+    gedmo:
+        loggable: false
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    manyToOne:
+        organization:
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Organization
+            inversedBy: missions
+            cascade: ['persist']
+            joinColumn:
+                onDelete: 'CASCADE'
+        taxon:
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Taxon
+            joinColumn:
+                onDelete: 'SET NULL'
+        tag:
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Tag
+            inversedBy: missions
+            joinColumn:
+                onDelete: 'SET NULL'
+    oneToOne:
+        missionLog:
+            fetch: EXTRA_LAZY
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\MissionLog
+            cascade: ['remove']
+            mappedBy: mission
+            orphanRemoval: true
+
+    oneToMany:
+        applications:
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Application
+            mappedBy: mission
+            fetch: EXTRA_LAZY
+
+    fields:
+        title:
+            type: string
+            length: 200
+            gedmo:
+                - versioned
+        department:
+            type: string
+            length: 3
+            nullable: true
+        area:
+            type: string
+            length: 3
+            nullable: true
+        country:
+            type: string
+            length: 3
+            nullable: true
+        description:
+            type: text
+            gedmo:
+                - versioned
+        startDate:
+            column: start_date
+            type: date
+            gedmo:
+                - versioned
+        duration:
+            type: smallint
+            length: 1
+        weeklyWorkingHours:
+            column: weekly_working_hours
+            type: integer
+        contact:
+            type: string
+            length: 255
+            nullable: true
+        approvalNumber:
+            column: approval_number
+            type: string
+            length: 255
+            nullable: true
+        originalApprovalNumber:
+            column: original_approval_number
+            type: string
+            length: 255
+            nullable: true
+        organizationDescription:
+            column: organization_description
+            type: text
+            nullable: true
+        organizationName:
+            column: organization_name
+            type: text
+            nullable: true
+        phoneNumber:
+            column: phone_number
+            type: phone_number
+            nullable: true
+        address:
+            type: string
+            length: 255
+            nullable: true
+        zipCode:
+            column: zip_code
+            type: string
+            length: 10
+            nullable: true
+        city:
+            type: string
+            length: 255
+            nullable: true
+        website:
+            type: string
+            length: 255
+            nullable: true
+        additionalEmailContact:
+            column: additional_email_contact
+            type: string
+            length: 255
+            nullable: true
+        note:
+            type: text
+            nullable: true
+        created:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        published:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        status:
+            type: smallint
+            length: 1
+            options:
+                unsigned: true
+        isOverseas:
+            column: is_overseas
+            type: boolean
+        vacancies:
+            type: smallint
+            length: 2
+            options:
+                unsigned: true
+        applicationCount:
+            type: integer
+            length: 3
+            column: application_count
+            options:
+                unsigned: true
+        slug:
+            type: string
+            length: 200
+            gedmo:
+                slug:
+                    fields: ['title']
+        duplicate:
+            type: integer
+            nullable: true
+        comment:
+            type: text
+            nullable: true
+    indexes:
+        search_idx:
+            columns: slug
+        status_idx:
+            columns: status
+    lifecycleCallbacks: {  }

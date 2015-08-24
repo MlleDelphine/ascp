@@ -1,0 +1,6 @@
+service_civique_frontend:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/main.yml
+
+service_civique_backend:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/main.yml
+    prefix: /administration

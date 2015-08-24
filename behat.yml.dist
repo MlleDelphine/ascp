@@ -1,0 +1,33 @@
+default:
+    formatters:
+        pretty:
+            verbose:  true
+            paths:    false
+            snippets: false
+
+    suites:
+        default:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - ServiceCivique\Bundle\CoreBundle\Behat\BaseContext
+                - ServiceCivique\Bundle\CoreBundle\Behat\MissionContext
+                - ServiceCivique\Bundle\CoreBundle\Behat\OrganizationContext
+                - ServiceCivique\Bundle\CoreBundle\Behat\TaxonomyContext
+                - ServiceCivique\Bundle\CoreBundle\Behat\UserContext
+                - ServiceCivique\Bundle\WebBundle\Behat\WebContext
+
+    extensions:
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony2: ~
+                javascript:
+                    selenium2: ~
+            browser_name: firefox
+            show_auto: false
+            base_url: 'http://localhost:80/app_test.php/'
+        Behat\Symfony2Extension:
+            kernel:
+                env: test
+                debug: false
+

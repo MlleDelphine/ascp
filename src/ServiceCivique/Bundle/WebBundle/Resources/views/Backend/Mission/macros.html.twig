@@ -1,0 +1,74 @@
+{% macro table(missions, criteria) %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+{% if missions|length > 0 %}
+<table class="service_civique-missions-table table table-bordered">
+    <thead>
+        <tr>
+            <th class="mass-update">
+                <input type="checkbox" class="select-all-checkbox-mass-update" />
+            </th>
+            <th class="info">{{ sylius_resource_sort('title', 'service_civique.mission.title'|trans) }}</th>
+            <th>{{ sylius_resource_sort('organization_name', 'Organisme d’accueil') }}</th>
+            <th>{{ sylius_resource_sort('department', 'Lieu') }}</th>
+            <th class="info">{{ sylius_resource_sort('start_date', 'Date de début') }}</th>
+            {# <th class="info">{{ sylius_resource_sort('created', 'service_civique.mission.created'|trans) }}</th> #}
+            <th class="info">{{ sylius_resource_sort('updated', 'service_civique.mission.updated'|trans) }}</th>
+            {# <th>{{ sylius_resource_sort('application_count', 'Nb. Candidats') }}</th> #}
+            <th>Nb. Candidats</th>
+            <th class="info">{{ sylius_resource_sort('status', 'service_civique.mission.status_filter'|trans) }}</th>
+            {# <th class="info">{{ sylius_resource_sort('tag', 'Tag') }}</th> #}
+            <th class="info">Tag</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for mission in missions %}
+        <tr id="mission-{{ mission.id }}" data-mission="{{ mission.id }}">
+            <td class="mass-update">
+                <input type="checkbox" class="mass-update-mission-checkbox" name="mass_update_mission" value="{{ mission.id }}"/>
+            </td>
+            <td>
+                <a href="{{ path('service_civique_mission_show', {'slug': mission.slug}) }}" title="{{ 'service_civique.mission.view_details'|trans({'%mission%': mission.title})|escape('html_attr') }}">
+                    {{ mission.title }}
+                </a>
+            </td>
+            <td>{{ mission.organizationName }}</td>
+            <td>{{ macros.location(mission) }}</td>
+            <td>
+                {{ mission.startDate | localizeddate("long", "none") }}
+            </td>
+            {# <td>
+                {{ mission.created | localizeddate("long", "none") }}
+            </td> #}
+            <td>
+                {{ mission.updated | localizeddate("long", "none") }}
+            </td>
+            <td>
+                {{ mission.applications | length }}
+            </td>
+            <td>
+                {{ ('service_civique.mission.status.' ~ mission.status) | trans | statuslabel(mission.status) }}
+            </td>
+            <td>
+                <span class="label label-primary">{{ mission.tag }}</span>
+            </td>
+            <td>
+                <div class="pull-right">
+                    {{ buttons.edit(path('service_civique_backend_mission_update', {'id': mission.id, 'criteria': criteria})) }}
+                    {{ buttons.delete(path('service_civique_backend_mission_delete', {'id': mission.id})) }}
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<div>
+    <btn data-base-mass-update-url="{{ path('service_civique_backend_mission_mass_update') }}" class="mass-update-btn btn btn-sc-red">Publier les missions selectionnées</btn>
+</div>
+{% else %}
+{{ alerts.info('service_civique.mission.no_results'|trans) }}
+{% endif %}
+{% endmacro %}

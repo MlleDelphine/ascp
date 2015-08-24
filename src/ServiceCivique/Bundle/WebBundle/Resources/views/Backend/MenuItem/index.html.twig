@@ -1,0 +1,22 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
+{% from 'ServiceCiviqueWebBundle:Backend/MenuItem:macros.html.twig' import table %}
+
+{% block breadcrumb %}
+    <li><a href="{{ path('service_civique_backend_menu_item_index') }}">Menus</a></li>
+    <li>Liste</li>
+{% endblock %}
+
+{% block header_content_actions %}
+    {{ buttons.create(path('service_civique_backend_menu_item_create'), 'service_civique.menu_item.create_header' | trans | raw) }}
+{% endblock %}
+{% block header_content_title %}
+    <i class="glyphicon glyphicon-th-list"></i> Menu <small>Liste de tous les liens de menu</small>
+{% endblock %}
+
+{% block main_content %}
+    <div class="nb-applications">{{ 'service_civique.menu_item.nb_results.title' | transchoice(menu_items | length) }}</div>
+    {{ table(menu_items) }}
+{% endblock %}

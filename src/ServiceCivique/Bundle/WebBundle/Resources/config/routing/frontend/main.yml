@@ -1,0 +1,137 @@
+service_civique_homepage:
+    methods: [GET]
+    pattern: /
+    defaults:
+        _controller: 'ServiceCiviqueWebBundle:Frontend/Homepage:default'
+
+service_civique_quiz:
+    methods: [GET, POST]
+    pattern: /organismes/etes-vous-service-civique
+    defaults:
+        _controller: 'ServiceCiviqueWebBundle:Frontend/Quiz:show'
+
+service_civique_mission:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/mission.yml
+    prefix: /missions
+
+service_civique_profile_mission_search_edit:
+    path: /jeunes/profile/mes-recherches
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.mission_search:editProfileMissionSearchAction
+
+service_civique_profile_mission_search_delete:
+    path: /jeunes/profile/mes-recherches/desinscription
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.mission_search:deleteProfileMissionSearchAction
+
+service_civique_applications:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/application.yml
+    prefix: /
+
+service_civique_approval:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/approval.yml
+    prefix: /approvals
+
+service_civique_organization:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/organization.yml
+    prefix: /organismes
+
+service_civique_corporate:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/corporate.yml
+    prefix: /a-propos-de-nous
+
+service_civique_resume:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/resume.yml
+    prefix: /cv
+
+service_civique_cookie_accept:
+    pattern: /cookie-accept
+    methods: [GET]
+    defaults:
+        _controller: ServiceCiviqueWebBundle:Default:setCookie
+
+service_civique_organization_faq:
+    pattern: /organismes/faq-organisme
+    methods: [GET]
+    defaults:
+        _controller: ServiceCiviqueWebBundle:Default:faq
+        type: organisme
+
+service_civique_faq:
+    pattern: /faq-volontaire
+    methods: [GET]
+    defaults:
+        _controller: ServiceCiviqueWebBundle:Default:faq
+        type: volontaire
+
+service_civique_newsletter:
+    pattern: /newsletter
+    methods: [GET, POST]
+    defaults:
+        _controller: ServiceCiviqueWebBundle:Default:newsletter
+
+service_civique_static_content_show:
+    pattern: /page/{slug}
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.static_content:showAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Frontend/StaticContent:show.html.twig
+
+service_civique_mission_report_create:
+    pattern: /mission-report/{id}
+    methods: [GET, POST]
+    options:
+        expose: true
+    defaults:
+        _controller: service_civique.controller.mission_report:createAction
+
+service_civique_actu:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/actu.yml
+    prefix: /actualites
+
+service_civique_presse:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/presse.yml
+    prefix: /presse
+
+service_civique_approval_conflict:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/approval_conflict.yml
+    prefix: /conflit-agrement
+
+service_civique_partner:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/partner.yml
+    prefix: /partenaires
+
+service_civique_advantage:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/advantage.yml
+    prefix: /avantages
+
+service_civique_video:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/video.yml
+    prefix: /le-service-civique-par-ceux-qui-le-font
+
+service_civique_media:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/media.yml
+    prefix: /medias
+
+service_civique_feed:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/feed.yml
+    prefix: /feed
+
+service_civique_widget:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/frontend/widget.yml
+    prefix: /widget
+
+service_civique_cdv:
+    path: /bonneannee2015
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'ServiceCiviqueWebBundle:Misc:cdv-2015.html.twig'
+
+service_civique_cdv2:
+    path: /bonne-annee-2015
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'ServiceCiviqueWebBundle:Misc:cdv-2015b.html.twig'

@@ -1,0 +1,8 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% set resource_type = 'header' %}
+{% set page_type     = 'create' %}
+
+{% block form_content %}
+    {% include 'ServiceCiviqueWebBundle:Backend/Header:_form.html.twig' %}
+{% endblock %}

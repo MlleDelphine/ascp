@@ -1,0 +1,38 @@
+{% extends "ServiceCiviqueWebBundle:Frontend:layout_dashboard.html.twig" %}
+
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+{'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+{'route': 'service_civique_organization_homepage', 'name' : 'service_civique.breadcrumb.organization.index'},
+{'route': 'service_civique_organization_mission_index', 'name' : 'service_civique.breadcrumb.mission.index'},
+{'name' : 'Edition de la mission : ' ~ mission.title }
+]) }}
+{% endblock %}
+
+{% block main_content_header %}{{ 'service_civique.mission.update_header' | trans }}{% endblock %}
+
+{% block main_content_header_content %}
+   {{ 'service_civique.statictexts.mission.form.intro'|trans({}, 'statictexts') | raw }}
+{% endblock %}
+
+{% block main_content_body %}
+    <div class="row create-mission-container">
+        <div class="col-md-8 col-sm-8 col-xs-12">
+            {{ form_errors(form) }}
+            <small><p>{{ 'service_civique.form.mandatory_fields' | trans }}</p></small>
+            <form action="{{ path('service_civique_organization_missions_update', {'id' : mission.id }) }}" method="post" class="form-create-mission" {{ form_enctype(form) }}>
+                {% include 'ServiceCiviqueWebBundle:Backend/Mission:_form_content.html.twig' %}
+            </form>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            {% include 'ServiceCiviqueWebBundle:Frontend/Organization/Mission:agreementBox.html.twig' %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/mission.js') }}"></script>
+{% endblock %}

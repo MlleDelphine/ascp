@@ -1,0 +1,18 @@
+service_civique:
+    mission:
+        create: 'Votre mission a été envoyée pour validation. Elle fera l’objet d’une validation avant sa publication sur le site. Vous devez compter un délai minimum de 10 jours ouvrés.'
+        # update: 'La mission a correctement été modifiée.'
+        update: "La mission a bien été publiée, l'organisme d'accueil a été prévenu par email"
+        delete: 'La mission a correctement été supprimée.'
+    mission_search:
+        create: 'Vos critères de recherche ont été correctement enregistrés.'
+    backend:
+        form:
+            upload_success: Le fichier a bien été uploadé.
+            answer_success: Les réponses ont été envoyées.
+    application:
+        create: 'Votre candidature a bien été envoyée à l’organisme d’accueil concerné, qui vous répondra dans les plus brefs délai. Vous pouvez suivre l’état de votre candidature en accédant à votre espace personnel, et relancer l’organisme s’il ne vous répond pas dans les 2 semaines.'
+    user:
+        update: Le compte a bien été mis à jour.
+    approval_conflict:
+        create: Votre demande a bien été envoyée

@@ -1,0 +1,27 @@
+ServiceCivique\Bundle\UserBundle\Entity\OrganizationInvitation:
+    type: entity
+    table: organization_invitation
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    oneToOne:
+        organization:
+            targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Organization
+            inversedBy: invitation
+            # fetch: EXTRA_LAZY
+    fields:
+        sent:
+            type: boolean
+        code:
+            type: string
+            length: 12
+        email:
+            type: string
+            length: 255
+        used_at:
+            type: datetime
+            nullable: true
+    lifecycleCallbacks: {  }

@@ -1,0 +1,7 @@
+lns_backend_menu_item:
+    resource: @LnsMenuBundle/Resources/config/routing/backend/menu_item.yml
+    prefix: /menu/{menuId}/item
+
+lns_backend_menu:
+    resource: @LnsMenuBundle/Resources/config/routing/backend/menu.yml
+    prefix: /menu

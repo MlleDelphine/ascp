@@ -1,0 +1,11 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% from 'ServiceCiviqueWebBundle:Backend/Actu:macros.html.twig' import table %}
+
+{% set resources     = actus %}
+{% set resource_type = 'actu' %}
+{% set page_type     = 'list' %}
+
+{% block main_content_body %}
+    {{ table(resources) }}
+{% endblock %}

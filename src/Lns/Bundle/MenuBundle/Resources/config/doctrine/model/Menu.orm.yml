@@ -1,0 +1,41 @@
+Lns\Component\Menu\Model\Menu:
+    type: mappedSuperclass
+    table: lns_menu
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    oneToMany:
+        items:
+            fetch: EXTRA_LAZY
+            targetEntity: Lns\Component\Menu\Model\MenuItemInterface
+            mappedBy: menu
+    manyToOne:
+        rootMenuItem:
+            fetch: EXTRA_LAZY
+            targetEntity: Lns\Component\Menu\Model\MenuItemInterface
+            joinColumn:
+                name: root_menu_item_id
+    fields:
+        title:
+            type: string
+            length: 255
+        updated:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        slug:
+            type: string
+            length: 255
+            gedmo:
+                slug:
+                    fields: ['title']
+                    unique: true
+                    updatable: false
+    indexes:
+        search_idx:
+            columns: slug
+    lifecycleCallbacks: {  }

@@ -1,0 +1,76 @@
+service_civique_organization_homepage:
+  pattern: /
+  methods: [GET]
+  defaults:
+    _controller: 'ServiceCiviqueWebBundle:Frontend/Homepage:organization'
+
+service_civique_organization_ajax_search:
+  pattern: /ajax/search
+  methods: [GET]
+  defaults:
+    _controller: service_civique.controller.organization:ajaxSearchAction
+
+service_civique_organization_by_name_ajax_search:
+  pattern: /ajax/search-organisme
+  methods: [GET]
+  defaults:
+    _controller: service_civique.controller.organization:ajaxSearchOrganizationAction
+
+service_civique_organization_mission_index:
+  pattern: /mes-missions/
+  methods: [GET]
+  defaults:
+      _controller: service_civique.controller.mission:organizationIndexAction
+      _sylius:
+          template: ServiceCiviqueWebBundle:Frontend/Organization/Mission:index.html.twig
+          paginate: 10
+          sortable: true
+          sorting:
+              id: desc
+          filterable: true
+
+service_civique_organization_mission_export:
+  pattern: /mes-missions/export
+  methods: [GET]
+  defaults:
+      _controller: service_civique.controller.mission:exportAction
+
+service_civique_organization_missions_new:
+  pattern: /mes-missions/creer-mission
+  methods: [GET, POST]
+  defaults:
+    _controller: service_civique.controller.mission:createAction
+    _sylius:
+      template: ServiceCiviqueWebBundle:Frontend/Organization/Mission:create.html.twig
+      redirect:
+          route: service_civique_organization_mission_index
+          parameters: {}
+
+service_civique_organization_missions_update:
+  pattern: /mes-missions/{id}/edit
+  methods: [GET, PUT, POST]
+  defaults:
+    _controller: service_civique.controller.mission:updateAction
+    _sylius:
+        template: ServiceCiviqueWebBundle:Frontend/Organization/Mission:update.html.twig
+        redirect:
+            route: service_civique_organization_mission_index
+            parameters: {}
+
+service_civique_organization_missions_delete:
+  pattern: /mes-missions/{id}/delete
+  methods: [DELETE]
+
+service_civique_organization_update_approval_number:
+  pattern: /agrement
+  methods: [GET, POST]
+  defaults:
+    _controller: service_civique.controller.organization:updateApprovalNumber
+
+service_civique_organization_approval_search:
+  pattern: /approval/search
+  methods: [GET]
+  defaults:
+    _controller: service_civique.controller.organization:approvalSearchAction
+  options:
+    expose: true

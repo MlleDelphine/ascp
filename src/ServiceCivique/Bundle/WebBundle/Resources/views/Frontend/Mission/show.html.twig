@@ -1,0 +1,200 @@
+{% extends "ServiceCiviqueWebBundle:Frontend/Mission:layout_mission.html.twig" %}
+
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% set mission_class = 'category-' ~ mission.taxon.slug %}
+{% if mission.available %}
+    {% set mission_class = mission_class ~ 'mission-filled' %}
+{% endif %}
+
+{% block tags %}
+    <script type="text/javascript">
+        var axel = Math.random() + "";
+        var a = axel * 10000000000000;
+        document.write('<iframe src="http://fls.doubleclick.net/activityi;src=3452220;type=servi660;cat=2012-197;ord=1;num=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+    </script>
+    <noscript>
+        <iframe src="http://fls.doubleclick.net/activityi;src=3452220;type=servi660;cat=2012-197;ord=1;num=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+    </noscript>
+{% endblock %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'route': 'service_civique_mission_list', 'name' : 'service_civique.breadcrumb.mission.index'},
+    {'route': ['service_civique_mission_show', {'slug': mission.slug}], 'name' : mission.title}
+]) }}
+{% endblock %}
+
+{% block main_content_header_pictobox %}
+    <div class="picto-box">
+        <i class="icon-{{ mission.taxon.slug }}"></i>
+        <span>{{ mission.taxon.name }}</span>
+    </div>
+{% endblock %}
+
+{% block main_content_header %}
+    {{ mission.title }}
+{% endblock %}
+
+{% block main_content_body %}
+    {% if mission.available or app.request.get('_route') == 'service_civique_mission_preview' or (is_granted('OWNER', mission)) %}
+        <div class="mission-rs-box clearfix hidden-print">
+            {% block share %}
+                {{ sonata_block_render({ 'type' : 'sonata.seo.block.facebook.like_button' }, {
+                  'layout' : 'button_count',
+                  'action' : 'recommend',
+                  'share'  : false
+                }) }}
+                {{ sonata_block_render({ 'type' : 'sonata.seo.block.twitter.share_button' }, {
+                  'language' : 'fr',
+                  'text' : 'Découvrez la mission de Service Civique ' ~ mission.title,
+                  'template' : 'ServiceCiviqueWebBundle:Block:block_twitter_share_button.html.twig'
+                }) }}
+                {{ sonata_block_render({ 'type' : 'service_civique.block.google_plus_share_button' }, {
+                  'size' : 'medium'
+                  }) }}
+            {% endblock %}
+            <a class="print" href="javascript:window.print()"><span class="icon-print"><span><span class="sr-only">Imprimer</span></a>
+            {% if app.request.get('_route') != 'service_civique_mission_preview' and is_granted('OWNER', mission) %}
+                <div class="mission-status mission-status-{{ mission.status }}">Statut : {{ ('service_civique.mission.status.' ~ mission.status) | trans }}</div>
+            {% endif %}
+            {% block block_signaler %}
+                <a id="link-signal" aria-expanded="false" aria-controls="signalContent" class="btn  btn-sc-red pull-right" role="button">Signaler</a>
+
+                <div id="signalContent">
+                    <div class="signalBox">
+                        <form data-missionId="{{ mission.id }}">
+                            <p>Veuillez préciser la raison de votre signalement. Cette mission :</p>
+                            <select class="form-control select-report" name="report">
+                                <option value='1'>
+                                    demande des niveaux de diplômes et des compétences spécifiques
+                                </option>
+                                <option value='2'>
+                                    demande des tâches administratives et logistiques
+                                </option>
+                                <option value='3'>
+                                    s'apparente à un emploi
+                                </option>
+                                <option value='4'>
+                                    ne relève pas de l'intérêt général
+                                </option>
+                            </select><br />
+                            <button class='btn btn-sm btn-sc-red-2' type="submit">Valider</button>
+                        </form>
+                    </div>
+                    <div class="signalBoxAlert alert alert-success">Votre signalement a été envoyé à l'Agence du Service Civique qui va étudier le cas de cette mission</div>
+                </div>
+            {% endblock %}
+
+
+        </div>
+        <section class="mission-description">
+            <dl class="clearfix">
+                <dt>{{ 'service_civique.mission.where' | trans}}</dt>
+                <dd>{{ macros.location(mission) }}</dd>
+                <dt>{{ 'service_civique.mission.what' | trans}}</dt>
+                <dd itemprop="description">
+                   {{ mission.description | raw | nl2br }}
+                </dd>
+                <dt>{{ 'service_civique.mission.when' | trans}}</dt>
+                <dd>À partir du <span class="event-date" itemprop="startDate" content="{{ mission.startDate | date('c') }}">{{ mission.startDate | localizeddate("long", "none") }}</span> (<span itemprop="duration" content="P{{ mission.duration }}M">{{ mission.duration }} mois<span>, {{ mission.weeklyWorkingHours }} h/semaine)</dd>
+                <dt>{{ 'service_civique.mission.which_category' | trans}}</dt>
+                <dd>{{ mission.taxon.name }}</dd>
+                <dt>{{ 'service_civique.mission.how_many_vacancies' | trans}}</dt>
+                <dd>{{ mission.vacancies }}</dd>
+                <dt>{{ 'service_civique.mission.which_organization' | trans}}</dt>
+                <dd>{{ mission.organizationName|capitalize}}</dd>
+            </dl>
+        </section>
+
+        <section class="mission-contact-informations">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col{% if not (mission.contact or mission.phoneNumber) %} empty{% endif %}">
+
+
+                    <div class="text-center" itemscope itemtype="http://schema.org/Person">
+                        <i class="icon-body"></i>
+                        {% if (mission.contact or mission.phoneNumber) %}
+                        <h3 class="sr-only">Contact</h3>
+                        <address>
+                            <span itemprop="name">{{ mission.contact }}</span><br>
+                            {%- if mission.phoneNumber -%}
+                            <abbr title="Téléphone">T :</abbr> <span itemprop="telephone">{{ phone_number_format(mission.phoneNumber, 'NATIONAL') }}</span>
+                            {%- endif -%}
+                        </address>
+                        {% else %}
+                            <p>
+                                contact non renseigné
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col{% if not (mission.address or mission.city) %} empty{% endif %}">
+                    <div class="text-center">
+                        <i class="icon-localisation"></i>
+                        {% if (mission.address or mission.city) %}
+                        <h3 class="sr-only">Adresse</h3>
+                        <address>
+                            {{ mission.address }} <br>
+                            {{ mission.zipcode }} {{ mission.city }}
+                        </address>
+                        {% else %}
+                            <p>
+                                adresse non renseignée
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="last col-md-4 col-sm-4 col{% if not mission.website %} empty{% endif %}">
+                    <h3 class="sr-only">Site internet</h3>
+                    <div class="text-center">
+                        <i class="icon-webcursor"></i>
+                        <p>
+                            {% if mission.website %}
+                            <a href="{{ mission.website }}" title="{{ mission.website }} (S'ouvre dans une nouvelle fenêtre)" target="_blank">{{ mission.website }}</a>
+                            {% else %}
+                            site internet non renseigné
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mission-organization-description">
+            <p><strong>Activités : </strong>{{ mission.organizationDescription | nl2br }}</p>
+        </section>
+        {% block actions %}
+            <section class="mission-application-actions hidden-print">
+                {% if is_granted('OWNER', mission) %}
+                    <form method="post" action="{{ path('service_civique_mission_delete', {'id': mission.id}) }}">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <a class="btn btn-success btn-lg btn-block hidden-print" href="{{ path('service_civique_application_missions_applications', {id: mission.id}) }}">Voir les candidatures</a>
+                        <input type="submit" class="btn btn-success btn-lg btn-block btn-sc-red" value="Supprimer" id="mission-delete-btn"></input>
+                    </form>
+                {% else %}
+                    {% if is_granted('ROLE_ORGANIZATION') == false %}
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <a class="btn btn-success btn-lg btn-block hidden-print" href="{{ path('service_civique_application_list') }}">Voir mes autres candidatures</a>
+                        {% endif %}
+                        <a class="btn btn-success btn-lg btn-block btn-sc-red hidden-print" href="{{ path('service_civique_application_create', {'mission_slug': mission.slug}) }}">{{ 'service_civique.mission.apply'|trans }}</a>
+                    {% endif %}
+                {% endif %}
+            </section>
+        {% endblock %}
+    {% else %}
+        {% if mission.status == constant('STATUS_FILLED', mission) %}
+            {{ alerts.info('service_civique.mission.already_filled_message.filled'|trans) }}
+        {% elseif mission.status == constant('STATUS_UNDER_REVIEW', mission) or mission.status == constant('STATUS_UNDER_VALIDATION', mission) %}
+            {{ alerts.info('service_civique.mission.already_filled_message.waiting'|trans) }}
+        {% else %} {# Draft #}
+            {{ alerts.info('service_civique.mission.already_filled_message.draft'|trans) }}
+        {% endif %}
+        {{ sonata_block_render({ 'type' : 'service_civique.block.same_location_missions' }, {
+            'mission_area' : mission.area,
+            'mission_isoverseas' : mission.isOverseas
+        }) }}
+    {% endif %}
+{% endblock %}

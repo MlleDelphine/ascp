@@ -1,0 +1,10 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block main_content_header %}Supprimer mon compte{% endblock %}
+
+{% block main_content_body %}
+    <p>Êtes-vous sur de vouloir supprimer votre compte ?</p>
+    {{ form_start(form) }}
+        {{ form_widget(form.is_delete) }}
+    {{ form_end(form) }}
+{% endblock main_content_body %}

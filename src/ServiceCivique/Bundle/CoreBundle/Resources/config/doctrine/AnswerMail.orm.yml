@@ -1,0 +1,16 @@
+ServiceCivique\Bundle\CoreBundle\Entity\AnswerMail:
+    type: entity
+    table: answer_mail
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        text:
+            type: text
+    lifecycleCallbacks: {  }

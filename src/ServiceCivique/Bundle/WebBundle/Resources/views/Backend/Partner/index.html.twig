@@ -1,0 +1,11 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% from 'ServiceCiviqueWebBundle:Backend/Partner:macros.html.twig' import table %}
+
+{% set resources     = partners %}
+{% set resource_type = 'partner' %}
+{% set page_type     = 'list' %}
+
+{% block main_content_body %}
+    {{ table(resources) }}
+{% endblock %}

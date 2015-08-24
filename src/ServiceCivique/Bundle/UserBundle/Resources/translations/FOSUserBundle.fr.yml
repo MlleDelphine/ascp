@@ -1,0 +1,95 @@
+# Registration
+registration:
+    check_email: Vous allez recevoir un email à l'adresse %email%. Pour valider votre compte, il suffit de cliquer sur le lien dans l'email, vous serez ensuite connecté sur le site.
+    submit: Se créer un compte
+    email:
+        subject: Valider votre compte sur le site du Service Civique
+        message_html: |
+            Bonjour %firstname%<br /><br />
+
+            Nous vous remercions de votre inscription sur le site du Service Civique.<br />
+            Pour valider votre compte, merci de cliquer sur ce <a href="%confirmationUrl%">lien de validation</a><br />
+            Il s'agit d'un lien temporaire, qui ne peut être utilisé qu'une fois.<br /><br />
+
+            L’équipe du Service Civique.<br/>
+            %website%
+    invitation:
+        subject: Créer votre compte sur le site du Service Civique
+        message_html: |
+            Bonjour,<br /><br />
+
+            L’organisme %approved_organization_name% vous propose de vous inscrire sur le site du Service Civique 
+            pour suivre les candidatures des missions de votre organisme d’accueil. Pour créer votre compte, 
+            merci de cliquer sur le lien ci­dessous ou de copier l'adresse du lien dans votre navigateur : <br/>
+            <a href="%activation_link%">%activation_link%</a><br /><br />
+
+            Le Service Civique<br />
+            %website%
+        message: |
+            Bonjour,
+
+            L’organisme %approved_organization_name% vous propose de vous inscrire sur le site du Service Civique 
+            pour suivre les candidatures des missions de votre organisme d’accueil. Pour créer votre compte, 
+            merci de cliquer sur le lien ci­dessous ou de copier l'adresse du lien dans votre navigateur : 
+            %activation_link%
+
+            Le Service Civique 
+            %website%
+    invitation_password:
+        subject: Créer votre compte sur le site du Service Civique
+        message_html: |
+            Bonjour %user_name%,<br /><br />
+
+            Nous vous remercions de votre inscription sur le site du Service Civique.<br />
+            Voici votre mot de passe, qui vous permettra de vous connecter sur le site du Service Civique <a href="%website%">%website%</a> afin de suivre vos candidatures : %password%<br />
+            Nous vous recommandons de modifier ce mot de passe dès que possible, à l'adresse <a href="%change_password_link%">%change_password_link%</a>
+            <br /><br />
+
+            Le Service Civique<br />
+            %website%
+        message: |
+            Bonjour %user_name%,
+
+            Nous vous remercions de votre inscription sur le site du Service Civique.
+            Voici votre mot de passe, qui vous permettra de vous connecter sur le site du Service Civique %website% afin de suivre vos candidatures : %password%
+            Nous vous recommandons de modifier ce mot de passe dès que possible, à l'adresse %change_password_link%
+
+            Le Service Civique 
+            %website%
+    flash:
+        user_created: Votre demande de création de compte a bien été prise en compte.
+    confirmed: Bienvenue sur votre compte %firstname%, il est maintenant activé.
+
+change_password:
+    submit: Valider
+
+# Form field labels
+form:
+    email: "Email"
+    password: "Mot de passe"
+    password_confirmation: "Confirmer le mot de passe"
+    new_password_confirmation: "Confirmer le mot de passe"
+
+resetting:
+    request:
+        username: "Inscrivez votre mail afin de réinitialiser votre mot de passe :"
+        submit: envoyer
+    email:
+        subject: Réinitialiser votre mot de passe sur le site du Service Civique
+        message_html: |
+            Bonjour %firstname%<br /><br />
+
+            Suite à votre demande de réinitialisation de mot de passe, merci de cliquer sur ce <a href="%confirmationUrl%">lien de validation</a><br/>
+            Il s’agit d’un lien temporaire, qui ne peut être utilisé qu’une fois.<br/><br/>
+
+            L’équipe du Service Civique.<br/>
+            %website%
+security:
+    login:
+        username: "Email"
+        password: "Mot de passe"
+        remember_me: Se souvenir de moi
+        submit: Connexion
+
+"User account is disabled.": Vous devez activer votre compte pour pouvoir vous connecter.
+"User account is locked.": Votre compte a été bloqué.

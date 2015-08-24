@@ -1,0 +1,31 @@
+ServiceCivique\Bundle\CoreBundle\Entity\MissionReport:
+    type: entity
+    table: mission_report
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    oneToOne:
+        mission:
+          targetEntity: ServiceCivique\Bundle\CoreBundle\Entity\Mission
+          # inversedBy: missionLog
+          # cascade: ['persist']
+          joinColumn:
+            name: mission_id
+            referencedColumnName: id
+    fields:
+        countDiploma:
+            type: integer
+            column: count_diploma
+        countTask:
+            type: integer
+            column: count_task
+        countJob:
+            type: integer
+            column: count_job
+        countInterest:
+            type: integer
+            column: count_interest
+    lifecycleCallbacks: {  }

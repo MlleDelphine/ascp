@@ -1,0 +1,23 @@
+{% block subject %}
+{% autoescape false %}
+{{ 'registration.invitation.subject'|trans({}, 'FOSUserBundle') }}
+{% endautoescape %}
+{% endblock %}
+{% block body_text %}
+{% autoescape false %}
+{{ 'registration.invitation.message'|trans({
+        '%approved_organization_name%': approved_organization_name,
+        '%activation_link%':            activation_link,
+        '%website%':                    website
+    }, 'FOSUserBundle') }}
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}
+{% autoescape false %}
+{{ 'registration.invitation.message_html'|trans({
+        '%approved_organization_name%': approved_organization_name,
+        '%activation_link%':            activation_link,
+        '%website%':                    website
+}, 'FOSUserBundle') }}
+{% endautoescape %}
+{% endblock %}

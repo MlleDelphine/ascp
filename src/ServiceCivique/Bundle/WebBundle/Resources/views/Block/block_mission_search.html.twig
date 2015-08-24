@@ -1,0 +1,95 @@
+{% from 'ServiceCiviqueWebBundle:Frontend/Form:macros.html.twig' import sc_options_render %}
+
+{% if (settings.display.form) %}
+    <div class="search-container">
+        <div class="container">
+            <div class="searchFormBox">
+                <h1 class="h3">{{ 'service_civique.form.mission_search.title' | trans }}</h1>
+                <div class="row">
+                    {{ form_start(form) }}
+                    <div class="col first col-md-3 col-sm-4 col-xs-12">
+                        <fieldset id="lieu" class="form-wrapper">
+                            <legend><span class="fieldset-legend ie-font" >Où ?</span></legend>
+                            {{ form_widget(form.is_overseas) }}
+                        </fieldset>
+                    </div>
+                    <div class="col col-md-3 col-sm-4 col-xs-12">
+                        {{ form_row(form.location.area, { 'label': 'service_civique.form.mission_search.area.label'}) }}
+                    </div>
+
+                    <div class="col col-date col-md-3 col-sm-4 col-xs-12">
+                        {{ form_row(form.start_date, { 'attr': {'data-formatted': form.start_date.vars.value | date('d/m/Y')}}) }}
+                    </div>
+                    <div class="col col-btn-box col-md-3 col-sm-12 col-xs-12">
+                        {{ form_widget(form.search) }}
+                        <div class="btn-col">
+                            <a id="link-advanced-search" class="link-action link-action-toggle" href="#" data-target="#" aria-controls="advanced-search-box" aria-expanded="{{ (is_advanced) ? 'true' : 'false' }}" data-animated="false">Recherche avancée <span class="icon-arrow-down"></span></a>
+                        </div>
+                    </div>
+
+                    <div id="advanced-search-box" class="sr-only advanced-search-box {{ (is_advanced) ? 'open' }}">
+                        <div class="col col-md-6 col-sm-6 col-xs-12">
+                            {{ form_row(form.location.country) }}
+                            {{ form_row(form.location.department) }}
+                            {{ form_row(form.query) }}
+                            {{ form_row(form.organization) }}
+                        </div>
+
+                        <div class="col last col-md-6 col-sm-6 col-xs-12">
+                            <fieldset id="taxons" class="form-wrapper">
+                                <legend><span class="fieldset-legend ie-font" >Thématique(s)</span></legend>
+                                {{ form_widget(form.taxons) }}
+                            </fieldset>
+                        </div>
+                    </div>
+                    {{ form_end(form, {'render_rest': false}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if (settings.display.options) %}
+    <div id="search-options" class="search-options-container">
+        <div class="container">
+            <div class="searchOptionsBox">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        {% if (settings.nbResults) %}
+                        <div class="nb-missions">{{ 'service_civique.mission.nb_missions.title' | transchoice(settings.nbResults, {'%vacancies%' : 'service_civique.mission.nb_vacancies.title' | transchoice(settings.vacancies) }) }}</div>
+                        {% endif %}
+                        {{ sc_options_render(search_options) }}
+                    </div>
+                    <div class="btn-box col-md-4 col-sm-4 col-xs-12">
+                        {% if is_granted('ROLE_ORGANIZATION') == false %}
+                            <a class="btn btn-sc-red btn-lg" href="{{ path('service_civique_profile_mission_search_edit', app.request.query.all ) }}">
+                                <i class="icon-uniE60A"> </i> Recevez les alertes des missions qui vous intéressent
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if (settings.display.filters) %}
+    {% if sortForm is defined %}
+        <div class="form-filters-container">
+            <div class="container">
+                <div class="formFiltersBox">
+                    <div class="row">
+                        {{ form_start(sortForm, {'attr': {'class': 'form-inline', 'id' : 'service_civique_mission_search_options'}}) }}
+                        <div class="col col-md-6 col-sm-6 col-xs-12">
+                            {{ form_row(sortForm.sorting) }}
+                        </div>
+                        <div class="col col-md-6 col-sm-6 col-xs-12">
+                            {{ form_row(sortForm.paginate) }}
+                        </div>
+                        {{ form_rest(sortForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}

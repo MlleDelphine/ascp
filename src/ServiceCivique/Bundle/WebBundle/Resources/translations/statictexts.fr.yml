@@ -1,0 +1,118 @@
+# This file is part of the Sylius package.
+# (c) Paweł Jędrzejewski
+
+service_civique:
+  statictexts:
+    global:
+      footer:
+        left_message: "Le Service Civique est un engagement volontaire au service de l’intérêt général, ouvert à tous les jeunes de 16 à 25 ans, sans conditions de diplôme; seuls comptent les savoir-être et la motivation."
+    anonymous:
+      user_pannel:
+        title: Je n'ai pas encore de compte
+        organization_text: Vous recherchez un volontaire ? Inscrivez-vous en cliquant sur le bouton ci-dessous
+        organization_creation_link: Créer un compte Organisme
+        jeunes_text: Vous recherchez une mission ? Inscrivez-vous en cliquant sur le bouton ci-dessous
+        jeunes_creation_link: Créer un compte Jeune
+    admin:
+      user_pannel:
+        title: Administrez et configurez le site
+        text: Administrez les pages statiques et les pages dynamiques comme les actualités ou les vidéos.
+        static_content_list_link: Administrer le site
+      management_pannel:
+        title: Gérez et validez les missions
+        text: Validez les missions en attente et dont les modifications sont en cours de validation.
+        missions_list_link: Gérer les missions
+    jeunes:
+      header_message: Vous avez entre 16 et 25 ans, engagez-vous dans une mission de Service Civique
+      howto:
+        steps:
+          one: Recherchez les missions qui vous intéressent
+          two: Créez un compte et candidatez aux missions
+          three: Complétez votre profil et recevez de nouvelles offres
+          four: Suivez et relancez vos candidatures
+      management_pannel:
+        title: Suivez vos candidatures
+        text: Suivez les candidatures que vous avez envoyées.
+        applications_overview_link: Suivre mes candidatures
+      user_pannel:
+        title: Complétez votre profil
+        text: Complétez votre profil pour préparer vos candidatures et recevoir les informations du Service Civique.
+        account_edition_link: Compléter mon profil
+      engagement:
+        text: <strong>Découvrez le kit autonomie composé d’une aide au permis de conduire et d’une aide au BAFA avec le Département des Pyrénées Atlantiques.</strong><br /><br />Votre carte de Service Civique vous permet de bénéficier de certains avantages exclusifs, pensez à consulter régulièrement notre site internet pour découvrir de nouveaux avantages.
+    organization:
+      management_pannel:
+        title: Créez vos missions et suivez vos candidatures
+        text: Créez de nouvelles missions, suivez les candidatures que vous avez reçues.
+        missions_overview_link: Créer et voir mes missions
+      user_pannel:
+        title: Modifiez les informations de votre compte
+        text: Vérifiez vos coordonnées, gérez vos organismes d’accueil.
+        account_edition_link: Actualiser mon compte
+      header_message: "Si vous voulez accueillir des volontaires en Service Civique, cet espace est pour vous !"
+      mission:
+          dashboard:
+              intro: |
+                  <strong>Suivez les missions que vous avez publiées. Cliquez sur une mission pour en connaître tous les détails.</strong><br>
+                  Une mission peut avoir différents statuts :<br>
+                  <strong>En attente de publication :</strong> en attente de validation par l'Agence du Service Civique<br>
+                  <strong>À pourvoir :</strong> tous les postes proposés par la mission n'ont pas été pourvues, elle est accessible par les internautes dans le moteur de recherche Pourvue : la mission a été pourvue, elle n'est plus accessibles par les internautes<br>
+                  <strong>Passée : </strong> la date de début de la mission est passée d'un mois, elle n'est plus accessibles par les internautes. Pour la réactiver, mettez à jour la date de début.
+      agreements:
+        published_message: "Vous avez la possibilité de consulter les agréments de Service Civique qui ont été délivrés aux organismes. Seuls les organismes agréés peuvent accueillir un volontaire en Service Civique. Pour faire une demande d'agrément, rendez-vous sur la page <a href='#'>les démarches pas à pas</a>"
+    corporate:
+      header_message: "Découvrez l'Agence du Service Civique"
+    mission:
+      edit_one: Modifier la mission
+      form:
+        intro: |
+          <strong>Avant de soumettre une mission sur notre site, vous devez vérifier que :</strong>
+          <ul>
+              <li>Votre numéro d’agrément est correct</li>
+              <li>Votre agrément est toujours valable pour l’année en cours</li>
+              <li>Vous avez une autorisation pour ouvrir de nouveaux postes</li>
+          </ul>
+
+          <strong>Pour en savoir plus consulter le Référentiel des missions et le Guide à destinations des organismes d’accueil</strong>
+          <ul>
+              <li>Toutes les missions doivent faire l’objet d’une validation et d’une publication sur le site <a href="http://www.service-civique.cirrus-cloud.net.fr">www.service-civique.gouv.fr</a>. En conséquence, il relève de votre entière responsabilité de pourvoir une mission de Service Civique qui n’a pas été validée et publiée sur notre  site.</li>
+              <li>Vous devez vous conformer aux modifications demandées par l’Agence du Service Civique et par vos référents Service Civique concernant la rédaction de vos missions.</li>
+          </ul>
+    approvals:
+      dashboard:
+        intro: Retrouvez tous les agréments des missions de Service Civique publiés sur notre site :
+    applications:
+      list:
+        title: Mes candidatures
+        intro: |
+          Suivez vos candidatures envoyées. Cliquez sur l'une d'entre elles pour en connaître le détail et relancez l'organisme, si celui-ci ne vous a pas encore répondu.
+          <ul>
+            <li>En attente : en attente d'une réponse de l'organisme</li>
+            <li>Relance : vous avez envoyé un message de relance à l'organisme</li>
+            <li>Non-retenu : l'organisme n'a pas retenu votre candidature</li>
+            <li>Retenu : l'organisme a retenu votre candidature</li>
+          </ul>
+      dashboard:
+        title: Les candidatures
+        intro: |
+          Suivez les candidatures que vous avez reçues pour cette mission. Cliquez sur une candidature pour en connaître les détails. Une candidature peut avoir différents statuts.
+          <ul>
+            <li>En attente : aucune réponse n'a été apportée</li>
+            <li>Réponse positive : une réponse positive a été envoyée au candidat</li>
+            <li>Réponse négative : une réponse négative a été envoyée au candidat</li>
+          </ul>
+        search: Rechercher d'autres missions
+      jeunes:
+        title: Choix du volontaire
+        intro: |
+          Choisissez parmi la liste des candidats le/les volontaire(s) que vous avez sélectionné pour votre mission. Si votre / vos volontaire(s) ne sont pas passés par le site, ne cochez aucune case et indiquez leur nom, prénom et mode de candidature dans le champ Commentaire.
+        search: Rechercher d'autres missions
+      form:
+        intro: Complétez votre candidature à la mission <a href="%url%">%mission%</a>
+      answer:
+        positif: Envoyer une réponse positive aux candidats sélectionnés.
+        negatif: Envoyer une réponse négative aux candidats sélectionnés.
+    contact:
+      title: Contactez-nous par téléphone
+      intro: La plate-forme <a href="http://www.orientation-pour-tous.fr/ " title="Orientation Pour Tous">Orientation Pour Tous</a> répond à toutes les questions que vous pourriez vous poser sur Service Civique.
+      content: Vous n'avez pas trouvé de réponse à votre question ? Remplissez le formulaire ci-dessous, nous nous efforcerons de répondre dans les plus brefs délais.

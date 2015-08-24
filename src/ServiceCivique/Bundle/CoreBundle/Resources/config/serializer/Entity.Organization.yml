@@ -1,0 +1,13 @@
+ServiceCivique\Bundle\CoreBundle\Entity\Organization:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        name:
+            expose: true
+        approvalNumber:
+            expose: true
+        description:
+            expose: true
+        created:
+            expose: true

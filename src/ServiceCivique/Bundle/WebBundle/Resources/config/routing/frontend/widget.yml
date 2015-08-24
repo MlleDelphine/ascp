@@ -1,0 +1,13 @@
+service_civique_widget_preview:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: ServiceCiviqueCoreBundle:Widget:preview
+
+service_civique_widget_show:
+    path: /missions-service-civique/{id}
+    methods: [GET]
+    defaults:
+        _controller: ServiceCiviqueCoreBundle:Widget:show
+    options:
+        expose: true

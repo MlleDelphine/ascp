@@ -1,0 +1,21 @@
+{% extends 'LnsMenuBundle:Backend:layout.html.twig' %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+
+{% block breadcrumb %}
+<li><a href="{{ path('lns_backend_menu_index') }}">{{ 'lns.menu.list.title' | trans }}</a></li>
+<li><a href="{{ path('lns_backend_menu_update', {'id': menu_item.menu.id }) }}">{{ 'lns.menu.edit.title' | trans }}</a></li>
+<li>{{ 'lns.menu_item.create.title' | trans }}</li>
+{% endblock %}
+
+{% block header_content_title %}
+    <i class="glyphicon glyphicon-th-list"></i> {{ 'lns.menu_item.create.title' | trans }} <small>{{ 'lns.menu_item.create.subtitle' | trans }}</small>
+{% endblock %}
+
+{% block main_content %}
+{% set menu = menu_item.menu %}
+    {{ form_errors(form) }}
+    <form action="{{ path('lns_backend_menu_item_create', {'menuId': menu.id }) }}" method="post" class="form-create-menu_item" {{ form_enctype(form) }}>
+        {% include 'LnsMenuBundle:Backend/MenuItem:_form.html.twig' %}
+    </form>
+{% endblock %}

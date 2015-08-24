@@ -1,0 +1,11 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout.html.twig' %}
+
+{% block topbar %}
+<ol class="breadcrumb">
+    <li>Kibana</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+    <iframe src="{{ kibana_url }}#/dashboard/Candidatures?embed&_g=(refreshInterval:(display:Off,section:0,value:0),time:(from:now-5y,mode:quick,to:now))&_a=(filters:!(),panels:!((col:3,id:Candidature-avec-r%C3%A9ponse-positive,row:1,size_x:3,size_y:2,type:visualization),(col:3,id:Candidatures-avec-r%C3%A9ponse-n%C3%A9gative,row:3,size_x:3,size_y:2,type:visualization),(col:9,id:Statuts-des-candidatures,row:1,size_x:4,size_y:3,type:visualization),(col:1,id:Candidatures,row:1,size_x:2,size_y:2,type:visualization),(col:6,id:Candidatures-en-attente-de-r%C3%A9ponse,row:1,size_x:2,size_y:2,type:visualization),(col:9,id:R%C3%A9paration-des-r%C3%A9ponses-par-candidats,row:4,size_x:4,size_y:3,type:visualization),(col:1,id:Histogramme-des-nouveaux-candidats-par-mois,row:5,size_x:8,size_y:3,type:visualization),(col:1,id:Histogramme-des-nouveaux-candidats-par-semaines,row:8,size_x:8,size_y:3,type:visualization),(col:1,id:Candidats,row:3,size_x:2,size_y:2,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:Candidatures)" height="1500" width="100%" frameBorder="0"></iframe>
+{% endblock %}

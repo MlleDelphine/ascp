@@ -1,0 +1,37 @@
+service_civique_backend_partner_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.partner:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Partner:index.html.twig
+            sortable: true
+            paginate: 20
+            sorting:
+                id: desc
+
+service_civique_backend_partner_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.partner:createAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Partner:create.html.twig
+            redirect: service_civique_backend_partner_index
+
+service_civique_backend_partner_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.partner:updateAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/Partner:update.html.twig
+            redirect: service_civique_backend_partner_index
+
+service_civique_backend_partner_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.partner:deleteAction
+        _sylius:
+            redirect: service_civique_backend_partner_index

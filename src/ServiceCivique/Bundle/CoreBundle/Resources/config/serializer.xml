@@ -1,0 +1,53 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services
+    http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+     <parameters>
+        <parameter key="service_civique.serializer.namer.mission_status.class">ServiceCivique\Bundle\CoreBundle\Serializer\Namer\MissionStatusNamer</parameter>
+        <parameter key="service_civique.serializer.namer.user_gender.class">ServiceCivique\Bundle\CoreBundle\Serializer\Namer\UserGenderNamer</parameter>
+        <parameter key="service_civique.serializer.namer.user_type.class">ServiceCivique\Bundle\CoreBundle\Serializer\Namer\UserTypeNamer</parameter>
+        <parameter key="service_civique.serializer.namer.application_status.class">ServiceCivique\Bundle\CoreBundle\Serializer\Namer\ApplicationStatusNamer</parameter>
+    </parameters>
+
+    <services>
+        <service id="service_civique.serializer.namer.mission_status" class="%service_civique.serializer.namer.mission_status.class%"></service>
+        <service id="service_civique.serializer.namer.user_gender" class="%service_civique.serializer.namer.user_gender.class%"></service>
+        <service id="service_civique.serializer.namer.user_type" class="%service_civique.serializer.namer.user_type.class%"></service>
+        <service id="service_civique.serializer.namer.application_status" class="%service_civique.serializer.namer.application_status.class%"></service>
+
+        <service id="service_civique.serializer.listener" class="ServiceCivique\Bundle\CoreBundle\Serializer\Listener\LocalisableSerializationListener">
+            <argument type="service" id="polem_departements.provider" />
+            <argument type="service" id="geocoder" />
+            <tag name="jms_serializer.event_subscriber"/>
+        </service>
+
+        <service id="service_civique.serializer.application_listener" class="ServiceCivique\Bundle\CoreBundle\Serializer\Listener\ApplicationSerializationListener">
+            <argument type="service" id="service_civique.serializer.namer.application_status" />
+            <argument type="service" id="service_civique.serializer.namer.mission_status" />
+            <tag name="jms_serializer.event_subscriber"/>
+        </service>
+
+        <service id="service_civique.serializer.mission_listener" class="ServiceCivique\Bundle\CoreBundle\Serializer\Listener\MissionSerializationListener">
+            <argument type="service" id="service_civique.serializer.namer.mission_status" />
+            <tag name="jms_serializer.event_subscriber"/>
+        </service>
+
+        <service id="service_civique.serializer.profile_listener" class="ServiceCivique\Bundle\CoreBundle\Serializer\Listener\ProfileSerializationListener">
+            <argument type="service" id="service_civique.serializer.namer.user_gender" />
+            <tag name="jms_serializer.event_subscriber"/>
+        </service>
+
+        <service id="service_civique.serializer.user_listener" class="ServiceCivique\Bundle\CoreBundle\Serializer\Listener\UserSerializationListener">
+            <argument type="service" id="service_civique.repository.user" />
+            <argument type="service" id="service_civique.serializer.namer.user_type" />
+            <tag name="jms_serializer.event_subscriber"/>
+        </service>
+
+        <service id="service_civique.serializer.organization_listener" class="ServiceCivique\Bundle\CoreBundle\Serializer\Listener\OrganizationSerializationListener">
+            <argument type="service" id="service_civique.repository.organization" />
+            <tag name="jms_serializer.event_subscriber"/>
+        </service>
+    </services>
+</container>
+

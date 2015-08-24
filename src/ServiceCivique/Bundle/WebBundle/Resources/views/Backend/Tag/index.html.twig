@@ -1,0 +1,11 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% from 'ServiceCiviqueWebBundle:Backend/Tag:macros.html.twig' import table %}
+
+{% set resources     = tags %}
+{% set resource_type = 'tag' %}
+{% set page_type     = 'list' %}
+
+{% block main_content_body %}
+    {{ table(resources) }}
+{% endblock %}

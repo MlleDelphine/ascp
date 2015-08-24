@@ -1,0 +1,21 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% block breadcrumb %}
+    <li><a href="{{ path('service_civique_backend_menu_item_index') }}">Menus</a></li>
+    <li>Edition</li>
+{% endblock %}
+
+{% block header_content_actions %}
+    {{ buttons.create(path('service_civique_backend_menu_item_create'), 'service_civique.menu_item.create_header' | trans | raw) }}
+{% endblock %}
+{% block header_content_title %}
+    <i class="glyphicon glyphicon-th-list"></i> Menu <small>Edition: {{ menu_item.title }}</small>
+{% endblock %}
+
+{% block main_content %}
+    {{ form_errors(form) }}
+    <form action="{{ path('service_civique_backend_menu_item_update', {'id': menu_item.id}) }}" method="post" class="form-create-menu_item" {{ form_enctype(form) }} novalidate>
+        <input type="hidden" name="_method" value="PUT">
+        {% include 'ServiceCiviqueWebBundle:Backend/StaticContent:_form.html.twig' %}
+    </form>
+{% endblock %}

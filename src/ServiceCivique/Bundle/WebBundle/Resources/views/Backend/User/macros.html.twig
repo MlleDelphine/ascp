@@ -1,0 +1,90 @@
+{% macro table(users) %}
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if users | length != 0 %}
+<table class="table table-striped">
+    {% if app.request.get('type') == 'organisme' %}
+        <thead>
+            <tr>
+                <th>{{ sylius_resource_sort('org.name', 'Nom') }}</th>
+                <th>{{ sylius_resource_sort('created', 'Date d\'inscription') }}</th>
+                <th>{{ sylius_resource_sort('lastLogin', 'Dernière connexion') }}</th>
+                <th>{{ sylius_resource_sort('org.type', 'Type') }}</th>
+                <th>{{ sylius_resource_sort('enabled', 'Statut') }}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.organizationName }}</td>
+                <td>{{ user.created | date('d/m/Y') }}</td>
+                <td>{{ user.lastLogin | date('d/m/Y H:m') }}</td>
+                <td>
+                    {{ user.organizationType | organizationlabel(user.organizationType | organizationtype) }}
+                </td>
+                <td>
+                    {{ user.enabled | booleanLabel(('service_civique.backend.user.enabled.' ~ user.enabled | default(0)) | trans) }}
+                        {% if user.locked %}<span class="label label-danger">bloqué</span>{% endif %}
+                        {% if user.invitationId %}
+                            {% if user.invitationUsedAt %}
+                                <span class="label label-success">Invitation acceptée</span>
+                            {% else %}
+                                <span class="label label-info">Invitation envoyée</span>
+                            {% endif %}
+                        {% endif %}
+                </td>
+                <td>
+                    <div class="pull-right">
+                        {{ buttons.edit(path('service_civique_backend_user_update', {
+                            'id': user.id,
+                            'type': 'organisme',
+                        })) }}
+                        {{ buttons.delete(path('service_civique_backend_user_delete', {'id': user.id})) }}
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    {% else %}
+        <thead>
+                <tr>
+                    <th>{{ sylius_resource_sort('lastname', 'Nom') }}</th>
+                    <th>{{ sylius_resource_sort('firstname', 'Prénom') }}</th>
+                    <th>{{ sylius_resource_sort('created', 'Date d\'inscription') }}</th>
+                    <th>{{ sylius_resource_sort('email', 'Email') }}</th>
+                    <th>{{ sylius_resource_sort('enabled', 'Statut') }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.lastname }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.created | date('d/m/Y') }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {{ user.enabled | booleanLabel(('service_civique.backend.user.enabled.' ~ user.enabled | default(0)) | trans) }}
+                        {% if user.locked %}<span class="label label-danger">Bloqué</span>{% endif %}
+                    </td>
+                    <td>
+                        <div class="pull-right">
+                            {{ buttons.edit(path('service_civique_backend_user_update', {
+                                'id': user.id,
+                                'type': 'volontaire'
+                            })) }}
+                            {{ buttons.delete(path('service_civique_backend_user_delete', {'id': user.id})) }}
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+    {% endif %}
+</table>
+{% else %}
+    {{ alerts.info('service_civique.user.no_results' | trans) }}
+{% endif %}
+{% endmacro %}
