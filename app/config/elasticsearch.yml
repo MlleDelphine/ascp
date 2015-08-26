@@ -149,6 +149,9 @@ fos_elastica:
                         organization_name:
                             type: string
                             analyzer: french
+                        approval_number:
+                            type: string
+                            index: not_analyzed
                         description:
                             type: string
                             analyzer: french
