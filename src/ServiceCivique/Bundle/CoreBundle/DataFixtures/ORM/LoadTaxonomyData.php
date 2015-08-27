@@ -7,33 +7,17 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 
 use ServiceCivique\Bundle\AddressingBundle\Entity\Commune;
 
-class LoadCommuneData implements FixtureInterface
+class LoadTaxonomyData implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $communesDatas = json_decode(file_get_contents(__DIR__ . '/../../Resources/datas/communes.json'), true);
+        $conn = $manager->getConnection();
 
-        $i = 0;
+        $file = __DIR__.'/data/taxonomy.sql';
+        $data = file_get_contents($file);
 
-        foreach ($communesDatas as $code => $communeDatas) {
 
-            foreach ($communeDatas as $data) {
+        $conn->executeUpdate($data);
 
-                $commune = new Commune();
-                $commune->setDepartment($data['department']);
-                $commune->setArea($data['area']);
-                $commune->setName($data['name']);
-                $commune->setZipCode($code);
-                $manager->persist($commune);
-
-                $i++;
-
-                if ($i % 25000 == 0) {
-                    $manager->flush();
-                }
-            }
-        }
-
-        $manager->flush();
     }
 }
