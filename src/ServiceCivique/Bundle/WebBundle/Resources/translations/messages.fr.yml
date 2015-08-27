@@ -190,6 +190,8 @@ service_civique:
         empty: Toutes les régions
       organization:
         label: Organisme
+      approval_number:
+        label: Numéro d'agrément
       country:
         empty: Tous les pays
         label: Pays
