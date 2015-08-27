@@ -3,6 +3,8 @@
 1) Installation
 ---------------
 
+# Create folder app/sessions with 777 rights
+
 On OSX install ElasticSearch with: `brew install elasticsearch`
 
 ```bash
