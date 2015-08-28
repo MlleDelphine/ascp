@@ -2,6 +2,8 @@
 
 namespace ServiceCivique\Bundle\CoreBundle\SearchRepository;
 
+use Elastica\Filter\Exists;
+use Elastica\Filter\Missing;
 use FOS\ElasticaBundle\Repository;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Elastica\Query\MatchAll;
@@ -41,8 +43,7 @@ class MissionRepository extends Repository implements RepositoryInterface
         $queryFilter = $this->applyOrganizationCriteria($queryFilter, $organization);
         $queryFilter
             ->addMust(new \Elastica\Filter\Term(array('status' => Mission::STATUS_AVAILABLE)))
-            ->addMust(new \Elastica\Filter\Term(array('archived' => 0)))
-        ;
+            ->addMust(new \Elastica\Filter\Term(array('archived' => 0)));
 
         $filteredQuery = new \Elastica\Query\Filtered($query, $queryFilter);
 
@@ -55,10 +56,12 @@ class MissionRepository extends Repository implements RepositoryInterface
 
     public function findFromAdmin($criteria = null, $orderBy = null)
     {
+
         $query = $this->createQuery($criteria);
 
-        // Then we create filters depending on the chosen criterias
+        // Then we create filters depending on the chosen criteria
         $queryFilter = $this->createQueryFilter($criteria);
+
         // $queryFilter = $this->applyOrganizationCriteria($queryFilter, $organization);
 
         if (!$orderBy) {
@@ -88,8 +91,7 @@ class MissionRepository extends Repository implements RepositoryInterface
         // Then we create filters depending on the chosen criterias
         $queryFilter = $this->createQueryFilter($criteria)
             ->addMust(new \Elastica\Filter\Term(array('status' => Mission::STATUS_AVAILABLE)))
-            ->addMust(new \Elastica\Filter\Term(array('archived' => 0)))
-        ;
+            ->addMust(new \Elastica\Filter\Term(array('archived' => 0)));
 
         if (!$orderBy) {
             $orderBy = array('start_date' => 'asc');
@@ -121,7 +123,7 @@ class MissionRepository extends Repository implements RepositoryInterface
 
     protected function createQuery($criteria)
     {
-        $queryString = (isset($criteria['query']) && $criteria['query'] != '') ? $criteria['query'] : null;
+        $queryString  = (isset($criteria['query']) && $criteria['query'] != '') ? $criteria['query'] : null;
         $organization = (isset($criteria['organization']) && $criteria['organization'] != '') ? $criteria['organization'] : null;
 
         if (!$queryString && !$organization) {
@@ -158,13 +160,21 @@ class MissionRepository extends Repository implements RepositoryInterface
 
         return $searchQueryFilter
             ->addMust(new \Elastica\Filter\Term(array('archived' => 0)))
-            ->addMust(new \Elastica\Filter\Terms('organization.id', $organization_ids))
-        ;
+            ->addMust(new \Elastica\Filter\Terms('organization.id', $organization_ids));
     }
 
     protected function createQueryFilter($criteria)
     {
-        $queryFilter = new \Elastica\Filter\Bool();
+        $queryFilter   = new \Elastica\Filter\Bool();
+        if (isset($criteria['optionsTag'])) {
+            $atLeastOneTag = ('at_least' == $criteria['optionsTag']) ? true : false;
+            $noTag = ('no-tag' == $criteria['optionsTag']) ? true : false;
+            $criteria['tag'] = -1;
+            unset($criteria['optionsTag']);
+        } else {
+            $atLeastOneTag = false;
+            $noTag = false;
+        }
 
         foreach ($criteria as $key => $value) {
             $value = is_string($value) ? strtolower(trim($value)) : $value;
@@ -178,36 +188,45 @@ class MissionRepository extends Repository implements RepositoryInterface
             }
 
             switch ($key) {
-            case 'taxons':
-                // Then we create criteria depending on the chosen criterias
-                if (count($value) > 0) {
-                    $taxonFilter = new \Elastica\Filter\BoolOr();
-                    $taxonFilter->addFilter(new \Elastica\Filter\Terms('taxon_id', $value));
-                    $queryFilter->addMust($taxonFilter);
-                }
-                break;
-            case 'start_date':
-            case 'published':
-                $queryFilter->addMust(new \Elastica\Filter\Range($key,
-                    array('gte' => $value)
-                ));
-            case 'query':
-            case 'organization':
-                break;
-            case 'statuses':
-                $queryFilter->addMust(new \Elastica\Filter\Terms('status', $value));
-                break;
-            case 'country':
-                $queryFilter->addMust(new \Elastica\Filter\Terms('country', array(strtoupper($value))));
-                break;
-            case 'tag':
-                $queryFilter->addMust(new \Elastica\Filter\Terms('tag.id', array($value)));
-                break;
-            default:
-                $queryFilter->addMust(
-                    new \Elastica\Filter\Term(array($key => $value))
-                );
-                break;
+                case 'taxons':
+                    // Then we create criteria depending on the chosen criterias
+                    if (count($value) > 0) {
+                        $taxonFilter = new \Elastica\Filter\BoolOr();
+                        $taxonFilter->addFilter(new \Elastica\Filter\Terms('taxon_id', $value));
+                        $queryFilter->addMust($taxonFilter);
+                    }
+                    break;
+                case 'start_date':
+                case 'published':
+                    $queryFilter->addMust(new \Elastica\Filter\Range($key,
+                        array('gte' => $value)
+                    ));
+                case 'query':
+                case 'organization':
+                    break;
+                case 'statuses':
+                    $queryFilter->addMust(new \Elastica\Filter\Terms('status', $value));
+                    break;
+                case 'country':
+                    $queryFilter->addMust(new \Elastica\Filter\Terms('country', array(strtoupper($value))));
+                    break;
+                case 'tag':
+                    if (!$atLeastOneTag && !$noTag) {
+                        $queryFilter->addMust(new \Elastica\Filter\Terms('tag.id', array($value)));
+                    } elseif ($atLeastOneTag) {
+                        $queryFilter->addMust(new Exists('tag'));
+                    } elseif ($noTag) {
+                        $queryFilter->addMust(new Missing('tag'));
+                    }
+                    break;
+                case 'approval_number':
+                    $queryFilter->addMust(new \Elastica\Filter\Term(array('approval_number' => strtoupper($value))));
+                    break;
+                default:
+                    $queryFilter->addMust(
+                        new \Elastica\Filter\Term(array($key => $value))
+                    );
+                    break;
             }
         }
 
@@ -226,11 +245,19 @@ class MissionRepository extends Repository implements RepositoryInterface
         return null;
     }
 
-    public function findAll() {}
+    public function findAll()
+    {
+    }
 
-    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null) {}
+    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+    {
+    }
 
-    public function findOneBy(array $criteria) {}
+    public function findOneBy(array $criteria)
+    {
+    }
 
-    public function getClassName() {}
+    public function getClassName()
+    {
+    }
 }
