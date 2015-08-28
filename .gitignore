@@ -40,3 +40,5 @@ web/.htaccess
 
 php-cs-fixer.phar
 apc_reset.ini
+.vagrant
+.idea
