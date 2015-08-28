@@ -1,0 +1,14 @@
+main_menu:
+    foo:
+        title: Foo
+        route_name: test
+        route_parameters: { 'foo' : 'bar'}
+    bar:
+        title: Bar
+        route_name: test
+        route_parameters: { 'foo' : 'bar'}
+    baz:
+        title: Baz
+        route_name: test
+        route_parameters: { 'foo' : 'bar'}
+
