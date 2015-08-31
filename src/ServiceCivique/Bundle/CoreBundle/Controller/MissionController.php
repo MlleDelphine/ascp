@@ -528,11 +528,6 @@ class MissionController extends ResourceController
                     continue;
                 }
 
-                if ($key == 'approvalNumber') {
-                    $params['criteria']['approval_number'] = $value;
-                    continue;
-                }
-
                 if (in_array($key, array('start_date', 'published'))) {
                     $value = $dateFixer->reverseTransform($value);
                 }
@@ -544,9 +539,6 @@ class MissionController extends ResourceController
                 unset($params['criteria']['country']);
             }
         }
-
-//        var_dump($params['criteria']);
-//        die;
 
         if ($request->request->has('sorting')) {
             $params['sorting'] = array($request->request->get('sorting') => 'asc');
@@ -759,6 +751,7 @@ class MissionController extends ResourceController
             'findFromAdmin',
             array($criteria, $sorting)
         );
+
         $resources->setCurrentPage($request->get('page', 1), true, true);
         // $resources->setMaxPerPage($this->config->getPaginationMaxPerPage());
         $resources->setMaxPerPage($request->get('paginate', 20));

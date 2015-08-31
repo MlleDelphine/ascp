@@ -68,8 +68,9 @@ class MissionSearchType extends AbstractType
             ->add('organization', null, array(
                 'label' => 'service_civique.form.mission_search.organization.label',
             ))
-            ->add('approvalNumber', null, array(
+            ->add('approval_number', null, array(
                 'label' => 'service_civique.form.mission_search.approval_number.label',
+                'required' => false,
             ))
             ->add('tag', 'entity', array(
                 'class'    => 'ServiceCivique\Bundle\CoreBundle\Entity\Tag',
