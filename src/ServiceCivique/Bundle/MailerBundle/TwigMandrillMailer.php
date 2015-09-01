@@ -81,14 +81,16 @@ class TwigMandrillMailer
         $htmlBody = $template->renderBlock('body_html', $context);
 
         $message = new Message();
-
+        $multiple = 'solo';
+        if(isset($context['multiple_receivers']) &&  $context['multiple_receivers'] == true) {
+            $multiple = 'multiple';
+        }
         if (is_array($toEmail)) {
+            $multiple = 'multiple';
             $sendTo = array_shift($toEmail);
             $message->addTo($sendTo);
             // CC
-            $multiple = false;
             if (is_array($toEmail)) {
-                $multiple = true;
                 foreach ($toEmail as $ccEmail) {
                     $message->addTo($ccEmail, $ccEmail, 'cc');
                 }
@@ -106,8 +108,7 @@ class TwigMandrillMailer
 
         $message->addGlobalMergeVar('TEXT', $htmlBody);
         $message->addGlobalMergeVar('TITLE', $subject);
-
-        $message->addGlobalMergeVar('MULTICLASS', ($multiple ? 'multiple' : 'solo'));
+        $message->addGlobalMergeVar('MULTICLASS', $multiple);
 
 
         $message->addGlobalMergeVar(

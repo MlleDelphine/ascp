@@ -227,18 +227,18 @@ class Notifier implements EventSubscriberInterface
         }
 
         $to_send = false;
+        $multiple_receivers = false;
+
+        if (!$organization->isApprovedOrganization() && $approvedOrganizationUser = $organization->getApprovedOrganization()->getUser()) {
+            $multiple_receivers = true;
+        }
+
         if (
             in_array($mission->getStatus(), array(
                 Mission::STATUS_UNDER_REVIEW,
                 Mission::STATUS_UNDER_VALIDATION
             ))
         ) {
-
-            $multiple_receivers = false;
-            if (!$organization->isApprovedOrganization() && $approvedOrganizationUser = $organization->getApprovedOrganization()->getUser()) {
-                $multiple_receivers = true;
-            }
-
             if (!$mission->isStatusUpdated()) {
                 $message = $this->mailer->createNewMessage(
                     'ServiceCiviqueMailerBundle:Notification:mission_post_create.html.twig',
@@ -246,7 +246,7 @@ class Notifier implements EventSubscriberInterface
                         'firstname'             => $organizationUser->getFirstname(),
                         'mission_title'         => $mission->getTitle(),
                         'mission_dashboard_url' => $this->router->generate('service_civique_organization_mission_index', array(), true),
-                        'multiple_class'        => ($multiple_receivers ? 'multiple' : 'solo')
+                        'multiple_receivers'    => $multiple_receivers
                     ),
                     null,
                     $organizationUser->getEmail()
@@ -259,7 +259,8 @@ class Notifier implements EventSubscriberInterface
                 array(
                     'firstname'       => $organizationUser->getFirstname(),
                     'mission_title'   => $mission->getTitle(),
-                    'application_url' => $this->router->generate('service_civique_application_missions_applications', array('id' => $mission->getId()), true)
+                    'application_url' => $this->router->generate('service_civique_application_missions_applications', array('id' => $mission->getId()), true),
+                    'multiple_receivers'    => $multiple_receivers
                 ),
                 null,
                 $organizationUser->getEmail()
