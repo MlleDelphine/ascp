@@ -136,7 +136,7 @@ class Notifier implements EventSubscriberInterface
                 'candidate_address'   => $application->getAddress(),
                 'candidate_country'   => $application->getCountry(),
                 'candidate_birthdate' => $application->getUser()->getProfile()->getBirthDate()->format('d/m/Y'),
-                'candidate_age'       => $this->getAge($application->getUser()->getProfile()->getBirthDate()),
+                'candidate_age'       => $this->getAge($application->getUser()->getProfile()->getBirthDate())
             ),
             null,
             $organizationUser->getEmail()
@@ -233,13 +233,20 @@ class Notifier implements EventSubscriberInterface
                 Mission::STATUS_UNDER_VALIDATION
             ))
         ) {
+
+            $multiple_receivers = false;
+            if (!$organization->isApprovedOrganization() && $approvedOrganizationUser = $organization->getApprovedOrganization()->getUser()) {
+                $multiple_receivers = true;
+            }
+
             if (!$mission->isStatusUpdated()) {
                 $message = $this->mailer->createNewMessage(
                     'ServiceCiviqueMailerBundle:Notification:mission_post_create.html.twig',
                     array(
                         'firstname'             => $organizationUser->getFirstname(),
                         'mission_title'         => $mission->getTitle(),
-                        'mission_dashboard_url' => $this->router->generate('service_civique_organization_mission_index', array(), true)
+                        'mission_dashboard_url' => $this->router->generate('service_civique_organization_mission_index', array(), true),
+                        'multiple_class'        => ($multiple_receivers ? 'multiple' : 'solo')
                     ),
                     null,
                     $organizationUser->getEmail()
