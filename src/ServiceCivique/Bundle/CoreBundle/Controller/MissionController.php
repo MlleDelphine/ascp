@@ -737,7 +737,8 @@ class MissionController extends ResourceController
                 // Mission::STATUS_FILLED,
                 Mission::STATUS_UNDER_VALIDATION,
             ),
-            'published' => date('Y-m-d', strtotime('- 1 month'))
+            /* Modif Frédérick Zilbermann : On doit pouvoir remonter toutes les missions */
+            //'published' => date('Y-m-d', strtotime('- 1 month'))
         );
 
         $criteria = array_merge($default_criteria, $this->config->getCriteria([]));
