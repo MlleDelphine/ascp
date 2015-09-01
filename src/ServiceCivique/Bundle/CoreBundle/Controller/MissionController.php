@@ -537,6 +537,10 @@ class MissionController extends ResourceController
 
             if (!isset($params['criteria']['is_overseas']) || !$params['criteria']['is_overseas']) {
                 unset($params['criteria']['country']);
+            /* Ajout Frédérick Zilbermann Non prise en compte région/département quand on recherche à l'étranger */
+            } else {
+                unset($params['criteria']['department']);
+                unset($params['criteria']['area']);
             }
         }
 
