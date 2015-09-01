@@ -33,3 +33,18 @@
 {% block main_content_body %}
     {{ table(resources, criteria) }}
 {% endblock %}
+
+{%  block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            console.log('IN');
+            $('body').on('ifChecked', '#criteria_optionsTag_placeholder', function (event) {
+                $('.form-group-tag').show('fast');
+            });
+            $('body').on('ifChecked', '#criteria_optionsTag_0,#criteria_optionsTag_1', function (event) {
+                $('.form-group-tag').hide('fast');
+            });
+        });
+    </script>
+{% endblock %}
