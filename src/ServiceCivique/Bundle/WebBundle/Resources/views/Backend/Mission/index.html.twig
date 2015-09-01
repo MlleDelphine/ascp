@@ -38,7 +38,6 @@
     {{ parent() }}
     <script type="text/javascript">
         $( document ).ready(function() {
-            console.log('IN');
             $('body').on('ifChecked', '#criteria_optionsTag_placeholder', function (event) {
                 $('.form-group-tag').show('fast');
             });
