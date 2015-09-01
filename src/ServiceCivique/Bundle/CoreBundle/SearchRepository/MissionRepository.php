@@ -166,6 +166,7 @@ class MissionRepository extends Repository implements RepositoryInterface
     protected function createQueryFilter($criteria)
     {
         $queryFilter   = new \Elastica\Filter\Bool();
+        /* Frédérick Zilbermann : Calculs pour la prise en compte des options de recherche par tag */
         if (isset($criteria['optionsTag'])) {
             $atLeastOneTag = ('at_least' == $criteria['optionsTag']) ? true : false;
             $noTag = ('no-tag' == $criteria['optionsTag']) ? true : false;
@@ -201,7 +202,9 @@ class MissionRepository extends Repository implements RepositoryInterface
                     $queryFilter->addMust(new \Elastica\Filter\Range($key,
                         array('gte' => $value)
                     ));
+                    break;
                 case 'query':
+                    break;
                 case 'organization':
                     break;
                 case 'statuses':
