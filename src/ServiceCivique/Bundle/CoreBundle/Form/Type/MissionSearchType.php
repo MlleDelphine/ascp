@@ -76,17 +76,17 @@ class MissionSearchType extends AbstractType
                 'class'    => 'ServiceCivique\Bundle\CoreBundle\Entity\Tag',
                 'property' => 'title',
                 'required' => false,
-                'empty_value' => 'Ne pas tenir compte des tags',
+                'empty_value' => 'Ne pas filtrer sur les tags',
                 'empty_data'  => null
             ))
             ->add('optionsTag','choice', array(
-                'choices' => array('at_least' => 'Au moins un tag','no-tag' => 'Aucun tag'),
+                'choices' => array('at_least' => 'Avec au moins un tag','no-tag' => 'Sans aucun tag'),
                 'multiple' => false,
                 'expanded' => true,
                 'mapped' => false,
                 'required' => false,
-                'empty_value' => 'Recherche normale',
-                'label' => 'Options des tags'))
+                'empty_value' => 'Filtre sur un tag',
+                'label' => 'Filtrer les missions par tags'))
             ->add('is_overseas', 'choice', array(
                 'choices' => array(
                     0 => 'service_civique.form.mission_search.is_overseas.value_france',
