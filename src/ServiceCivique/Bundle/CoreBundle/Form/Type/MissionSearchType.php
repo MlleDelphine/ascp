@@ -80,10 +80,9 @@ class MissionSearchType extends AbstractType
                 'empty_data'  => null
             ))
             ->add('optionsTag','choice', array(
-                'choices' => array('at_least' => 'Avec au moins un tag','no-tag' => 'Sans aucun tag'),
+                'choices' => array(1 => 'Avec au moins un tag',2 => 'Sans aucun tag'),
                 'multiple' => false,
                 'expanded' => true,
-                'mapped' => false,
                 'required' => false,
                 'empty_value' => 'Filtre sur un tag',
                 'label' => 'Filtrer les missions par tags'))

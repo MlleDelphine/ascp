@@ -168,8 +168,8 @@ class MissionRepository extends Repository implements RepositoryInterface
         $queryFilter   = new \Elastica\Filter\Bool();
         /* Frédérick Zilbermann : Calculs pour la prise en compte des options de recherche par tag */
         if (isset($criteria['optionsTag'])) {
-            $atLeastOneTag = ('at_least' == $criteria['optionsTag']) ? true : false;
-            $noTag = ('no-tag' == $criteria['optionsTag']) ? true : false;
+            $atLeastOneTag = (1 == $criteria['optionsTag']) ? true : false;
+            $noTag = (2 == $criteria['optionsTag']) ? true : false;
             $criteria['tag'] = -1;
             unset($criteria['optionsTag']);
         } else {

@@ -50,7 +50,9 @@ class MissionSearchRepository extends EntityRepository
             'query'        => null,
             'statuses'     => array(),
             'organization' => null,
-            'tag'          => null
+            'tag'          => null,
+            'approval_number' => null,
+            'optionsTag' => null
         );
 
         $criteria = array_merge($defaultCriteria, $criteria);
@@ -63,6 +65,8 @@ class MissionSearchRepository extends EntityRepository
         $missionSearch->setArea($criteria['area']);
         $missionSearch->setDepartment($criteria['department']);
         $missionSearch->setOrganization($criteria['organization']);
+        $missionSearch->setApprovalNumber($criteria['approval_number']);
+        $missionSearch->setOptionsTag($criteria['optionsTag']);
 
         if ($criteria['tag']) {
             $missionSearch->setTag($this->getEntityManager()->getReference('ServiceCiviqueCoreBundle:Tag', $criteria['tag']));

@@ -74,6 +74,11 @@ class MissionSearch
     private $approvalNumber;
 
     /**
+     * @var string
+     */
+    private $optionsTag;
+
+    /**
      * @var integer
      */
     private $tag;
@@ -375,6 +380,29 @@ class MissionSearch
     public function getApprovalNumber()
     {
         return $this->approvalNumber;
+    }
+
+    /**
+     * Get approval number
+     *
+     * @return string
+     */
+    public function getOptionsTag()
+    {
+        return $this->optionsTag;
+    }
+
+    /**
+     * Set approval number
+     *
+     * @param  string        $optionsTag
+     * @return MissionSearch
+     */
+    public function setOptionsTag($optionsTag)
+    {
+        $this->optionsTag = $optionsTag;
+
+        return $this;
     }
 
     /**
