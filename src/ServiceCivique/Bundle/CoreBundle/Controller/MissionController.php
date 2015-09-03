@@ -446,7 +446,7 @@ class MissionController extends ResourceController
                 Mission::STATUS_FILLED,
                 Mission::STATUS_UNDER_VALIDATION,
             ),
-            'published' => date('Y-m-d', strtotime('- 6 months'))
+            //'published' => date('Y-m-d', strtotime('- 6 months'))
         );
 
         $criteria = array_merge($default_criteria, $this->config->getCriteria([]));
