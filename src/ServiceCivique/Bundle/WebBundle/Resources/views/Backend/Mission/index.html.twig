@@ -25,7 +25,7 @@
     {{ sonata_block_render({ 'type': 'service_civique.block.mission_search' }, {
         'search_action' : path('service_civique_mission_search_submit', {'sorting' : app.request.query.get('sorting'), 'route' : 'service_civique_backend_mission_index'} ),
         'display': {'form': true, 'options': false, 'filters': false, 'tags': true, 'formfilterclass': true, 'pagination': true},
-        'template' : 'ServiceCiviqueWebBundle:Frontend/Organization/Block:block_mission_search.html.twig',
+        'template' : 'ServiceCiviqueWebBundle:Backend/Mission/Block:block_mission_search.html.twig',
         'criteria' : criteria
     }) }}
 {% endblock %}
