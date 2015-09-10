@@ -11,6 +11,8 @@ use ServiceCivique\Bundle\AddressingBundle\Form\Type\LocationType;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 
+use Doctrine\ORM\EntityRepository;
+
 class OrganizationType extends AbstractType
 {
     /**
@@ -50,7 +52,7 @@ class OrganizationType extends AbstractType
 
                 // if organization is not new do nothing
                 if (isset($organization) && $organization->getId()) {
-                    return;
+                    //return;
                 }
 
                 // add approvedOrganization fields
