@@ -38,12 +38,33 @@
     {{ parent() }}
     <script type="text/javascript">
         $( document ).ready(function() {
+            // Critère "Options des tags"
             $('body').on('ifChecked', '#criteria_optionsTag_placeholder', function (event) {
                 $('.form-group-tag').show('fast');
             });
+            if($('#criteria_optionsTag_0').prop('checked') == true | $('#criteria_optionsTag_1').prop('checked') == true ) {
+                $('.form-group-tag').hide();
+            }
             $('body').on('ifChecked', '#criteria_optionsTag_0,#criteria_optionsTag_1', function (event) {
                 $('.form-group-tag').hide('fast');
             });
+            // Critère "Où ?"
+            $('body').on('ifChecked', '#criteria_is_overseas_1', function (event) {
+                $('.form-group-area,.form-group-department').hide('fast');
+                $('.form-group-country').show('fast');
+            });
+            if($('#criteria_is_overseas_1').prop('checked') == true) {
+                $('.form-group-area,.form-group-department').hide();
+                $('.form-group-country').show();
+            }
+            $('body').on('ifChecked', '#criteria_is_overseas_0', function (event) {
+                $('.form-group-area,.form-group-department').show('fast');
+                $('.form-group-country').hide('fast');
+            });
+            if($('#criteria_is_overseas_0').prop('checked') == true) {
+                $('.form-group-area,.form-group-department').show();
+                $('.form-group-country').hide();
+            }
         });
     </script>
 {% endblock %}
