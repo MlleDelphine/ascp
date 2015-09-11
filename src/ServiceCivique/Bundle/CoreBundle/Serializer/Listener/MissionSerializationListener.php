@@ -34,6 +34,8 @@ class MissionSerializationListener implements EventSubscriberInterface
         $object = $event->getObject();
         $visitor = $event->getVisitor();
 
+        $visitor->addData('mission_approval_number',$object->getApprovalNumber());
+
         if ($object->getTaxon()) {
             $visitor->addData('taxon_name', $object->getTaxon()->getName());
             $visitor->addData('taxon_id', $object->getTaxon()->getId());
