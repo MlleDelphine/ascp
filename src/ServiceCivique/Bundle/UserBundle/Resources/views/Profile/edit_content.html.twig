@@ -1,16 +1,23 @@
 <div class="profile-edit-box">
+    {% if app.request.attributes.get('_route') == 'service_civique_backend_user_update' %}
+        {% set origin = 'backend' %}
+    {% else %}
+        {% set origin = 'frontend' %}
+    {% endif %}
     {% if user.type == constant('ORGANIZATION_TYPE', user) %}
         {{ form_start(form) }}
         <fieldset class="form-group">
             <legend><h2>Identité</h2></legend>
             <hr>
-            <div class="row">
-                <div class="form-group form-group-enabled col-md-6 col-sm-6">
-                    {{ form_label(form.enabled) }}
-                    {{ form_errors(form.enabled) }}
-                    {{ form_widget(form.enabled) }}
+            {% if origin == 'backend' %}
+                <div class="row">
+                    <div class="form-group form-group-enabled col-md-6 col-sm-6">
+                        {{ form_label(form.enabled) }}
+                        {{ form_errors(form.enabled) }}
+                        {{ form_widget(form.enabled) }}
+                    </div>
                 </div>
-            </div>
+            {% endif %}
             <div class="row">
                 <div class="form-group form-group-firstname col-md-6 col-sm-6">
                     {{ form_label(form.firstname) }}
@@ -32,7 +39,11 @@
                 <div class="form-group form-group-organization_approvalNumber col-md-6 col-sm-6">
                     {{ form_label(form.organization.approvalNumber) }}
                     {{ form_errors(form.organization.approvalNumber) }}
-                    {{ form_widget(form.organization.approvalNumber) }}
+                    {% if origin == 'backend' %}
+                        {{ form_widget(form.organization.approvalNumber) }}
+                    {% else %}
+                        {{ form_widget(form.organization.approvalNumber, { 'attr':{'disabled':'disabled'}}) }}
+                    {% endif %}
                 </div>
                 <div class="form-group form-group-organization_name col-md-6 col-sm-6">
                     {{ form_label(form.organization.name) }}
@@ -40,22 +51,32 @@
                     {{ form_widget(form.organization.name) }}
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group form-group-organization_type col-md-12 col-sm-12">
-                    {{ form_label(form.organization.type) }}
-                    {{ form_errors(form.organization.type) }}
-                    {% for child in form.organization.type %}
-                        <div>{{ form_widget(child) }}</div>
-                    {% endfor %}
+            {% if origin == 'backend' %}
+                <div class="row">
+                    <div class="form-group form-group-organization_type col-md-12 col-sm-12">
+                        {{ form_label(form.organization.type) }}
+                        {{ form_errors(form.organization.type) }}
+                        {% for child in form.organization.type %}
+                            <div>{{ form_widget(child) }}</div>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group form-group-organization_approvedOrganization col-md-12 col-sm-12">
-                    {{ form_label(form.organization.approvedOrganization) }}
-                    {{ form_errors(form.organization.approvedOrganization) }}
-                    {{ form_widget(form.organization.approvedOrganization, {'expanded':false}) }}
+                <div class="row">
+                    <div class="form-group form-group-organization_approvedOrganization col-md-12 col-sm-12">
+                        {{ form_label(form.organization.approvedOrganization) }}
+                        {% if(form.organization.vars.value.approvedOrganization is not null) %}
+                            {% set approved_organization = form.organization.vars.value.approvedOrganization %}
+                        {% else %}
+                            {% set approved_organization = 'Aucun' %}
+                        {% endif %}
+                        <div>
+                            <p><em>Organisme actuellement agréé</em> : {{ approved_organization }}</p>
+                        </div>
+                        {{ form_errors(form.organization.approvedOrganization) }}
+                        {{ form_widget(form.organization.approvedOrganization, {'expanded':false}) }}
+                    </div>
                 </div>
-            </div>
+            {% endif %}
             <strong>Si vous souhaitez éditer votre numéro d'agrément, rendez vous sur <a
                         href="{{ url('service_civique_organization_update_approval_number', {'organization_id': form.vars.value.organization.id}) }}">cette
                     page</a>.</strong>
@@ -81,13 +102,22 @@
             {% endif %}
             <input type="submit" class="btn btn-sc-red" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}"/>
         </div>
-        {{ form_end(form) }}
+        {{ form_end(form, {'render_rest': false}) }}
     {% else %}
         {{ form_start(form) }}
         <fieldset class="form-group">
             <legend><h2>Identité</h2></legend>
             <hr>
             {{ form_row(form.profile.gender) }}
+            {% if origin == 'backend' %}
+                <div class="row">
+                    <div class="form-group form-group-enabled col-md-6 col-sm-6">
+                        {{ form_label(form.enabled) }}
+                        {{ form_errors(form.enabled) }}
+                        {{ form_widget(form.enabled) }}
+                    </div>
+                </div>
+            {% endif %}
             <div class="row">
                 <div class="form-group form-group-firstname col-md-6 col-sm-6">
                     {{ form_label(form.firstname) }}
@@ -166,6 +196,6 @@
             {% endif %}
             <input type="submit" class="btn btn-sc-red" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}"/>
         </div>
-        {{ form_end(form) }}
+        {{ form_end(form, {'render_rest': false}) }}
     {% endif %}
 </div>
