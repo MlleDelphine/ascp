@@ -34,7 +34,11 @@ class OrganizationSerializationListener implements EventSubscriberInterface
         $object = $event->getObject();
         $visitor = $event->getVisitor();
 
+        /* Modification F. Zilbermann */
+        // On garde ce type_name pour éventuelle rétro-compatibilité
         $visitor->addData('type_name', $this->getTypeName($object));
+        // On ajoute le type de l'organisme
+        $visitor->addData('type', $object->getType());
 
         if($event->getContext()->getDepth() < 1) {
             $application_count = $this->organizationRepository->getApplicationCount($object);
@@ -60,6 +64,11 @@ class OrganizationSerializationListener implements EventSubscriberInterface
     protected function getTypeName($organization) {
 
         return $organization->isApprovedOrganization() ? "Organisme agréé" : "Organisme d’accueil";
+    }
+
+    protected function getTypeValue($organization) {
+
+        return $organization->isApprovedOrganization() ? 1 : 0;
     }
 
 }
