@@ -41,6 +41,11 @@ class UserFormListener implements EventSubscriberInterface
 
             $this->alterEmailField($form, $this->initialEmailFieldOptions, $emailFieldOptions);
 
+            /**
+             * Added by F. Zilbermann 11/09/2015
+             *
+             * For use in backend form
+             */
             $form->add('enabled', null, array(
                 'label'     => 'Activation',
                 'required'  => false
@@ -76,6 +81,11 @@ class UserFormListener implements EventSubscriberInterface
 
             $this->alterEmailField($form, $this->initialEmailFieldOptions, $emailFieldOptions);
 
+            /**
+             * Added by F. Zilbermann 11/09/2015
+             *
+             * For use in backend form
+             */
             $form->add('enabled', null, array(
                 'label'     => 'Activation',
                 'required'  => false
