@@ -136,6 +136,8 @@ service_civique:
       index: Organismes
     corporate:
       index: À propos de nous
+    faqs:
+      index: FAQs
     update: Modifier
     user:
       index: Utilisateurs

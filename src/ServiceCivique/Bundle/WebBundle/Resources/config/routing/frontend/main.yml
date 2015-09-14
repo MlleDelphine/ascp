@@ -66,6 +66,12 @@ service_civique_faq:
         _controller: ServiceCiviqueWebBundle:Default:faq
         type: volontaire
 
+service_civique_faqs:
+    pattern: /faqs
+    methods: [GET]
+    defaults:
+        _controller: ServiceCiviqueWebBundle:Frontend/Homepage:faqs
+
 service_civique_newsletter:
     pattern: /newsletter
     methods: [GET, POST]
