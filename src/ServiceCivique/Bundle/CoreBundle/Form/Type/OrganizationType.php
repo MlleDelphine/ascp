@@ -48,18 +48,17 @@ class OrganizationType extends AbstractType
                 $form         = $event->getForm();
                 $organization = $event->getData();
 
-                $form->add('type', 'choice', array(
-                    'label'    => 'service_civique.organization.form.type.label',
-                    'expanded' => true,
-                    'choices'  => array(
-                        Organization::TYPE_APPROVED => 'service_civique.organization.form.type.approved.label',
-                        Organization::TYPE_HOST     => 'service_civique.organization.form.type.host.label',
-                    ),
-                ));
-
                 // if organization is not new do nothing
                 if (isset($organization) && $organization->getId()) {
                     //return;
+                    $form->add('type', 'choice', array(
+                        'label'    => 'service_civique.organization.form.type.label',
+                        'expanded' => true,
+                        'choices'  => array(
+                            Organization::TYPE_APPROVED => 'service_civique.organization.form.type.approved.label',
+                            Organization::TYPE_HOST     => 'service_civique.organization.form.type.host.label',
+                        ),
+                    ));
                     $form->add('approvedOrganization', 'entity', array(
                         'label'         => 'service_civique.organization.form.approvedOrganization.label',
                         'class'         => 'ServiceCiviqueCoreBundle:Organization',
@@ -93,6 +92,15 @@ class OrganizationType extends AbstractType
                         'required'      => false,
                     ));
                 } else {
+                    $form->add('type', 'choice', array(
+                        'label'    => 'service_civique.organization.form.type.label',
+                        'expanded' => true,
+                        'data' => '1',
+                        'choices'  => array(
+                            Organization::TYPE_APPROVED => 'service_civique.organization.form.type.approved.label',
+                            Organization::TYPE_HOST     => 'service_civique.organization.form.type.host.label',
+                        ),
+                    ));
                     // add approvedOrganization fields
                     $form->add('approvedOrganization', 'resource_identifier', array(
                         'label'    => 'service_civique.organization.form.approvedOrganization.label',
