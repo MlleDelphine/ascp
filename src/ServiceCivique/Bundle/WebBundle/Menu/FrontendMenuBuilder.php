@@ -70,7 +70,12 @@ class FrontendMenuBuilder extends MenuBuilder
         $currentContext = $contextResolver->getContext();
 
         // create other items
-        foreach (['corporate', 'organization', 'jeunes', 'faqs'] as $subMenuSlug) {
+        /**
+         * Ajout F. Zilbermann
+         *
+         * Ajouter 'faqs' dans le tableau pour faire apparaître le menu FAQs en front
+         */
+        foreach (['corporate', 'organization', 'jeunes'] as $subMenuSlug) {
             $firstChild = $this->menuProvider
                 ->get($subMenuSlug)
                 ->getFirstChild();
