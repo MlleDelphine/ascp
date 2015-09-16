@@ -446,7 +446,7 @@ class MissionController extends ResourceController
                 Mission::STATUS_FILLED,
                 Mission::STATUS_UNDER_VALIDATION,
             ),
-            'published' => date('Y-m-d', strtotime('- 6 months'))
+            //'published' => date('Y-m-d', strtotime('- 6 months'))
         );
 
         $criteria = array_merge($default_criteria, $this->config->getCriteria([]));
@@ -537,6 +537,10 @@ class MissionController extends ResourceController
 
             if (!isset($params['criteria']['is_overseas']) || !$params['criteria']['is_overseas']) {
                 unset($params['criteria']['country']);
+            /* Ajout Frédérick Zilbermann Non prise en compte région/département quand on recherche à l'étranger */
+            } else {
+                unset($params['criteria']['department']);
+                unset($params['criteria']['area']);
             }
         }
 
@@ -737,7 +741,8 @@ class MissionController extends ResourceController
                 // Mission::STATUS_FILLED,
                 Mission::STATUS_UNDER_VALIDATION,
             ),
-            'published' => date('Y-m-d', strtotime('- 1 month'))
+            /* Modif Frédérick Zilbermann : On doit pouvoir remonter toutes les missions */
+            //'published' => date('Y-m-d', strtotime('- 1 month'))
         );
 
         $criteria = array_merge($default_criteria, $this->config->getCriteria([]));
@@ -751,6 +756,7 @@ class MissionController extends ResourceController
             'findFromAdmin',
             array($criteria, $sorting)
         );
+
         $resources->setCurrentPage($request->get('page', 1), true, true);
         // $resources->setMaxPerPage($this->config->getPaginationMaxPerPage());
         $resources->setMaxPerPage($request->get('paginate', 20));

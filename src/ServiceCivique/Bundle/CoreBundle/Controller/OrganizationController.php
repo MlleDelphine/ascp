@@ -95,8 +95,9 @@ class OrganizationController extends ResourceController
         }
 
         if ($approvedOnly) {
-            $termQuery->setTerm('type_name', 'Organisme agréé');
-            $boolQuery->addMust($termQuery);
+            $termQueryApproved = new \Elastica\Query\Term();
+            $termQueryApproved->setTerm('type', 1);
+            $boolQuery->addMust($termQueryApproved);
         }
 
         if ($organizationName) {

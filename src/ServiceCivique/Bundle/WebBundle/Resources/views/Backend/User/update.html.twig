@@ -8,5 +8,28 @@
 {% block header_content_actions %}{% endblock %}
 
 {% block main_content %}
-    {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+    {% include "FOSUserBundle:Profile:edit_content.html.twig" with {admin:1} %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if user.type == constant('ORGANIZATION_TYPE', user) %}
+        <script type="text/javascript">
+            $(function () {
+                if ($('#service_civique_user_organization_type_0').prop('checked') == true) {
+                    $('.form-group-organization_approvedOrganization').hide();
+                }
+                $('#service_civique_user_organization_type_0').on('ifClicked', function () {
+                    $('.form-group-organization_approvedOrganization').hide('fast');
+                    $('#service_civique_user_organization_approvedOrganization option').eq(0).prop('selected', true);
+                });
+                if ($('#service_civique_user_organization_type_1').prop('checked') == true) {
+                    $('.form-group-organization_approvedOrganization').show();
+                }
+                $('#service_civique_user_organization_type_1').on('ifClicked', function () {
+                    $('.form-group-organization_approvedOrganization').show('fast');
+                });
+            });
+        </script>
+    {% endif %}
 {% endblock %}

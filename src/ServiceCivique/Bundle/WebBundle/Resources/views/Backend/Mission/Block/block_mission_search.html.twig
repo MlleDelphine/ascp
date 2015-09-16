@@ -1,0 +1,68 @@
+{% if (settings.display.form) %}
+    <div class="searchFormBox searchFormBoxOrga sr-only{% if settings.display.formfilterclass is defined and settings.display.formfilterclass %} form-filter{% endif %}" id="mission-search">
+        <h1 class="h3"><i class="glyphicon glyphicon-search" ></i> {{ 'Rechercher' | trans }}</h1>
+        <div class="row">
+            {{ form_start(form) }}
+            <div class="advanced-search-box open">
+                <div class="col col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <fieldset id="lieu" class="form-wrapper">
+                            <legend><span class="fieldset-legend ie-font" >Où ?</span></legend>
+                            {{ form_widget(form.is_overseas) }}
+                        </fieldset>
+                    </div>
+                    {{ form_row(form.location.area, { 'label': 'service_civique.form.mission_search.area.label'}) }}
+
+                    {{ form_row(form.location.country) }}
+                    {{ form_row(form.location.department) }}
+
+                </div>
+
+                <div class="col last col-md-6 col-sm-6 col-xs-12">
+                    {{ form_row(form.start_date, { 'attr': {'data-formatted': form.start_date.vars.value | date('d/m/Y')}}) }}
+
+                    {{ form_row(form.query) }}
+                    {{ form_row(form.organization) }}
+                    {{ form_row(form.approval_number) }}
+                    {{ form_row(form.optionsTag) }}
+                    {% if (settings.display.tags) %}
+                        {{ form_row(form.tag) }}
+                    {% endif %}
+
+                </div>
+
+                <div class="col last col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <fieldset id="taxons" class="form-wrapper">
+                            <legend><span class="fieldset-legend ie-font">Statut(s)</span></legend>
+                            {{ form_widget(form.statuses) }}
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            {% if settings.display.pagination is defined %}
+                <select class="paginate-url" name="paginate">
+                    <option value="20" {% if(app.request.query.get('paginate') == 20) %}selected="selected"{% endif %}>20 missions par page</option>
+                    <option value="50" {% if(app.request.query.get('paginate') == 50) %}selected="selected"{% endif %}>50 missions par page</option>
+                    <option value="100" {% if(app.request.query.get('paginate') == 100) %}selected="selected"{% endif %}>100 missions par page</option>
+                </select>
+            {% endif %}
+
+            <div class="btn-box center col-md-12 col-sm-12 col-xs-12">
+                {{ form_widget(form.search) }}
+            </div>
+
+            {{ form_end(form, {'render_rest': false}) }}
+
+        </div>
+    </div>
+    {% if (settings.nbResults) %}
+        <div class="nb-missions">
+            {% if app.request.query.all %}
+                {{ 'service_civique.mission.nb_results.title' | transchoice(settings.nbResults) }}
+            {% else %}
+                {{ 'service_civique.mission.nb_results.title_encours' | transchoice(settings.nbResults) }}
+            {% endif %}
+        </div>
+    {% endif %}
+{% endif %}

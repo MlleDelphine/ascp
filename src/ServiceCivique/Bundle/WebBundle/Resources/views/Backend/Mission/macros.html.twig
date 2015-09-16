@@ -12,6 +12,7 @@
             </th>
             <th class="info">{{ sylius_resource_sort('title', 'service_civique.mission.title'|trans) }}</th>
             <th>{{ sylius_resource_sort('organization_name', 'Organisme d’accueil') }}</th>
+            <th>{{ sylius_resource_sort('approval_number', 'Numéro d\'agrément') }}</th>
             <th>{{ sylius_resource_sort('department', 'Lieu') }}</th>
             <th class="info">{{ sylius_resource_sort('start_date', 'Date de début') }}</th>
             {# <th class="info">{{ sylius_resource_sort('created', 'service_civique.mission.created'|trans) }}</th> #}
@@ -36,6 +37,7 @@
                 </a>
             </td>
             <td>{{ mission.organizationName }}</td>
+            <td>{{ mission.approvalNumber }}</td>
             <td>{{ macros.location(mission) }}</td>
             <td>
                 {{ mission.startDate | localizeddate("long", "none") }}

@@ -69,6 +69,16 @@ class MissionSearch
     private $organization;
 
     /**
+     * @var string
+     */
+    private $approvalNumber;
+
+    /**
+     * @var string
+     */
+    private $optionsTag;
+
+    /**
      * @var integer
      */
     private $tag;
@@ -347,6 +357,52 @@ class MissionSearch
     public function getOrganization()
     {
         return $this->organization;
+    }
+
+    /**
+     * Set approval number
+     *
+     * @param  string        $approvalNumber
+     * @return MissionSearch
+     */
+    public function setApprovalNumber($approvalNumber)
+    {
+        $this->approvalNumber = $approvalNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get approval number
+     *
+     * @return string
+     */
+    public function getApprovalNumber()
+    {
+        return $this->approvalNumber;
+    }
+
+    /**
+     * Get approval number
+     *
+     * @return string
+     */
+    public function getOptionsTag()
+    {
+        return $this->optionsTag;
+    }
+
+    /**
+     * Set approval number
+     *
+     * @param  string        $optionsTag
+     * @return MissionSearch
+     */
+    public function setOptionsTag($optionsTag)
+    {
+        $this->optionsTag = $optionsTag;
+
+        return $this;
     }
 
     /**

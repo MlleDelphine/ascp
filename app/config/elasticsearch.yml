@@ -75,9 +75,8 @@ fos_elastica:
                         name:
                             type: string
                             analyzer: french
-                        type_name:
-                            type: string
-                            index: not_analyzed
+                        type:
+                            type: integer
                         location:
                             type: geo_point
                             lat_lon: true
@@ -149,6 +148,10 @@ fos_elastica:
                         organization_name:
                             type: string
                             analyzer: french
+                        mission_approval_number:
+                            property_path: approval_number
+                            type: string
+                            index: not_analyzed
                         description:
                             type: string
                             analyzer: french
