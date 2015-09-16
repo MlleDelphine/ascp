@@ -52,6 +52,7 @@ class CreateNewOrganizationSubscriber implements EventSubscriberInterface
                 'required' => false,
                 'empty_value' => false,
                 'expanded' => true,
+                'data' => 0,
                 'choices'  => array(
                     0 => 'Créer la mission pour ma structure',
                     1 => 'Déléguer la mission'
