@@ -23,6 +23,7 @@ app/.DS_Store
 assets/.DS_Store
 app/sessions/*
 .bundle/
+.idea/
 
 .DS_Store
 web/sitemap*
