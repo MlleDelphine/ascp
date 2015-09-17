@@ -1,19 +1,29 @@
 {% if user.type == constant('ORGANIZATION_TYPE', user) and not app.request.get('invitation_code') %}
-<form id="approval_number_preview_form">
-    <div class="form-group form-group-approval_number_preview">
-        <label class="control-label required" for="approval_number_preview">Numéro d’agrément</label>
-        <span class="required" title="This field is required">*</span>
-        <input type="text" id="approval_number_preview" required="required" data-placement="top" data-toggle="tooltip" data-html="data-html" data-trigger="focus" data-title="Entrez ici votre numéro d’agrément. Si vous n’en disposez pas, référez-vous à la page <a tabindex=&quot;-1&quot; href=&quot;{{base_url}}/page/comment-obtenir-un-agrement&quot;>Comment obtenir un agrément</a>. Le numéro d’agrément doit être au format XX-000-00-00000-00. Il est composé de deux lettres, national (NA) ou régional (RG), puis de trois chiffres 000, 2 chiffres indiquant l'année de la demande initiale, 5 chiffres de numéro de saisie et 2 chiffres indiquant les avenants." pattern="^[A-Z]{2}-[0-9]{3}-[0-9]{2}-[0-9]{5}(?:-[0-9]{2}|$)$" placeholder="XX-000-00-00000-00" class="show-tooltip form-control" maxlength="18" data-original-title="" title="">
-        <div class="help-block form-error" id="approval_number_preview_error"></div>
-        <strong>Si vous ne parvenez pas à créer votre compte, vous pouvez faire une demande sur <a href="{{ path('service_civique_approval_conflict_create') }}" data-url="{{ path('service_civique_approval_conflict_create') }}" class="conflict_page">cette page</a>.</strong>
-    </div>
-    <div class="btn-box">
-        <input type="submit" id="approval_number_preview_submit" class="btn btn-sc-red btn-lg" value="Se créer un compte">
-    </div>
-</form>
+    <form id="approval_number_preview_form">
+        <div class="form-group form-group-approval_number_preview">
+            <label class="control-label required" for="approval_number_preview">Numéro d’agrément</label>
+            <span class="required" title="This field is required">*</span>
+            <input type="text" id="approval_number_preview" required="required" data-placement="top"
+                   data-toggle="tooltip" data-html="data-html" data-trigger="focus"
+                   data-title="Entrez ici votre numéro d’agrément. Si vous n’en disposez pas, référez-vous à la page <a tabindex=&quot;-1&quot; href=&quot;{{ base_url }}/page/comment-obtenir-un-agrement&quot;>Comment obtenir un agrément</a>. Le numéro d’agrément doit être au format XX-000-00-00000-00. Il est composé de deux lettres, national (NA) ou régional (RG), puis de trois chiffres 000, 2 chiffres indiquant l'année de la demande initiale, 5 chiffres de numéro de saisie et 2 chiffres indiquant les avenants."
+                   pattern="^[A-Z]{2}-[0-9]{3}-[0-9]{2}-[0-9]{5}(?:-[0-9]{2}|$)$" placeholder="XX-000-00-00000-00"
+                   class="show-tooltip form-control" maxlength="18" data-original-title="" title="">
+
+            <div class="help-block form-error" id="approval_number_preview_error"></div>
+            <strong>Si vous ne parvenez pas à créer votre compte, vous pouvez faire une demande sur <a
+                        href="{{ path('service_civique_approval_conflict_create') }}"
+                        data-url="{{ path('service_civique_approval_conflict_create') }}" class="conflict_page">cette
+                    page</a>.</strong>
+        </div>
+        <div class="btn-box">
+            <input type="submit" id="approval_number_preview_submit" class="btn btn-sc-red btn-lg"
+                   value="Se créer un compte">
+        </div>
+    </form>
 {% endif %}
 
-<form action="{{ app.request.getRequestURI() }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+<form action="{{ app.request.getRequestURI() }}" {{ form_enctype(form) }} method="POST"
+      class="fos_user_registration_register">
     {% if user.type == constant('ORGANIZATION_TYPE', user) %}
         <div id="organization_register_block">
             {% include 'ServiceCiviqueWebBundle:Frontend/Form:organization_register_form.html.twig' %}
@@ -26,11 +36,17 @@
     <div{% if user.type == constant('ORGANIZATION_TYPE', user) %} id="form_rest_block"{% endif %}>
         <p class="legals-mentions">
             <small>
-                Conformément à la loi Informatique et Libertés du 6 janvier 1978, vous disposez d’un droit d’accès et de rectification aux données personnelles vous concernant. Les informations recueillies font l’objet d’un traitement informatique destiné à réaliser des enquêtes à des fins statistiques. Par notre intermédiaire, vous pouvez être amené à recevoir des informations ou offres commerciales. Si vous ne le souhaitez pas, il vous suffit de nous écrire en nous indiquant vos nom, prénom, adresse et si possible vos coordonnées électroniques.
+                Conformément à la loi Informatique et Libertés du 6 janvier 1978, vous disposez d’un droit d’accès et de
+                rectification aux données personnelles vous concernant. Les informations recueillies font l’objet d’un
+                traitement informatique destiné à réaliser des enquêtes à des fins statistiques. Par notre
+                intermédiaire, vous pouvez être amené à recevoir des informations ou offres commerciales. Si vous ne le
+                souhaitez pas, il vous suffit de nous écrire en nous indiquant vos nom, prénom, adresse et si possible
+                vos coordonnées électroniques.
             </small>
         </p>
         <div class="btn-box">
-            <input type="submit" class="btn btn-sc-red btn-lg" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+            <input type="submit" data-warning="0" class="btn btn-sc-red btn-lg"
+                   value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}"/>
         </div>
     </div>
 </form>
