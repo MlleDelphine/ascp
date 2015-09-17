@@ -576,6 +576,8 @@ service_civique:
       title: Actualité
     advantage:
       title: Avantage
+    major_program:
+      title: Grands Programmes
     media:
       title: Media
     partner:

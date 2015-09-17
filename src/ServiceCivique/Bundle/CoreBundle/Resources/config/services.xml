@@ -138,8 +138,9 @@
             <tag name="form.type" alias="service_civique_advantage" />
         </service>
 
-        <service id="service_civique.form.type.major_program" class="%service_civique.form.type.major_program.class%">
+       <service id="service_civique.form.type.major_program" class="%service_civique.form.type.major_program.class%">
             <tag name="form.type" alias="service_civique_major_program" />
+            <argument type="service" id="service_civique.repository.major_program" />
         </service>
 
         <service id="service_civique.form.type.video" class="%service_civique.form.type.video.class%">
