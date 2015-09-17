@@ -6,7 +6,7 @@
     <div class="alert alert-success">
         {{ 'registration.check_email'|trans({'%email%': user.email}, 'FOSUserBundle') }}
     </div>
-    <div class="alert alert-danger">
+    <div class="alert alert-danger" style="text-align: center">
         <em>{{ 'registration.check_spams'|trans({'%email%': user.email}, 'FOSUserBundle') }}</em>
     </div>
 {% endblock main_content_body %}
