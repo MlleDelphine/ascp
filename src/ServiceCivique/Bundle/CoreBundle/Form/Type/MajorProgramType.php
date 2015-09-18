@@ -32,12 +32,13 @@ class MajorProgramType extends AbstractType
                 $form = $event->getForm();
                 $data = $event->getData();
 
-                $count = count($this->repository->findAll());
-                $count = ($count > 1 ? $count : 1);
+                $count = $this->repository->getMajorProgramsCount();
+
                 if (!$data->getId()) {
                     $count += 1;
                 }
-                $choices = range(1, $count);
+
+                $choices = array_combine(range(1, $count),range(1, $count));
 
                 $form->add('position', 'choice', array(
                         'label' => 'Position',
@@ -45,15 +46,16 @@ class MajorProgramType extends AbstractType
                     )
                 );
 
+                $form->add('actions', 'form_actions');
+
+                $form->add('save', 'submit', array(
+                    'label' => 'Valider',
+                    'attr' => array('class' => 'btn btn-sc-red'),
+                ));
+
             }
         );
 
-        $builder->add('actions', 'form_actions');
-
-        $builder->add('save', 'submit', array(
-            'label' => 'Valider',
-            'attr' => array('class' => 'btn btn-sc-red'),
-        ));
     }
 
     /**

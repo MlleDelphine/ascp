@@ -7,6 +7,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>{{ sylius_resource_sort('position', 'Position') }}</th>
             <th>{{ sylius_resource_sort('title', 'Titre') }}</th>
             <th></th>
         </tr>
@@ -14,6 +15,7 @@
     <tbody>
         {% for major_program in major_programs %}
         <tr data-id="{{ major_program.id }}">
+            <td>{{ major_program.position }}</td>
             <td><a href="{{ path('service_civique_major_program_show', {'slug': major_program.slug}) }}">{{ major_program.title }}</a></td>
             <td>
                 <div class="pull-right">

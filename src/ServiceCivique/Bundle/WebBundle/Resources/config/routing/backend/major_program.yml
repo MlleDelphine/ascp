@@ -8,7 +8,7 @@ service_civique_backend_major_program_index:
             sortable: true
             paginate: 20
             sorting:
-                id: desc
+                position: asc
 
 service_civique_backend_major_program_create:
     pattern: /new

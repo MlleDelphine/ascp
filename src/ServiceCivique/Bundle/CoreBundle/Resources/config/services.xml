@@ -143,6 +143,13 @@
             <argument type="service" id="service_civique.repository.major_program" />
         </service>
 
+        <service id="service_civique.listener.major_program" class="ServiceCivique\Bundle\CoreBundle\Form\EventListener\ModifyMajorProgramListener">
+            <argument type="service" id="service_civique.repository.major_program" />
+            <tag name="kernel.event_listener" event="service_civique.major_program.pre_update" method="onMajorProgramCreateOrUpdate" />
+            <tag name="kernel.event_listener" event="service_civique.major_program.pre_create" method="onMajorProgramCreateOrUpdate" />
+            <tag name="kernel.event_listener" event="service_civique.major_program.pre_delete" method="onMajorProgramDelete" />
+        </service>
+
         <service id="service_civique.form.type.video" class="%service_civique.form.type.video.class%">
             <tag name="form.type" alias="service_civique_video" />
         </service>
