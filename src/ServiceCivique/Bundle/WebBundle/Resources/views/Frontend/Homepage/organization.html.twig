@@ -102,7 +102,12 @@
                                             <a href="{{ program.url }}">
                                                 <li>
                                                     {% set pic_name = "images/slider_mp/mp_icon_" ~ program.icon ~ ".png" %}
-                                                    <img src="{{ asset(pic_name) }}"/>
+                                                    {% set pic_name_hover = "images/slider_mp/mp_icon_" ~ program.icon ~ "_hover.png" %}
+                                                    <img
+                                                            data-url="{{ asset(pic_name) }}"
+                                                            data-url-hover="{{ asset(pic_name_hover) }}"
+                                                            src="{{ asset(pic_name) }}"/>
+
                                                     <p>{{ program.title }}</p>
                                                 </li>
                                             </a>
@@ -214,6 +219,7 @@
                 pager: false,
                 minSlides: 1,
                 maxSlides: 4,
+                infiniteLoop: false,
                 slideWidth: 134,
                 slideMargin: 10,
                 nextText: '>',
@@ -224,6 +230,14 @@
                     var height = $('.bx-viewport').height();
                     $('.bx-viewport li').height(height);
                 }
+            });
+
+            $('body').on('mouseenter', '.bxslider a', function () {
+                var image = $(this).find('img');
+                image.attr('src', image.data('url-hover'));
+            }).on('mouseleave', '.bxslider a', function () {
+                var image = $(this).find('img');
+                image.attr('src', image.data('url'));
             });
         });
     </script>
