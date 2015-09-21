@@ -39,11 +39,7 @@
                 <div class="form-group form-group-organization_approvalNumber col-md-6 col-sm-6">
                     {{ form_label(form.organization.approvalNumber) }}
                     {{ form_errors(form.organization.approvalNumber) }}
-                    {% if origin == 'backend' %}
-                        {{ form_widget(form.organization.approvalNumber) }}
-                    {% else %}
-                        {{ form_widget(form.organization.approvalNumber, { 'attr':{'disabled':'disabled'}}) }}
-                    {% endif %}
+                    {{ form_widget(form.organization.approvalNumber, { 'attr':{'disabled':'disabled'}}) }}
                 </div>
                 <div class="form-group form-group-organization_name col-md-6 col-sm-6">
                     {{ form_label(form.organization.name) }}

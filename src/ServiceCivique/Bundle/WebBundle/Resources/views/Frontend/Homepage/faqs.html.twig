@@ -1,0 +1,33 @@
+{% extends "ServiceCiviqueWebBundle::layout.html.twig" %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block header_message %}
+<p>{{ 'service_civique.statictexts.corporate.header_message' | trans({}, 'statictexts') | raw }}</p>
+{% endblock %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'name' : 'service_civique.breadcrumb.faqs.index'},
+]) }}
+{% endblock %}
+
+{% block content %}
+<h1 class="sr-only">Les FAQs</h1>
+
+<div class="media-container colored-container">
+    <div class="container">
+        <div class="linkBox">
+            <div class="row">
+                <div class="col col-md-6 col-sm-6 col-xs-12">
+                    <a href="{{ path('service_civique_faq') }}" class="btn btn-info">FAQ Volontaire</a>
+                </div>
+                <div class="col col-md-6 col-sm-6 col-xs-12">
+                    <a href="{{ path('service_civique_organization_faq') }}" class="btn btn-info">FAQ Organisme</a>
+                </div>
+            </div>
+        </div>
+     </div>
+</div>
+
+{% endblock %}

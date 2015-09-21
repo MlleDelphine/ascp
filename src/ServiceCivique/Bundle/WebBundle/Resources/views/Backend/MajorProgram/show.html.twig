@@ -1,0 +1,16 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% set resource_type = 'major_program' %}
+{% set page_type     = 'show' %}
+{% set page_type_class = 'page-show' %}
+
+{% block main_content_header %}{{ major_program.title }}{% endblock %}
+
+{% block main_content_body %}
+    <div>
+        <div><img src="{{ ('/uploads/major_programs/' ~ major_program.path) | apply_filter('partner_thumbnail') }}" alt="major_program.title" /></div>
+        <h3>{{ major_program.title | raw }}</h3>
+        <p>URL : {{ major_program.url | raw }} </p>
+        <p>Position : {{ major_program.position | raw }} </p>
+    </div>
+{% endblock %}

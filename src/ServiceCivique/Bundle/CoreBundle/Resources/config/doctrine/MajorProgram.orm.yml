@@ -1,0 +1,42 @@
+ServiceCivique\Bundle\CoreBundle\Entity\MajorProgram:
+    type: entity
+    table: major_program
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    properties:
+        file:
+            - File:
+                maxSize: 10M
+    fields:
+        title:
+            type: string
+            length: 255
+        path:
+            type: string
+            length: 255
+        url:
+            type: string
+            length: 255
+        position:
+            type: integer
+        slug:
+            type: string
+            length: 255
+            gedmo:
+                slug:
+                    fields: ['title']
+        published:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+    lifecycleCallbacks:
+        prePersist:  [ preUpload ]
+        preUpdate:   [ preUpload ]
+        postPersist: [ upload ]
+        postUpdate:  [ upload ]
+        postRemove:  [ removeUpload ]

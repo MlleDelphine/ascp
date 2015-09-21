@@ -35,5 +35,35 @@
     {{ parent() }}
     {% if user.type == constant('ORGANIZATION_TYPE', user) %}
         <script src="{{ asset('assets/js/organization_register.js') }}"></script>
+        <script type="text/javascript">
+            $(function () {
+                $(document).on('submit', 'form.fos_user_registration_register', function (event) {
+                    var submit_button = $(this).find('input[type="submit"]');
+                    var warning = submit_button.data('warning');
+                    if (warning == 0) {
+                        event.preventDefault();
+                        $('#warning-modal').modal();
+                        submit_button.data('warning', 1);
+                    }
+                    return;
+                });
+
+                $('#warning-modal').on('show.bs.modal', function (event) {
+                    var modal = $(this);
+                    if($('#fos_user_registration_form_organization_type_0').prop('checked')) {
+                        modal.find('.warning-host').hide();
+                    } else {
+                        modal.find('.warning-approved').hide();
+                    }
+                })
+            })
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+    {% if user.type == constant('ORGANIZATION_TYPE', user) %}
+        {% include 'ServiceCiviqueWebBundle:Frontend/Form:warning-modal.html.twig' %}
     {% endif %}
 {% endblock %}

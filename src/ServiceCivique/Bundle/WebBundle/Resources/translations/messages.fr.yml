@@ -76,6 +76,10 @@ service_civique:
           title:  Création compte organisme et connexion
           intro: |
               Créez votre compte, mettez en ligne vos missions et suivez vos candidatures
+          warning:
+            approved: Attention. Vous voulez vous inscrire comme organisme agréé.
+            host: Attention. Vous voulez vous inscrire comme organisme d'accueil.
+            final: Une fois cette fenêtre d'avertissement fermée, vous pourrez confirmer votre choix.
       form:
           approvalNumber:
               label: Numéro d’agrément
@@ -136,6 +140,8 @@ service_civique:
       index: Organismes
     corporate:
       index: À propos de nous
+    faqs:
+      index: FAQs
     update: Modifier
     user:
       index: Utilisateurs

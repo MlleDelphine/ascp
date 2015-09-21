@@ -1,0 +1,57 @@
+service_civique_backend_major_program_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.major_program:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/MajorProgram:index.html.twig
+            sortable: true
+            paginate: 20
+            sorting:
+                id: desc
+
+service_civique_backend_major_program_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.major_program:createAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/MajorProgram:create.html.twig
+            redirect: service_civique_backend_major_program_index
+
+service_civique_backend_major_program_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.major_program:updateAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/MajorProgram:update.html.twig
+            redirect: service_civique_backend_major_program_index
+
+service_civique_backend_major_program_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.major_program:deleteAction
+        _sylius:
+            redirect: service_civique_backend_major_program_index
+
+service_civique_major_program_list:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.major_program:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/MajorProgram:list.html.twig
+            paginate: false
+            limit: 99
+            sorting:
+                title: asc
+
+service_civique_major_program_show:
+    pattern: /{slug}
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.major_program:showAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/MajorProgram:show.html.twig

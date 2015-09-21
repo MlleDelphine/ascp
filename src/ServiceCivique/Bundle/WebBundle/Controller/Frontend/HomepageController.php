@@ -45,4 +45,12 @@ class HomepageController extends Controller
         ));
     }
 
+    public function faqsAction()
+    {
+        return new Response($this->renderView(
+            'ServiceCiviqueWebBundle:Frontend/Homepage:faqs.html.twig',
+            array('body_classes' => 'front')
+        ));
+    }
+
 }
