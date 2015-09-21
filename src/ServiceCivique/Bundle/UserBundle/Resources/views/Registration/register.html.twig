@@ -55,7 +55,23 @@
                     } else {
                         modal.find('.warning-approved').hide();
                     }
-                })
+                });
+                //Affiche une pop-up à la sélection si rien dans le select: organisme tiers
+                $(document).on('ifChecked', '#fos_user_registration_form_organization_type_1', function(event){
+                    var approval_number = $('#fos_user_registration_form_organization_approvalNumber').val();
+                    var url = "{{ path('service_civique_organization_ajax_search', { 'approval_number': '__APPROVAL__'}) }}";
+                    url = url.replace('__APPROVAL__', approval_number);
+                    $.ajax({
+                        url: url,
+                        type: "GET",
+                        dataType: "JSON",
+                        success: function (data) {
+                            if(jQuery.isEmptyObject(data)){
+                                $('#warning-tierce-modal').modal();
+                            }
+                        }
+                    })
+                });
             })
         </script>
     {% endif %}

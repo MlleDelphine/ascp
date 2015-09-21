@@ -80,6 +80,11 @@ service_civique:
             approved: Attention. Vous voulez vous inscrire comme organisme agréé.
             host: Attention. Vous voulez vous inscrire comme organisme d'accueil.
             final: Une fois cette fenêtre d'avertissement fermée, vous pourrez confirmer votre choix.
+          warning-tierce:
+              title: Avertissement : ne tentez pas de vous inscrire en tant qu'organisme agréé si vous êtes bien un organisme tiers
+              message: Attention. Vous tentez vous inscrire en tant qu'<strong>organisme d'accueil</strong> cependant, votre organisme parent n'a <strong>pas encore procédé à son inscription</strong>
+              final: Votre <strong>inscription va donc échouer</strong>. Veuillez demander à votre organisme parent de procéder à son inscription.
+
       form:
           approvalNumber:
               label: Numéro d’agrément

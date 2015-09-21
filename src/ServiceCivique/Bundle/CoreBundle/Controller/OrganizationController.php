@@ -51,7 +51,7 @@ class OrganizationController extends ResourceController
         $query = $this->buildSearchQuery(null, null, $request->query->get('name'));
 
         $results = $index->search($query)->getResults();
-
+        
         // format results
         $output = array();
 
