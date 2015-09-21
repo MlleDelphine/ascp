@@ -2,6 +2,7 @@
 
 namespace ServiceCivique\Bundle\CoreBundle\Form\Type;
 
+use ServiceCivique\Bundle\CoreBundle\Entity\MajorProgram;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,7 +25,12 @@ class MajorProgramType extends AbstractType
         $builder
             ->add('title', 'text', array('label' => 'Titre'))
             ->add('url', 'text', array('label' => 'URL'))
-            ->add('file', 'file', array('label' => 'Fichier', 'required' => false));
+            ->add('icon','choice',array(
+                'label' => 'Icône',
+                'choices' => MajorProgram::getIcons()
+            ))
+            //->add('file', 'file', array('label' => 'Fichier', 'required' => false))
+            ;
 
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,

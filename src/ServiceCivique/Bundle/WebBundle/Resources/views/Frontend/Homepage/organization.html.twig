@@ -2,146 +2,229 @@
 {% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
 
 {% block header_message %}
-<p>{{ 'service_civique.statictexts.organization.header_message' | trans({}, 'statictexts') | raw }}</p>
+    <p>{{ 'service_civique.statictexts.organization.header_message' | trans({}, 'statictexts') | raw }}</p>
 {% endblock %}
 
 {% block breadcrumb_content %}
-{{ breadcrumb([
+    {{ breadcrumb([
     {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
     {'name' : 'service_civique.breadcrumb.organization.index'},
-]) }}
+    ]) }}
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/css/vendor/jquery.bxslider.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+
 {% block content %}
-<h1 class="sr-only">Organismes</h1>
+    <h1 class="sr-only">Organismes</h1>
 
-<div class="organizationSC-container grey-container">
-    <div class="container">
-        <div class="organizationBox">
-            <div class="row">
-                <div class="col col-md-8 col-sm-8 col-xs-12">
-                    <div class="organizationHelperBox organizationSCBox">
-                        <h2 class="h3" >Vous voulez accueillir un volontaire en Service Civique ?</h2>
-                        <div class="row">
-                            <div class="col col-md-6 missionsCreationBlock">
-                                <p>{{ 'service_civique.homepage.organization.videobox.description1' | trans() | raw }}</p>
-                            </div>
-                            <div class="col col-md-6 missionsBroadcastingBlock">
-                                <p>{{ 'service_civique.homepage.organization.videobox.description2' | trans() | raw }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="organizationSCFormBox organizationSCBox">
-                        <div id="step-count"><span>1</span>/4</div>
-                        <h2 class="h3">{{ 'service_civique.quiz.block.title' | trans() | raw }}</h2>
-                        <div class="blabla">
-                            <form action="{{ path('service_civique_quiz') }}" method="GET">
-                                <h3 class="organizationSCFormNotice">
-                                    {{ 'service_civique.quiz.block.intro' | trans() | raw }}
-                                </h3>
-                                <fieldset class="form-wrapper">
-                                    <legend><span class="fieldset-legend">La mission que vous souhaitez proposer relève-t-elle d’une mission d’intérêt général ?</span></legend>
-                                    <div class="radio-inline">
-                                        <label for="first_question" class="control-label">    Oui
-                                            <input name="first_question" class="form-control" id="mission_interet_general1" value="1" type="radio" />
-                                        </label>
+    <div class="organizationSC-container grey-container">
+        <div class="container">
+            <div class="organizationBox">
+                <div class="row">
+                    <div class="col col-md-8 col-sm-8 col-xs-12">
+                        <div class="organizationHelperBox organizationSCBox">
+                            <h2 class="h3">Vous voulez accueillir un volontaire en Service Civique ?</h2>
 
-                                    </div>
-                                    <div class="radio-inline">
-                                        <label for="mission_interet_general0" class="control-label">Non <input name="first_question" class="form-control" id="mission_interet_general0" value="0" type="radio" /></label>
-
-                                    </div>
-                                </fieldset>
-                                <div class="btn-box align-right">
-                                    <input type="submit" value="Passer à la question suivante" class="btn btn-second btn-sc-red"/>
+                            <div class="row">
+                                <div class="col col-md-6 missionsCreationBlock">
+                                    <p>{{ 'service_civique.homepage.organization.videobox.description1' | trans() | raw }}</p>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="organizationHelperBox organizationSCBox">
-                        <h2 class="h3" >Publiez et mettez en avant vos missions de Service Civique</h2>
-                        <div class="row">
-                            <div class="col col-md-6 missionsCreationBlock">
-                                <h3><a href="/page/rediger-une-mission" title="mettez en ligne vos missions">{{ 'service_civique.homepage.organization.box.title1' | trans() }}</a></h3>
-                                <p>{{ 'service_civique.homepage.organization.box.description1' | trans() }}</p>
-                            </div>
-                            <div class="col col-md-6 missionsBroadcastingBlock">
-                                <h3><a href="{{ path('service_civique_widget_preview') }}" title="Diffusez vos missions sur votre site">{{ 'service_civique.homepage.organization.box.title2' | trans() }}</a></h3>
-                                <p>{{ 'service_civique.homepage.organization.box.description2' | trans() }}</p>
+                                <div class="col col-md-6 missionsBroadcastingBlock">
+                                    <p>{{ 'service_civique.homepage.organization.videobox.description2' | trans() | raw }}</p>
+                                </div>
                             </div>
                         </div>
+                        <div class="organizationSCFormBox organizationSCBox">
+                            <div id="step-count"><span>1</span>/4</div>
+                            <h2 class="h3">{{ 'service_civique.quiz.block.title' | trans() | raw }}</h2>
+
+                            <div class="blabla">
+                                <form action="{{ path('service_civique_quiz') }}" method="GET">
+                                    <h3 class="organizationSCFormNotice">
+                                        {{ 'service_civique.quiz.block.intro' | trans() | raw }}
+                                    </h3>
+                                    <fieldset class="form-wrapper">
+                                        <legend><span class="fieldset-legend">La mission que vous souhaitez proposer relève-t-elle d’une mission d’intérêt général ?</span>
+                                        </legend>
+                                        <div class="radio-inline">
+                                            <label for="first_question" class="control-label"> Oui
+                                                <input name="first_question" class="form-control"
+                                                       id="mission_interet_general1" value="1" type="radio"/>
+                                            </label>
+
+                                        </div>
+                                        <div class="radio-inline">
+                                            <label for="mission_interet_general0" class="control-label">Non <input
+                                                        name="first_question" class="form-control"
+                                                        id="mission_interet_general0" value="0" type="radio"/></label>
+
+                                        </div>
+                                    </fieldset>
+                                    <div class="btn-box align-right">
+                                        <input type="submit" value="Passer à la question suivante"
+                                               class="btn btn-second btn-sc-red"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="organizationHelperBox organizationSCBox">
+                            <h2 class="h3">Publiez et mettez en avant vos missions de Service Civique</h2>
+
+                            <div class="row">
+                                <div class="col col-md-6 missionsCreationBlock">
+                                    <h3><a href="/page/rediger-une-mission"
+                                           title="mettez en ligne vos missions">{{ 'service_civique.homepage.organization.box.title1' | trans() }}</a>
+                                    </h3>
+
+                                    <p>{{ 'service_civique.homepage.organization.box.description1' | trans() }}</p>
+                                </div>
+                                <div class="col col-md-6 missionsBroadcastingBlock">
+                                    <h3><a href="{{ path('service_civique_widget_preview') }}"
+                                           title="Diffusez vos missions sur votre site">{{ 'service_civique.homepage.organization.box.title2' | trans() }}</a>
+                                    </h3>
+
+                                    <p>{{ 'service_civique.homepage.organization.box.description2' | trans() }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="organizationHelperBox organizationSCBox">
+                            <h2 class="h3">Découvrez les nouveaux programmes du service civique</h2>
+
+                            <div class="row">
+                                <div id="slider-mp" class="col-md-12">
+                                    <span id="slider-prev"></span>
+                                    <ul class="bxslider">
+                                        {% for program in major_programs %}
+                                            <a href="{{ program.url }}">
+                                                <li>
+                                                    {% set pic_name = "images/slider_mp/mp_icon_" ~ program.icon ~ ".png" %}
+                                                    <img src="{{ asset(pic_name) }}"/>
+                                                    <p>{{ program.title }}</p>
+                                                </li>
+                                            </a>
+                                        {% endfor %}
+                                    </ul>
+                                    <span id="slider-next"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col col-md-4 col-sm-4 col-xs-12">
-                    <div class="faqBlock">
-                        <img src="/images/txt_faq.png" />
-                        <div class="img-box">
-                            <img src="/images/faq-img.jpg" data-at2x="{{ asset("images/faq-img@2x.jpg") }}" />
+                    <div class="col col-md-4 col-sm-4 col-xs-12">
+                        <div class="faqBlock">
+                            <img src="/images/txt_faq.png"/>
+
+                            <div class="img-box">
+                                <img src="/images/faq-img.jpg" data-at2x="{{ asset("images/faq-img@2x.jpg") }}"/>
+                            </div>
+                            <div class="content">
+                                <h2><a href="/page/les-referents" title="Consultez votre référent en région">Consultez
+                                        votre référent en région</a></h2>
+
+                                <p>Les référents Service Civique ont pour mission de vous accompagner dans les démarches
+                                    de mise en œuvre du Service Civique au niveau local.</p>
+                            </div>
+                            <footer class="block-footer"><a href="/organismes/faq-organisme" title="Découvrez la FAQ">Des
+                                    questions ? Découvrez la FAQ</a></footer>
                         </div>
-                        <div class="content">
-                            <h2><a href="/page/les-referents" title="Consultez votre référent en région">Consultez votre référent en région</a></h2>
-                            <p>Les référents Service Civique ont pour mission de vous accompagner dans les démarches de mise en œuvre du Service Civique au niveau local.</p>
-                        </div>
-                        <footer class="block-footer"><a href="/organismes/faq-organisme" title="Découvrez la FAQ">Des questions ? Découvrez la FAQ</a></footer>
                     </div>
                 </div>
             </div>
         </div>
-     </div>
-</div>
-
-<div class="media-container colored-container">
-    <div class="container">
-        <div class="mediaBox">
-            <div class="row">
-                <div class="col col-md-4 col-sm-4 col-xs-12">
-                    {{ sonata_block_render({ 'type': 'service_civique.block.last_actu' }) }}
-                </div>
-                <div class="col col-md-4 col-sm-4 col-xs-12">
-                    {{ sonata_block_render({ 'type': 'service_civique.block.last_media' }) }}
-                </div>
-                <div class="col col-md-4 col-sm-4 col-xs-12">
-                    {{ sonata_block_render({ 'type': 'service_civique.block.last_video' }) }}
-                </div>
-            </div>
-        </div>
-     </div>
-</div>
-
-<div class="rs-container white-container">
-    <div class="container">
-        <div class="rsBox">
-            <div class="row">
-                <div class="col col-md-5 col-sm-12 col-xs-12">
-                    <div class="agreementsBlock">
-                        <h2>Les agréments publiés</h2>
-                        <p>{{ 'service_civique.statictexts.organization.agreements.published_message' | trans({}, 'statictexts') | raw }}</p>
-                        <div class="block-footer">
-                            <a href="/a-propos-de-nous/agence-service-civique/agrements-publies" class="btn btn-sc-red btn-second" title="Voir les agréments publiés">Voir les agréments publiés</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-md-4 col-sm-6 col-xs-12 middle">
-                    <div class="facebookBlock">
-                        <h2>Suivez-nous<br />sur Facebook</h2>
-                        <div class="fb-page" data-href="https://www.facebook.com/servicecivique" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/servicecivique"><a href="https://www.facebook.com/servicecivique">Service Civique</a></blockquote></div></div>
-                        {# {{ sonata_block_render({ 'type' : 'sonata.seo.block.facebook.like_box' }, {
-                            'url' : 'https://www.facebook.com/ServiceCivique',
-                            'show_header' : false,
-                            'show_border' : false,
-                        }) }} #}
-                    </div>
-                </div>
-                <div class="col col-md-3 col-sm-6 col-xs-12">
-                    <div class="twitterBlock">
-                        <h2>Suivez-nous<br />sur Twitter</h2>
-                        {{ sonata_block_render({ 'type' : 'service_civique.block.twitter_timeline' }) }}
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
-</div>
 
+    <div class="media-container colored-container">
+        <div class="container">
+            <div class="mediaBox">
+                <div class="row">
+                    <div class="col col-md-4 col-sm-4 col-xs-12">
+                        {{ sonata_block_render({ 'type': 'service_civique.block.last_actu' }) }}
+                    </div>
+                    <div class="col col-md-4 col-sm-4 col-xs-12">
+                        {{ sonata_block_render({ 'type': 'service_civique.block.last_media' }) }}
+                    </div>
+                    <div class="col col-md-4 col-sm-4 col-xs-12">
+                        {{ sonata_block_render({ 'type': 'service_civique.block.last_video' }) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rs-container white-container">
+        <div class="container">
+            <div class="rsBox">
+                <div class="row">
+                    <div class="col col-md-5 col-sm-12 col-xs-12">
+                        <div class="agreementsBlock">
+                            <h2>Les agréments publiés</h2>
+
+                            <p>{{ 'service_civique.statictexts.organization.agreements.published_message' | trans({}, 'statictexts') | raw }}</p>
+
+                            <div class="block-footer">
+                                <a href="/a-propos-de-nous/agence-service-civique/agrements-publies"
+                                   class="btn btn-sc-red btn-second" title="Voir les agréments publiés">Voir les
+                                    agréments publiés</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-md-4 col-sm-6 col-xs-12 middle">
+                        <div class="facebookBlock">
+                            <h2>Suivez-nous<br/>sur Facebook</h2>
+
+                            <div class="fb-page" data-href="https://www.facebook.com/servicecivique"
+                                 data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+                                 data-show-facepile="true" data-show-posts="false">
+                                <div class="fb-xfbml-parse-ignore">
+                                    <blockquote cite="https://www.facebook.com/servicecivique"><a
+                                                href="https://www.facebook.com/servicecivique">Service Civique</a>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            {# {{ sonata_block_render({ 'type' : 'sonata.seo.block.facebook.like_box' }, {
+                                'url' : 'https://www.facebook.com/ServiceCivique',
+                                'show_header' : false,
+                                'show_border' : false,
+                            }) }} #}
+                        </div>
+                    </div>
+                    <div class="col col-md-3 col-sm-6 col-xs-12">
+                        <div class="twitterBlock">
+                            <h2>Suivez-nous<br/>sur Twitter</h2>
+                            {{ sonata_block_render({ 'type' : 'service_civique.block.twitter_timeline' }) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/vendor/jquery.bxslider.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.bxslider').bxSlider({
+                pager: false,
+                minSlides: 1,
+                maxSlides: 4,
+                slideWidth: 134,
+                slideMargin: 10,
+                nextText: '>',
+                prevText: '<',
+                nextSelector: '#slider-next',
+                prevSelector: '#slider-prev',
+                onSliderLoad: function () {
+                    var height = $('.bx-viewport').height();
+                    $('.bx-viewport li').height(height);
+                }
+            });
+        });
+    </script>
 {% endblock %}

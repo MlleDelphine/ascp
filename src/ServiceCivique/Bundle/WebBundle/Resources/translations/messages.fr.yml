@@ -77,8 +77,8 @@ service_civique:
           intro: |
               Créez votre compte, mettez en ligne vos missions et suivez vos candidatures
           warning:
-            approved: Attention. Vous voulez vous inscrire comme organisme agréé.
-            host: Attention. Vous voulez vous inscrire comme organisme d'accueil.
+            approved: Attention. Vous voulez vous inscrire comme organisme agréé. Vous êtes donc un organisme ayant obtenu un agrément en son nom pour accueillir des volontaires, vous êtes donc une structure centrale dont peuvent dépendre d'autres organismes non-agréés.
+            host: Attention. Vous voulez vous inscrire comme organisme d'accueil. Vous n'êtes donc pas un organisme ayant été agréé en son nom mais étant autorisé à recruter des volontaires via un organisme agréé. Cet organisme agréé est votre structure mère.
             final: Une fois cette fenêtre d'avertissement fermée, vous pourrez confirmer votre choix.
       form:
           approvalNumber:

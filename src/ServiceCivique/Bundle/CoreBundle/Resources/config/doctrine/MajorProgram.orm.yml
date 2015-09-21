@@ -21,6 +21,8 @@ ServiceCivique\Bundle\CoreBundle\Entity\MajorProgram:
         url:
             type: string
             length: 255
+        icon:
+            type: integer
         position:
             type: integer
         slug:

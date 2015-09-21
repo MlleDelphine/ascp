@@ -11,6 +11,35 @@ use Eko\FeedBundle\Item\Writer\RoutedItemInterface;
  */
 class MajorProgram implements RoutedItemInterface
 {
+    const ICON_INSTITUTION_FLAG = 1;
+    const ICON_TREE = 2;
+    const ICON_BOOK = 3;
+    const ICON_MASKS = 4;
+    const ICON_HEALTH = 5;
+    const ICON_BRIEFCASE = 6;
+    const ICON_BUILDINGS = 7;
+    const ICON_DIPLOMA = 8;
+    const ICON_SPORTS = 9;
+    const ICON_INSTITUTION_LEAF = 10;
+    const ICON_CAP = 11;
+
+    public static function getIcons()
+    {
+        return [
+            self::ICON_INSTITUTION_FLAG => 'Bâtiment administratif',
+            self::ICON_TREE             => 'Arbre',
+            self::ICON_BOOK             => 'Livre',
+            self::ICON_MASKS            => 'Masques',
+            self::ICON_HEALTH           => 'Santé',
+            self::ICON_BRIEFCASE        => 'Malette',
+            self::ICON_BUILDINGS        => 'Immeubles',
+            self::ICON_DIPLOMA          => 'Diplômes',
+            self::ICON_SPORTS           => 'Sports',
+            self::ICON_INSTITUTION_LEAF => 'Feuille',
+            self::ICON_CAP              => 'Képi',
+        ];
+    }
+
     /**
      * @var int
      */
@@ -20,6 +49,11 @@ class MajorProgram implements RoutedItemInterface
      * @var string
      */
     private $title;
+
+    /**
+     * @var int
+     */
+    private $icon;
 
     /**
      * @var string
@@ -110,7 +144,7 @@ class MajorProgram implements RoutedItemInterface
     /**
      * Set position.
      *
-     * @param string $position
+     * @param int $position
      *
      * @return MajorProgram
      */
@@ -122,13 +156,37 @@ class MajorProgram implements RoutedItemInterface
     }
 
     /**
-     * Get path.
+     * Get position.
      *
-     * @return string
+     * @return int
      */
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * Set icon.
+     *
+     * @param int $icon
+     *
+     * @return MajorProgram
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    /**
+     * Get icon.
+     *
+     * @return int
+     */
+    public function getIcon()
+    {
+        return $this->icon;
     }
 
     /**
@@ -243,7 +301,7 @@ class MajorProgram implements RoutedItemInterface
     {
         if (null !== $this->getFile()) {
             // do whatever you want to generate a unique name
-            $filename = sha1(uniqid(mt_rand(), true));
+            $filename   = sha1(uniqid(mt_rand(), true));
             $this->path = $filename.'.'.$this->getFile()->guessExtension();
         }
     }
@@ -311,10 +369,12 @@ class MajorProgram implements RoutedItemInterface
     {
         return $this->getTitle();
     }
+
     public function getFeedItemDescription()
     {
         return $this->getDescription();
     }
+
     public function getFeedItemPubDate()
     {
         return $this->getPublished();
