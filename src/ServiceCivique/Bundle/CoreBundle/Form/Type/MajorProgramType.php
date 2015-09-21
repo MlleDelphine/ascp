@@ -2,12 +2,20 @@
 
 namespace ServiceCivique\Bundle\CoreBundle\Form\Type;
 
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
 
 class MajorProgramType extends AbstractType
 {
+    public function __construct(RepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -16,15 +24,38 @@ class MajorProgramType extends AbstractType
         $builder
             ->add('title', 'text', array('label' => 'Titre'))
             ->add('url', 'text', array('label' => 'URL'))
-            ->add('position', 'text', array('label' => 'Position'))
             ->add('file', 'file', array('label' => 'Fichier', 'required' => false));
 
-        $builder->add('actions', 'form_actions');
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) {
+                $form = $event->getForm();
+                $data = $event->getData();
 
-        $builder->add('save', 'submit', array(
-            'label' => 'Valider',
-            'attr' => array('class' => 'btn btn-sc-red')
-        ));
+                $count = $this->repository->getMajorProgramsCount();
+
+                if (!$data->getId()) {
+                    $count += 1;
+                }
+
+                $choices = array_combine(range(1, $count),range(1, $count));
+
+                $form->add('position', 'choice', array(
+                        'label' => 'Position',
+                        'choices' => $choices,
+                    )
+                );
+
+                $form->add('actions', 'form_actions');
+
+                $form->add('save', 'submit', array(
+                    'label' => 'Valider',
+                    'attr' => array('class' => 'btn btn-sc-red'),
+                ));
+
+            }
+        );
+
     }
 
     /**
@@ -33,8 +64,8 @@ class MajorProgramType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class'         => 'ServiceCivique\Bundle\CoreBundle\Entity\MajorProgram',
-            'cascade_validation' => true
+            'data_class' => 'ServiceCivique\Bundle\CoreBundle\Entity\MajorProgram',
+            'cascade_validation' => true,
         ));
     }
 
