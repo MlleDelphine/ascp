@@ -52,8 +52,10 @@
                     var modal = $(this);
                     if($('#fos_user_registration_form_organization_type_0').prop('checked')) {
                         modal.find('.warning-host').hide();
+                        modal.find('.title-host').hide();
                     } else {
                         modal.find('.warning-approved').hide();
+                        modal.find('.title-approved').hide();
                     }
                 });
                 //Affiche une pop-up à la sélection si rien dans le select: organisme tiers

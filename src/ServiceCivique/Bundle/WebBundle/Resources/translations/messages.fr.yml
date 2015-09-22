@@ -77,14 +77,15 @@ service_civique:
           intro: |
               Créez votre compte, mettez en ligne vos missions et suivez vos candidatures
           warning:
-            approved: Attention. Vous voulez vous inscrire comme organisme agréé.
-            host: Attention. Vous voulez vous inscrire comme organisme d'accueil.
-            final: Une fois cette fenêtre d'avertissement fermée, vous pourrez confirmer votre choix.
+              title-approved: Etes-vous bien un organisme agréé ?
+              title-host: Etes-vous bien un organisme d'accueil ?
+              approved: Vous êtes sur le point de créer un compte en tant qu'<strong>organisme agréé</strong>.<br> Cela signifie que vous êtes un organisme ayant obtenu un agrément en <strong>son nom</strong> pour accueillir des volontaires, mais que vous êtes également une structure centrale dont peuvent dépendre d'autres organismes dits "d'accueil". <br>Si ce n'est pas le cas, ou si vous avez un doute, merci de vérifier ce qui est indiqué sur votre agrément, afin de faire le bon choix.
+              host: Vous êtes sur le point de vous inscrire en tant qu'<strong>organisme d'accueil</strong>. <br>Cela signifie que vous êtes un organisme ayant été agréé via une structure de rattachement. Vous êtes autorisé à recruter des volontaires via l'organisme agréé dont vous dépendez, mais vous n'avez pas d'agrément à votre nom, et aucun structure ne peux être rattaché à vous. <br>Si ce n'est pas le cas, ou si vous avez un doute, merci de contacter votre organisme de rattachement ou de vérifier ce qui est indiqué sur votre agrément, afin de faire le bon choix.
+              final: Une fois cette fenêtre d'avertissement fermée, vous pourrez confirmer votre choix.
           warning-tierce:
-              title: Avertissement : ne tentez pas de vous inscrire en tant qu'organisme agréé si vous êtes bien un organisme tiers
-              message: Attention. Vous tentez vous inscrire en tant qu'<strong>organisme d'accueil</strong> cependant, votre organisme parent n'a <strong>pas encore procédé à son inscription</strong>
-              final: Votre <strong>inscription va donc échouer</strong>. Veuillez demander à votre organisme parent de procéder à son inscription.
-
+              title: Inscription d’organisme d’accueil impossible
+              message: Vous tentez de vous inscrire en tant qu'organisme d'accueil (c'est-à-dire rattaché à un organisme agrée), cependant, cet organisme agréé n'a pas encore créé son compte sur notre plateforme. <br>Vous ne pouvez donc pas, pour l'instant, poursuivre votre inscription. <br>
+              final: Nous vous invitons à prendre contact avec votre organisme agréé de rattachement pour savoir à quel moment retenter la création de votre compte "organisme d'accueil". <br>Merci.
       form:
           approvalNumber:
               label: Numéro d’agrément
