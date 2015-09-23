@@ -29,6 +29,7 @@ app/sessions/*
 web/sitemap*
 /web/uploads/*
 /web/media/*
+/web/images/*
 !web/uploads/.gitkeep
 !web/uploads/headers/.gitkeep
 !web/uploads/cv/.gitkeep
@@ -38,6 +39,8 @@ web/sitemap*
 !web/content/files/.gitkeep
 web/drupal-cv/
 web/.htaccess
+/web/bundles.old/*
+web/bundles.old
 
 php-cs-fixer.phar
 apc_reset.ini

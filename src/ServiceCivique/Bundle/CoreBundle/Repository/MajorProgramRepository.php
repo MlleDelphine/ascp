@@ -12,6 +12,11 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
  */
 class MajorProgramRepository extends EntityRepository
 {
+    public function findAll()
+    {
+        return $this->findBy(array(), array('position' => 'ASC'));
+    }
+
     public function getMajorProgramsCount()
     {
         $queryBuilder = $this->getQueryBuilder();

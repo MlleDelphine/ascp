@@ -1,0 +1,638 @@
+sylius:
+  edit: Éditer
+  delete: Supprimer
+  show: Voir
+  cancel: Annuler
+  confirmation:
+    message: Souhaitez-vous supprimer cet élément ?
+    title: Confirmation
+  save_changes: Valider
+
+service_civique:
+  registration_or_login_form_type:
+    use_existing_account:
+      label: "Se connecter ou se créer un nouveau compte"
+  translations:
+    page_title: Administration des textes
+  register:
+    form:
+      legend: Je n’ai pas encore de compte
+  user:
+      profile_not_visited: |
+        <a href="%url%" title="Compléter mon profil">Complétez votre profil et mettez à jour vos informations personnelles</a>, pour candidater plus rapidement aux missions qui vous intéressent.
+      registration:
+          title: Création compte jeune et connexion
+          intro: |
+              Vous recherchez une mission. Inscrivez-vous et candidatez aux missions qui vous intéressent.<br/>
+              Vous souhaitez vous créer un compte organisme ? Rendez-vous dans <a class="link-action" href="%organization_register_url%">L’espace organisme.</a>
+      form:
+          firstname:
+              label: Prénom
+          lastname:
+              label: Nom
+      type:
+          0: 'Indéterminé'
+          1: 'En recherche'
+          2: 'Organisme'
+          3: 'Volontaire'
+          4: 'Ancien volontaire'
+  select_or_create_new_organization:
+    is_new_organization:
+      label: "Lier votre compte à une structure d'accueil :"
+    organization:
+      label: 'Organisme'
+    new_organization_name:
+      label: 'Nom du nouvel organisme'
+    new_organization_user_email:
+      label: 'Email du nouveau compte organisme'
+  education_level:
+      1: Sans qualifications
+      2: Brevet
+      3: CAP/BEP
+      4: BAC
+      5: BAC +2
+      6: Supérieur à BAC +2
+  gender:
+      male: Monsieur
+      female: Madame
+      0: Monsieur
+      1: Madame
+  profile:
+      form:
+          gender:
+              label: Civilité
+          birth_date:
+              label: Date de naissance
+          education_level:
+              label: Qualification
+          resume:
+              label: Vos expériences
+          motivation:
+              label: Motivations
+          phone_number:
+              label: Téléphone
+  organization:
+      registration:
+          title:  Création compte organisme et connexion
+          intro: |
+              Créez votre compte, mettez en ligne vos missions et suivez vos candidatures
+          warning:
+<<<<<<< HEAD
+              title-approved: Etes-vous bien un organisme agréé ?
+              title-host: Etes-vous bien un organisme d'accueil ?
+              approved: Vous êtes sur le point de créer un compte en tant qu'<strong>organisme agréé</strong>.<br> Cela signifie que vous êtes un organisme ayant obtenu un agrément en <strong>son nom</strong> pour accueillir des volontaires, mais que vous êtes également une structure centrale dont peuvent dépendre d'autres organismes dits "d'accueil". <br>Si ce n'est pas le cas, ou si vous avez un doute, merci de vérifier ce qui est indiqué sur votre agrément, afin de faire le bon choix.
+              host: Vous êtes sur le point de vous inscrire en tant qu'<strong>organisme d'accueil</strong>. <br>Cela signifie que vous êtes un organisme ayant été agréé via une structure de rattachement. Vous êtes autorisé à recruter des volontaires via l'organisme agréé dont vous dépendez, mais vous n'avez pas d'agrément à votre nom, et aucun structure ne peux être rattaché à vous. <br>Si ce n'est pas le cas, ou si vous avez un doute, merci de contacter votre organisme de rattachement ou de vérifier ce qui est indiqué sur votre agrément, afin de faire le bon choix.
+              final: Une fois cette fenêtre d'avertissement fermée, vous pourrez confirmer votre choix.
+          warning-tierce:
+              title: Inscription d’organisme d’accueil impossible
+              message: Vous tentez de vous inscrire en tant qu'organisme d'accueil (c'est-à-dire rattaché à un organisme agrée), cependant, cet organisme agréé n'a pas encore créé son compte sur notre plateforme. <br>Vous ne pouvez donc pas, pour l'instant, poursuivre votre inscription. <br>
+              final: Nous vous invitons à prendre contact avec votre organisme agréé de rattachement pour savoir à quel moment retenter la création de votre compte "organisme d'accueil". <br>Merci.
+=======
+            approved: Attention. Vous voulez vous inscrire comme organisme agréé. Vous êtes donc un organisme ayant obtenu un agrément en son nom pour accueillir des volontaires, vous êtes donc une structure centrale dont peuvent dépendre d'autres organismes non-agréés.
+            host: Attention. Vous voulez vous inscrire comme organisme d'accueil. Vous n'êtes donc pas un organisme ayant été agréé en son nom mais étant autorisé à recruter des volontaires via un organisme agréé. Cet organisme agréé est votre structure mère.
+            final: Une fois cette fenêtre d'avertissement fermée, vous pourrez confirmer votre choix.
+>>>>>>> origin/dev-v1.19
+      form:
+          approvalNumber:
+              label: Numéro d’agrément
+          name:
+              label: Nom de l’organisme
+          address:
+              label: Adresse
+          department:
+              label: Département
+          zipCode:
+              label: Code postal
+          city:
+              label: Ville
+          country:
+              label: Pays
+          type:
+              label: Vous êtes un
+              approved:
+                  label: Organisme agréé : Organisme ayant obtenu un agrément en son nom pour accueillir des volontaires
+              host:
+                  label: Organisme tiers : Organisme n'étant pas agréé en son nom mais étant autorisé à recruter des volontaires via un organisme agréé
+          approvedOrganization:
+              label: Nom de l'organisme agréé
+          organization:
+              label: Organisme d'accueil
+  account:
+    address:
+    home:
+      welcome: Bienvenue dans votre espace
+    title: Mon compte
+  cookie_accept:
+    link_label: "notre politique sur les cookies."
+    text: "Les cookies vous permettent d'améliorer votre expérience sur le site du Service Civique. En utilisant ce site, vous acceptez de recevoir des cookies conformément à"
+    btn_label: J'accepte
+  alert:
+    error: Erreur
+    info: Information
+    success: Succès
+    warning: Attention
+  backend_welcome: 'Bonjour <b>%name%</b>!'
+  breadcrumb:
+    home: Accueil
+    configuration: Configuration
+    edit: Modifier
+    general_settings: Paramètres généraux
+    generate: Générer
+    new: Nouveau
+    discover:
+      index: Découvrir le Service Civique
+    faq:
+      volontaire: La FAQ
+      organisme: La FAQ
+    newsletter: Inscription à la newsletter
+    mission:
+      index: Missions
+      create: Créer une mission
+    organization:
+      index: Organismes
+    corporate:
+      index: À propos de nous
+    faqs:
+      index: FAQs
+    update: Modifier
+    user:
+      index: Utilisateurs
+    approval:
+      list: Les agréments publiés
+    application:
+      list: Mes candidatures
+      show: Aperçu
+    actu:
+      list: Actualités
+    media:
+      list: Dans les médias
+    partner:
+      list: Les partenaires
+    advantage:
+      list: Les avantages
+  browse_mission: Parcourir les mission
+  cancel: Annuler
+  create: Créer
+  created_at: Date de création
+  delete: Supprimer
+  deleted: Supprimé
+  edit: Modifier
+  email: E-mail
+  filter: Filtrer
+  form:
+    mandatory_fields: Les champs suivis d’une * sont obligatoires
+    choose_file: Choisir un fichier
+    login:
+      password: Mot de passe
+    profile:
+      firstName: Prénom
+      lastName: Nom
+    mission_search_options:
+      paginate:
+        label: Afficher :
+      order:
+        label: Trier par :
+    approval_search:
+      number:
+        label: Numéro de l'agrément :
+      organization:
+        label: Nom de l'organisme :
+      search:
+        label: Rechercher
+    mission_search:
+      edit:
+        page_title: Abonnement à l'alerte mail
+      title: Trouvez votre mission
+      area:
+        label: Région (pour la France)
+        empty: Toutes les régions
+      organization:
+        label: Organisme
+      approval_number:
+        label: Numéro d'agrément
+      country:
+        empty: Tous les pays
+        label: Pays
+        placeholder: Belgique
+      query:
+        label: Contient le(s) mot(s)
+        placeholder: Ex : Environnement
+      department:
+        label: Département
+        empty: Tous les départements
+      start_date:
+        label: Quand ?
+      published:
+        label: Date de publication
+      is_overseas:
+        label: Où ?
+        value_foreign: À l'étranger
+        value_france: En France
+      search:
+        label: Rechercher
+      cancel:
+        label: Annuler
+      save:
+        label: S'abonner
+      taxon:
+        label: Thématique(s)
+    mission:
+      status: statut
+  generate: Générer
+  homepage:
+    splash:
+      headline: Bienvenue
+    organization:
+      videobox:
+        description1: |
+          <iframe frameborder="0" width="250" height="150" src="//www.dailymotion.com/embed/video/x2geni9" allowfullscreen></iframe><br /><a href="http://www.dailymotion.com/video/x2geni9_tuteurs-en-service-civique-leur-temoignage_school" target="_blank">Tuteurs en Service Civique : leur t&eacute;moignage</a> <i>par <a href="http://www.dailymotion.com/service-civique" target="_blank">service-civique</a></i>
+        description2: |
+          <iframe frameborder="0" width="250" height="150" src="//www.dailymotion.com/embed/video/x2geni9" allowfullscreen></iframe><br /><a href="http://www.dailymotion.com/video/x2geni9_tuteurs-en-service-civique-leur-temoignage_school" target="_blank">Tuteurs en Service Civique : leur t&eacute;moignage</a> <i>par <a href="http://www.dailymotion.com/service-civique" target="_blank">service-civique</a></i>
+      box:
+        title1: Mettez en ligne vos missions
+        description1: Créez-vous un compte et complétez votre profil. Rédigez votre mission et publiez-la sur notre site. Suivez et répondez aux candidatures des volontaires que vous recevrez.
+        title2: Diffusez vos missions sur votre site
+        description2: Vous avez la possibilité de diffuser les missions qui vous intéressent sur d'autres sites externes.
+  login: Connexion
+  login_header: Administration
+  manage: Gérer
+  password: Mot de passe
+  statictext:
+    value: 'Valeur'
+    no_results: 'Aucun texte statique trouvé'
+    index_header: 'Textes statiques <small>Liste de tous les textes statiques</small>'
+  faq:
+    contact:
+      message: Vous ne trouvez pas la réponse à votre question dans la FAQ ?
+      link:
+        label: Contactez-nous en cliquant ici.
+    volontaire:
+      title: La FAQ des volontaires
+    organisme:
+      title: La FAQ des organismes
+    form:
+      body:
+        label: Contenu de la FAQ
+  approval:
+    no_results: Aucun agrément n'a été trouvé
+  header:
+    image: Image
+    event: Événement
+    title: Titre
+    create: Créer un header
+    index_header: 'Headers <small>Liste de tous les headers</small>'
+    update_header: Modification du header
+    no_results: Aucun header trouvé
+    form:
+      title:
+        label: Titre du header
+      image:
+        label: Image du header
+      pinImage:
+        label: Image du macaron
+      pinUrl:
+        label: Url du macaron
+      startDate:
+        label: Date de début de l'événement
+      endDate:
+        label: Date de fin de l'événement
+  mission:
+    duplicate:
+      tooltip: Dupliquer
+    status:
+      0: 'Brouillon'
+      1: 'À pourvoir'
+      2: 'Pourvue'
+      3: 'En attente'
+      4: 'Modif. en cours de valid.'
+    published: Date de publication
+    created: Date de création
+    updated: Dernière modification
+    status_filter: Statut
+    start_date: Début de la mission
+    create_header: Créer une mission
+    form:
+      organization_name:
+        label: Nom de l’organisme d’accueil
+      title:
+        label: Titre de la mission
+      description:
+        label: Présentation de la mission
+      area:
+        label: Région (pour la France)
+        empty: Toutes les régions
+      country:
+        empty: Tous les pays
+        label: Pays
+        placeholder: Belgique
+      contact:
+        label: Nom du contact
+      department:
+        label: Département
+        empty: Tous les départements
+      city:
+        label: Ville
+      zipCode:
+        label: Code postal
+      address:
+        label: Adresse
+      phoneNumber:
+        label: Numéro de téléphone
+      organizationDescription:
+        label: Présentation de l'activité de l'organisme
+      vacancies:
+        label: Nombre de postes
+      website:
+        label: Site internet
+      duration:
+        label: Durée
+      start_date:
+        label: Date de début
+      is_overseas:
+        label: Où ?
+        value_foreign: À l'étranger
+        value_france: En France
+      taxon:
+        label: Thématique(s)
+      weeklyWorkingHours:
+        label: Durée hebdomadaire
+      save_as_draft:
+        label: Enregistrer en brouillon
+      validate:
+        label: Continuer
+    nb_results:
+      title: '{0} Aucune mission ne correspond à votre recherche|{1} 1 mission correspond à votre recherche|]1,Inf] %count% missions correspondent à votre recherche'
+      title_encours: '{0} Aucune mission en cours|{1} Vous avez 1 mission en cours|]1,Inf] Vous avez %count% missions en cours'
+    nb_vacancies:
+      title: '{0} 0 poste |{1} 1 poste|]1,Inf] %count% postes'
+    nb_missions:
+      title: '{0} Aucune mission trouvée |{1} 1 mission (%vacancies%) correspond à votre recherche|]1,Inf] %count% missions (%vacancies%) correspondent à votre recherche'
+    block:
+      same_location_missions:
+        title: Missions dans la même région
+        foreign_title: D'autres missions à l'étranger
+      recommended_missions:
+        title: 'Des missions pour vous'
+        geocoded_title: 'Des missions pour vous dans la région %region%'
+    already_filled_message:
+      draft: "Désolé, cette mission n'est plus disponible. N'hésitez pas à candidater à d'autres missions."
+      filled: "Désolé, cette mission n'est plus disponible. N'hésitez pas à candidater à d'autres missions."
+      waiting: "Cette mission est en cours de validation par l'Agence du Service Civique."
+    create: Créer une mission
+    description: Description
+    index: 'Trouvez votre mission'
+    index_header: 'Mission <small>Liste de toutes les missions</small>'
+    manage: Gérer les mission
+    title: Titre
+    no_description: '<i>Aucune description saisie...</i>'
+    no_results: "Aucune mission trouvée, recommencez une autre recherche."
+    no_short_description: '<i>Aucune description saisie</i>'
+    show: Voir plus
+    apply: Candidater
+    show_header: Détails de le mission
+    update_header: Modification de la mission
+    applications_header: Candidatures de la mission
+    updated_at: Dernière mise à jour
+    when: Quand ?
+    what: Quoi ?
+    which_organization: Quel organisme ?
+    which_category: Quel domaine ?
+    where: Où ?
+    how_many_vacancies: Combien de postes ?
+    see_all: Voir toutes les missions
+    search:
+      intro: Recevez des alertes mails des missions qui vous intéressent.
+      legal: |
+        En vous abonnant à cette alerte mail, vous recevrez une fois par semaine, un mail avec les nouvelles missions publiées qui correspondent avec vos critères de recherche.
+        <br />Si vous souhaitez vous désabonner, cliquez sur le lien de désinscription dans l'alerte mail.<br/><br/>
+        Conformément à la loi Informatique et Libertés du 6 janvier 1978, vous disposez d’un droit d’accès et de rectification aux données personnelles vous concernant. Les informations recueillies font l’objet d’un traitement informatique destiné à réaliser des enquêtes à des fins statistiques. Par notre intermédiaire, vous pouvez être amené à recevoir des informations ou offres commerciales. Si vous ne le souhaitez pas, il vous suffit de nous écrire en nous indiquant vos nom, prénom, adresse et si possible vos coordonnées électroniques
+  static_content:
+    create_header: Créer une page
+    nb_results:
+      title: "{0} Il n'y a aucun page pour le moment|{1} 1 page correspond à votre recherche|]1,Inf] %count% pages correspondent à votre recherche"
+  menu_item:
+    create_header: Créer un lien de menu
+    nb_results:
+      title: "{0} Il n'y a aucun lien de menu pour le moment|{1} 1 lien de menu correspond à votre recherche|]1,Inf] %count% liens de menu correspondent à votre recherche"
+  tag:
+    create_header: Créer un Tag
+    nb_results:
+      title: "{0} Il n'y a aucun tag pour le moment|{1} 1 tag correspond à votre recherche|]1,Inf] %count% tags correspondent à votre recherche"
+  actu:
+    create_header: Créer une Actualité
+    no_results: Aucune actualité
+    nb_results:
+      title: "{0} Il n'y a aucune actualité pour le moment|{1} 1 actualité correspond à votre recherche|]1,Inf] %count% actualités correspondent à votre recherche"
+  approval_conflict:
+    create_header: Créer une Conflict d'agrément
+    no_results: Aucun conflict d'agrément
+    nb_results:
+      title: "{0} Il n'y a aucun conflict d'agrément pour le moment|{1} 1 conflict d'agrément correspond à votre recherche|]1,Inf] %count% conflicts d'agrément correspondent à votre recherche"
+  mission_report:
+    create_header: Créer un signalement
+    no_results: Aucun signalement
+    nb_results:
+      title: "{0} Il n'y a aucun signalement pour le moment|{1} 1 signalement correspond à votre recherche|]1,Inf] %count% signalements à votre recherche"
+  presse:
+    create_header: Créer un Contenu Presse
+    no_results: Aucun Contenu Presse
+    nb_results:
+      title: "{0} Il n'y a aucun contenu presse pour le moment|{1} 1 contenu presse correspond à votre recherche|]1,Inf] %count% contenus presse correspondent à votre recherche"
+    intro: 'Contact Presse : Anne-Claire Dhennin, <a href="mailto:anne.claire.dhennin@service-civique.gouv.fr">anne.claire.dhennin@service-civique.gouv.fr</a>, <a href="https://twitter.com/ACDhennin">@ACDhennin</a>'
+  advantage:
+    create_header: Créer un Avantage
+    no_results: Aucun Avantage
+    nb_results:
+      title: "{0} Il n'y a aucun avantage pour le moment|{1} 1 avantage correspond à votre recherche|]1,Inf] %count% avantages correspondent à votre recherche"
+    intro: Introduction avantages
+  partner:
+    create_header: Créer un Partenaire
+    no_results: Aucun Partenaire
+    nb_results:
+      title: "{0} Il n'y a aucun partenaire pour le moment|{1} 1 partenaire correspond à votre recherche|]1,Inf] %count% partenaires correspondent à votre recherche"
+    intro: intro partenaires
+    type:
+      1:
+        title: Valoriser le Service Civique auprès des employeurs et impliquer les entreprises
+        content: contenu
+      2:
+        title: Encourager et promouvoir le Service Civique au niveau local
+        content: contenu
+      3:
+        title: Favoriser l’accueil des jeunes volontaires
+        content: contenu
+      4:
+        title: Favoriser le développement du Service Civique à l'international
+        content: contenu
+  media:
+    create_header: Créer un media
+    no_results: Aucun media
+    nb_results:
+      title: "{0} Il n'y a aucun media pour le moment|{1} 1 media correspond à votre recherche|]1,Inf] %count% medias correspondent à votre recherche"
+  answer_mail:
+    create_header: Créer une réponse de mail
+    nb_results:
+      title: "{0} Il n'y a aucune réponse de mail pour le moment|{1} 1 réponse de mail correspond à votre recherche|]1,Inf] %count% réponses de mail correspondent à votre recherche"
+  approvals:
+    show_all: Voir tous les agréments publiés
+    nb_results:
+      title: '{0} Aucun agrément ne correspond à votre recherche|{1} 1 agrément correspond à votre recherche|]1,Inf] %count% agréments correspondent à votre recherche'
+  application:
+    form:
+      file:
+        label: Vos expériences
+      motivation:
+        label: Motivations
+    create_header: Candidater
+    show_all: Afficher mes candidatures à des missions passées ou pourvues
+    no_results: Vous n’avez candidaté à aucune mission.
+    nb_results:
+      title: '{0} Aucune candidature envoyée|{1} 1 candidature envoyée|]1,Inf] %count% candidatures envoyées'
+    dashboard:
+      no_results: Il n'y a aucune candidature pour cette mission.
+    status:
+      0: En attente
+      1: Retenu
+      2: Non retenu
+      3: Relancé
+      4: Mission pourvue
+    status_jeune:
+      0: En attente
+      1: Rep. positive envoyée
+      2: Rep. négative envoyée
+    status_jeune_selected:
+      0: En attente
+      1: Retenu
+      2: Non retenu
+    answer:
+      negative: |
+        Bonjour,
+
+        Malgré tout l’intérêt que vous avez porté à notre mission de Service Civique "missionTitle", nous ne pouvons donner suite à votre demande.
+        Vous pouvez cependant continuer votre recherche sur le site du Service Civique <a href="url">url</a>.
+
+        organizationName.
+      positive: |
+        Bonjour,
+
+        Merci pour l’intérêt que vous avez porté à notre mission de Service Civique "missionTitle".
+        Votre motivation a retenu tout notre attention, et nous avons le plaisir de vous annoncer que vous avez été retenu pour cette mission.
+        Nous reviendrons rapidement vers vous afin de procéder à la signature du contrat.
+        Pensez à mettre à jour votre profil sur <a href="url">url</a>. 
+
+        organizationName.
+      poke: |
+        Bonjour,
+
+        J'ai candidaté à la mission "%missionTitle%" sur le site %url% le %datePoke% : %urlApplication%
+        Sans réponse de votre part, je me permets de vous relancer.
+        Pour me donner une réponse, n’hésitez pas à me contacter via le site ou par mail à l’adresse %userMail%
+
+        %userName%
+  show: Détails
+  quiz:
+    block:
+      title: "Êtes-vous \"Service Civique\" ?"
+      intro: "Pour accueillir un volontaire, vous devez proposer une mission de Service Civique et obtenir un agrément. <br />Pour savoir si votre mission est bien une mission de Service Civique, répondez à ces quelques questions :"
+  user:
+    email: E-mail
+    enabled: Confirmé ?
+    filter:
+      all: Montrer tous les utilisateurs
+      unconfirmed: Comptes non confirmés
+    first_name: Prénom
+    general_info: |-
+      Informations générales sur l'utilisateur "%username%"
+    id: ID
+    index_header: Utilisateurs
+    last_login: Dernière connexion
+    last_name: Nom
+    no_results: Aucun utilisateur
+    shipping_address: Adresse de livraison
+    show_header: "Détails d'un utilisateur"
+    username: Identifiant
+  zone_member:
+    members: Membres
+  meta:
+    backend_title: Backoffice
+  actu:
+    block:
+      last_actu:
+        title: L'ACTU DU JOUR
+  video:
+      no_results: Aucune vidéo disponible
+      create: Ajouter une vidéo
+      nb_results:
+        title: '{0} Aucune video |{1} 1 vidéo|]1,Inf] %count% vidéos'
+  backend:
+    alert:
+      info: Information
+    dashboard:
+      header: "Tableau d'administration"
+    logout: Déconnexion
+    quick_links:
+      add_product: Nouveau produit
+      users: Utilisateurs
+    form:
+      upload_success: Votre fichier a bien été importé
+    create_button: Créer un contenu
+    page_type:
+      list: Liste
+      show: Voir
+      create: Création
+      update: Edition
+    nb_results: '{0} Aucun résultat |{1} 1 résultat |]1,Inf] %count% résultats'
+    static_content:
+      title: Page statique
+    actu:
+      title: Actualité
+    advantage:
+      title: Avantage
+    major_program:
+      title: Grands Programmes
+    media:
+      title: Media
+    partner:
+      title: Partenaire
+    presse:
+      title: Presse
+    video:
+      title: vidéo
+    mission:
+      title: Mission
+    header:
+      title: Header
+    answer_mail:
+      title: Réponse mail
+    approval_conflict:
+      title: Conflit d'agrément
+    mission_report:
+      title: Signalements
+    tag:
+      title: Tag
+    translations:
+      title: Administration des textes
+    approval_import:
+      title: Import des agréments
+    faq:
+      organisme:
+        title: FAQ Organisme
+      volontaire:
+        title: FAQ Volontaire
+    user:
+      title: Utilisateurs
+      organization: Comptes organismes
+      volunteer: Comptes jeunes
+      enabled:
+        0: Non activé
+        1: Activé
+    banner:
+      title: Upload de la bannière du widget
+
+sylius:
+  form:
+    choose_file: Selectionnez un fichier
+backend:
+  form:
+    upload_success: Votre fichier a bien été importé.
+    answer_success: Les réponses ont été envoyées.

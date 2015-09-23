@@ -515,7 +515,7 @@ abbr[title], abbr[data-original-title] {
       &#jeunes {
         background-color: $green-sc;
       }
-      &#faqs{
+      &#faqs {
         background-color: $salmon-sc;
       }
 
@@ -4367,4 +4367,60 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
 .mass-update .icheckbox_minimal {
   position: relative
+}
+
+// Slider Grand Programmes
+#slider-mp {
+  .bx-wrapper {
+    .bx-viewport {
+      left:0;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+    ul.bxslider {
+      a {
+        li {
+          background-color: #e8eaf6;
+          text-align: center;
+
+          &:hover {
+            background-color: #282483;
+            p {
+              color: #fff;
+            }
+          }
+
+          img {
+            display: inline-block;
+            margin: 20% 0 16%;
+          }
+
+          p {
+            margin-bottom: 12%;
+            padding: 0 5%;
+            font-size: 0.9em;
+            color: #282483;
+          }
+        }
+      }
+    }
+  }
+  #slider-prev,
+  #slider-next {
+    position: absolute;
+    top: 50%;
+    font-size: 1.5em;
+    font-weight: 600;
+    > a,
+    > a:visited {
+      color:red;
+    }
+  }
+  #slider-prev {
+    left: 0;
+  }
+  #slider-next {
+    right: 0;
+  }
 }
