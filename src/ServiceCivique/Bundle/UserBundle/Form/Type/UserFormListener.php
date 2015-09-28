@@ -64,7 +64,7 @@ class UserFormListener implements EventSubscriberInterface
             $form->add('organization', 'service_civique_organization', array(
                 'error_bubbling'     => false,
                 'property_path'      => 'organization',
-                'validation_groups'  => array('ServiceCiviqueRegistration'),
+                //'validation_groups'  => array('ServiceCiviqueRegistration'),
                 'cascade_validation' => false
             ));
         }

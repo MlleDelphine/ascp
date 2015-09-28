@@ -39,7 +39,7 @@
                 <div class="form-group form-group-organization_approvalNumber col-md-6 col-sm-6">
                     {{ form_label(form.organization.approvalNumber) }}
                     {{ form_errors(form.organization.approvalNumber) }}
-                    {{ form_widget(form.organization.approvalNumber, { 'attr':{'disabled':'disabled'}}) }}
+                    {{ form_widget(form.organization.approvalNumber, { 'attr':{'readonly':'true'}}) }}
                 </div>
                 <div class="form-group form-group-organization_name col-md-6 col-sm-6">
                     {{ form_label(form.organization.name) }}
