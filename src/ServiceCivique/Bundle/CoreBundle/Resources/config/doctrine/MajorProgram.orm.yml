@@ -15,9 +15,6 @@ ServiceCivique\Bundle\CoreBundle\Entity\MajorProgram:
         title:
             type: string
             length: 255
-        path:
-            type: string
-            length: 255
         url:
             type: string
             length: 255
@@ -36,9 +33,4 @@ ServiceCivique\Bundle\CoreBundle\Entity\MajorProgram:
             gedmo:
                 timestampable:
                     on: create
-    lifecycleCallbacks:
-        prePersist:  [ preUpload ]
-        preUpdate:   [ preUpload ]
-        postPersist: [ upload ]
-        postUpdate:  [ upload ]
-        postRemove:  [ removeUpload ]
+    lifecycleCallbacks: {  }
