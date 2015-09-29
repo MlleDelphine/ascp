@@ -122,6 +122,10 @@
                         {{ form_widget(form.enabled) }}
                     </div>
                 </div>
+            {% else %}
+                <div style="display: none">
+                    {{ form_widget(form.enabled,{'attr':{'style':'display:none'}}) }}
+                </div>
             {% endif %}
             <div class="row">
                 <div class="form-group form-group-firstname col-md-6 col-sm-6">
