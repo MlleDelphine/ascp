@@ -17,10 +17,6 @@
                         {{ form_widget(form.enabled) }}
                     </div>
                 </div>
-            {% else %}
-                <div style="display: none">
-                    {{ form_widget(form.enabled,{'attr':{'style':'display:none'}}) }}
-                </div>
             {% endif %}
             <div class="row">
                 <div class="form-group form-group-firstname col-md-6 col-sm-6">
@@ -76,11 +72,6 @@
                         {{ form_widget(form.organization.approvedOrganization, {'expanded':false}) }}
                     </div>
                 </div>
-            {% else %}
-                <div style="display: none">
-                    {{ form_widget(form.organization.type) }}
-                    {{ form_widget(form.organization.approvedOrganization, {'expanded':false}) }}
-                </div>
             {% endif %}
             <strong>Si vous souhaitez éditer votre numéro d'agrément, rendez vous sur <a
                         href="{{ url('service_civique_organization_update_approval_number', {'organization_id': form.vars.value.organization.id}) }}">cette
@@ -121,10 +112,6 @@
                         {{ form_errors(form.enabled) }}
                         {{ form_widget(form.enabled) }}
                     </div>
-                </div>
-            {% else %}
-                <div style="display: none">
-                    {{ form_widget(form.enabled,{'attr':{'style':'display:none'}}) }}
                 </div>
             {% endif %}
             <div class="row">
