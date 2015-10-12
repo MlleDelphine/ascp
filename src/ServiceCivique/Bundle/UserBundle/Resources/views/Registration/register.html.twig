@@ -74,6 +74,36 @@
                         }
                     })
                 });
+
+                //Vérification en temps réel des champs email
+
+                $(document).on('keyup', '#fos_user_registration_form_email_second', function(event){
+
+                    var main_email = $('#fos_user_registration_form_email_first').val();
+                    var second_email = $(this).val();
+                    if(main_email.toLowerCase() != second_email.toLowerCase()){
+                        console.log('Différents');
+                        var check_block = $('.check-double-mail');
+                        if(check_block.length < 1){
+                            console.log('check block pas là');
+                            $(this).parent("div").append('<span class="help-block form-error check-double-mail" style="color: #a94442;">Les champs email doivent être identiques.</span>');
+                        }
+                        else{
+                            $('.check-double-mail').show();
+                        }
+                        if(!$(this).parent("div").hasClass("has-error")){
+                            $(this).parent("div").addClass("has-error");
+                        }
+                    }
+                    else{
+                        console.log('identiques');
+                        $('.check-double-mail').hide();
+                        if($(this).parent("div").hasClass("has-error")){
+                            $(this).parent("div").removeClass("has-error");
+                        }
+                    }
+
+                })
             })
         </script>
     {% endif %}

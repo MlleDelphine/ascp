@@ -7,6 +7,6 @@
         {{ 'registration.check_email'|trans({'%email%': user.email}, 'FOSUserBundle') }}
     </div>
     <div class="alert alert-danger" style="text-align: center; background-color: #F25C65; border-color: #F23036; color:#F2F5F3; font-size: 18px">
-        <em><strong>{{ 'registration.check_spams'|trans() }}</strong></em>
+        <em><strong>{{ 'registration.check_spams'|trans({},'FOSUserBundle')  }}</strong></em>
     </div>
 {% endblock main_content_body %}

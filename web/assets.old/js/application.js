@@ -1,1 +1,0 @@
-!function(e){e(".remove-resume-application").on("click",function(){e(this).parent().hide(),e("#service_civique_application_removeResume").val(1)})}(jQuery);

@@ -1,1 +1,0 @@
-!function(e){e("#service_civique_application_answer_single_status input").on("ifChecked",function(i){1==e(this).val()?e("#service_civique_application_answer_single_messageText").val(e("#application-positive-answer").text()):e("#service_civique_application_answer_single_messageText").val(e("#application-negative-answer").text())})}(jQuery);
