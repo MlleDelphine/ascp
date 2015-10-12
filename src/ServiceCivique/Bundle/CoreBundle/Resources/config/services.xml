@@ -21,6 +21,7 @@
         <parameter key="service_civique.form.type.partner.class">ServiceCivique\Bundle\CoreBundle\Form\Type\PartnerType</parameter>
         <parameter key="service_civique.form.type.advantage.class">ServiceCivique\Bundle\CoreBundle\Form\Type\AdvantageType</parameter>
         <parameter key="service_civique.form.type.major_program.class">ServiceCivique\Bundle\CoreBundle\Form\Type\MajorProgramType</parameter>
+         <parameter key="service_civique.form.type.forbidden_keyword.class">ServiceCivique\Bundle\CoreBundle\Form\Type\ForbiddenKeywordType</parameter>
         <parameter key="service_civique.form.type.media.class">ServiceCivique\Bundle\CoreBundle\Form\Type\MediaType</parameter>
         <parameter key="service_civique.form.type.approval_conflict.class">ServiceCivique\Bundle\CoreBundle\Form\Type\ApprovalConflictType</parameter>
         <parameter key="service_civique.form.type.video.class">ServiceCivique\Bundle\CoreBundle\Form\Type\VideoType</parameter>
@@ -141,6 +142,10 @@
        <service id="service_civique.form.type.major_program" class="%service_civique.form.type.major_program.class%">
             <tag name="form.type" alias="service_civique_major_program" />
             <argument type="service" id="service_civique.repository.major_program" />
+        </service>
+
+        <service id="service_civique.form.type.forbidden_keyword" class="%service_civique.form.type.forbidden_keyword.class%">
+            <tag name="form.type" alias="service_civique_forbidden_keyword" />
         </service>
 
         <service id="service_civique.listener.major_program" class="ServiceCivique\Bundle\CoreBundle\Form\EventListener\ModifyMajorProgramListener">

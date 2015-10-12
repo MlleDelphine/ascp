@@ -1,0 +1,21 @@
+{% extends "ServiceCiviqueWebBundle::layout_sidebar_left.html.twig" %}
+
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
+{% from 'ServiceCiviqueWebBundle:Frontend/ForbiddenKeyword:macros.html.twig' import table %}
+{% from 'ServiceCiviqueWebBundle:Frontend/Macros:misc.html.twig' import breadcrumb %}
+
+{% block breadcrumb_content %}
+{{ breadcrumb([
+    {'route': 'service_civique_homepage', 'name' : 'service_civique.breadcrumb.home'},
+    {'name' : 'service_civique.breadcrumb.forbidden_keyword.list'},
+]) }}
+{% endblock %}
+
+{% block main_content_header %}Les mots-clés interdits{% endblock %}
+
+{% block main_content_body %}
+    <div class="forbidden-keyword">
+        {{ table(forbidden_keywords) }}
+    </div>
+{% endblock %}
