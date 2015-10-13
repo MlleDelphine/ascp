@@ -62,34 +62,34 @@
                 <div class="mission-status mission-status-{{ mission.status }}">Statut : {{ ('service_civique.mission.status.' ~ mission.status) | trans }}</div>
             {% endif %}
             {% block block_signaler %}
-                {# Si connecté, si admin, si pas propriétaire de la mission  #}
+                {# Si connecté, si admin, si pas propriétaire de la mission et si statut = "à pourvoir"  #}
                 {%  if app.user %}
                     {% if ( is_granted('ROLE_ADMIN') or mission.organization.user != app.user) and mission.status == constant('ServiceCivique\\Bundle\\CoreBundle\\Entity\\Mission::STATUS_AVAILABLE') %} {#  #}
-                    <a id="link-signal" aria-expanded="false" aria-controls="signalContent" class="btn  btn-sc-red pull-right" role="button">Signaler</a>
-                    <div id="signalContent">
-                        <div class="signalBox">
-                            <form data-missionId="{{ mission.id }}">
-                                <p>Veuillez préciser la raison de votre signalement. Cette mission :</p>
-                                <select class="form-control select-report" name="report">
-                                    <option value='1'>
-                                        demande des niveaux de diplômes et des compétences spécifiques
-                                    </option>
-                                    <option value='2'>
-                                        demande des tâches administratives et logistiques
-                                    </option>
-                                    <option value='3'>
-                                        s'apparente à un emploi
-                                    </option>
-                                    <option value='4'>
-                                        ne relève pas de l'intérêt général
-                                    </option>
-                                </select><br />
-                                <button class='btn btn-sm btn-sc-red-2' type="submit">Valider</button>
-                            </form>
+                        <a id="link-signal" aria-expanded="false" aria-controls="signalContent" class="btn  btn-sc-red pull-right" role="button">Signaler</a>
+                        <div id="signalContent">
+                            <div class="signalBox">
+                                <form data-missionId="{{ mission.id }}">
+                                    <p>Veuillez préciser la raison de votre signalement. Cette mission :</p>
+                                    <select class="form-control select-report" name="report">
+                                        <option value='1'>
+                                            demande des niveaux de diplômes et des compétences spécifiques
+                                        </option>
+                                        <option value='2'>
+                                            demande des tâches administratives et logistiques
+                                        </option>
+                                        <option value='3'>
+                                            s'apparente à un emploi
+                                        </option>
+                                        <option value='4'>
+                                            ne relève pas de l'intérêt général
+                                        </option>
+                                    </select><br />
+                                    <button class='btn btn-sm btn-sc-red-2' type="submit">Valider</button>
+                                </form>
+                            </div>
+                            <div class="signalBoxAlert alert alert-success">Votre signalement a été envoyé à l'Agence du Service Civique qui va étudier le cas de cette mission</div>
                         </div>
-                        <div class="signalBoxAlert alert alert-success">Votre signalement a été envoyé à l'Agence du Service Civique qui va étudier le cas de cette mission</div>
-                    </div>
-                {% endif %}
+                    {% endif %}
                 {% endif %}
             {% endblock %}
 
