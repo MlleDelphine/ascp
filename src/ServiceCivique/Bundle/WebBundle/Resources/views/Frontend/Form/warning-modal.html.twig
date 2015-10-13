@@ -5,15 +5,37 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" style="display: inline-block">{{ 'sylius.confirmation.title'|trans }}</h4>
+                <h4 class="modal-title title-approved" style="display: inline-block">{{ 'service_civique.organization.registration.warning.title-approved'|trans }}</h4>
+                <h4 class="modal-title title-host" style="display: inline-block">{{ 'service_civique.organization.registration.warning.title-host'|trans }}</h4>
             </div>
             <div class="modal-body">
-                <p class="warning-approved">{{ 'service_civique.organization.registration.warning.approved'|trans }}</p>
-                <p class="warning-host">{{ 'service_civique.organization.registration.warning.host'|trans }}</p>
-                <p class="warning-final">{{ 'service_civique.organization.registration.warning.final'|trans }}</p>
+                <p class="warning-approved">{{ 'service_civique.organization.registration.warning.approved'|trans|raw }}</p>
+                <p class="warning-host">{{ 'service_civique.organization.registration.warning.host'|trans|raw }}</p>
+                <p class="warning-final">{{ 'service_civique.organization.registration.warning.final'|trans|raw }}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="warning-tierce-modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" style="display: inline-block">{{ 'service_civique.organization.registration.warning-tierce.title'|trans }}</h4>
+            </div>
+            <div class="modal-body">
+                <p class="warning-approved">{{ 'service_civique.organization.registration.warning-tierce.message'|trans | raw }}</p>
+                {#<p class="warning-host">{{ 'service_civique.organization.registration.warning-tierce.host'|trans }}</p>#}
+                <p class="warning-final">{{ 'service_civique.organization.registration.warning-tierce.final'|trans | raw }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
             </div>
         </div>
     </div>

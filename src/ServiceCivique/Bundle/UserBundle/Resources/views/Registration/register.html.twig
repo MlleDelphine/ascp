@@ -52,9 +52,57 @@
                     var modal = $(this);
                     if($('#fos_user_registration_form_organization_type_0').prop('checked')) {
                         modal.find('.warning-host').hide();
+                        modal.find('.title-host').hide();
                     } else {
                         modal.find('.warning-approved').hide();
+                        modal.find('.title-approved').hide();
                     }
+                });
+                //Affiche une pop-up à la sélection si rien dans le select: organisme tiers
+                $(document).on('ifChecked', '#fos_user_registration_form_organization_type_1', function(event){
+                    var approval_number = $('#fos_user_registration_form_organization_approvalNumber').val();
+                    var url = "{{ path('service_civique_organization_ajax_search', { 'approval_number': '__APPROVAL__'}) }}";
+                    url = url.replace('__APPROVAL__', approval_number);
+                    $.ajax({
+                        url: url,
+                        type: "GET",
+                        dataType: "JSON",
+                        success: function (data) {
+                            if(jQuery.isEmptyObject(data)){
+                                $('#warning-tierce-modal').modal();
+                            }
+                        }
+                    })
+                });
+
+                //Vérification en temps réel des champs email
+
+                $(document).on('keyup', '#fos_user_registration_form_email_second', function(event){
+
+                    var main_email = $('#fos_user_registration_form_email_first').val();
+                    var second_email = $(this).val();
+                    if(main_email.toLowerCase() != second_email.toLowerCase()){
+                        console.log('Différents');
+                        var check_block = $('.check-double-mail');
+                        if(check_block.length < 1){
+                            console.log('check block pas là');
+                            $(this).parent("div").append('<span class="help-block form-error check-double-mail" style="color: #a94442;">Les champs email doivent être identiques.</span>');
+                        }
+                        else{
+                            $('.check-double-mail').show();
+                        }
+                        if(!$(this).parent("div").hasClass("has-error")){
+                            $(this).parent("div").addClass("has-error");
+                        }
+                    }
+                    else{
+                        console.log('identiques');
+                        $('.check-double-mail').hide();
+                        if($(this).parent("div").hasClass("has-error")){
+                            $(this).parent("div").removeClass("has-error");
+                        }
+                    }
+
                 })
             })
         </script>

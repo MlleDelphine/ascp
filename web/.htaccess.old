@@ -5,70 +5,70 @@
 # to each configured DirectoryIndex file (e.g. index.php, index.html, index.pl).
 
 #redirect
-Redirect permanent "/content/comment-le-service-civique-contribue-à-la-lutte-contre-le-décrochage-scolaire" http://www.service-civique.cirrus-cloud.net.fr/page/decrochage-scolaire
-Redirect permanent "/partenariats" http://www.service-civique.cirrus-cloud.net.fr/page/nos-partenaires
-Redirect permanent "/content/actions-contre-le-décrochage-scolaire" http://www.service-civique.cirrus-cloud.net.fr/page/decrochage-scolaire
-#Redirect permanent "/avantages" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/comment-le-service-civique-contribue-à-la-lutte-contre-le-décrochage-scolaire" http://www.service-civique.gouv.fr/page/decrochage-scolaire
+Redirect permanent "/partenariats" http://www.service-civique.gouv.fr/page/nos-partenaires
+Redirect permanent "/content/actions-contre-le-décrochage-scolaire" http://www.service-civique.gouv.fr/page/decrochage-scolaire
+#Redirect permanent "/avantages" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
 Redirect permanent "/enquetedesatisfaction" https://solen.sante.gouv.fr/cgi/HE.exe/SF?P=1787z5z4z-1z-1zFC0D41791F
-Redirect permanent "/content/agence-nationale-pour-les-chèques-vacances-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/content/région-alsace" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/content/région-paca" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/chartedesvolontaires" http://www.service-civique.cirrus-cloud.net.fr/page/la-charte-des-valeurs
-Redirect permanent "/content/microsoft" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/les-grands-programmes-du-service-civique" http://www.service-civique.cirrus-cloud.net.fr/page/les-programmes-service-civique
-Redirect permanent "/content/région-bretagne" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/content/foire-aux-questions-des-organismes" http://www.service-civique.cirrus-cloud.net.fr/organismes/faq-organisme
-Redirect permanent "/content/vous-avez-arrêté-les-cours-engagez-vous-en-mission-de-service-civique" http://www.service-civique.cirrus-cloud.net.fr/page/decrochage-scolaire
-Redirect permanent "/agrements-publies" http://www.service-civique.cirrus-cloud.net.fr/a-propos-de-nous/agence-service-civique/agrements-publies
-Redirect permanent "/content/macif-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/informations-légales" http://www.service-civique.cirrus-cloud.net.fr/page/mentions-legales
-Redirect permanent "/videos" http://www.service-civique.cirrus-cloud.net.fr/page/le-service-civique-par-ceux-qui-le-font
-Redirect permanent "/sites/default/files/ASC_modele_contrat_engagement_juin_2010_0.pdf" http://www.service-civique.cirrus-cloud.net.fr
-Redirect permanent "/sites/default/files/CIVIQC-0801-08-10-reader.pdf" http://www.service-civique.cirrus-cloud.net.fr
-Redirect permanent "/sites/default/files/Guide SC - 3 volets 120x297 Salon des maires Final BD.pdf" http://www.service-civique.cirrus-cloud.net.fr
-Redirect permanent "/content/contactez-nous" http://www.service-civique.cirrus-cloud.net.fr/page/contactez-nous
-Redirect permanent "/content/orange-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/content/région-poitou-charentes-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/campagne/2013" http://www.service-civique.cirrus-cloud.net.fr/page/campagnes-de-communication
-Redirect permanent "/user/password" http://www.service-civique.cirrus-cloud.net.fr/resetting/request
-Redirect permanent "/content/remise-du-rapport-«-liberte-egalite-citoyennete-un-service-civique-pour-tous-»-par-francois-" http://www.service-civique.cirrus-cloud.net.fr/page/remise-du-rapport-liberte-egalite-citoyennete-un-service-civique-pour-tous-par-francois-chereque-a-najat-vallaud-belkacem
-Redirect permanent "/sites/default/files/Charte_Valeurs_SC_4_pages_A5.pdf" http://www.service-civique.cirrus-cloud.net.fr/page/la-charte-des-valeurs
-Redirect permanent "/content/quest-ce-que-le-service-civique" http://www.service-civique.cirrus-cloud.net.fr/page/qu-est-ce-que-le-service-civique
-Redirect permanent "/node/413870" http://www.service-civique.cirrus-cloud.net.fr/page/qu-est-ce-que-le-service-civique
-Redirect permanent "/content/comment-mengager" http://www.service-civique.cirrus-cloud.net.fr/page/comment-devenir-volontaire
-Redirect permanent "/node/26295" http://www.service-civique.cirrus-cloud.net.fr/page/comment-devenir-volontaire
-Redirect permanent "/content/pourquoi-minvestir" http://www.service-civique.cirrus-cloud.net.fr/page/pourquoi-m-engager
-Redirect permanent "/organisation-et-fonctionnement" http://www.service-civique.cirrus-cloud.net.fr/page/organisation-et-fonctionnement
-Redirect permanent "/creer-son-compte" http://www.service-civique.cirrus-cloud.net.fr/register/
-Redirect permanent "/content/trouver-un-volontaire" http://www.service-civique.cirrus-cloud.net.fr/page/trouver-un-volontaire
-Redirect permanent "/les_actualites" http://www.service-civique.cirrus-cloud.net.fr/page/les-actualites
-Redirect permanent "/les-demarches-elisa" http://www.service-civique.cirrus-cloud.net.fr/page/les-demarches-elisa
-Redirect permanent "/content/foire-aux-questions-des-volontaires" http://www.service-civique.cirrus-cloud.net.fr/faq-volontaire
-Redirect permanent "/content/obtenir-un-agrement" http://www.service-civique.cirrus-cloud.net.fr/page/comment-obtenir-un-agrement
-Redirect permanent "/content/comment-le-service-civique-contribue-à-la-lutte-contre-le-décrochage-scolaire" http://www.service-civique.cirrus-cloud.net.fr/page/decrochage-scolaire
-Redirect permanent "/partenariats" http://www.service-civique.cirrus-cloud.net.fr/page/nos-partenaires
-Redirect permanent "/content/actions-contre-le-décrochage-scolaire" http://www.service-civique.cirrus-cloud.net.fr/page/decrochage-scolaire
-#Redirect permanent "/avantages" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/content/agence-nationale-pour-les-chèques-vacances-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/content/région-alsace" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/content/région-paca" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/chartedesvolontaires" http://www.service-civique.cirrus-cloud.net.fr/page/la-charte-des-valeurs
-Redirect permanent "/content/microsoft" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/les-grands-programmes-du-service-civique" http://www.service-civique.cirrus-cloud.net.fr/page/les-programmes-service-civique
-Redirect permanent "/content/région-bretagne" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/content/foire-aux-questions-des-organismes" http://www.service-civique.cirrus-cloud.net.fr/organismes/faq-organisme
-Redirect permanent "/content/vous-avez-arrêté-les-cours-engagez-vous-en-mission-de-service-civique" http://www.service-civique.cirrus-cloud.net.fr/page/decrochage-scolaire
-Redirect permanent "/agrements-publies" http://www.service-civique.cirrus-cloud.net.fr/a-propos-de-nous/agence-service-civique/agrements-publies
-Redirect permanent "/content/macif-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/informations-légales" http://www.service-civique.cirrus-cloud.net.fr/page/mentions-legales
-Redirect permanent "/videos" http://www.service-civique.cirrus-cloud.net.fr/page/le-service-civique-par-ceux-qui-le-font
-Redirect permanent "/content/contactez-nous" http://www.service-civique.cirrus-cloud.net.fr/page/contactez-nous
-Redirect permanent "/content/orange-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/content/région-poitou-charentes-0" http://www.service-civique.cirrus-cloud.net.fr/page/les-avantages-des-volontaires
-Redirect permanent "/campagne/2013" http://www.service-civique.cirrus-cloud.net.fr/page/campagnes-de-communication
-Redirect permanent "/user/password" http://www.service-civique.cirrus-cloud.net.fr/resetting/request
-Redirect permanent "/content/remise-du-rapport-«-liberte-egalite-citoyennete-un-service-civique-pour-tous-»-par-francois-" http://www.service-civique.cirrus-cloud.net.fr/page/remise-du-rapport-liberte-egalite-citoyennete-un-service-civique-pour-tous-par-francois-chereque-a-najat-vallaud-belkacem
-Redirect permanent "/sites/default/files/Charte_Valeurs_SC_4_pages_A5.pdf" http://www.service-civique.cirrus-cloud.net.fr/page/la-charte-des-valeurs
+Redirect permanent "/content/agence-nationale-pour-les-chèques-vacances-0" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/région-alsace" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/région-paca" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/chartedesvolontaires" http://www.service-civique.gouv.fr/page/la-charte-des-valeurs
+Redirect permanent "/content/microsoft" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/les-grands-programmes-du-service-civique" http://www.service-civique.gouv.fr/page/les-programmes-service-civique
+Redirect permanent "/content/région-bretagne" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/foire-aux-questions-des-organismes" http://www.service-civique.gouv.fr/organismes/faq-organisme
+Redirect permanent "/content/vous-avez-arrêté-les-cours-engagez-vous-en-mission-de-service-civique" http://www.service-civique.gouv.fr/page/decrochage-scolaire
+Redirect permanent "/agrements-publies" http://www.service-civique.gouv.fr/a-propos-de-nous/agence-service-civique/agrements-publies
+Redirect permanent "/content/macif-0" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/informations-légales" http://www.service-civique.gouv.fr/page/mentions-legales
+Redirect permanent "/videos" http://www.service-civique.gouv.fr/page/le-service-civique-par-ceux-qui-le-font
+Redirect permanent "/sites/default/files/ASC_modele_contrat_engagement_juin_2010_0.pdf" http://www.service-civique.gouv.fr
+Redirect permanent "/sites/default/files/CIVIQC-0801-08-10-reader.pdf" http://www.service-civique.gouv.fr
+Redirect permanent "/sites/default/files/Guide SC - 3 volets 120x297 Salon des maires Final BD.pdf" http://www.service-civique.gouv.fr
+Redirect permanent "/content/contactez-nous" http://www.service-civique.gouv.fr/page/contactez-nous
+Redirect permanent "/content/orange-0" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/région-poitou-charentes-0" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/campagne/2013" http://www.service-civique.gouv.fr/page/campagnes-de-communication
+Redirect permanent "/user/password" http://www.service-civique.gouv.fr/resetting/request
+Redirect permanent "/content/remise-du-rapport-«-liberte-egalite-citoyennete-un-service-civique-pour-tous-»-par-francois-" http://www.service-civique.gouv.fr/page/remise-du-rapport-liberte-egalite-citoyennete-un-service-civique-pour-tous-par-francois-chereque-a-najat-vallaud-belkacem
+Redirect permanent "/sites/default/files/Charte_Valeurs_SC_4_pages_A5.pdf" http://www.service-civique.gouv.fr/page/la-charte-des-valeurs
+Redirect permanent "/content/quest-ce-que-le-service-civique" http://www.service-civique.gouv.fr/page/qu-est-ce-que-le-service-civique
+Redirect permanent "/node/413870" http://www.service-civique.gouv.fr/page/qu-est-ce-que-le-service-civique
+Redirect permanent "/content/comment-mengager" http://www.service-civique.gouv.fr/page/comment-devenir-volontaire
+Redirect permanent "/node/26295" http://www.service-civique.gouv.fr/page/comment-devenir-volontaire
+Redirect permanent "/content/pourquoi-minvestir" http://www.service-civique.gouv.fr/page/pourquoi-m-engager
+Redirect permanent "/organisation-et-fonctionnement" http://www.service-civique.gouv.fr/page/organisation-et-fonctionnement
+Redirect permanent "/creer-son-compte" http://www.service-civique.gouv.fr/register/
+Redirect permanent "/content/trouver-un-volontaire" http://www.service-civique.gouv.fr/page/trouver-un-volontaire
+Redirect permanent "/les_actualites" http://www.service-civique.gouv.fr/page/les-actualites
+Redirect permanent "/les-demarches-elisa" http://www.service-civique.gouv.fr/page/les-demarches-elisa
+Redirect permanent "/content/foire-aux-questions-des-volontaires" http://www.service-civique.gouv.fr/faq-volontaire
+Redirect permanent "/content/obtenir-un-agrement" http://www.service-civique.gouv.fr/page/comment-obtenir-un-agrement
+Redirect permanent "/content/comment-le-service-civique-contribue-à-la-lutte-contre-le-décrochage-scolaire" http://www.service-civique.gouv.fr/page/decrochage-scolaire
+Redirect permanent "/partenariats" http://www.service-civique.gouv.fr/page/nos-partenaires
+Redirect permanent "/content/actions-contre-le-décrochage-scolaire" http://www.service-civique.gouv.fr/page/decrochage-scolaire
+#Redirect permanent "/avantages" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/agence-nationale-pour-les-chèques-vacances-0" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/région-alsace" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/région-paca" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/chartedesvolontaires" http://www.service-civique.gouv.fr/page/la-charte-des-valeurs
+Redirect permanent "/content/microsoft" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/les-grands-programmes-du-service-civique" http://www.service-civique.gouv.fr/page/les-programmes-service-civique
+Redirect permanent "/content/région-bretagne" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/foire-aux-questions-des-organismes" http://www.service-civique.gouv.fr/organismes/faq-organisme
+Redirect permanent "/content/vous-avez-arrêté-les-cours-engagez-vous-en-mission-de-service-civique" http://www.service-civique.gouv.fr/page/decrochage-scolaire
+Redirect permanent "/agrements-publies" http://www.service-civique.gouv.fr/a-propos-de-nous/agence-service-civique/agrements-publies
+Redirect permanent "/content/macif-0" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/informations-légales" http://www.service-civique.gouv.fr/page/mentions-legales
+Redirect permanent "/videos" http://www.service-civique.gouv.fr/page/le-service-civique-par-ceux-qui-le-font
+Redirect permanent "/content/contactez-nous" http://www.service-civique.gouv.fr/page/contactez-nous
+Redirect permanent "/content/orange-0" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/content/région-poitou-charentes-0" http://www.service-civique.gouv.fr/page/les-avantages-des-volontaires
+Redirect permanent "/campagne/2013" http://www.service-civique.gouv.fr/page/campagnes-de-communication
+Redirect permanent "/user/password" http://www.service-civique.gouv.fr/resetting/request
+Redirect permanent "/content/remise-du-rapport-«-liberte-egalite-citoyennete-un-service-civique-pour-tous-»-par-francois-" http://www.service-civique.gouv.fr/page/remise-du-rapport-liberte-egalite-citoyennete-un-service-civique-pour-tous-par-francois-chereque-a-najat-vallaud-belkacem
+Redirect permanent "/sites/default/files/Charte_Valeurs_SC_4_pages_A5.pdf" http://www.service-civique.gouv.fr/page/la-charte-des-valeurs
 
 
 DirectoryIndex app.php
@@ -83,7 +83,7 @@ DirectoryIndex app.php
 
     #Redirection de l'ancien sous-domaine
     RewriteCond %{HTTP_HOST}   ^m.service-civique.gouv\.fr [NC]
-    RewriteRule ^/?(.*)         http://www.service-civique.cirrus-cloud.net.fr/$1 [L,R=301]
+    RewriteRule ^/?(.*)         http://www.service-civique.gouv.fr/$1 [L,R=301]
 
     #Redirection vers www
     RewriteCond %{HTTP_HOST} !^www\.

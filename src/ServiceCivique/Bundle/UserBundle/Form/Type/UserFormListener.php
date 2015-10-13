@@ -151,6 +151,14 @@ class UserFormListener implements EventSubscriberInterface
         $options = array_merge_recursive($default_options, $options, $moreOptions);
 
         $form->remove('email');
-        $form->add('email', 'email', $options);
+      //  $form->add('email', 'email', $options);
+        $form->add('email', 'repeated', array(
+            'type' => 'email',
+            'invalid_message' => 'Les champs email doivent être identiques.',
+            'options' => $options,
+            'required' => true,
+            'first_options'  => array('label' => 'Email'),
+            'second_options' => array('label' => 'Confirmer l\'email'),
+        ));
     }
 }
