@@ -1,0 +1,25 @@
+ServiceCivique\Bundle\CoreBundle\Entity\ForbiddenKeyword:
+    type: entity
+    table: forbidden_keyword
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 30
+        hits:
+            type: integer
+            nullable: true
+            options:
+              default: 0
+        slug:
+            type: string
+            length: 255
+            gedmo:
+                slug:
+                    fields: ['name']
+    lifecycleCallbacks: {  }

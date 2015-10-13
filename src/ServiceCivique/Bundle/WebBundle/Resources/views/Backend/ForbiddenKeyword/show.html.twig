@@ -1,0 +1,14 @@
+{% extends 'ServiceCiviqueWebBundle:Backend:layout_page.html.twig' %}
+
+{% set resource_type = 'forbidden_keyword' %}
+{% set page_type     = 'show' %}
+{% set page_type_class = 'page-show' %}
+
+{% block main_content_header %}{{ forbidden_keyword.name }}{% endblock %}
+
+{% block main_content_body %}
+    <div>
+        <h3>{{ forbidden_keyword.name | raw }}</h3>
+        <p>Hits : {{ forbidden_keyword.hits | raw }} </p>
+    </div>
+{% endblock %}

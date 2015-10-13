@@ -1,0 +1,53 @@
+service_civique_backend_forbidden_keyword_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.forbidden_keyword:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/ForbiddenKeyword:index.html.twig
+            sortable: true
+            paginate: 20
+
+service_civique_backend_forbidden_keyword_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: service_civique.controller.forbidden_keyword:createAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/ForbiddenKeyword:create.html.twig
+            redirect: service_civique_backend_forbidden_keyword_index
+
+service_civique_backend_forbidden_keyword_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: service_civique.controller.forbidden_keyword:updateAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/ForbiddenKeyword:update.html.twig
+            redirect: service_civique_backend_forbidden_keyword_index
+
+service_civique_backend_forbidden_keyword_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: service_civique.controller.forbidden_keyword:deleteAction
+        _sylius:
+            redirect: service_civique_backend_forbidden_keyword_index
+
+service_civique_forbidden_keyword_list:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.forbidden_keyword:indexAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/ForbiddenKeyword:list.html.twig
+            paginate: false
+            limit: 99
+
+service_civique_forbidden_keyword_show:
+    pattern: /{slug}
+    methods: [GET]
+    defaults:
+        _controller: service_civique.controller.forbidden_keyword:showAction
+        _sylius:
+            template: ServiceCiviqueWebBundle:Backend/ForbiddenKeyword:show.html.twig
