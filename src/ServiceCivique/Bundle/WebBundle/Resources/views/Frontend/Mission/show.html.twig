@@ -64,7 +64,7 @@
             {% block block_signaler %}
                 {# Si connecté, si admin, si pas propriétaire de la mission  #}
                 {%  if app.user %}
-                    {% if ( is_granted('ROLE_ADMIN') or mission.organization.user != app.user) and mission.status == constant('Mission', STATUS_AVAILABLE) %} {#  #}
+                    {% if ( is_granted('ROLE_ADMIN') or mission.organization.user != app.user) and mission.status == constant('ServiceCivique\\Bundle\\CoreBundle\\Entity\\Mission::STATUS_AVAILABLE') %} {#  #}
                     <a id="link-signal" aria-expanded="false" aria-controls="signalContent" class="btn  btn-sc-red pull-right" role="button">Signaler</a>
                     <div id="signalContent">
                         <div class="signalBox">
