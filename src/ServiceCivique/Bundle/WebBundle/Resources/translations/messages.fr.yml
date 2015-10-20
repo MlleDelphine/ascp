@@ -267,6 +267,8 @@ service_civique:
     form:
       body:
         label: Contenu de la FAQ
+  forbidden_keyword:
+    no_results: Aucun mot mot-clé interdit n'a été trouvé
   approval:
     no_results: Aucun agrément n'a été trouvé
   header:
@@ -584,6 +586,8 @@ service_civique:
       title: Avantage
     major_program:
       title: Grands Programmes
+    forbidden_keyword:
+      title: Mots-Clés Interdits
     media:
       title: Media
     partner:

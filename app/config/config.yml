@@ -221,6 +221,13 @@ sylius_resource:
                 model: ServiceCivique\Bundle\CoreBundle\Entity\MajorProgram
                 repository: ServiceCivique\Bundle\CoreBundle\Repository\MajorProgramRepository
                 controller: ServiceCivique\Bundle\CoreBundle\Controller\MajorProgramController
+        service_civique.forbidden_keyword:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Backend/ForbiddenKeyword
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\ForbiddenKeyword
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\ForbiddenKeywordRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\ForbiddenKeywordController
         service_civique.partner:
             driver: doctrine/orm
             templates: ServiceCiviqueWebBundle:Backend/Partner
