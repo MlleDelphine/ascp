@@ -621,7 +621,7 @@ class MissionController extends ResourceController
             $mission = parent::createNew();
         }
 
-        $mission->setStatus(Mission::STATUS_UNDER_REVIEW);
+        $mission->setStatus(Mission::STATUS_AVAILABLE);
 
         return $mission;
     }
@@ -666,7 +666,7 @@ class MissionController extends ResourceController
     {
         // publish draft
         if ($mission->getStatus() == Mission::STATUS_DRAFT) {
-            $mission->setStatus(Mission::STATUS_UNDER_REVIEW);
+            $mission->setStatus(Mission::STATUS_AVAILABLE);
         }
 
         return $mission;

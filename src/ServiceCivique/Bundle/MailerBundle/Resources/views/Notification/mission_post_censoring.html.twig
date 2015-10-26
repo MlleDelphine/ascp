@@ -1,0 +1,19 @@
+{% block subject %}
+    {% autoescape false %}
+        {{ 'service_civique.mission.post_censoring.subject'|trans({'%mission_title%' : mission_title}, 'notifications') }}
+    {% endautoescape %}
+{% endblock %}
+{% block body_text %}
+    {% autoescape false %}
+    {% endautoescape %}
+{% endblock %}
+{% block body_html %}
+    {% autoescape false %}
+
+        {{ 'service_civique.mission.post_censoring.message_html' |trans({
+        '%firstname%':             (firstname ? ' ' ~ firstname : ''),
+        '%mission_title%':   mission_title,
+        '%website%':               website
+        }, 'notifications') }}
+    {% endautoescape %}
+{% endblock %}

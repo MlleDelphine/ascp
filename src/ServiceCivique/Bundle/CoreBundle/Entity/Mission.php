@@ -22,6 +22,7 @@ class Mission
     const STATUS_FILLED           = 2;
     const STATUS_UNDER_REVIEW     = 3;
     const STATUS_UNDER_VALIDATION = 4;
+    const STATUS_CENSORED         = 5;
 
     /**
      * @var integer

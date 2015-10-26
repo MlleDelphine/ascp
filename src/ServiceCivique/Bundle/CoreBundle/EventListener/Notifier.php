@@ -266,6 +266,13 @@ class Notifier implements EventSubscriberInterface
                 $organizationUser->getEmail()
             );
             $to_send = true;
+        } elseif ($mission->getStatus() == Mission::STATUS_CENSORED) {
+            $message = $this->mailer->createNewMessage(
+                'ServiceCiviqueMailerBundle:Notification:mission_censoring.html.twig', array(
+                    'firstname' => $organizationUser->getFirstname(),
+                    'mission_title' => $mission->getTitle(),                
+                    ), null, $organizationUser->getEmail()
+            );
         }
 
         if ($to_send) {
