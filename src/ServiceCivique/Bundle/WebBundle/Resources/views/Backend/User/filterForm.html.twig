@@ -1,8 +1,18 @@
 {% form_theme form 'ServiceCiviqueWebBundle:Backend:filterForms.html.twig' %}
 
-<form method="get" action="{{ path('service_civique_backend_user_index', {'type' : app.request.get('user_type')} ) }}" class="form-inline form-filter">
+<form method="get" action="{{ path('service_civique_backend_user_index', {'type' : app.request.get('user_type'), 'paginate': app.request.get('paginate')} ) }}" class="form-inline form-filter">
     {{ form_row(form.type) }}
     {{ form_row(form.query) }}
+
+    {% if settings.display.pagination is defined %}
+        <select class="paginate-url" name="paginate">
+            <option value="20" {% if(app.request.query.get('paginate') == 20) %}selected="selected"{% endif %}>20 organismes par page</option>
+            <option value="50" {% if(app.request.query.get('paginate') == 50) %}selected="selected"{% endif %}>50 organismes par page</option>
+            <option value="100" {% if(app.request.query.get('paginate') == 100) %}selected="selected"{% endif %}>100 organismes par page</option>
+        </select>
+    {% endif %}
+
     <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Rechercher</button>
-    <a href="{{ path('service_civique_backend_user_index', {'type' : app.request.get('user_type')} ) }}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Annuler</a>
+    <a href="{{ path('service_civique_backend_user_index', {'type' : app.request.get('user_type') } ) }}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Annuler</a>
 </form>
+<p>
