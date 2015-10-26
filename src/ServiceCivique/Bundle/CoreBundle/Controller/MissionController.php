@@ -240,7 +240,7 @@ class MissionController extends ResourceController
                             'Votre mission a été envoyée pour validation.'
                         );
                     } else {
-                         $this->get('session')->getFlashBag()->set(
+                        $this->get('session')->getFlashBag()->set(
                             'success',
                             'La mission a correctement été modifiée.'
                         );
@@ -537,7 +537,7 @@ class MissionController extends ResourceController
 
             if (!isset($params['criteria']['is_overseas']) || !$params['criteria']['is_overseas']) {
                 unset($params['criteria']['country']);
-            /* Ajout Frédérick Zilbermann Non prise en compte région/département quand on recherche à l'étranger */
+                /* Ajout Frédérick Zilbermann Non prise en compte région/département quand on recherche à l'étranger */
             } else {
                 unset($params['criteria']['department']);
                 unset($params['criteria']['area']);
