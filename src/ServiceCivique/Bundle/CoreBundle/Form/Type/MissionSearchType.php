@@ -68,13 +68,24 @@ class MissionSearchType extends AbstractType
             ->add('organization', null, array(
                 'label' => 'service_civique.form.mission_search.organization.label',
             ))
+            ->add('approval_number', null, array(
+                'label' => 'service_civique.form.mission_search.approval_number.label',
+                'required' => false,
+            ))
             ->add('tag', 'entity', array(
                 'class'    => 'ServiceCivique\Bundle\CoreBundle\Entity\Tag',
                 'property' => 'title',
                 'required' => false,
-                'empty_value' => 'Aucun Tag',
+                'empty_value' => 'Ne pas filtrer sur les tags',
                 'empty_data'  => null
             ))
+            ->add('optionsTag','choice', array(
+                'choices' => array(1 => 'Avec au moins un tag',2 => 'Sans aucun tag'),
+                'multiple' => false,
+                'expanded' => true,
+                'required' => false,
+                'empty_value' => 'Filtre sur un tag',
+                'label' => 'Filtrer les missions par tags'))
             ->add('is_overseas', 'choice', array(
                 'choices' => array(
                     0 => 'service_civique.form.mission_search.is_overseas.value_france',

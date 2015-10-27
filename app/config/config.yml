@@ -214,6 +214,20 @@ sylius_resource:
                 model: ServiceCivique\Bundle\CoreBundle\Entity\Advantage
                 repository: ServiceCivique\Bundle\CoreBundle\Repository\AdvantageRepository
                 controller: ServiceCivique\Bundle\CoreBundle\Controller\AdvantageController
+        service_civique.major_program:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Backend/MajorProgram
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\MajorProgram
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\MajorProgramRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\MajorProgramController
+        service_civique.forbidden_keyword:
+            driver: doctrine/orm
+            templates: ServiceCiviqueWebBundle:Backend/ForbiddenKeyword
+            classes:
+                model: ServiceCivique\Bundle\CoreBundle\Entity\ForbiddenKeyword
+                repository: ServiceCivique\Bundle\CoreBundle\Repository\ForbiddenKeywordRepository
+                controller: ServiceCivique\Bundle\CoreBundle\Controller\ForbiddenKeywordController
         service_civique.partner:
             driver: doctrine/orm
             templates: ServiceCiviqueWebBundle:Backend/Partner
@@ -448,13 +462,14 @@ liip_monitor:
 #
 service_civique_menu:
     route_mapping:
-        service_civique_actu_show:      service_civique_actu_list
-        service_civique_presse_show:    service_civique_presse_list
-        service_civique_partner_show:   service_civique_partner_list
-        service_civique_advantage_show: service_civique_advantage_list
-        service_civique_media_show:     service_civique_media_list
-        service_civique_mission_show:   service_civique_mission_list
-        service_civique_video_show:     service_civique_video_list
+        service_civique_actu_show:          service_civique_actu_list
+        service_civique_presse_show:        service_civique_presse_list
+        service_civique_partner_show:       service_civique_partner_list
+        service_civique_advantage_show:     service_civique_advantage_list
+        service_civique_major_program_show: service_civique_major_program_list
+        service_civique_media_show:         service_civique_media_list
+        service_civique_mission_show:       service_civique_mission_list
+        service_civique_video_show:         service_civique_video_list
 
 eko_feed:
     # hydrator: your_hydrator.custom.service # Optional, if you use entity hydrating with a custom hydrator

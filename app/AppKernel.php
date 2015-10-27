@@ -60,7 +60,7 @@ class AppKernel extends Kernel
             // new \Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
             new ServiceCivique\Bundle\ContentBundle\ServiceCiviqueContentBundle(),
             new ServiceCivique\Bundle\SeoBundle\ServiceCiviqueSeoBundle(),
-            // new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
+            new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
 
             new Liip\MonitorBundle\LiipMonitorBundle(),

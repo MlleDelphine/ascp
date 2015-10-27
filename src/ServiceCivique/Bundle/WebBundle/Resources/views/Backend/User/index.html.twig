@@ -22,6 +22,10 @@
 {% endblock %}
 
 {% block main_content_body %}
-    {% render(controller('service_civique.controller.backend.form:filterAction', {'type': 'service_civique_user_filter', 'user_type': app.request.get('type'), 'template': 'ServiceCiviqueWebBundle:Backend/User:filterForm.html.twig'})) %}
+    {% render(controller('service_civique.controller.backend.form:filterAction',
+    {'type': 'service_civique_user_filter',
+    'user_type': app.request.get('type'),
+    'template': 'ServiceCiviqueWebBundle:Backend/User:filterForm.html.twig',
+    'paginate': app.request.get('paginate')})) %}
     {{ table(resources) }}
 {% endblock %}

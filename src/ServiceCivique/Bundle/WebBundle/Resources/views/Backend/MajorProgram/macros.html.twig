@@ -1,0 +1,33 @@
+{% macro table(major_programs) %}
+{% import 'ServiceCiviqueWebBundle:Frontend/Mission:macros.html.twig' as macros %}
+{% import 'ServiceCiviqueWebBundle:Macros:buttons.html.twig' as buttons %}
+{% import 'ServiceCiviqueWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+
+{% if major_programs | length != 0 %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>{{ sylius_resource_sort('position', 'Position') }}</th>
+            <th>{{ sylius_resource_sort('title', 'Titre') }}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for major_program in major_programs %}
+        <tr data-id="{{ major_program.id }}">
+            <td>{{ major_program.position }}</td>
+            <td><a href="{{ path('service_civique_major_program_show', {'slug': major_program.slug}) }}">{{ major_program.title }}</a></td>
+            <td>
+                <div class="pull-right">
+                    {{ buttons.edit(path('service_civique_backend_major_program_update', {'id': major_program.id})) }}
+                    {{ buttons.delete(path('service_civique_backend_major_program_delete', {'id': major_program.id})) }}
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    {{ alerts.info('service_civique.major_program.no_results' | trans) }}
+{% endif %}
+{% endmacro %}

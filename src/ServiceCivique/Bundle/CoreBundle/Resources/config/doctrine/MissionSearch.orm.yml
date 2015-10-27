@@ -63,5 +63,10 @@ ServiceCivique\Bundle\CoreBundle\Entity\MissionSearch:
             type: string
             length: 255
             nullable: true
+        approvalNumber:
+            column: approval_number
+            type: string
+            length: 255
+            nullable: true
 
     lifecycleCallbacks: {  }

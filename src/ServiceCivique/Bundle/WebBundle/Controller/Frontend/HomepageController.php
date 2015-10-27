@@ -16,11 +16,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Frontend homepage controller.
- *
  */
 class HomepageController extends Controller
 {
-
     public function defaultAction()
     {
         return new Response($this->renderView(
@@ -31,9 +29,15 @@ class HomepageController extends Controller
 
     public function organizationAction()
     {
+        $major_programs_repository = $this->get('service_civique.repository.major_program');
+        $major_programs = $major_programs_repository->findAll();
+
         return new Response($this->renderView(
             'ServiceCiviqueWebBundle:Frontend/Homepage:organization.html.twig',
-            array('body_classes' => 'front')
+            array(
+                'body_classes' => 'front',
+                'major_programs' => $major_programs,
+            )
         ));
     }
 
@@ -45,4 +49,11 @@ class HomepageController extends Controller
         ));
     }
 
+    public function faqsAction()
+    {
+        return new Response($this->renderView(
+            'ServiceCiviqueWebBundle:Frontend/Homepage:faqs.html.twig',
+            array('body_classes' => 'front')
+        ));
+    }
 }

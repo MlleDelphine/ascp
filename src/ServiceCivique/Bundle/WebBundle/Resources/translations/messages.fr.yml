@@ -76,6 +76,16 @@ service_civique:
           title:  Création compte organisme et connexion
           intro: |
               Créez votre compte, mettez en ligne vos missions et suivez vos candidatures
+          warning:
+              title-approved: Etes-vous bien un organisme agréé ?
+              title-host: Etes-vous bien un organisme d'accueil ?
+              approved: Vous êtes sur le point de créer un compte en tant qu'<strong>organisme agréé</strong>.<br> Cela signifie que vous êtes un organisme ayant obtenu un agrément en <strong>son nom</strong> pour accueillir des volontaires, mais que vous êtes également une structure centrale dont peuvent dépendre d'autres organismes dits "d'accueil". <br>Si ce n'est pas le cas, ou si vous avez un doute, merci de vérifier ce qui est indiqué sur votre agrément, afin de faire le bon choix.
+              host: Vous êtes sur le point de vous inscrire en tant qu'<strong>organisme d'accueil</strong>. <br>Cela signifie que vous êtes un organisme ayant été agréé via une structure de rattachement. Vous êtes autorisé à recruter des volontaires via l'organisme agréé dont vous dépendez, mais vous n'avez pas d'agrément à votre nom, et aucun structure ne peux être rattaché à vous. <br>Si ce n'est pas le cas, ou si vous avez un doute, merci de contacter votre organisme de rattachement ou de vérifier ce qui est indiqué sur votre agrément, afin de faire le bon choix.
+              final: Une fois cette fenêtre d'avertissement fermée, vous pourrez confirmer votre choix.
+          warning-tierce:
+              title: Inscription d’organisme d’accueil impossible
+              message: Vous tentez de vous inscrire en tant qu'organisme d'accueil (c'est-à-dire rattaché à un organisme agrée), cependant, cet organisme agréé n'a pas encore créé son compte sur notre plateforme. <br>Vous ne pouvez donc pas, pour l'instant, poursuivre votre inscription. <br>
+              final: Nous vous invitons à prendre contact avec votre organisme agréé de rattachement pour savoir à quel moment retenter la création de votre compte "organisme d'accueil". <br>Merci.
       form:
           approvalNumber:
               label: Numéro d’agrément
@@ -136,6 +146,8 @@ service_civique:
       index: Organismes
     corporate:
       index: À propos de nous
+    faqs:
+      index: FAQs
     update: Modifier
     user:
       index: Utilisateurs
@@ -190,6 +202,8 @@ service_civique:
         empty: Toutes les régions
       organization:
         label: Organisme
+      approval_number:
+        label: Numéro d'agrément
       country:
         empty: Tous les pays
         label: Pays
@@ -253,6 +267,8 @@ service_civique:
     form:
       body:
         label: Contenu de la FAQ
+  forbidden_keyword:
+    no_results: Aucun mot mot-clé interdit n'a été trouvé
   approval:
     no_results: Aucun agrément n'a été trouvé
   header:
@@ -568,6 +584,10 @@ service_civique:
       title: Actualité
     advantage:
       title: Avantage
+    major_program:
+      title: Grands Programmes
+    forbidden_keyword:
+      title: Mots-Clés Interdits
     media:
       title: Media
     partner:

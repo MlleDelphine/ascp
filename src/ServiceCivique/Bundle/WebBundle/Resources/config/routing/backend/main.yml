@@ -26,6 +26,14 @@ service_civique_backend_advantage:
     resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/advantage.yml
     prefix: /avantages
 
+service_civique_backend_main_program:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/major_program.yml
+    prefix: /grands-programmes
+
+service_civique_backend_forbidden_keyword:
+    resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/forbidden_keyword.yml
+    prefix: /mots-cles-interdits
+
 service_civique_backend_media:
     resource: @ServiceCiviqueWebBundle/Resources/config/routing/backend/media.yml
     prefix: /media

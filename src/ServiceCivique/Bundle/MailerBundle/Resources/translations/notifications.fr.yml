@@ -22,6 +22,16 @@ service_civique:
 
                 Le Service Civique<br/><br>
                 <a href="%website%">%website%</a>
+        post_censoring:
+            subject: Votre mission %mission_title% a été détectée comme non valide
+            message_html: |
+                Bonjour%firstname%,<br/><br>
+
+                Nous vous informons que votre mission %mission_title% n'a pas été mise en ligne sur le site du Service Civique car notre analyseur automatique a détecté un ou plusieurs mots interdits.<br/>
+                Un modérateur va se pencher bientôt sur ce problème et vous contactera pour la suite.<br/><br/>
+
+                Le Service Civique<br/><br>
+                <a href="%website%">%website%</a>
     application:
         post_create:
             candidate_subject: Votre candidature à la mission de Service Civique %mission_title%

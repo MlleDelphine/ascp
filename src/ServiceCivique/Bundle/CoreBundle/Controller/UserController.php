@@ -26,6 +26,61 @@ class UserController extends ResourceController
     //     return $this->handleView($view);
     // }
 
+//    /**
+//     * @param Request $request
+//     *
+//     * @return Response
+//     */
+//    public function indexAction(Request $request)
+//    {
+//        $criteria = $this->config->getCriteria();
+//        $sorting = $this->config->getSorting();
+//
+//        $repository = $this->getRepository();
+//
+//        if ($this->config->isPaginated()) {
+//
+//            $resources = $this->resourceResolver->getResource(
+//                $repository,
+//                'createPaginator',
+//                array($criteria, $sorting)
+//            );
+//            $resources->setCurrentPage($request->get('page', 1), true, true);
+//            if ($request->query->has('paginate')) {
+//                $paginate = $request->query->get('paginate');
+//            }else{
+//                $paginate = $this->config->getPaginationMaxPerPage();
+//            }
+//
+//            $resources->setMaxPerPage($paginate);
+//
+//            if ($this->config->isApiRequest()) {
+//                $resources = $this->getPagerfantaFactory()->createRepresentation(
+//                    $resources,
+//                    new Route(
+//                        $request->attributes->get('_route'),
+//                        $request->attributes->get('_route_params')
+//                    )
+//                );
+//            }
+//        } else {
+//            $resources = $this->resourceResolver->getResource(
+//                $repository,
+//                'findBy',
+//                array($criteria, $sorting, $this->config->getLimit())
+//            );
+//        }
+//
+//        $view = $this
+//            ->view()
+//            ->setTemplate($this->config->getTemplate('index.html'))
+//            ->setTemplateVar($this->config->getPluralResourceName())
+//            ->setData($resources)
+//        ;
+//
+//        return $this->handleView($view);
+//    }
+
     public function deleteAction(Request $request)
     {
         $resource = $this->findOr404($request);

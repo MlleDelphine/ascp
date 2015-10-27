@@ -1,6 +1,7 @@
 # Registration
 registration:
     check_email: Vous allez recevoir un email à l'adresse %email%. Pour valider votre compte, il suffit de cliquer sur le lien dans l'email, vous serez ensuite connecté sur le site.
+    check_spams: ATTENTION, le mail d'activation de votre compte peut être dans vos spams.
     submit: Se créer un compte
     email:
         subject: Valider votre compte sur le site du Service Civique

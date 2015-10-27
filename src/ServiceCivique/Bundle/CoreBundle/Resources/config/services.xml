@@ -20,6 +20,8 @@
         <parameter key="service_civique.form.type.presse.class">ServiceCivique\Bundle\CoreBundle\Form\Type\PresseType</parameter>
         <parameter key="service_civique.form.type.partner.class">ServiceCivique\Bundle\CoreBundle\Form\Type\PartnerType</parameter>
         <parameter key="service_civique.form.type.advantage.class">ServiceCivique\Bundle\CoreBundle\Form\Type\AdvantageType</parameter>
+        <parameter key="service_civique.form.type.major_program.class">ServiceCivique\Bundle\CoreBundle\Form\Type\MajorProgramType</parameter>
+        <parameter key="service_civique.form.type.forbidden_keyword.class">ServiceCivique\Bundle\CoreBundle\Form\Type\ForbiddenKeywordType</parameter>
         <parameter key="service_civique.form.type.media.class">ServiceCivique\Bundle\CoreBundle\Form\Type\MediaType</parameter>
         <parameter key="service_civique.form.type.approval_conflict.class">ServiceCivique\Bundle\CoreBundle\Form\Type\ApprovalConflictType</parameter>
         <parameter key="service_civique.form.type.video.class">ServiceCivique\Bundle\CoreBundle\Form\Type\VideoType</parameter>
@@ -30,6 +32,7 @@
         <parameter key="service_civique.form.type.approval_search.class">ServiceCivique\Bundle\CoreBundle\Form\Type\ApprovalSearchType</parameter>
         <parameter key="service_civique.service.region_locator.class">ServiceCivique\Bundle\CoreBundle\Service\RegionLocator</parameter>
         <parameter key="service_civique.service.mission_status_service.class">ServiceCivique\Bundle\CoreBundle\Service\MissionStatusService</parameter>
+        <parameter key="service_civique.service.content_checker_service.class">ServiceCivique\Bundle\CoreBundle\Service\ContentCheckerService</parameter>
         <parameter key="service_civique.service.mission_log_service.class">ServiceCivique\Bundle\CoreBundle\Service\MissionLogService</parameter>
         <parameter key="service_civique.service.approval_number_finder.class">ServiceCivique\Bundle\CoreBundle\Service\ApprovalNumberFinder</parameter>
         <parameter key="service_civique.service.newsletter_service.class">ServiceCivique\Bundle\CoreBundle\Service\NewsletterService</parameter>
@@ -135,6 +138,22 @@
 
         <service id="service_civique.form.type.advantage" class="%service_civique.form.type.advantage.class%">
             <tag name="form.type" alias="service_civique_advantage" />
+        </service>
+
+       <service id="service_civique.form.type.major_program" class="%service_civique.form.type.major_program.class%">
+            <tag name="form.type" alias="service_civique_major_program" />
+            <argument type="service" id="service_civique.repository.major_program" />
+        </service>
+
+        <service id="service_civique.form.type.forbidden_keyword" class="%service_civique.form.type.forbidden_keyword.class%">
+            <tag name="form.type" alias="service_civique_forbidden_keyword" />
+        </service>
+
+        <service id="service_civique.listener.major_program" class="ServiceCivique\Bundle\CoreBundle\Form\EventListener\ModifyMajorProgramListener">
+            <argument type="service" id="service_civique.repository.major_program" />
+            <tag name="kernel.event_listener" event="service_civique.major_program.pre_update" method="onMajorProgramCreateOrUpdate" />
+            <tag name="kernel.event_listener" event="service_civique.major_program.pre_create" method="onMajorProgramCreateOrUpdate" />
+            <tag name="kernel.event_listener" event="service_civique.major_program.pre_delete" method="onMajorProgramDelete" />
         </service>
 
         <service id="service_civique.form.type.video" class="%service_civique.form.type.video.class%">
@@ -270,6 +289,18 @@
             <argument type="service" id="security.context"/>
             <argument type="service" id="event_dispatcher"/>
         </service>
+        
+        <service id="service_civique.service.content_checker_service" class="%service_civique.service.content_checker_service.class%">
+            <argument type="service" id="doctrine" />
+            <argument type="service" id="service_civique.repository.forbidden_keyword" />
+        </service>
+        
+        <service id="service_civique.mission_validator" class="ServiceCivique\Bundle\CoreBundle\EventListener\MissionValidator">
+            <argument type="service" id="service_civique.service.content_checker_service" />
+            <tag name="kernel.event_subscriber" />
+            <tag name="priority" value="1" />
+        </service>        
+        
     </services>
 
 </container>
